@@ -17,8 +17,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 [[github](https://github.com/hengjeekuan)]
 
-* Role: Team Lead 
-* Responsibilities: Overall Project Coordination 
+* Role: Team Lead
+* Responsibilities: Overall Project Coordination
 
 ### Sun Jiaen
 
@@ -54,4 +54,4 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/mhaikelll)]
 
 * Role: Developer
-* Responsibilities: Code Quality 
+* Responsibilities: Code Quality
