@@ -17,8 +17,17 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 [[github](https://github.com/hengjeekuan)]
 
-* Role: Team Lead 
-* Responsibilities: Overall Project Coordination 
+* Role: Team Lead
+* Responsibilities: Overall Project Coordination
+
+### Sun Jiaen
+
+<img src="images/blacksesamezongzi.png" width="200px">
+
+[[github](https://github.com/blacksesamezongzi)]
+
+* Role: Developer
+* Responsibilities: Integration
 
 ### Ho Jian Tao
 
@@ -38,11 +47,11 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Deliverables and Deadlines
 
-### Sun Jiaen
+### Haikel Yasin
 
-<img src="images/blacksesamezongzi.png" width="200px">
+<img src="images/mhaikelll.png" width="200px">
 
-[[github](https://github.com/blacksesamezongzi)]
+[[github](https://github.com/mhaikelll)]
 
 * Role: Developer
-* Responsibilities: Integration
+* Responsibilities: Code Quality
