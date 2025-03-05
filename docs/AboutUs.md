@@ -17,4 +17,14 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 [[github](https://github.com/chinpcbenjamin)]
 
-* Role: Developer, Deliverables and Deadlines
+* Role: Developer
+* Responsibilities: Deliverables and Deadlines
+
+### Sun Jiaen
+
+<img src="images/blacksesamezongzi.png" width="200px">
+
+[[github](https://github.com/blacksesamezongzi)]
+
+* Role: Developer
+* Responsibility: Integration
