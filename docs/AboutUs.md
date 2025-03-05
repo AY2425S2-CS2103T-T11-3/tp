@@ -11,6 +11,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
+### Heng Jee Kuan
+
+<img src="images/hengjeekuan.png" width="200px">
+
+[[github](https://github.com/hengjeekuan)]
+
+* Role: Team Lead 
+* Responsibilities: Overall Project Coordination 
+
 ### Benjamin Chin
 
 <img src="images/chinpcbenjamin.png" width="200px">
@@ -27,4 +36,4 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/blacksesamezongzi)]
 
 * Role: Developer
-* Responsibility: Integration
+* Responsibilities: Integration
