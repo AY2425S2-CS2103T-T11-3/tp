@@ -20,6 +20,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Team Lead 
 * Responsibilities: Overall Project Coordination 
 
+### Ho Jian Tao
+
+<img src="images/alolononon.png" width="200px">
+
+[[github](http://github.com/alolononon)]
+
+* Role: Developer
+* Responsibilities: Documentation
+
 ### Benjamin Chin
 
 <img src="images/chinpcbenjamin.png" width="200px">
