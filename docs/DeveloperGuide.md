@@ -318,6 +318,23 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `ResiConnect` and the **Actor** is the `user`, unless specified otherwise)
 
+**Use case: Add a student**
+
+**MSS**
+
+1. User requests to add a student, along with his details.
+2. ResiConnect confirms that the student and his details were added.
+3. User requests to list students.
+4. ResiConnect shows a list of students that includes the latest student added.
+
+**Extensions**
+
+* 1a. The compulsory fields given by the user was invalid.
+    * 1a1. ResiConnect shows an error message.
+
+* 2a. The student already exists.
+  Use case ends.
+
 **Use case: Delete a person**
 
 **MSS**
