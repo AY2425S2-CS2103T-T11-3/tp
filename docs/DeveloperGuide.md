@@ -333,6 +333,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. The compulsory fields given by the user was invalid.
     * 1a1. ResiConnect shows an error message.
+    Step 1a is repeated until the data is valid. Use case repeat resumes from Step 2.
 
 * 2a. The student/staff/external vendor already exists.
   Use case ends.
@@ -355,8 +356,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   Use case ends.
 
 * 3a. The given index is invalid.
-
     * 3a1. AddressBook shows an error message.
+    Step 3a1 is repeated until the data is valid. Use case repeat resumes from Step 2.
 
       Use case resumes at step 2.
 
@@ -367,6 +368,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. User requests to find if a student/staff/external vendor exists.
 2. AddressBook shows a list of students/staff/external vendors that match the search criteria.
+
+  Use case ends.
 
 **Extensions**
 
