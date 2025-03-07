@@ -344,11 +344,38 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `17` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+#### Data Requirements
 
-*{More to be added}*
+1. Data Size: The system should handle up to `10,000` contacts and `500` events simultaneously without performance degradation.
+2. Data Volatility: The system should allow for quick updates since contact information can change frequently.
+
+#### Environment Requirements
+
+1. Technical Environment: The system should be compatible with any mainstream OS with `Java 17 JDK+FX Azul distribution` installed.
+
+#### Performance Requirements
+
+1. Response Time: The system should respond to user inputs and complete the corresponding action within `2` seconds.
+
+#### CLI-First Design
+
+1. Primary Input Method: The system should prioritize `CLI` for all core functionalities.
+2. One-Shot Commands: The system should support one-shot commands for users to perform tasks quickly.
+
+#### Maintainability 
+
+1. Code Quality: The codebase should adhere to `Java coding standards` and include comprehensive documentation.
+2. Modularity: The system should be modular, allowing for easy updates or additions of new features.
+
+#### Testability
+
+1. Unit Testing: At least `80%` code coverage should be achieved for all critical modules.
+2. Integration Testing: End-to-end testing should be conducted to ensure seamless interaction between modules.
+
+#### Quality Requirements
+
+1. Usability: The system should be intuitive enough for new RAs and RFs to navigate without extensive training.
+2. Error Handling: Clear error messages should be displayed to guide users in resolving issues.
 
 ### Glossary
 
