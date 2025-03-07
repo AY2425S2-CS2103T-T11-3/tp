@@ -323,7 +323,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User requests to add a student/staff/external vendor, along with his details.
-2. ResiConnect confirms that the student/staff/external vendor and his details were added.
+2. ResiConnect saves the student/staff/external vendor and his details.
 3. User requests to list student/staff/external vendor.
 4. ResiConnect shows a list of student/staff/external vendor that includes the latest student added.
 
