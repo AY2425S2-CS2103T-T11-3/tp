@@ -358,6 +358,24 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
+
+**Use case: Find a student/staff/external vendor**
+
+**MSS**
+
+1. User requests to find if a student/staff/external vendor exists.
+2. AddressBook shows a list of students/staff/external vendors that match the search criteria.
+
+**Extensions**
+
+* 1a. The fields entered by the user was invalid
+  * 1a1. ResiConnect shows an error message.
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+
 *{More to be added}*
 
 ### Non-Functional Requirements
