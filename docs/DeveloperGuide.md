@@ -333,7 +333,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. The compulsory fields given by the user was invalid.
     * 1a1. ResiConnect shows an error message.
-    Step 1a is repeated until the data is valid. Use case repeat resumes from Step 2.
+    * 1a2. User enters updated details.
+    Step 1a1-1a2 is repeated until the data entered is valid. Use case resumes from Step 2.
 
 * 2a. The student/staff/external vendor already exists.
   Use case ends.
