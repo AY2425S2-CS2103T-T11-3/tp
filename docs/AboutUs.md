@@ -11,6 +11,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
+### Heng Jee Kuan
+
+<img src="images/hengjeekuan.png" width="200px">
+
+[[github](https://github.com/hengjeekuan)]
+
+* Role: Team Lead
+* Responsibilities: Overall Project Coordination
+
 ### Sun Jiaen
 
 <img src="images/blacksesamezongzi.png" width="200px">
@@ -18,43 +27,31 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/blacksesamezongzi)]
 
 * Role: Developer
-* Responsibility: Integration
+* Responsibilities: Integration
 
-### Jane Doe
+### Ho Jian Tao
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/alolononon.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Team Lead
-* Responsibilities: UI
-
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/alolononon)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: Documentation
 
-### Jean Doe
+### Benjamin Chin
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/chinpcbenjamin.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/chinpcbenjamin)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Deliverables and Deadlines
+
+### Haikel Yasin
+
+<img src="images/mhaikelll.png" width="200px">
+
+[[github](https://github.com/mhaikelll)]
+
+* Role: Developer
+* Responsibilities: Code Quality
