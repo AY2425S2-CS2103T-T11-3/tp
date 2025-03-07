@@ -318,31 +318,33 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `ResiConnect` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Add a student**
+**Use case: Add a student/staff/external vendor**
 
 **MSS**
 
-1. User requests to add a student, along with his details.
-2. ResiConnect confirms that the student and his details were added.
-3. User requests to list students.
-4. ResiConnect shows a list of students that includes the latest student added.
+1. User requests to add a student/staff/external vendor, along with his details.
+2. ResiConnect confirms that the student/staff/external vendor and his details were added.
+3. User requests to list student/staff/external vendor.
+4. ResiConnect shows a list of student/staff/external vendor that includes the latest student added.
+
+    Use case ends.
 
 **Extensions**
 
 * 1a. The compulsory fields given by the user was invalid.
     * 1a1. ResiConnect shows an error message.
 
-* 2a. The student already exists.
+* 2a. The student/staff/external vendor already exists.
   Use case ends.
 
-**Use case: Delete a person**
+**Use case: Delete a student/staff/external vendor**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User requests to list student/staff/external vendor.
+2.  ResiConnect shows a list of student/staff/external vendor.
+3.  User requests to delete a specific person in the student/staff/external vendor.
+4.  ResiConnect deletes the person.
 
     Use case ends.
 
