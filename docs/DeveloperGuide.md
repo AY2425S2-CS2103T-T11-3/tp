@@ -4,7 +4,7 @@
   pageNav: 3
 ---
 
-# AB-3 Developer Guide
+# ResiConnect Developer Guide
 
 <!-- * Table of Contents -->
 <page-nav-print />
@@ -274,13 +274,14 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
+* is a Resident Assistant (RA) or a Resident Fellow (RF) in a residence in NUS
 * has a need to manage a significant number of contacts of the residents(students), staff, and external vendors in a university hall
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: ResiConnect helps RA/RF to manage contacts of the students of a hall or contacts of the students, staff and external vendors of hall events.
+**Value proposition**: ResiConnect helps a RA/RF manage contacts of the students of a hall or contacts of the students, staff and external vendors of hall events.
 Having an address book to note down all the important information about the people they are in charge of. It would be helpful for coordinating hall events, emergency situation, etc. 
 
 
@@ -315,7 +316,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `ResiConnect` and the **Actor** is the `user`, unless specified otherwise)
 
 **Use case: Delete a person**
 
