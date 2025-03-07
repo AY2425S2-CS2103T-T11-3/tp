@@ -357,6 +357,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. Response Time: The system should respond to user inputs and complete the corresponding action within `2` seconds.
 
+#### CLI-First Design
+
+1. Primary Input Method: The system should prioritize CLI for all core functionalities.
+2. One-Shot Commands: The system should support one-shot commands for users to perform tasks quickly.
+
 #### Maintainability 
 
 1. Code Quality: The codebase should adhere to Java coding standards and include comprehensive documentation.
