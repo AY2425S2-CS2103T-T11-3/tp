@@ -347,7 +347,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 #### Data Requirements
 
 1. Data Size: The system should handle up to `10,000` contacts and `500` events simultaneously without performance degradation.
-2. Data Volatility: The system should allow for quick updates without downtime since contact information can change frequently.
+2. Data Volatility: The system should allow for quick updates since contact information can change frequently.
 
 #### Environment Requirements
 
@@ -359,17 +359,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 #### CLI-First Design
 
-1. Primary Input Method: The system should prioritize CLI for all core functionalities.
+1. Primary Input Method: The system should prioritize `CLI` for all core functionalities.
 2. One-Shot Commands: The system should support one-shot commands for users to perform tasks quickly.
 
 #### Maintainability 
 
-1. Code Quality: The codebase should adhere to Java coding standards and include comprehensive documentation.
+1. Code Quality: The codebase should adhere to `Java coding standards` and include comprehensive documentation.
 2. Modularity: The system should be modular, allowing for easy updates or additions of new features.
 
 #### Testability
 
-1. Unit Testing: At least 80% code coverage should be achieved for all critical modules.
+1. Unit Testing: At least `80%` code coverage should be achieved for all critical modules.
 2. Integration Testing: End-to-end testing should be conducted to ensure seamless interaction between modules.
 
 #### Quality Requirements
