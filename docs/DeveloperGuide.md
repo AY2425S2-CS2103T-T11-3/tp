@@ -4,7 +4,7 @@
   pageNav: 3
 ---
 
-# AB-3 Developer Guide
+# ResiConnect Developer Guide
 
 <!-- * Table of Contents -->
 <page-nav-print />
@@ -13,7 +13,7 @@
 
 ## **Acknowledgements**
 
-_{ list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well }_
+This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -274,13 +274,14 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
+* is a Resident Assistant (RA) or a Resident Fellow (RF) in a residence in NUS
 * has a need to manage a significant number of contacts of the residents(students), staff, and external vendors in a university hall
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: ResiConnect helps RA/RF to manage contacts of the students of a hall or contacts of the students, staff and external vendors of hall events.
+**Value proposition**: ResiConnect helps a RA/RF manage contacts of the students of a hall or contacts of the students, staff and external vendors of hall events.
 Having an address book to note down all the important information about the people they are in charge of. It would be helpful for coordinating hall events, emergency situation, etc. 
 
 
@@ -315,16 +316,37 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `ResiConnect` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: Add a student/staff/external vendor**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1. User requests to add a student/staff/external vendor, along with his details.
+2. ResiConnect saves the student/staff/external vendor and his details.
+3. User requests to list student/staff/external vendor.
+4. ResiConnect shows a list of student/staff/external vendor that includes the latest student added.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The compulsory fields given by the user was invalid.
+    * 1a1. ResiConnect shows an error message.
+    * 1a2. User enters updated details.
+    Step 1a1-1a2 is repeated until the data entered is valid. Use case resumes from Step 2.
+
+* 2a. The student/staff/external vendor already exists.
+  Use case ends.
+
+**Use case: Delete a student/staff/external vendor**
+
+**MSS**
+
+1.  User requests to list student/staff/external vendor.
+2.  ResiConnect shows a list of student/staff/external vendor.
+3.  User requests to delete a specific person in the student/staff/external vendor.
+4.  ResiConnect deletes the person.
 
     Use case ends.
 
@@ -335,10 +357,30 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   Use case ends.
 
 * 3a. The given index is invalid.
-
     * 3a1. AddressBook shows an error message.
+    Step 3a1 is repeated until the data is valid. Use case repeat resumes from Step 2.
 
       Use case resumes at step 2.
+
+
+**Use case: Find a student/staff/external vendor**
+
+**MSS**
+
+1. User requests to find if a student/staff/external vendor exists.
+2. AddressBook shows a list of students/staff/external vendors that match the search criteria.
+
+  Use case ends.
+
+**Extensions**
+
+* 1a. The fields entered by the user was invalid
+  * 1a1. ResiConnect shows an error message.
+
+* 2a. The list is empty.
+
+  Use case ends.
+
 
 *{More to be added}*
 
