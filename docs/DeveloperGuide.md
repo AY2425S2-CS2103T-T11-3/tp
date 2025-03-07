@@ -274,27 +274,42 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* has a need to manage a significant number of contacts of the residents(students), staff, and external vendors in a university hall
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: ResiConnect helps RA/RF to manage contacts of the students of a hall or contacts of the students, staff and external vendors of hall events.
+Having an address book to note down all the important information about the people they are in charge of. It would be helpful for coordinating hall events, emergency situation, etc. 
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                 | So that I can…​                                                        |
-|----------|--------------------------------------------|------------------------------|------------------------------------------------------------------------|
-| `* * *`  | new user                                   | see usage instructions       | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person             |                                                                        |
-| `* * *`  | user                                       | delete a person              | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name        | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name         | locate a person easily                                                 |
+
+| Priority | As a …​ | I want to …​                                                   | So that I can…​                                                                               |
+|----------|---------|----------------------------------------------------------------|-----------------------------------------------------------------------------------------------|
+| `* * *`  | RA      | add a new resident contact to my address book                  | keep track of residents under my supervision                                                  |
+| `* * *`  | RA/RF   | add new staff's/ external vendor's contact                     | keep track of staff or external vendor contact for event plannning or regular hall operations |
+| `* * *`  | RA      | delete a person contact                                        | remove people who no longer belong to my hall or no longer needed                             |
+| `* * *`  | RA      | view contacts                                                  | check the details of my contacts                                                              |
+| `* *`    | RA      | update a person's particulars                                  | keep their information accurate when changes occur                                            |
+| `* *`    | RA      | search for a resident by name, room number, or contact details | quickly find the person that I need                                                           |
+| `* *`    | RA      | sort persons alphabetically or by hall block                   | organize my list efficiently                                                                  |
+| `* * *`  | RF      | create an event                                                | keep track of event details                                                                   |
+| `* * *`  | RF      | delete an event                                                | remove event that no longer needed                                                            |
+| `* * *`  | RF      | view all the events                                            | check the details of all the events                                                           |
+| `* * *`  | RF      | update details of an event                                     | ensure all information remains accurate and up to date                                        |
+| `* * *`  | RF      | add people into an event                                       | keep track of who is involved in the event                                                    |
+| `* * *`  | RF      | remove people in an event                                      | remove people who are not involved in the event                                               |
+| `* * *`  | RF      | view all the people in an event                                | check the people that is involved in the event                                                |
+| `* *`    | RF      | search for an event by name or time range                      | quickly find the event that I want                                                            |
+
+
+
+
 
 *{More to be added}*
 
@@ -337,8 +352,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Glossary
 
+* **RA**: Resident Assitants:
+* **RF**: Resident Fellows:
+* **Resident**:
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
 * **Private contact detail**: A contact detail that is not meant to be shared with others
+ 
 
 --------------------------------------------------------------------------------------------------------------------
 
