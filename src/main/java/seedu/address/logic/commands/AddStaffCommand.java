@@ -16,7 +16,9 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 
-
+/**
+ * Adds a staff to ResiConnect.
+ */
 public class AddStaffCommand extends Command {
 
     public static final String COMMAND_WORD = "add_stu";
