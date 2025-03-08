@@ -1,10 +1,10 @@
 ---
   layout: default.md
-  title: "Developer Guide"
-  pageNav: 3
+    title: "Developer Guide"
+    pageNav: 3
 ---
 
-# AB-3 Developer Guide
+# ResiConnect Developer Guide
 
 <!-- * Table of Contents -->
 <page-nav-print />
@@ -13,7 +13,7 @@
 
 ## **Acknowledgements**
 
-_{ list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well }_
+This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -241,13 +241,13 @@ The following activity diagram summarizes what happens when a user executes a ne
 **Aspect: How undo & redo executes:**
 
 * **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
+    * Pros: Easy to implement.
+    * Cons: May have performance issues in terms of memory usage.
 
 * **Alternative 2:** Individual command knows how to undo/redo by
   itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
+    * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
+    * Cons: We must ensure that the implementation of each individual command are correct.
 
 _{more aspects and alternatives to be added}_
 
@@ -274,36 +274,111 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* is a Resident Assistant (RA) or a Resident Fellow (RF) in a residence in NUS
+* has a need to manage a significant number of contacts of the residents(students), staff, and external vendors in a university hall
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: ResiConnect helps a RA/RF manage contacts of the students of a hall or contacts of the students, staff and external vendors of hall events.
+Having an address book to note down all the important information about the people they are in charge of. It would be helpful for coordinating hall events, emergency situation, etc.
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                 | So that I can…​                                                        |
-|----------|--------------------------------------------|------------------------------|------------------------------------------------------------------------|
-| `* * *`  | new user                                   | see usage instructions       | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person             |                                                                        |
-| `* * *`  | user                                       | delete a person              | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name        | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name         | locate a person easily                                                 |
+
+| Priority | As a …​ | I want to …​                                                   | So that I can…​                                                                               |
+|----------|---------|----------------------------------------------------------------|-----------------------------------------------------------------------------------------------|
+| `* * *`  | RA      | add a new resident contact to my address book                  | keep track of residents under my supervision                                                  |
+| `* * *`  | RA/RF   | add new staff's/ external vendor's contact                     | keep track of staff or external vendor contact for event plannning or regular hall operations |
+| `* * *`  | RA      | delete a person contact                                        | remove people who no longer belong to my hall or no longer needed                             |
+| `* * *`  | RA      | view contacts                                                  | check the details of my contacts                                                              |
+| `* *`    | RA      | update a person's particulars                                  | keep their information accurate when changes occur                                            |
+| `* *`    | RA      | search for a resident by name, room number, or contact details | quickly find the person that I need                                                           |
+| `* *`    | RA      | sort persons alphabetically or by hall block                   | organize my list efficiently                                                                  |
+| `* * *`  | RF      | create an event                                                | keep track of event details                                                                   |
+| `* * *`  | RF      | delete an event                                                | remove event that no longer needed                                                            |
+| `* * *`  | RF      | view all the events                                            | check the details of all the events                                                           |
+| `* * *`  | RF      | update details of an event                                     | ensure all information remains accurate and up to date                                        |
+| `* * *`  | RF      | add people into an event                                       | keep track of who is involved in the event                                                    |
+| `* * *`  | RF      | remove people in an event                                      | remove people who are not involved in the event                                               |
+| `* * *`  | RF      | view all the people in an event                                | check the people that is involved in the event                                                |
+| `* *`    | RF      | search for an event by name or time range                      | quickly find the event that I want                                                            |
+
+
+
+
 
 *{More to be added}*
 
 ### Use cases
 
+(For all use cases below, the **System** is the `ResiConnect` and the **Actor** is the `user`, unless specified otherwise)
 
-#### UC03 - Add an event
+**UC01: Add a student/staff/external vendor**
 
-**Actor:** User
+**MSS**
+
+1. User requests to add a student/staff/external vendor, along with his details.
+2. ResiConnect saves the student/staff/external vendor and his details.
+3. User requests to list student/staff/external vendor.
+4. ResiConnect shows a list of student/staff/external vendor that includes the latest student added.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The compulsory fields given by the user was invalid.
+    * 1a1. ResiConnect shows an error message.
+    * 1a2. User enters updated details.
+      Step 1a1-1a2 is repeated until the data entered is valid. Use case resumes from Step 2.
+
+* 2a. The student/staff/external vendor already exists.
+  Use case ends.
+
+**UC02: Delete a student/staff/external vendor**
+
+**MSS**
+
+1.  User requests to list student/staff/external vendor.
+2.  ResiConnect shows a list of student/staff/external vendor.
+3.  User requests to delete a specific person in the student/staff/external vendor.
+4.  ResiConnect deletes the person.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The data (date, compulsory field) format is incorrect.
+    * 1a1. ResiConnect shows an error message.
+    * 1a2. User enters updated details.
+
+      Step 1a1-1a2 is repeated until the data entered is valid.
+
+      Use case resumes from step 2.
+
+**UC03: Find a student/staff/external vendor**
+
+**MSS**
+
+1. User requests to find if a student/staff/external vendor exists.
+2. AddressBook shows a list of students/staff/external vendors that match the search criteria.
+
+Use case ends.
+
+**Extensions**
+
+* 1a. The fields entered by the user was invalid
+    * 1a1. ResiConnect shows an error message.
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+#### UC04 - Add an event
 
 **MSS**
 
@@ -316,24 +391,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 1a. The data (date, compulsory field) format is incorrect.
-  * 1a1. ResiConnect shows an error message.
-  * 1a2. User enters updated details. 
-  
-    Step 1a1-1a2 is repeated until the data entered is valid. 
+* 3a. The data format (student index/staff index/external party index) is incorrent.
 
-    Use case resumes from step 2.
+    * 3a1. ResiConnect shows an error message.
+    * 3a2. User enters updated details.
 
-* 2a. The data format (student index/staff index/external party index) is incorrent.
-
-    * 2a1. ResiConnect shows an error message.
-    * 2a2. User enters updated details.
-    
-      Step 1a1-1a2 is repeated until the date entered is valid.
+      Step 3a1-3a2 is repeated until the date entered is valid.
 
       Use case resumes from step 3.
 
-#### UC04 - Delete an event
+#### UC05 - Delete an event
 
 **MSS**
 
@@ -348,7 +415,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2a. The list of events is empty.
 
-    Use case ends.
+  Use case ends.
 
 * 3a. The selected event name is invalid.
 
@@ -359,19 +426,49 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes from step 4.
 
-
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `17` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+#### Data Requirements
 
-*{More to be added}*
+1. Data Size: The system should handle up to `10,000` contacts and `500` events simultaneously without performance degradation.
+2. Data Volatility: The system should allow for quick updates since contact information can change frequently.
+
+#### Environment Requirements
+
+1. Technical Environment: The system should be compatible with any mainstream OS with `Java 17 JDK+FX Azul distribution` installed.
+
+#### Performance Requirements
+
+1. Response Time: The system should respond to user inputs and complete the corresponding action within `2` seconds.
+
+#### CLI-First Design
+
+1. Primary Input Method: The system should prioritize `CLI` for all core functionalities.
+2. One-Shot Commands: The system should support one-shot commands for users to perform tasks quickly.
+
+#### Maintainability
+
+1. Code Quality: The codebase should adhere to `Java coding standards` and include comprehensive documentation.
+2. Modularity: The system should be modular, allowing for easy updates or additions of new features.
+
+#### Testability
+
+1. Unit Testing: At least `80%` code coverage should be achieved for all critical modules.
+2. Integration Testing: End-to-end testing should be conducted to ensure seamless interaction between modules.
+
+#### Quality Requirements
+
+1. Usability: The system should be intuitive enough for new RAs and RFs to navigate without extensive training.
+2. Error Handling: Clear error messages should be displayed to guide users in resolving issues.
 
 ### Glossary
 
+* **RA**: Resident Assitants:
+* **RF**: Resident Fellows:
+* **Resident**:
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
 * **Private contact detail**: A contact detail that is not meant to be shared with others
+
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -390,15 +487,15 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch
 
-   1. Download the jar file and copy into an empty folder
+    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+    1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
 1. Saving window preferences
 
-   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
+    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
 1. _{ more test cases …​ }_
@@ -407,16 +504,16 @@ testers are expected to do more *exploratory* testing.
 
 1. Deleting a person while all persons are being shown
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+    1. Test case: `delete 1`<br>
+       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+    1. Test case: `delete 0`<br>
+       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
+    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+       Expected: Similar to previous.
 
 1. _{ more test cases …​ }_
 
@@ -424,6 +521,6 @@ testers are expected to do more *exploratory* testing.
 
 1. Dealing with missing/corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
