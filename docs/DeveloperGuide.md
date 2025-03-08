@@ -300,32 +300,65 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+#### UC03 - Add an event
+
+**Actor:** User
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User requests to create a new event.
+2.  ResiConnect saves the event details.
+3.  User requests to add participants (student/staff/external party) to the event.
+4.  ResiConnect saves the event details.
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 1a. The data (date, compulsory field) format is incorrect.
+  * 1a1. ResiConnect shows an error message.
+  * 1a2. User enters updated details. 
+  
+    Step 1a1-1a2 is repeated until the data entered is valid. 
 
-  Use case ends.
+    Use case resumes from step 2.
 
-* 3a. The given index is invalid.
+* 2a. The data format (student index/staff index/external party index) is incorrent.
 
-    * 3a1. AddressBook shows an error message.
+    * 2a1. ResiConnect shows an error message.
+    * 2a2. User enters updated details.
+    
+      Step 1a1-1a2 is repeated until the date entered is valid.
 
-      Use case resumes at step 2.
+      Use case resumes from step 3.
 
-*{More to be added}*
+#### UC04 - Delete an event
+
+**MSS**
+
+1.  User requests to list all events.
+2.  ResiConnect shows a list of events.
+3.  RF request to delete an event.
+4.  ResiConnect deletes the event and updates the list.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list of events is empty.
+
+    Use case ends.
+
+* 3a. The selected event name is invalid.
+
+    * 3a1. ResiConnect shows an error message.
+    * 3a2. User enters updated valid event name.
+
+      Step 3a1-3a2 is repeated until the date entered is valid.
+
+      Use case resumes from step 4.
+
 
 ### Non-Functional Requirements
 
