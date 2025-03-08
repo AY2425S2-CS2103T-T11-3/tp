@@ -75,7 +75,7 @@ public class AddStaffCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof AddCommand)) {
+        if (!(other instanceof AddStaffCommand)) {
             return false;
         }
 
