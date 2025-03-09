@@ -19,6 +19,7 @@ import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.AddStaffCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Block;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Level;
 import seedu.address.model.person.Name;
@@ -57,6 +58,7 @@ public class AddStaffCommandParser implements Parser<AddStaffCommand> {
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         Phone emergency = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_EMERGENCY).get());
+        Block block = ParserUtil.parseBlock(argMultimap.getValue(PREFIX_BLOCK).get());
         Level level = ParserUtil.parseLevel(argMultimap.getValue(PREFIX_LEVEL).get());
         Room room = ParserUtil.parseRoom(argMultimap.getValue(PREFIX_ROOM).get());
 
