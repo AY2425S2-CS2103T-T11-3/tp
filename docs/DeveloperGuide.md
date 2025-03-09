@@ -282,7 +282,7 @@ _{Explain here how the data archiving feature will be implemented}_
 * is reasonably comfortable using CLI apps
 
 **Value proposition**: ResiConnect helps a RA/RF manage contacts of the students of a hall or contacts of the students, staff and external vendors of hall events.
-Having an address book to note down all the important information about the people they are in charge of. It would be helpful for coordinating hall events, emergency situation, etc. 
+Having an address book to note down all the important information about the people they are in charge of. It would be helpful for coordinating hall events, emergency situation, etc.
 
 
 ### User stories
@@ -404,7 +404,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. Primary Input Method: The system should prioritize `CLI` for all core functionalities.
 2. One-Shot Commands: The system should support one-shot commands for users to perform tasks quickly.
 
-#### Maintainability 
+#### Maintainability
 
 1. Code Quality: The codebase should adhere to `Java coding standards` and include comprehensive documentation.
 2. Modularity: The system should be modular, allowing for easy updates or additions of new features.
@@ -426,7 +426,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Resident**:
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
 * **Private contact detail**: A contact detail that is not meant to be shared with others
- 
+
 
 --------------------------------------------------------------------------------------------------------------------
 
