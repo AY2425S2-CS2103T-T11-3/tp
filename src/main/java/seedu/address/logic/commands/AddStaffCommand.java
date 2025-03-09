@@ -15,6 +15,7 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Staff;
 
 /**
  * Adds a staff to ResiConnect.
@@ -52,14 +53,14 @@ public class AddStaffCommand extends Command {
     public static final String MESSAGE_SUCCESS = "New staff added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This staff already exists in ResiConnect";
 
-    private final Person toAdd;
+    private final Staff toAdd;
 
     /**
-     * Creates an AddStaffCommand to add the specified {@code Person}
+     * Creates an AddStaffCommand to add the specified {@code Staff}
      */
-    public AddStaffCommand(Person person) {
-        requireNonNull(person);
-        toAdd = person;
+    public AddStaffCommand(Staff staff) {
+        requireNonNull(staff);
+        toAdd = staff;
     }
 
     @Override

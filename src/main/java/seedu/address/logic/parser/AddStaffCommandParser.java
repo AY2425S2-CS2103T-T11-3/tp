@@ -27,6 +27,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Room;
+import seedu.address.model.person.Staff;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -63,15 +64,16 @@ public class AddStaffCommandParser implements Parser<AddStaffCommand> {
         Level level = ParserUtil.parseLevel(argMultimap.getValue(PREFIX_LEVEL).get());
         Room room = ParserUtil.parseRoom(argMultimap.getValue(PREFIX_ROOM).get());
 
+        Designation designation;
         if (arePrefixesPresent(argMultimap, PREFIX_DESIGNATION)) {
-            Designation designation = ParserUtil.parseDesignation(argMultimap.getValue(PREFIX_DESIGNATION).get());
+            designation = ParserUtil.parseDesignation(argMultimap.getValue(PREFIX_DESIGNATION).get());
         } else {
-            Designation designation = ParserUtil.parseDesignation("0");
+            designation = ParserUtil.parseDesignation("0");
         }
 
-        Person person = new Person(name, phone, email, address, tagList);
+        Staff staff = new Staff(name, phone, email, address, tagList, emergency, block, level, room, designation);
 
-        return new AddStaffCommand(person);
+        return new AddStaffCommand(staff);
     }
 
     /**
