@@ -13,9 +13,10 @@ public class Designation {
     }
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Designation should only be an integer from 1 to 3, and it should not be blank";
+            "Designation should only be an integer from 0 to 2, and it should not be blank"
+            + "0 to 2 represents No Role, Level_IC and Block_IC respectively";
 
-    public static final String VALIDATION_REGEX = "[1-3]";
+    public static final String VALIDATION_REGEX = "[0-2]";
 
     public final Role value;
 
