@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.address.logic.parser.CliSyntax.*;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
@@ -15,8 +16,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.commands.*;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
-import seedu.address.model.person.Person;
+import seedu.address.model.person.*;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
@@ -34,8 +34,22 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_addExternal() throws Exception {
-        assertTrue(parser.parseCommand(AddExternalCommand.COMMAND_WORD) instanceof AddExternalCommand);
+        final String name = "John Doe";
+        final String phone = "98765432";
+        final String email = "johnd@example.com";
+        final String description = "External party for food.";
+
+        AddExternalCommand command = (AddExternalCommand) parser.parseCommand(
+                AddExternalCommand.COMMAND_WORD + " "
+                        + PREFIX_NAME + name + " "
+                        + PREFIX_PHONE + phone + " "
+                        + PREFIX_EMAIL + email + " "
+                        + PREFIX_DESCRIPTION + description
+        );
+
+        assertEquals(new AddExternalCommand(new Name(name), new Email(email), new Phone(phone), description), command);
     }
+
 
     @Test
     public void parseCommand_clear() throws Exception {
