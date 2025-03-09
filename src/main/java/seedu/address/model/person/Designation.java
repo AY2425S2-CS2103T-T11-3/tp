@@ -9,12 +9,12 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Designation {
 
     enum Role {
-        NO_ROLE, LEVEL_IC, BLOCK_IC;
+        SUPPORT_STAFF, BLOCK_IC, RESIDENCE_MASTER;
     }
 
     public static final String MESSAGE_CONSTRAINTS =
             "Designation should only be an integer from 0 to 2, and it should not be blank"
-            + "0 to 2 represents No Role, Level_IC and Block_IC respectively";
+            + "0 to 2 represents Support Staff, Block IC and Residence Master respectively";
 
     public static final String VALIDATION_REGEX = "[0-2]";
 
