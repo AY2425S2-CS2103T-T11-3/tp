@@ -6,7 +6,6 @@ import static seedu.address.logic.commands.AddExternalCommand.MESSAGE_NOT_IMPLEM
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -16,10 +15,10 @@ import seedu.address.model.UserPrefs;
  */
 public class AddExternalCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private final Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
-    public void execute() throws CommandException {
+    public void execute() {
         assertCommandFailure(new AddExternalCommand(), model, MESSAGE_NOT_IMPLEMENTED_YET);
     }
 }
