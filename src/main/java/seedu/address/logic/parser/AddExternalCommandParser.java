@@ -7,7 +7,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 
-
 import seedu.address.logic.commands.AddExternalCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Email;
@@ -47,7 +46,8 @@ public class AddExternalCommandParser implements Parser<AddExternalCommand> {
             email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
             description = argMultimap.getValue(PREFIX_DESCRIPTION).get();
         } catch (IllegalArgumentException e) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddExternalCommand.MESSAGE_USAGE), e);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    AddExternalCommand.MESSAGE_USAGE), e);
         }
 
         return new AddExternalCommand(name, email, phone, description);
