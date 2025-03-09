@@ -4,9 +4,9 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents the level/floor that a Person in ResiConnect stays on (in their NUS residence).
+ * Represents the room that a Person in ResiConnect stays on (in their NUS residence).
  */
-public class Level {
+public class Room {
 
     public static final String MESSAGE_CONSTRAINTS = "Levels should only be integers, and it should not be blank";
 
@@ -15,20 +15,20 @@ public class Level {
     public final int value;
 
     /**
-     * Constructs a {@code Level}.
+     * Constructs a {@code Room}.
      *
-     * @param level A valid level number in String form.
+     * @param room A valid room number in String form.
      */
-    public Level(String level) {
-        requireNonNull(level);
-        checkArgument(isValidLevel(level), MESSAGE_CONSTRAINTS);
-        value = Integer.parseInt(level);
+    public Room(String room) {
+        requireNonNull(room);
+        checkArgument(isValidRoom(room), MESSAGE_CONSTRAINTS);
+        value = Integer.parseInt(room);
     }
 
     /**
      * Returns true if a given String is a valid level.
      */
-    public static boolean isValidLevel(String test) {
+    public static boolean isValidRoom(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 
