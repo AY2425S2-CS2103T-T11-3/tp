@@ -27,23 +27,26 @@ public class AddExternalCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New external party added: %1$s";
     public static final String MESSAGE_DUPLICATE_PARTY = "This external party already exists in ResiConnect";
+    public static final String MESSAGE_NOT_IMPLEMENTED_YET = "Add_ext command not implemented yet";
 
-    private final Person toAdd;
+    // private final Person toAdd;
 
     /**
      * Creates an AddExternalCommand to add the specified {@code Person}
      */
-    public AddExternalCommand(Person person) {
-        requireNonNull(person);
-        toAdd = person;
-    }
+    // public AddExternalCommand(Person person) {
+    //    requireNonNull(person);
+    //    toAdd = person;
+    // }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        return new CommandResult("Add External Party Command", false, false);
+        // return new CommandResult("Add External Party Command", false, false);
+        throw new CommandException(MESSAGE_NOT_IMPLEMENTED_YET);
     }
 
+    /*
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -65,4 +68,6 @@ public class AddExternalCommand extends Command {
                 .add("toAdd", toAdd)
                 .toString();
     }
+
+     */
 }
