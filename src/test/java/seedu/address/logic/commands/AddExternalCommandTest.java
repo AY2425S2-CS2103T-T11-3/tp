@@ -15,7 +15,7 @@ import seedu.address.model.UserPrefs;
  */
 public class AddExternalCommandTest {
 
-    private final Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
     public void execute() {

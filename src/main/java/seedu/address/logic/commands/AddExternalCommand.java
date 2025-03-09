@@ -1,11 +1,10 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
-
 
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
@@ -13,11 +12,14 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 
+/**
+ * Represents a command that adds an external party to the address book.
+ */
 public class AddExternalCommand extends Command {
-
     public static final String COMMAND_WORD = "add_ext";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an external party to the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Adds an external party to the address book. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "
@@ -30,19 +32,19 @@ public class AddExternalCommand extends Command {
             + PREFIX_DESCRIPTION + "External party for food. ";
 
     public static final String MESSAGE_SUCCESS = "New external party added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PARTY = "This external party already exists in ResiConnect";
+    public static final String MESSAGE_DUPLICATE_PARTY =
+            "This external party already exists in ResiConnect";
     public static final String MESSAGE_NOT_IMPLEMENTED_YET = "Add_ext command not implemented yet";
 
     // private final Person toAdd;
 
     /**
-     * Creates an AddExternalCommand to add the specified {@code Person}
+     * Creates an AddExternalCommand to add the specified {@code Person}.
      */
     // public AddExternalCommand(Person person) {
     //    requireNonNull(person);
     //    toAdd = person;
     // }
-
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
