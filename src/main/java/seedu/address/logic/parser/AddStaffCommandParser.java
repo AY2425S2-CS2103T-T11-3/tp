@@ -20,6 +20,7 @@ import seedu.address.logic.commands.AddStaffCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Block;
+import seedu.address.model.person.Designation;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Level;
 import seedu.address.model.person.Name;
@@ -61,6 +62,12 @@ public class AddStaffCommandParser implements Parser<AddStaffCommand> {
         Block block = ParserUtil.parseBlock(argMultimap.getValue(PREFIX_BLOCK).get());
         Level level = ParserUtil.parseLevel(argMultimap.getValue(PREFIX_LEVEL).get());
         Room room = ParserUtil.parseRoom(argMultimap.getValue(PREFIX_ROOM).get());
+
+        if (arePrefixesPresent(argMultimap, PREFIX_DESIGNATION)) {
+            Designation designation = ParserUtil.parseDesignation(argMultimap.getValue(PREFIX_DESIGNATION).get());
+        } else {
+            Designation designation = ParserUtil.parseDesignation("0");
+        }
 
         Person person = new Person(name, phone, email, address, tagList);
 

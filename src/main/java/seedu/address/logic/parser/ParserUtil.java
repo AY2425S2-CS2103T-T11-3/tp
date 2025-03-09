@@ -11,6 +11,7 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Block;
+import seedu.address.model.person.Designation;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Level;
 import seedu.address.model.person.Name;
@@ -126,6 +127,21 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String block} into an {@code Block}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code block} is invalid.
+     */
+    public static Block parseBlock(String block) throws ParseException {
+        requireNonNull(block);
+        String trimmedBlock = block.trim();
+        if (!Block.isValidBlock(trimmedBlock)) {
+            throw new ParseException(Block.MESSAGE_CONSTRAINTS);
+        }
+        return new Block(block);
+    }
+
+    /**
      * Parses a {@code String level} into an {@code Level}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -156,17 +172,17 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String block} into an {@code Block}.
+     * Parses a {@code String designation} into an {@code Designation}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code block} is invalid.
+     * @throws ParseException if the given {@code designation} is invalid.
      */
-    public static Block parseBlock(String block) throws ParseException {
-        requireNonNull(block);
-        String trimmedBlock = block.trim();
-        if (!Block.isValidBlock(trimmedBlock)) {
+    public static Designation parseDesignation(String designation) throws ParseException {
+        requireNonNull(designation);
+        String trimmedDesignation = designation.trim();
+        if (!Designation.isValidDesignation(trimmedDesignation)) {
             throw new ParseException(Block.MESSAGE_CONSTRAINTS);
         }
-        return new Block(block);
+        return new Designation(designation);
     }
 }
