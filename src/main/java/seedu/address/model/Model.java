@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Staff;
 
 /**
  * The API of the Model component.
@@ -13,6 +14,7 @@ import seedu.address.model.person.Person;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<Staff> PREDICATE_SHOW_ALL_STAFF = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -58,10 +60,21 @@ public interface Model {
     boolean hasPerson(Person person);
 
     /**
+     * Returns true if a staff with the same identity as {@code staff} exists in the address book.
+     */
+    boolean hasStaff(Staff staff);
+
+    /**
      * Deletes the given person.
      * The person must exist in the address book.
      */
     void deletePerson(Person target);
+
+    /**
+     * Deletes the given staff.
+     * The staff must exist in the address book.
+     */
+    void deleteStaff(Staff target);
 
     /**
      * Adds the given person.
@@ -70,11 +83,24 @@ public interface Model {
     void addPerson(Person person);
 
     /**
+     * Adds the given staff.
+     * {@code staff} must not already exist in the address book.
+     */
+    void addStaff(Staff staff);
+
+    /**
      * Replaces the given person {@code target} with {@code editedPerson}.
      * {@code target} must exist in the address book.
      * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
      */
     void setPerson(Person target, Person editedPerson);
+
+    /**
+     * Replaces the given staff {@code target} with {@code editedStaff}.
+     * {@code target} must exist in the address book.
+     * The staff identity of {@code editedPerson} must not be the same as another existing staff in the address book.
+     */
+    void setStaff(Staff target, Staff editedStaff);
 
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
@@ -84,4 +110,13 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    /** Returns an unmodifiable view of the filtered staff list */
+    ObservableList<Staff> getFilteredStaffList();
+
+    /**
+     * Updates the filter of the filtered staff list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredStaffList(Predicate<Staff> predicate);
 }
