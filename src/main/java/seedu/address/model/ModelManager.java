@@ -125,6 +125,7 @@ public class ModelManager implements Model {
         addressBook.removeStaff(target);
     }
 
+    @Override
     public void addStaff(Staff staff) {
         addressBook.addStaff(staff);
         updateFilteredStaffList(PREDICATE_SHOW_ALL_STAFF);
