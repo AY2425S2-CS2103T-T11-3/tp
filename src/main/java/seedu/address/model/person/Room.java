@@ -8,9 +8,10 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Room {
 
-    public static final String MESSAGE_CONSTRAINTS = "Rooms should only be integers, and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS =
+            "Rooms should only be positive integers, and it should not be blank";
 
-    public static final String VALIDATION_REGEX = "^(?:[1-9]|[1-9][0-9]|0)$";
+    public static final String VALIDATION_REGEX = "^(?:[1-9]|[1-9][0-9])$";
 
     public final int value;
 
@@ -30,6 +31,21 @@ public class Room {
      */
     public static boolean isValidRoom(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof Room)) {
+            return false;
+        }
+
+        Room otherRoom = (Room) other;
+        return value == otherRoom.value;
     }
 
     @Override
