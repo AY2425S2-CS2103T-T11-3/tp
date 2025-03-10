@@ -14,6 +14,7 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.AddStaffCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
@@ -25,13 +26,25 @@ import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Staff;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
+import seedu.address.testutil.StaffBuilder;
 
 public class AddressBookParserTest {
 
     private final AddressBookParser parser = new AddressBookParser();
+
+    @Test
+    public void parseCommand_add_staff() throws Exception {
+        Staff staff = new StaffBuilder().build();
+        AddStaffCommand command = (AddStaffCommand) parser.parseCommand(
+                AddStaffCommand.COMMAND_WORD
+                        + " name/Amy Bee phone/85355255 email/amy@gmail.com a/123, "
+                        + "Jurong West Ave 6, #08-111 emergency/91234567 block/A level/7 room/5");
+        assertEquals(new AddStaffCommand(staff), command);
+    }
 
     @Test
     public void parseCommand_add() throws Exception {
