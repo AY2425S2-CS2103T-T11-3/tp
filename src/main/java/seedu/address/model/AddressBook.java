@@ -57,7 +57,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Replaces the contents of the staff list with {@code staff}.
      * {@code staff} must not contain duplicate persons.
      */
-    public void setStaff(List<Staff> staff) {
+    public void setStaffs(List<Staff> staff) {
         this.staff.setStaffs(staff);
     }
 
@@ -68,7 +68,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireNonNull(newData);
 
         setPersons(newData.getPersonList());
-        setStaff(newData.getStaffList());
+        setStaffs(newData.getStaffList());
     }
 
     //// person-level operations
@@ -101,7 +101,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Adds a staff to the address book.
      * The staff must not already exist in the address book.
      */
-    public void addPerson(Staff s) {
+    public void addStaff(Staff s) {
         this.staff.add(s);
     }
 

@@ -97,6 +97,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasStaff(Staff staff) {
+        requireNonNull(staff);
+        return addressBook.hasStaff(staff);
+    }
+
+    @Override
     public void deletePerson(Person target) {
         addressBook.removePerson(target);
     }
@@ -112,6 +118,23 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedPerson);
 
         addressBook.setPerson(target, editedPerson);
+    }
+
+    @Override
+    public void deleteStaff(Staff target) {
+        addressBook.removeStaff(target);
+    }
+
+    public void addStaff(Staff staff) {
+        addressBook.addStaff(staff);
+        updateFilteredStaffList(PREDICATE_SHOW_ALL_STAFF);
+    }
+
+    @Override
+    public void setStaff(Staff target, Staff editedStaff) {
+        requireAllNonNull(target, editedStaff);
+
+        addressBook.setStaff(target, editedStaff);
     }
 
     //=========== Filtered Person List Accessors =============================================================
@@ -159,6 +182,5 @@ public class ModelManager implements Model {
         requireNonNull(predicate);
         filteredStaff.setPredicate(predicate);
     }
-
 
 }
