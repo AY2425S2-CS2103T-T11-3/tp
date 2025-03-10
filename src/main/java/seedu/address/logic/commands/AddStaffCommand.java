@@ -32,7 +32,7 @@ public class AddStaffCommand extends Command {
             + PREFIX_ADDRESS + "ADDRESS "
             + PREFIX_EMERGENCY + "EMERGENCY CONTACT "
             + PREFIX_BLOCK + "BLOCK "
-            + PREFIX_LEVEL + "LEVE L"
+            + PREFIX_LEVEL + "LEVEL "
             + PREFIX_ROOM + "ROOM "
             + PREFIX_DESIGNATION + "DESIGNATION\n"
             + "Example: " + COMMAND_WORD + " "

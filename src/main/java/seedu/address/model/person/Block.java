@@ -9,7 +9,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Block {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Rooms should only be 1 alphabet or 1 number from 1 to 9, and it should not be blank";
+            "Block should only be 1 alphabet or 1 number from 1 to 9, and it should not be blank";
 
     public static final String VALIDATION_REGEX = "[A-Z1-9]";
 

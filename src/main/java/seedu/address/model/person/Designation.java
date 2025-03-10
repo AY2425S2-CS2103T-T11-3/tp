@@ -13,7 +13,7 @@ public class Designation {
     }
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Designation should only be an integer from 0 to 2, and it should not be blank"
+            "Designation should only be an integer from 0 to 2, and it should not be blank. "
             + "0 to 2 represents Support Staff, Block IC and Residence Master respectively";
 
     public static final String VALIDATION_REGEX = "[0-2]";

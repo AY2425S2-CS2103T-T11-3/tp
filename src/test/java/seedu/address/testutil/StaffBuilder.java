@@ -28,7 +28,7 @@ public class StaffBuilder {
     public static final String DEFAULT_BLOCK = "A";
     public static final String DEFAULT_LEVEL = "7";
     public static final String DEFAULT_ROOM = "5";
-    public static final String DEFAULT_DESIGNATION = "2";
+    public static final String DEFAULT_DESIGNATION = "0";
 
     private Name name;
     private Phone phone;

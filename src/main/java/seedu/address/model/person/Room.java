@@ -8,7 +8,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Room {
 
-    public static final String MESSAGE_CONSTRAINTS = "Levels should only be integers, and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS = "Rooms should only be integers, and it should not be blank";
 
     public static final String VALIDATION_REGEX = "^(?:[1-9]|[1-9][0-9]|0)$";
 

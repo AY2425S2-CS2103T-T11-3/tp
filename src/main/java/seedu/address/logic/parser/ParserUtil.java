@@ -181,7 +181,7 @@ public class ParserUtil {
         requireNonNull(designation);
         String trimmedDesignation = designation.trim();
         if (!Designation.isValidDesignation(trimmedDesignation)) {
-            throw new ParseException(Block.MESSAGE_CONSTRAINTS);
+            throw new ParseException(Designation.MESSAGE_CONSTRAINTS);
         }
         return new Designation(designation);
     }
