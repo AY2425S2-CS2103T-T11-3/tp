@@ -9,6 +9,9 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.event.EventEndTime;
+import seedu.address.model.event.EventName;
+import seedu.address.model.event.EventStartTime;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -21,6 +24,9 @@ import seedu.address.model.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String MESSAGE_INVALID_EVENT_NAME = "Event name is invalid.";
+    public static final String MESSAGE_INVALID_EVENT_START_TIME = "Event start time is invalid! Please use the format: yyyy-MM-dd HH:mm (e.g., 2025-06-15 18:00)";
+    public static final String MESSAGE_INVALID_EVENT_END_TIME = "Event end time is invalid! Please use the format: yyyy-MM-dd HH:mm (e.g., 2025-06-15 18:00)";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -120,5 +126,50 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses a {@code String name} into an {@code EventName}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code name} is invalid.
+     */
+    public static EventName parseEventName(String name) throws ParseException {
+        requireNonNull(name);
+        String trimmedName = name.trim();
+        if (!EventName.isValidEventName(trimmedName)) {
+            throw new ParseException(MESSAGE_INVALID_EVENT_NAME);
+        }
+        return new EventName(trimmedName);
+    }
+
+    /**
+     * Parses a {@code String startTime} into an {@code EventStartTime}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code startTime} is invalid.
+     */
+    public static EventStartTime parseEventStartTime(String startTime) throws ParseException {
+        requireNonNull(startTime);
+        String trimmedStartTime = startTime.trim();
+        if (!EventStartTime.isValidStartTime(trimmedStartTime)) {
+            throw new ParseException(MESSAGE_INVALID_EVENT_START_TIME);
+        }
+        return new EventStartTime(trimmedStartTime);
+    }
+
+    /**
+     * Parses a {@code String endTime} into an {@code EventEndTime}.
+     * Ensures that end time is after start time.
+     *
+     * @throws ParseException if the given {@code endTime} is invalid or before start time.
+     */
+    public static EventEndTime parseEventEndTime(String endTime) throws ParseException {
+        requireNonNull(endTime);
+        String trimmedEndTime = endTime.trim();
+        if (!EventEndTime.isValidEndTime(trimmedEndTime)) {
+            throw new ParseException(MESSAGE_INVALID_EVENT_END_TIME);
+        }
+        return new EventEndTime(trimmedEndTime);
     }
 }
