@@ -110,9 +110,9 @@ public class AddStaffCommandTest {
         }
 
         @Override
-        public void addPerson(Person person) {
-            requireNonNull(person);
-            personsAdded.add(person);
+        public void addStaff(Staff staff) {
+            requireNonNull(staff);
+            personsAdded.add(staff);
         }
 
         @Override
