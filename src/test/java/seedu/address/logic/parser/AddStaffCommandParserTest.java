@@ -1,5 +1,6 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
@@ -95,5 +96,58 @@ public class AddStaffCommandParserTest {
         assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB + INVALID_ADDRESS_DESC
                 + " emergency/91234567 block/A level/7 room/5 designation/0",
                 Name.MESSAGE_CONSTRAINTS);
+    }
+
+    @Test
+    public void parse_compulsoryFieldMissing_failure() {
+        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddStaffCommand.MESSAGE_USAGE);
+
+        // missing name prefix
+        assertParseFailure(parser,
+                " phone/85355255 email/amy@gmail.com a/123, "
+                + "Jurong West Ave 6, #08-111 emergency/91234567 block/A level/7 room/5",
+                expectedMessage);
+
+        // missing phone prefix
+        assertParseFailure(parser,
+                " name/Amy Bee email/amy@gmail.com a/123, "
+                        + "Jurong West Ave 6, #08-111 emergency/91234567 block/A level/7 room/5",
+                expectedMessage);
+
+        // missing email prefix
+        assertParseFailure(parser,
+                " name/Amy Bee phone/85355255 a/123, "
+                        + "Jurong West Ave 6, #08-111 emergency/91234567 block/A level/7 room/5",
+                expectedMessage);
+
+        // missing address prefix
+        assertParseFailure(parser,
+                " name/Amy Bee phone/85355255 email/amy@gmail.com "
+                        + "emergency/91234567 block/A level/7 room/5",
+                expectedMessage);
+
+        // missing emergency prefix
+        assertParseFailure(parser,
+                " name/Amy Bee phone/85355255 email/amy@gmail.com a/123, "
+                        + "Jurong West Ave 6, #08-111 block/A level/7 room/5",
+                expectedMessage);
+
+        // missing block prefix
+        assertParseFailure(parser,
+                " name/Amy Bee phone/85355255 email/amy@gmail.com a/123, "
+                        + "Jurong West Ave 6, #08-111 emergency/91234567 level/7 room/5",
+                expectedMessage);
+
+        // missing level prefix
+        assertParseFailure(parser,
+                " name/Amy Bee phone/85355255 email/amy@gmail.com a/123, "
+                        + "Jurong West Ave 6, #08-111 emergency/91234567 block/A room/5",
+                expectedMessage);
+
+        // missing room prefix
+        assertParseFailure(parser,
+                " name/Amy Bee phone/85355255 email/amy@gmail.com a/123, "
+                        + "Jurong West Ave 6, #08-111 emergency/91234567 block/A level/7",
+                expectedMessage);
     }
 }

@@ -77,6 +77,13 @@ public class AddStaffCommandTest {
         assertFalse(addAliceCommand.equals(addBobCommand));
     }
 
+    @Test
+    public void toStringMethod() {
+        AddStaffCommand addCommand = new AddStaffCommand(new StaffBuilder().build());
+        String expected = AddStaffCommand.class.getCanonicalName() + "{toAdd=" + new StaffBuilder().build() + "}";
+        assertEquals(expected, addCommand.toString());
+    }
+
     /**
      * A default model stub that have all of the methods failing.
      */
