@@ -12,6 +12,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Staff;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -22,6 +23,7 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Staff> filteredStaff;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -34,6 +36,7 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredStaff = new FilteredList<>(this.addressBook.getStaffList());
     }
 
     public ModelManager() {
@@ -144,5 +147,18 @@ public class ModelManager implements Model {
                 && userPrefs.equals(otherModelManager.userPrefs)
                 && filteredPersons.equals(otherModelManager.filteredPersons);
     }
+
+    //=========== Filtered Staff List Accessors =============================================================
+    @Override
+    public ObservableList<Staff> getFilteredStaffList() {
+        return filteredStaff;
+    }
+
+    @Override
+    public void updateFilteredStaffList(Predicate<Staff> predicate) {
+        requireNonNull(predicate);
+        filteredStaff.setPredicate(predicate);
+    }
+
 
 }
