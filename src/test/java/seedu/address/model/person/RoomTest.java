@@ -55,21 +55,21 @@ public class RoomTest {
 
     @Test
     public void equals() {
-        Room block = new Room("8");
+        Room room = new Room("8");
 
         // same values -> returns true
-        assertTrue(block.equals(new Room("8")));
+        assertTrue(room.equals(new Room("8")));
 
         // same object -> returns true
-        assertTrue(block.equals(block));
+        assertTrue(room.equals(room));
 
         // null -> returns false
-        assertFalse(block.equals(null));
+        assertFalse(room.equals(null));
 
         // different types -> returns false
-        assertFalse(block.equals(5.0f));
+        assertFalse(room.equals(5.0f));
 
         // different values -> returns false
-        assertFalse(block.equals(new Room("9")));
+        assertFalse(room.equals(new Room("9")));
     }
 }

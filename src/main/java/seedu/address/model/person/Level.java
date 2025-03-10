@@ -8,9 +8,10 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Level {
 
-    public static final String MESSAGE_CONSTRAINTS = "Levels should only be integers, and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS =
+            "Levels should only be positive integers, and it should not be blank";
 
-    public static final String VALIDATION_REGEX = "^(?:[1-9]|[1-9][0-9]|0)$";
+    public static final String VALIDATION_REGEX = "^(?:[1-9]|[1-9][0-9])$";
 
     public final int value;
 
@@ -30,6 +31,21 @@ public class Level {
      */
     public static boolean isValidLevel(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof Level)) {
+            return false;
+        }
+
+        Level otherLevel = (Level) other;
+        return value == otherLevel.value;
     }
 
     @Override
