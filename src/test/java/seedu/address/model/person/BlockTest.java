@@ -15,7 +15,7 @@ public class BlockTest {
 
     @Test
     public void constructor_invalidBlock_throwsIllegalArgumentException() {
-        assertThrows(IllegalArgumentException.class, () -> new Email("?"));
+        assertThrows(IllegalArgumentException.class, () -> new Block("?"));
     }
 
     @Test
