@@ -12,7 +12,7 @@ import seedu.address.model.person.Staff;
 /**
  * A UI component that displays information of a {@code Staff}.
  */
-public class StaffCard extends UiPart<Region>  {
+public class StaffCard extends UiPart<Region> {
 
     private static final String FXML = "StaffListCard.fxml";
 
