@@ -16,6 +16,7 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.ListType;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -32,6 +33,7 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
+    private StaffListPanel staffListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -43,6 +45,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane personListPanelPlaceholder;
+
+    @FXML
+    private StackPane staffListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -66,6 +71,35 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
+
+        listTypeListener();
+    }
+
+    private void listTypeListener() {
+        logic.getCurrentListTypeProperty().addListener(((observable, oldValue, newValue) -> {
+            updateListView(newValue);
+        }));
+    }
+
+    private void updateListView(ListType type) {
+        personListPanelPlaceholder.getChildren().clear();
+        staffListPanelPlaceholder.getChildren().clear();
+
+        switch (type) {
+
+        case PERSON:
+            personListPanel = new PersonListPanel(logic.getFilteredPersonList());
+            personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+            break;
+
+        case STAFF:
+            staffListPanel = new StaffListPanel(logic.getFilteredStaffList());
+            staffListPanelPlaceholder.getChildren().add(staffListPanel.getRoot());
+            break;
+
+        default:
+            return;
+        }
     }
 
     public Stage getPrimaryStage() {

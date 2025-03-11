@@ -16,7 +16,9 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.Staff;
 import seedu.address.testutil.AddressBookBuilder;
+import seedu.address.testutil.StaffBuilder;
 
 public class ModelManagerTest {
 
@@ -89,8 +91,34 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void hasStaff_staffNotInAddressBook_returnsFalse() {
+        assertFalse(modelManager.hasStaff(new StaffBuilder().build()));
+    }
+
+    @Test
+    public void hasStaff_staffInAddressBook_returnsTrue() {
+        Staff staff = new StaffBuilder().build();
+        modelManager.addStaff(staff);
+        assertTrue(modelManager.hasStaff(staff));
+    }
+
+    @Test
     public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredPersonList().remove(0));
+    }
+
+    @Test
+    public void getFilteredStaffList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredStaffList().remove(0));
+    }
+
+    @Test
+    public void getListType_modify_success() {
+        assertEquals(modelManager.getListType(), ListType.PERSON);
+        assertEquals(modelManager.getListTypeProperty().get(), ListType.PERSON);
+        modelManager.setListType(ListType.STAFF);
+        assertEquals(modelManager.getListType(), ListType.STAFF);
+        assertEquals(modelManager.getListTypeProperty().get(), ListType.STAFF);
     }
 
     @Test
