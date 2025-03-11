@@ -3,6 +3,7 @@ package seedu.address.model;
 import java.nio.file.Path;
 import java.util.function.Predicate;
 
+import javafx.beans.property.ObjectProperty;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.Person;
@@ -119,4 +120,19 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredStaffList(Predicate<Staff> predicate);
+
+    /**
+     * Gets the ObjectProperty of list (person, staff, etc) that should be displayed now.
+     */
+    ObjectProperty<ListType> getListTypeProperty();
+
+    /**
+     * Gets the list type of the list that should be displayed now
+     */
+    ListType getListType();
+
+    /**
+     * Set the type of list (person, staff) to be displayed now
+     */
+    void setListType(ListType listType);
 }

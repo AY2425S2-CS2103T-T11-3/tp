@@ -7,6 +7,8 @@ import java.nio.file.Path;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
@@ -20,6 +22,7 @@ import seedu.address.model.person.Staff;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
+    private final ObjectProperty<ListType> currentListTypeProperty = new SimpleObjectProperty<>(ListType.PERSON);
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
@@ -153,6 +156,7 @@ public class ModelManager implements Model {
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
+        setListType(ListType.PERSON);
     }
 
     @Override
@@ -182,6 +186,23 @@ public class ModelManager implements Model {
     public void updateFilteredStaffList(Predicate<Staff> predicate) {
         requireNonNull(predicate);
         filteredStaff.setPredicate(predicate);
+        setListType(ListType.STAFF);
     }
+
+    //=========== List Accessors ============================================================================
+    @Override
+    public ObjectProperty<ListType> getListTypeProperty() {
+        return currentListTypeProperty;
+    };
+
+    @Override
+    public ListType getListType() {
+        return currentListTypeProperty.get();
+    }
+
+    @Override
+    public void setListType(ListType listType) {
+        currentListTypeProperty.set(listType);
+    };
 
 }

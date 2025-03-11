@@ -2,11 +2,13 @@ package seedu.address.logic;
 
 import java.nio.file.Path;
 
+import javafx.beans.property.ObjectProperty;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.ListType;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Staff;
@@ -51,4 +53,9 @@ public interface Logic {
      * Set the user prefs' GUI settings.
      */
     void setGuiSettings(GuiSettings guiSettings);
+
+    /**
+     * Gets the ObjectProperty of list (person, staff, etc) that should be displayed now.
+     */
+    ObjectProperty<ListType> getCurrentListTypeProperty();
 }
