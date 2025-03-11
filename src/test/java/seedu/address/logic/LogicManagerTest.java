@@ -1,6 +1,7 @@
 package seedu.address.logic;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
 import static seedu.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
@@ -14,6 +15,10 @@ import java.io.IOException;
 import java.nio.file.AccessDeniedException;
 import java.nio.file.Path;
 
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
@@ -21,8 +26,10 @@ import org.junit.jupiter.api.io.TempDir;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.ModelStub;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.ListType;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyAddressBook;
@@ -85,6 +92,28 @@ public class LogicManagerTest {
     @Test
     public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredPersonList().remove(0));
+    }
+
+    @Test
+    public void getFilteredStaffList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredStaffList().remove(0));
+    }
+
+    @Test
+    public void listTypeListener_detectsChange() {
+        ModelStubWithChangesInCurrentListTypeProperty model = new ModelStubWithChangesInCurrentListTypeProperty();
+
+        ObjectProperty<ListType> currentListTypeProperty = logic.getCurrentListTypeProperty();
+        assertEquals(ListType.PERSON, currentListTypeProperty.get());
+
+        currentListTypeProperty.addListener(new ChangeListener<ListType>() {
+            @Override
+            public void changed(ObservableValue<? extends ListType> observable, ListType oldValue, ListType newValue) {
+                assertEquals(ListType.STAFF, newValue);
+            }
+        });
+
+        model.setListType(ListType.STAFF);
     }
 
     /**
@@ -171,5 +200,14 @@ public class LogicManagerTest {
         ModelManager expectedModel = new ModelManager();
         expectedModel.addPerson(expectedPerson);
         assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
+    }
+
+    private class ModelStubWithChangesInCurrentListTypeProperty extends ModelStub {
+        private final ObjectProperty<ListType> currentListTypeProperty = new SimpleObjectProperty<>(ListType.PERSON);
+
+        @Override
+        public void setListType(ListType listType) {
+            currentListTypeProperty.set(listType);
+        };
     }
 }
