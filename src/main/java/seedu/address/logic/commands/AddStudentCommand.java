@@ -18,6 +18,9 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Student;
 
+/**
+ * Creates an AddStudentCommand to add the specified {@code Student}
+ */
 public class AddStudentCommand extends Command {
     public static final String COMMAND_WORD = "add_stu";
 

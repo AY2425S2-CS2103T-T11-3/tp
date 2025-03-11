@@ -20,7 +20,6 @@ import seedu.address.logic.commands.AddStudentCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Block;
-import seedu.address.model.person.StudentDesignation;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Level;
 import seedu.address.model.person.Matric;
@@ -28,6 +27,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Room;
 import seedu.address.model.person.Student;
+import seedu.address.model.person.StudentDesignation;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -71,7 +71,8 @@ public class AddStudentCommandParser implements Parser<AddStudentCommand> {
             studentDesignation = ParserUtil.parseStudentDesignation("0");
         }
 
-        Student student = new Student(name, matric, phone, email, address, tagList, emergency, block, level, room, studentDesignation);
+        Student student = new Student(name, matric, phone, email, address, tagList, emergency, block, level, room,
+                studentDesignation);
 
         return new AddStudentCommand(student);
     }
