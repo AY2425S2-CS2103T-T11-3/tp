@@ -9,6 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 
 import seedu.address.logic.commands.AddExternalCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.Description;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
@@ -38,13 +39,13 @@ public class AddExternalCommandParser implements Parser<AddExternalCommand> {
         Name name;
         Phone phone;
         Email email;
-        String description;
+        Description description;
 
         try {
             name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
             phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
             email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
-            description = argMultimap.getValue(PREFIX_DESCRIPTION).get();
+            description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
         } catch (IllegalArgumentException e) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     AddExternalCommand.MESSAGE_USAGE), e);

@@ -9,6 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.person.Description;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
@@ -41,13 +42,13 @@ public class AddExternalCommand extends Command {
     private final Name name;
     private final Email email;
     private final Phone phone;
-    private final String desc;
+    private final Description desc;
 
 
     /**
-     * Creates an AddExternalCommand to add the specified {@code Person}.
+     * Creates an AddExternalCommand to add the specified {@code External Party}.
      */
-    public AddExternalCommand(Name name, Email email, Phone phone, String desc) {
+    public AddExternalCommand(Name name, Email email, Phone phone, Description desc) {
         requireAllNonNull(name, email, phone, desc);
         this.name = name;
         this.email = email;
