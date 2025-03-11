@@ -135,6 +135,6 @@ public class ParserUtil {
         if (!Description.isValidDescription(trimmedDescription)) {
             throw new ParseException(Description.MESSAGE_CONSTRAINTS);
         }
-        return new Room(description);
+        return new Description(description);
     }
 }

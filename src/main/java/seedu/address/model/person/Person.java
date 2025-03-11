@@ -37,6 +37,9 @@ public class Person {
         this.tags.addAll(tags);
     }
 
+    /**
+     * Every field must be present and not null.
+     */
     public Person(Name name, Phone phone, Email email) {
         requireAllNonNull(name, phone, email);
         this.name = name;
