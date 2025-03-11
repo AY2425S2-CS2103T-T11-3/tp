@@ -11,6 +11,7 @@ import seedu.address.logic.commands.AddExternalCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Description;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.ExternalParty;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 
@@ -36,6 +37,8 @@ public class AddExternalCommandParser implements Parser<AddExternalCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddExternalCommand.MESSAGE_USAGE));
         }
 
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_DESCRIPTION);
+
         Name name;
         Phone phone;
         Email email;
@@ -51,6 +54,8 @@ public class AddExternalCommandParser implements Parser<AddExternalCommand> {
                     AddExternalCommand.MESSAGE_USAGE), e);
         }
 
-        return new AddExternalCommand(name, email, phone, description);
+        ExternalParty externalParty = new ExternalParty(name, phone, email, description);
+
+        return new AddExternalCommand(externalParty);
     }
 }
