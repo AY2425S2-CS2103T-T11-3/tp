@@ -96,6 +96,9 @@ public class MainWindow extends UiPart<Stage> {
             staffListPanel = new StaffListPanel(logic.getFilteredStaffList());
             staffListPanelPlaceholder.getChildren().add(staffListPanel.getRoot());
             break;
+
+        default:
+            return;
         }
     }
 
@@ -143,9 +146,6 @@ public class MainWindow extends UiPart<Stage> {
     void fillInnerParts() {
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
-
-//        staffListPanel = new StaffListPanel(logic.getFilteredStaffList());
-//        staffListPanelPlaceholder.getChildren().add(staffListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
