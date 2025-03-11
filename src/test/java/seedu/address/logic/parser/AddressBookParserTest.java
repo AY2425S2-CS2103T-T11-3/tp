@@ -27,12 +27,9 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
+import seedu.address.model.person.*;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
+import seedu.address.testutil.ExternalPartyBuilder;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
 
@@ -49,20 +46,12 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_addExternal() throws Exception {
-        final String name = "John Doe";
-        final String phone = "98765432";
-        final String email = "johnd@example.com";
-        final String description = "External party for food.";
+        ExternalParty externalParty = new ExternalPartyBuilder().build();
 
         AddExternalCommand command = (AddExternalCommand) parser.parseCommand(
-                AddExternalCommand.COMMAND_WORD + " "
-                        + PREFIX_NAME + name + " "
-                        + PREFIX_PHONE + phone + " "
-                        + PREFIX_EMAIL + email + " "
-                        + PREFIX_DESCRIPTION + description
-        );
-
-        assertEquals(new AddExternalCommand(new Name(name), new Email(email), new Phone(phone), description), command);
+                AddExternalCommand.COMMAND_WORD
+                        + " name/Amy Bee phone/85355255 email/amy@gmail.com description/ External supplier for food.");
+        assertEquals(new AddExternalCommand(externalParty), command);
     }
 
 
