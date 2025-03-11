@@ -137,7 +137,6 @@ public class ModelManager implements Model {
     @Override
     public void setStaff(Staff target, Staff editedStaff) {
         requireAllNonNull(target, editedStaff);
-
         addressBook.setStaff(target, editedStaff);
     }
 

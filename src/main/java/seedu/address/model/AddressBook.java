@@ -123,7 +123,6 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void setStaff(Staff target, Staff editedStaff) {
         requireNonNull(editedStaff);
-
         this.staff.setStaff(target, editedStaff);
     }
 

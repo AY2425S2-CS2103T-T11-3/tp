@@ -22,6 +22,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Staff;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.StaffBuilder;
 
 public class AddressBookTest {
 
@@ -69,6 +70,13 @@ public class AddressBookTest {
     public void hasPerson_personInAddressBook_returnsTrue() {
         addressBook.addPerson(ALICE);
         assertTrue(addressBook.hasPerson(ALICE));
+    }
+
+    @Test
+    public void hasStaff_staffInAddressBook_returnsTrue() {
+        Staff staff = new StaffBuilder().build();
+        addressBook.addStaff(staff);
+        assertTrue(addressBook.hasStaff(staff));
     }
 
     @Test
