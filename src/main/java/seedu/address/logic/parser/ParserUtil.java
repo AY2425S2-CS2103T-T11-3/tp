@@ -13,9 +13,13 @@ import seedu.address.model.event.EventEndTime;
 import seedu.address.model.event.EventName;
 import seedu.address.model.event.EventStartTime;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Block;
+import seedu.address.model.person.Designation;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Level;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Room;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -171,5 +175,65 @@ public class ParserUtil {
             throw new ParseException(MESSAGE_INVALID_EVENT_END_TIME);
         }
         return new EventEndTime(trimmedEndTime);
+    }
+
+    /**
+     * Parses a {@code String block} into an {@code Block}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code block} is invalid.
+     */
+    public static Block parseBlock(String block) throws ParseException {
+        requireNonNull(block);
+        String trimmedBlock = block.trim();
+        if (!Block.isValidBlock(trimmedBlock)) {
+            throw new ParseException(Block.MESSAGE_CONSTRAINTS);
+        }
+        return new Block(block);
+    }
+
+    /**
+     * Parses a {@code String level} into an {@code Level}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code level} is invalid.
+     */
+    public static Level parseLevel(String level) throws ParseException {
+        requireNonNull(level);
+        String trimmedLevel = level.trim();
+        if (!Level.isValidLevel(trimmedLevel)) {
+            throw new ParseException(Level.MESSAGE_CONSTRAINTS);
+        }
+        return new Level(level);
+    }
+
+    /**
+     * Parses a {@code String room} into an {@code Room}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code room} is invalid.
+     */
+    public static Room parseRoom(String room) throws ParseException {
+        requireNonNull(room);
+        String trimmedRoom = room.trim();
+        if (!Room.isValidRoom(trimmedRoom)) {
+            throw new ParseException(Room.MESSAGE_CONSTRAINTS);
+        }
+        return new Room(room);
+    }
+
+    /**
+     * Parses a {@code String designation} into an {@code Designation}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code designation} is invalid.
+     */
+    public static Designation parseDesignation(String designation) throws ParseException {
+        requireNonNull(designation);
+        String trimmedDesignation = designation.trim();
+        if (!Designation.isValidDesignation(trimmedDesignation)) {
+            throw new ParseException(Designation.MESSAGE_CONSTRAINTS);
+        }
+        return new Designation(designation);
     }
 }

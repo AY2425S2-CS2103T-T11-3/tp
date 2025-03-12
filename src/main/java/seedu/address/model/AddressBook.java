@@ -9,7 +9,9 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.event.Event;
 import seedu.address.model.event.UniqueEventList;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Staff;
 import seedu.address.model.person.UniquePersonList;
+import seedu.address.model.person.UniqueStaffList;
 
 /**
  * Wraps all data at the address-book level
@@ -19,6 +21,8 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
     private final UniqueEventList events;
+
+    private final UniqueStaffList staff;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -30,6 +34,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     {
         persons = new UniquePersonList();
         events = new UniqueEventList();
+        staff = new UniqueStaffList();
     }
 
     public AddressBook() {}
@@ -53,6 +58,14 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Replaces the contents of the staff list with {@code staff}.
+     * {@code staff} must not contain duplicate persons.
+     */
+    public void setStaffs(List<Staff> staff) {
+        this.staff.setStaffs(staff);
+    }
+
+    /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
     public void resetData(ReadOnlyAddressBook newData) {
@@ -60,6 +73,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
         setPersons(newData.getPersonList());
         setEvents(newData.getEventList());
+        setStaffs(newData.getStaffList());
     }
 
     //// person-level operations
@@ -73,11 +87,27 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Returns true if a staff with the same identity as {@code staff} exists in the address book.
+     */
+    public boolean hasStaff(Staff staff) {
+        requireNonNull(staff);
+        return this.staff.contains(staff);
+    }
+
+    /**
      * Adds a person to the address book.
      * The person must not already exist in the address book.
      */
     public void addPerson(Person p) {
         persons.add(p);
+    }
+
+    /**
+     * Adds a staff to the address book.
+     * The staff must not already exist in the address book.
+     */
+    public void addStaff(Staff s) {
+        this.staff.add(s);
     }
 
     /**
@@ -92,12 +122,23 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Replaces the given staff {@code target} in the list with {@code editedStaff}.
+     * {@code target} must exist in the address book.
+     * The person identity of {@code editedStaff} must not be the same as another existing staff in the address book.
+     */
+    public void setStaff(Staff target, Staff editedStaff) {
+        requireNonNull(editedStaff);
+        this.staff.setStaff(target, editedStaff);
+    }
+
+    /**
      * Removes {@code key} from this {@code AddressBook}.
      * {@code key} must exist in the address book.
      */
     public void removePerson(Person key) {
         persons.remove(key);
     }
+
 
     //// Event level operations
     public void setEvents(List<Event> events) {
@@ -126,6 +167,14 @@ public class AddressBook implements ReadOnlyAddressBook {
     public ObservableList<Event> getEventList() {
         return events.asUnmodifiableObservableList();
     }
+  
+    /**
+     * Removes {@code key} from this {@code AddressBook}.
+     * {@code key} must exist in the address book.
+     */
+    public void removeStaff(Staff key) {
+        this.staff.remove(key);
+    }
 
     //// util methods
 
@@ -142,6 +191,11 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     @Override
+    public ObservableList<Staff> getStaffList() {
+        return this.staff.asUnmodifiableObservableList();
+    }
+
+    @Override
     public boolean equals(Object other) {
         if (other == this) {
             return true;
@@ -153,8 +207,10 @@ public class AddressBook implements ReadOnlyAddressBook {
         }
 
         AddressBook otherAddressBook = (AddressBook) other;
+
         return persons.equals(otherAddressBook.persons)
-                && events.equals(otherAddressBook.events);
+                && events.equals(otherAddressBook.events)
+                && staff.equals(otherAddressBook.staff);
     }
 
     @Override

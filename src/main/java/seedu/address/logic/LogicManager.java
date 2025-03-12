@@ -5,6 +5,8 @@ import java.nio.file.AccessDeniedException;
 import java.nio.file.Path;
 import java.util.logging.Logger;
 
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
@@ -13,10 +15,12 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.AddressBookParser;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.ListType;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.event.Event;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Staff;
 import seedu.address.storage.Storage;
 
 /**
@@ -30,6 +34,7 @@ public class LogicManager implements Logic {
 
     private final Logger logger = LogsCenter.getLogger(LogicManager.class);
 
+    private final ObjectProperty<ListType> currentListTypeProperty = new SimpleObjectProperty<>(ListType.PERSON);
     private final Model model;
     private final Storage storage;
     private final AddressBookParser addressBookParser;
@@ -41,6 +46,18 @@ public class LogicManager implements Logic {
         this.model = model;
         this.storage = storage;
         addressBookParser = new AddressBookParser();
+
+        listTypeListener();
+    }
+
+    private void listTypeListener() {
+        model.getListTypeProperty().addListener(((observable, oldValue, newValue) -> {
+            currentListTypeProperty.set(newValue);
+        }));
+    }
+
+    public ObjectProperty<ListType> getCurrentListTypeProperty() {
+        return currentListTypeProperty;
     }
 
     @Override
@@ -75,6 +92,11 @@ public class LogicManager implements Logic {
     @Override
     public ObservableList<Event> getFilteredEventList() {
         return model.getFilteredEventList();
+    }
+
+    @Override
+    public ObservableList<Staff> getFilteredStaffList() {
+        return model.getFilteredStaffList();
     }
 
     @Override
