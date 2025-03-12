@@ -14,9 +14,11 @@ import seedu.address.model.person.Block;
 import seedu.address.model.person.Designation;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Level;
+import seedu.address.model.person.Matric;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Room;
+import seedu.address.model.person.StudentDesignation;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -184,5 +186,35 @@ public class ParserUtil {
             throw new ParseException(Designation.MESSAGE_CONSTRAINTS);
         }
         return new Designation(designation);
+    }
+
+    /**
+     * Parses a {@code String studentDesignation} into an {@code StudentDesignation}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code studentDesignation} is invalid.
+     */
+    public static StudentDesignation parseStudentDesignation(String studentDesignation) throws ParseException {
+        requireNonNull(studentDesignation);
+        String trimmedDesignation = studentDesignation.trim();
+        if (!StudentDesignation.isValidStudentDesignation(trimmedDesignation)) {
+            throw new ParseException(StudentDesignation.MESSAGE_CONSTRAINTS);
+        }
+        return new StudentDesignation(studentDesignation);
+    }
+
+    /**
+     * Parses a {@code String matric} into an {@code Matric}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code matric} is invalid.
+     */
+    public static Matric parseMatric(String matric) throws ParseException {
+        requireNonNull(matric);
+        String trimmedMatric = matric.trim();
+        if (!Matric.isValidMatric(trimmedMatric)) {
+            throw new ParseException(Matric.MESSAGE_CONSTRAINTS);
+        }
+        return new Matric(matric);
     }
 }
