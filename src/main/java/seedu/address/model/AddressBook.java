@@ -21,7 +21,6 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
     private final UniqueEventList events;
-
     private final UniqueStaffList staff;
 
     /*
@@ -145,6 +144,13 @@ public class AddressBook implements ReadOnlyAddressBook {
         this.events.setEvents(events);
     }
 
+    /**
+     * Checks if the event list contains the given event.
+     *
+     * @param event The event to check.
+     * @return True if the event exists in the list, false otherwise.
+     * @throws NullPointerException If the event is null.
+     */
     public boolean hasEvent(Event event) {
         requireNonNull(event);
         return events.contains(event);

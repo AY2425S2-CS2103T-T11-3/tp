@@ -1,12 +1,17 @@
 package seedu.address.model.event;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.AppUtil.checkArgument;
 
+/**
+ * Represents an Event's start time.
+ * Ensures the start time follows a valid format.
+ */
 public class EventStartTime {
 
     public static final String MESSAGE_CONSTRAINTS =

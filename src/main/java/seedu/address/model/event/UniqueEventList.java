@@ -11,6 +11,10 @@ import javafx.collections.ObservableList;
 import seedu.address.model.event.exceptions.DuplicateEventException;
 import seedu.address.model.event.exceptions.EventNotFoundException;
 
+/**
+ * A list that maintains unique events and does not allow duplicates.
+ * Supports basic operations like add, remove, and update while ensuring uniqueness.
+ */
 public class UniqueEventList implements Iterable<Event> {
     private final ObservableList<Event> internalList = FXCollections.observableArrayList();
     private final ObservableList<Event> internalUnmodifiableList =

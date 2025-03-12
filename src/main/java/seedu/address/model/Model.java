@@ -17,6 +17,9 @@ public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
     Predicate<Staff> PREDICATE_SHOW_ALL_STAFF = unused -> true;
+    /** {@code Predicate} that always evaluate to true */
+    Predicate<Event> PREDICATE_SHOW_ALL_EVENTS = unused -> true;
+
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -114,11 +117,7 @@ public interface Model {
     void updateFilteredPersonList(Predicate<Person> predicate);
 
 
-
     //=========== Event Management =============================================================
-    /** {@code Predicate} that always evaluate to true */
-    Predicate<Event> PREDICATE_SHOW_ALL_EVENTS = unused -> true;
-
     /** Checks if the address book contains the given event. */
     boolean hasEvent(Event event);
 

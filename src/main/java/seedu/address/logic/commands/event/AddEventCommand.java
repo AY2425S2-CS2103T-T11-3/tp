@@ -1,15 +1,19 @@
-package seedu.address.logic.commands.eventCommands;
+package seedu.address.logic.commands.event;
+
+import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_END_TIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_START_TIME;
 
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.event.Event;
-import seedu.address.model.person.Person;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.*;
-
+/**
+ * Adds an event to the address book.
+ */
 public class AddEventCommand extends Command {
     public static final String COMMAND_WORD = "addEvent";
 
@@ -36,7 +40,14 @@ public class AddEventCommand extends Command {
     }
 
 
-
+    /**
+     * Executes the command to add an event.
+     *
+     * @param model The model in which the event is added.
+     * @return A {@code CommandResult} containing feedback on the execution.
+     * @throws CommandException If the event already exists in the address book.
+     */
+    @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 

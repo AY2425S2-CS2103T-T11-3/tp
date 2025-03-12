@@ -180,8 +180,7 @@ public class ModelManager implements Model {
 
 
 
-//=========== Filtered Event list Assessors ===========================================================================
-
+    //=========== Filtered Event list Assessors =======================================================================
     @Override
     public boolean hasEvent(Event event) {
         requireNonNull(event);

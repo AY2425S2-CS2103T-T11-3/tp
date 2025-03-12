@@ -29,8 +29,10 @@ public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
     public static final String MESSAGE_INVALID_EVENT_NAME = "Event name is invalid.";
-    public static final String MESSAGE_INVALID_EVENT_START_TIME = "Event start time is invalid! Please use the format: yyyy-MM-dd HH:mm (e.g., 2025-06-15 18:00)";
-    public static final String MESSAGE_INVALID_EVENT_END_TIME = "Event end time is invalid! Please use the format: yyyy-MM-dd HH:mm (e.g., 2025-06-15 18:00)";
+    public static final String MESSAGE_INVALID_EVENT_START_TIME =
+            "Event start time is invalid! Please use the format: yyyy-MM-dd HH:mm (e.g., 2025-06-15 18:00)";
+    public static final String MESSAGE_INVALID_EVENT_END_TIME =
+            "Event end time is invalid! Please use the format: yyyy-MM-dd HH:mm (e.g., 2025-06-15 18:00)";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be

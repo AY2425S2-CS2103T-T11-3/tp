@@ -3,6 +3,10 @@ package seedu.address.model.event;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+/**
+ * Represents an Event's name.
+ * Ensures the name is valid and follows the defined constraints.
+ */
 public class EventName {
 
     public static final String MESSAGE_CONSTRAINTS =

@@ -1,9 +1,13 @@
 package seedu.address.model.event;
 
-import seedu.address.commons.util.ToStringBuilder;
-
 import java.util.Objects;
 
+import seedu.address.commons.util.ToStringBuilder;
+
+
+/**
+ * Represents an Event in the address book.
+ */
 public class Event {
 
     // Event fields
@@ -11,10 +15,13 @@ public class Event {
     private final EventStartTime eventStartTime;
     private final EventEndTime eventEndTime;
 
-    public Event(EventName eventName, EventStartTime event_start_time, EventEndTime event_end_time) {
+    /**
+     * Constructs an {@code Event} with the given details.
+     */
+    public Event(EventName eventName, EventStartTime eventStartTime, EventEndTime eventEndTime) {
         this.eventName = eventName;
-        this.eventStartTime = event_start_time;
-        this.eventEndTime = event_end_time;
+        this.eventStartTime = eventStartTime;
+        this.eventEndTime = eventEndTime;
     }
 
     public EventName getEventName() {

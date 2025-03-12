@@ -1,4 +1,8 @@
-package seedu.address.logic.commands.eventCommands;
+package seedu.address.logic.commands.event;
+
+import static java.util.Objects.requireNonNull;
+
+import java.util.List;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.ToStringBuilder;
@@ -9,12 +13,12 @@ import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.event.Event;
-import seedu.address.model.person.Person;
 
-import java.util.List;
 
-import static java.util.Objects.requireNonNull;
 
+/**
+ * Deletes an event from the address book.
+ */
 public class DeleteEventCommand extends Command {
 
     public static final String COMMAND_WORD = "deleteEvent";
@@ -28,10 +32,22 @@ public class DeleteEventCommand extends Command {
 
     private final Index targetIndex;
 
+    /**
+     * Creates a DeleteEventCommand to delete the specified event.
+     *
+     * @param targetIndex Index of the event in the filtered event list.
+     */
     public DeleteEventCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }
 
+    /**
+     * Executes the delete event command.
+     *
+     * @param model The model containing the event list.
+     * @return Command result with success message.
+     * @throws CommandException If the index is invalid.
+     */
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
@@ -47,6 +63,12 @@ public class DeleteEventCommand extends Command {
         return new CommandResult(String.format(MESSAGE_DELETE_EVENT_SUCCESS, Messages.format(eventToDelete)));
     }
 
+    /**
+     * Checks if two DeleteEventCommand objects are equal.
+     *
+     * @param other The other object to compare with.
+     * @return True if they are equal, false otherwise.
+     */
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -62,6 +84,11 @@ public class DeleteEventCommand extends Command {
         return targetIndex.equals(otherDeleteCommand.targetIndex);
     }
 
+    /**
+     * Returns a string representation of the DeleteEventCommand.
+     *
+     * @return String representation of the command.
+     */
     @Override
     public String toString() {
         return new ToStringBuilder(this)

@@ -1,14 +1,18 @@
 package seedu.address.model.event;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.AppUtil.checkArgument;
 
+/**
+ * Represents an Event's end time.
+ * Ensures the end time follows a valid format.
+ */
 public class EventEndTime {
-
 
     public static final String MESSAGE_CONSTRAINTS =
             "Event end time must be in the format 'yyyy-MM-dd HH:mm' and must be a valid datetime.";
