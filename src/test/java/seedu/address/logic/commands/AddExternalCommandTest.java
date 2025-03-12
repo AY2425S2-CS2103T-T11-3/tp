@@ -53,7 +53,8 @@ public class AddExternalCommandTest {
         AddExternalCommand command = new AddExternalCommand(externalParty);
         ModelStubWithExternalParty modelStub = new ModelStubWithExternalParty(externalParty);
 
-        Assert.assertThrows(CommandException.class, AddExternalCommand.MESSAGE_DUPLICATE_PARTY, () -> command.execute(modelStub));
+        Assert.assertThrows(CommandException.class,
+                AddExternalCommand.MESSAGE_DUPLICATE_PARTY, () -> command.execute(modelStub));
     }
 
     @Test

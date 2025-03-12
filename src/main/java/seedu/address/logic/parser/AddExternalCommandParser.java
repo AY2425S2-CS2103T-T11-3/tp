@@ -7,6 +7,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 
+import java.util.stream.Stream;
+
 import seedu.address.logic.commands.AddExternalCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Description;
@@ -14,8 +16,6 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.ExternalParty;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
-
-import java.util.stream.Stream;
 
 /**
  * Parses input arguments and creates a new {@code AddExternalCommand} object
@@ -32,7 +32,10 @@ public class AddExternalCommandParser implements Parser<AddExternalCommand> {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args,
                 PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_DESCRIPTION);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_DESCRIPTION)) {
+        System.out.println(args);
+
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_DESCRIPTION)
+                || argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddExternalCommand.MESSAGE_USAGE));
         }
 

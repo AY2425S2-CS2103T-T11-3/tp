@@ -131,10 +131,13 @@ public class ParserUtil {
      */
     public static Description parseDescription(String description) throws ParseException {
         requireNonNull(description);
+
         String trimmedDescription = description.trim();
-        if (!Description.isValidDescription(trimmedDescription)) {
+
+        if (!Description.isValidDescription(description)) {
             throw new ParseException(Description.MESSAGE_CONSTRAINTS);
         }
-        return new Description(description);
+
+        return new Description(trimmedDescription);
     }
 }
