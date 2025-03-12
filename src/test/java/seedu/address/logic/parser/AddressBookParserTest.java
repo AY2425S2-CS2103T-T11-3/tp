@@ -48,7 +48,7 @@ public class AddressBookParserTest {
 
         AddExternalCommand command = (AddExternalCommand) parser.parseCommand(
                 AddExternalCommand.COMMAND_WORD
-                        + " name/Amy Bee phone/85355255 email/amy@gmail.com description/ External supplier for food.");
+                        + " name/Amy Bee phone/85355255 email/amy@gmail.com desc/External supplier for food.");
         assertEquals(new AddExternalCommand(externalParty), command);
     }
 

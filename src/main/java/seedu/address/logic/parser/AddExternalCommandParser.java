@@ -32,10 +32,9 @@ public class AddExternalCommandParser implements Parser<AddExternalCommand> {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args,
                 PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_DESCRIPTION);
 
-        System.out.println(args);
-
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_DESCRIPTION)
-                || argMultimap.getPreamble().isEmpty()) {
+                || (!argMultimap.getPreamble().isEmpty()
+                && !argMultimap.getPreamble().equals(AddExternalCommand.COMMAND_WORD))) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddExternalCommand.MESSAGE_USAGE));
         }
 
