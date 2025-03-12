@@ -167,7 +167,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     public ObservableList<Event> getEventList() {
         return events.asUnmodifiableObservableList();
     }
-  
+
     /**
      * Removes {@code key} from this {@code AddressBook}.
      * {@code key} must exist in the address book.
