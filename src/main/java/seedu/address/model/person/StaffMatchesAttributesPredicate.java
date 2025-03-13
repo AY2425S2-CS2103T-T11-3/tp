@@ -1,21 +1,66 @@
 package seedu.address.model.person;
 
-import java.util.List;
+import java.util.Map;
 import java.util.function.Predicate;
 
-import seedu.address.commons.util.StringUtil;
 import seedu.address.commons.util.ToStringBuilder;
-public class StaffMatchesAttributesPredicate implements Predicate<Staff> {
-    private final List<String> keywords;
+import seedu.address.logic.parser.Prefix;
 
-    public StaffMatchesAttributesPredicate(List<String> keywords) {
-        this.keywords = keywords;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_BLOCK;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESIGNATION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMERGENCY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LEVEL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ROOM;
+
+public class StaffMatchesAttributesPredicate implements Predicate<Staff> {
+    private final Map<Prefix, String> searchCriteria;
+
+    public StaffMatchesAttributesPredicate(Map<Prefix, String> searchCriteria) {
+        this.searchCriteria = searchCriteria;
     }
 
     @Override
     public boolean test(Staff staff) {
-        return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(staff.getName().fullName, keyword));
+        return searchCriteria.entrySet().stream()
+                .allMatch(entry -> {
+                    Prefix prefix = entry.getKey();
+                    String value = entry.getValue();
+                    if (prefix.equals(PREFIX_NAME)) {
+                        return staff.getName().fullName.equalsIgnoreCase(value);
+                    } else if (prefix.equals(PREFIX_PHONE)) {
+                        return staff.getPhone().value.equalsIgnoreCase(value);
+                    } else if (prefix.equals(PREFIX_EMAIL)) {
+                        return staff.getEmail().value.equalsIgnoreCase(value);
+                    } else if (prefix.equals(PREFIX_ADDRESS)) {
+                        return staff.getAddress().value.equalsIgnoreCase(value);
+                    } else if (prefix.equals(PREFIX_EMERGENCY)) {
+                        return staff.getEmergency().value.equalsIgnoreCase(value);
+                    } else if (prefix.equals(PREFIX_BLOCK)) {
+                        return staff.getBlock().value.equalsIgnoreCase(value);
+                    } else if (prefix.equals(PREFIX_LEVEL)) {
+                        try {
+                            int level = Integer.parseInt(value);
+                            return staff.getLevel().value == level;
+                        } catch (NumberFormatException e) {
+                            return false;
+                        }
+                    } else if (prefix.equals(PREFIX_ROOM)) {
+                        try {
+                            int room = Integer.parseInt(value);
+                            return staff.getRoom().value == room;
+                        } catch (NumberFormatException e) {
+                            return false;
+                        }
+                    } else if (prefix.equals(PREFIX_DESIGNATION)) {
+                        return staff.getDesignation().toString().equalsIgnoreCase(value);
+                    } else {
+                        return false;
+                    }
+                });
     }
 
     @Override
@@ -30,11 +75,11 @@ public class StaffMatchesAttributesPredicate implements Predicate<Staff> {
         }
 
         StaffMatchesAttributesPredicate otherStaffMatchesAttributesPredicate = (StaffMatchesAttributesPredicate) other;
-        return keywords.equals(otherStaffMatchesAttributesPredicate.keywords);
+        return searchCriteria.equals(otherStaffMatchesAttributesPredicate.searchCriteria);
     }
 
     @Override
     public String toString() {
-        return new ToStringBuilder(this).add("keywords", keywords).toString();
+        return new ToStringBuilder(this).add("searchCriteria", searchCriteria).toString();
     }
 }

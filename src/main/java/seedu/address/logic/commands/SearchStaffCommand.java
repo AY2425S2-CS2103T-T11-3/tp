@@ -11,8 +11,11 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROOM;
 
+import java.util.Map;
+
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
+import seedu.address.logic.parser.Prefix;
 import seedu.address.model.Model;
 import seedu.address.model.person.StaffMatchesAttributesPredicate;
 
@@ -40,15 +43,15 @@ public class SearchStaffCommand extends Command {
 
     private final StaffMatchesAttributesPredicate predicate;
 
-    public SearchStaffCommand(StaffMatchesAttributesPredicate predicate) {
-        this.predicate = predicate;
+    public SearchStaffCommand(Map<Prefix, String> searchCriteria) {
+        this.predicate = new StaffMatchesAttributesPredicate(searchCriteria);
     }
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredStaffList(predicate);
-        int filteredListSize = model.getFilteredPersonList().size();
+        int filteredListSize = model.getFilteredStaffList().size();
         if (filteredListSize == 0) {
             return new CommandResult(String.format(Messages.MESSAGE_NO_STAFF_FOUND, predicate));
         } else {
