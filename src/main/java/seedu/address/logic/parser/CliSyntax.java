@@ -17,6 +17,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_EVENT_START_TIME = new Prefix("from/");
     public static final Prefix PREFIX_EVENT_END_TIME = new Prefix("to/");
 
+    public static final Prefix PREFIX_DESCRIPTION = new Prefix("desc/");
     public static final Prefix PREFIX_MATRIC = new Prefix("matric/");
     public static final Prefix PREFIX_EMERGENCY = new Prefix("emergency/");
     public static final Prefix PREFIX_BLOCK = new Prefix("block/");

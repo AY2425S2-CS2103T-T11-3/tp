@@ -37,6 +37,18 @@ public class Person {
         this.tags.addAll(tags);
     }
 
+    /**
+     * Every field must be present and not null.
+     */
+    public Person(Name name, Phone phone, Email email) {
+        requireAllNonNull(name, phone, email);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = null;
+    }
+
+
     public Name getName() {
         return name;
     }
@@ -93,7 +105,7 @@ public class Person {
         return name.equals(otherPerson.name)
                 && phone.equals(otherPerson.phone)
                 && email.equals(otherPerson.email)
-                && address.equals(otherPerson.address)
+                && Objects.equals(address, otherPerson.address)
                 && tags.equals(otherPerson.tags);
     }
 
