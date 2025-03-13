@@ -5,13 +5,10 @@ import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import java.util.Optional;
 
 import seedu.address.logic.commands.event.SearchEventCommand;
-import seedu.address.logic.parser.ArgumentMultimap;
-import seedu.address.logic.parser.ArgumentTokenizer;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_START_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_END_TIME;
 
-import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.event.EventEndTime;
 import seedu.address.model.event.EventStartTime;
