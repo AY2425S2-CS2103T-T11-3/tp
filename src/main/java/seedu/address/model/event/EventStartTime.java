@@ -71,6 +71,4 @@ public class EventStartTime {
     public boolean isBefore(EventEndTime endTime) {
         return this.startTime.isBefore(endTime.endTime);
     }
-
-
 }
