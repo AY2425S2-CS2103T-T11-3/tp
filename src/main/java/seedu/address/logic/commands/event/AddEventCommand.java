@@ -15,7 +15,7 @@ import seedu.address.model.event.Event;
  * Adds an event to the address book.
  */
 public class AddEventCommand extends Command {
-    public static final String COMMAND_WORD = "addEvent";
+    public static final String COMMAND_WORD = "add_event";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Add an Event to the address book. "
             + "Parameters: "
