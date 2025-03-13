@@ -146,7 +146,6 @@ public class ParserUtil {
 
         return new Description(trimmedDescription);
     }
-    
     /**
      * Parses a {@code String block} into an {@code Block}.
      * Leading and trailing whitespaces will be trimmed.
