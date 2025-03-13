@@ -9,11 +9,11 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.AddExternalCommand;
 import seedu.address.logic.commands.AddStaffCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
@@ -25,10 +25,12 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.ListStaffCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.ExternalParty;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Staff;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
+import seedu.address.testutil.ExternalPartyBuilder;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
 import seedu.address.testutil.StaffBuilder;
@@ -53,6 +55,17 @@ public class AddressBookParserTest {
         AddCommand command = (AddCommand) parser.parseCommand(PersonUtil.getAddCommand(person));
         assertEquals(new AddCommand(person), command);
     }
+
+    @Test
+    public void parseCommand_addExternal() throws Exception {
+        ExternalParty externalParty = new ExternalPartyBuilder().build();
+
+        AddExternalCommand command = (AddExternalCommand) parser.parseCommand(
+                AddExternalCommand.COMMAND_WORD
+                        + " name/Amy Bee phone/85355255 email/amy@gmail.com desc/External supplier for food.");
+        assertEquals(new AddExternalCommand(externalParty), command);
+    }
+
 
     @Test
     public void parseCommand_clear() throws Exception {
@@ -86,7 +99,7 @@ public class AddressBookParserTest {
     public void parseCommand_find() throws Exception {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
         FindCommand command = (FindCommand) parser.parseCommand(
-                FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
+                FindCommand.COMMAND_WORD + " " + String.join(" ", keywords));
         assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
     }
 

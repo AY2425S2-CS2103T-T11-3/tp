@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import javafx.beans.property.ObjectProperty;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.event.Event;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Staff;
 
@@ -16,6 +17,9 @@ public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
     Predicate<Staff> PREDICATE_SHOW_ALL_STAFF = unused -> true;
+    /** {@code Predicate} that always evaluate to true */
+    Predicate<Event> PREDICATE_SHOW_ALL_EVENTS = unused -> true;
+
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -112,6 +116,26 @@ public interface Model {
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
 
+
+    //=========== Event Management =============================================================
+    /** Checks if the address book contains the given event. */
+    boolean hasEvent(Event event);
+
+    /** Adds a new event to the address book. */
+    void addEvent(Event event);
+
+    /** Deletes the given event. */
+    void deleteEvent(Event target);
+
+    /** Returns the list of events, filtered by the current criteria. */
+    ObservableList<Event> getFilteredEventList();
+
+    /** Updates the filter for displaying events. */
+    void updateFilteredEventList(Predicate<Event> predicate);
+
+
+
+
     /** Returns an unmodifiable view of the filtered staff list */
     ObservableList<Staff> getFilteredStaffList();
 
@@ -135,4 +159,5 @@ public interface Model {
      * Set the type of list (person, staff) to be displayed now
      */
     void setListType(ListType listType);
+
 }
