@@ -106,10 +106,10 @@ public class AddressBookParser {
 
         case ListStaffCommand.COMMAND_WORD:
             return new ListStaffCommand();
-            
+
         case SearchEventCommand.COMMAND_WORD:
             return new SearchEventCommandParser().parse(arguments);
-            
+
         case SearchStaffCommand.COMMAND_WORD:
             return new SearchStaffCommandParser().parse(arguments);
 
