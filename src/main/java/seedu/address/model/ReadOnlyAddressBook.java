@@ -4,6 +4,7 @@ import javafx.collections.ObservableList;
 import seedu.address.model.event.Event;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Staff;
+import seedu.address.model.person.Student;
 
 /**
  * Unmodifiable view of an address book
@@ -27,6 +28,12 @@ public interface ReadOnlyAddressBook {
      * This list will not contain any duplicate staff.
      */
     ObservableList<Staff> getStaffList();
+
+    /**
+     * Returns an unmodifiable view of the students list.
+     * This list will not contain any duplicate students.
+     */
+    ObservableList<Student> getStudentList();
 
 
 }

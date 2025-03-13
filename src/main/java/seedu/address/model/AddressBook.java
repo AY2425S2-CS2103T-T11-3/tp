@@ -12,6 +12,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Staff;
 import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.person.UniqueStaffList;
+import seedu.address.model.person.UniqueStudentList;
 
 /**
  * Wraps all data at the address-book level
@@ -22,6 +23,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     private final UniquePersonList persons;
     private final UniqueEventList events;
     private final UniqueStaffList staff;
+    private final UniqueStudentList students;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
