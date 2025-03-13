@@ -35,6 +35,7 @@ public class SearchEventCommand extends Command {
     public static final String MESSAGE_NO_MATCH = "No matching events found in this list.";
     public static final String MESSAGE_NO_PARAMETERS = "Please provide at least one parameter to perform the search.";
     public static final String MESSAGE_NO_EVENTS = "There are no events in the list yet.";
+    public static final String MESSAGE_INVALID_START_END_TIME = "End time cannot be before start time.";
 
 
     private final String eventName;
