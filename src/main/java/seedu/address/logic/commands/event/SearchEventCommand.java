@@ -53,7 +53,7 @@ public class SearchEventCommand extends Command {
 
     public List<Event> filterEvents(Model model) {
         return model.getFilteredEventList().stream()
-                .filter(event -> (eventName == null || event.getEventName().equals(new EventName(eventName)))
+                .filter(event -> (eventName == null || event.getEventName().toString().toLowerCase().contains(eventName.toLowerCase()))
                         && (startTime == null || !event.getEventStartTime().equals(startTime))
                         && (endTime == null || !event.getEventEndTime().equals(endTime)))
                 .collect(Collectors.toList());
@@ -73,6 +73,17 @@ public class SearchEventCommand extends Command {
             throw new CommandException(MESSAGE_NO_MATCH);
         }
 
-        return new CommandResult(MESSAGE_SUCCESS);
+        return new CommandResult(MESSAGE_SUCCESS + formatEventList(filteredEvents));
+    }
+
+    private String formatEventList(List<Event> eventList) {
+        StringBuilder formattedEvents = new StringBuilder();
+        for (Event event : eventList) {
+            formattedEvents.append("Event Name: ").append(event.getEventName().toString())
+                    .append(", Start Time: ").append(event.getEventStartTime().toString())
+                    .append(", End Time: ").append(event.getEventEndTime().toString())
+                    .append("\n");
+        }
+        return formattedEvents.toString();
     }
 }
