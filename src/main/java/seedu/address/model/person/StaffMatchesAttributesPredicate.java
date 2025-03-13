@@ -12,6 +12,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ROOM;
 
 import java.util.Map;
 import java.util.function.Predicate;
+
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.parser.Prefix;
 
