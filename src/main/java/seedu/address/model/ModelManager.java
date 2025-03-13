@@ -13,6 +13,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.event.Event;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Staff;
 
@@ -26,6 +27,7 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Event> filteredEvents;
     private final FilteredList<Staff> filteredStaff;
 
     /**
@@ -39,6 +41,7 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredEvents = new FilteredList<>(this.addressBook.getEventList());
         filteredStaff = new FilteredList<>(this.addressBook.getStaffList());
     }
 
@@ -173,6 +176,37 @@ public class ModelManager implements Model {
         return addressBook.equals(otherModelManager.addressBook)
                 && userPrefs.equals(otherModelManager.userPrefs)
                 && filteredPersons.equals(otherModelManager.filteredPersons);
+    }
+
+
+
+    //=========== Filtered Event list Assessors =======================================================================
+    @Override
+    public boolean hasEvent(Event event) {
+        requireNonNull(event);
+        return addressBook.hasEvent(event);
+    }
+
+    @Override
+    public void addEvent(Event event) {
+        addressBook.addEvent(event);
+        updateFilteredEventList(e -> true);
+    }
+
+    @Override
+    public void deleteEvent(Event target) {
+        addressBook.removeEvent(target);
+    }
+
+    @Override
+    public ObservableList<Event> getFilteredEventList() {
+        return filteredEvents;
+    }
+
+    @Override
+    public void updateFilteredEventList(Predicate<Event> predicate) {
+        requireNonNull(predicate);
+        filteredEvents.setPredicate(predicate);
     }
 
     //=========== Filtered Staff List Accessors =============================================================

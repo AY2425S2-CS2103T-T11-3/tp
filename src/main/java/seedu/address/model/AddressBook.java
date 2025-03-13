@@ -6,6 +6,8 @@ import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.model.event.Event;
+import seedu.address.model.event.UniqueEventList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Staff;
 import seedu.address.model.person.UniquePersonList;
@@ -18,7 +20,7 @@ import seedu.address.model.person.UniqueStaffList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
-
+    private final UniqueEventList events;
     private final UniqueStaffList staff;
 
     /*
@@ -30,6 +32,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     {
         persons = new UniquePersonList();
+        events = new UniqueEventList();
         staff = new UniqueStaffList();
     }
 
@@ -68,6 +71,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireNonNull(newData);
 
         setPersons(newData.getPersonList());
+        setEvents(newData.getEventList());
         setStaffs(newData.getStaffList());
     }
 
@@ -134,6 +138,42 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.remove(key);
     }
 
+
+    //// Event level operations
+    public void setEvents(List<Event> events) {
+        this.events.setEvents(events);
+    }
+
+    /**
+     * Checks if the event list contains the given event.
+     *
+     * @param event The event to check.
+     * @return True if the event exists in the list, false otherwise.
+     * @throws NullPointerException If the event is null.
+     */
+    public boolean hasEvent(Event event) {
+        requireNonNull(event);
+        return events.contains(event);
+    }
+
+    public void addEvent(Event event) {
+        events.add(event);
+    }
+
+    public void setEvent(Event target, Event editedEvent) {
+        requireNonNull(editedEvent);
+        events.setEvent(target, editedEvent);
+    }
+
+    public void removeEvent(Event key) {
+        events.remove(key);
+    }
+
+    @Override
+    public ObservableList<Event> getEventList() {
+        return events.asUnmodifiableObservableList();
+    }
+
     /**
      * Removes {@code key} from this {@code AddressBook}.
      * {@code key} must exist in the address book.
@@ -173,11 +213,17 @@ public class AddressBook implements ReadOnlyAddressBook {
         }
 
         AddressBook otherAddressBook = (AddressBook) other;
-        return persons.equals(otherAddressBook.persons) && staff.equals(otherAddressBook.staff);
+
+        return persons.equals(otherAddressBook.persons)
+                && events.equals(otherAddressBook.events)
+                && staff.equals(otherAddressBook.staff);
     }
 
     @Override
     public int hashCode() {
         return persons.hashCode();
     }
+
+
+
 }
