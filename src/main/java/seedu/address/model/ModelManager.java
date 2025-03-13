@@ -112,6 +112,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasStudent(Student student) {
+        requireNonNull(student);
+        return addressBook.hasStudent(student);
+    }
+
+    @Override
     public void deletePerson(Person target) {
         addressBook.removePerson(target);
     }
@@ -144,6 +150,23 @@ public class ModelManager implements Model {
     public void setStaff(Staff target, Staff editedStaff) {
         requireAllNonNull(target, editedStaff);
         addressBook.setStaff(target, editedStaff);
+    }
+
+    @Override
+    public void deleteStudent(Student target) {
+        addressBook.removeStudent(target);
+    }
+
+    @Override
+    public void addStudent(Student student) {
+        addressBook.addStudent(student);
+        updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
+    }
+
+    @Override
+    public void setStudent(Student target, Student editedStudent) {
+        requireAllNonNull(target, editedStudent);
+        addressBook.setStudent(target, editedStudent);
     }
 
     //=========== Filtered Person List Accessors =============================================================
@@ -223,6 +246,19 @@ public class ModelManager implements Model {
         requireNonNull(predicate);
         filteredStaff.setPredicate(predicate);
         setListType(ListType.STAFF);
+    }
+
+    //=========== Filtered Student List Accessors =============================================================
+    @Override
+    public ObservableList<Student> getFilteredStudentList() {
+        return filteredStudents;
+    }
+
+    @Override
+    public void updateFilteredStudentList(Predicate<Student> predicate) {
+        requireNonNull(predicate);
+        filteredStudents.setPredicate(predicate);
+        setListType(ListType.STUDENT);
     }
 
     //=========== List Accessors ============================================================================

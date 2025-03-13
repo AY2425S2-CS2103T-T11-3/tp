@@ -9,6 +9,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.event.Event;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Staff;
+import seedu.address.model.person.Student;
 
 /**
  * The API of the Model component.
@@ -19,6 +20,7 @@ public interface Model {
     Predicate<Staff> PREDICATE_SHOW_ALL_STAFF = unused -> true;
     /** {@code Predicate} that always evaluate to true */
     Predicate<Event> PREDICATE_SHOW_ALL_EVENTS = unused -> true;
+    Predicate<Student> PREDICATE_SHOW_ALL_STUDENTS = unused -> true;
 
 
     /**
@@ -70,6 +72,11 @@ public interface Model {
     boolean hasStaff(Staff staff);
 
     /**
+     * Returns true if a student with the same identity as {@code student} exists in the address book.
+     */
+    boolean hasStudent(Student student);
+
+    /**
      * Deletes the given person.
      * The person must exist in the address book.
      */
@@ -80,6 +87,12 @@ public interface Model {
      * The staff must exist in the address book.
      */
     void deleteStaff(Staff target);
+
+    /**
+     * Deletes the given student.
+     * The student must exist in the address book.
+     */
+    void deleteStudent(Student student);
 
     /**
      * Adds the given person.
@@ -94,6 +107,12 @@ public interface Model {
     void addStaff(Staff staff);
 
     /**
+     * Adds the given student.
+     * {@code student} must not already exist in the address book.
+     */
+    void addStudent(Student student);
+
+    /**
      * Replaces the given person {@code target} with {@code editedPerson}.
      * {@code target} must exist in the address book.
      * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
@@ -103,9 +122,16 @@ public interface Model {
     /**
      * Replaces the given staff {@code target} with {@code editedStaff}.
      * {@code target} must exist in the address book.
-     * The staff identity of {@code editedPerson} must not be the same as another existing staff in the address book.
+     * The staff identity of {@code editedStaff} must not be the same as another existing staff in the address book.
      */
     void setStaff(Staff target, Staff editedStaff);
+
+    /**
+     * Replaces the given student {@code target} with {@code editedStudent}.
+     * {@code target} must exist in the address book.
+     * The student identity of {@code editedStudent} must not be the same as another existing student in the address book.
+     */
+    void setStudent(Student target, Student editedStudent);
 
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
@@ -133,9 +159,6 @@ public interface Model {
     /** Updates the filter for displaying events. */
     void updateFilteredEventList(Predicate<Event> predicate);
 
-
-
-
     /** Returns an unmodifiable view of the filtered staff list */
     ObservableList<Staff> getFilteredStaffList();
 
@@ -144,6 +167,15 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredStaffList(Predicate<Staff> predicate);
+
+    /** Returns an unmodifiable view of the filtered student list */
+    ObservableList<Student> getFilteredStudentList();
+
+    /**
+     * Updates the filter of the filtered student list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredStudentList(Predicate<Student> predicate);
 
     /**
      * Gets the ObjectProperty of list (person, staff, etc) that should be displayed now.
