@@ -10,6 +10,7 @@ import seedu.address.model.event.Event;
 import seedu.address.model.event.UniqueEventList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Staff;
+import seedu.address.model.person.Student;
 import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.person.UniqueStaffList;
 import seedu.address.model.person.UniqueStudentList;
@@ -36,6 +37,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons = new UniquePersonList();
         events = new UniqueEventList();
         staff = new UniqueStaffList();
+        students = new UniqueStudentList();
     }
 
     public AddressBook() {}
@@ -60,10 +62,18 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     /**
      * Replaces the contents of the staff list with {@code staff}.
-     * {@code staff} must not contain duplicate persons.
+     * {@code staff} must not contain duplicate staff.
      */
     public void setStaffs(List<Staff> staff) {
         this.staff.setStaffs(staff);
+    }
+
+    /**
+     * Replaces the contents of the student list with {@code student}.
+     * {@code students} must not contain duplicate students.
+     */
+    public void setStudents(List<Student> students) {
+        this.students.setStudents(students);
     }
 
     /**
@@ -75,6 +85,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         setPersons(newData.getPersonList());
         setEvents(newData.getEventList());
         setStaffs(newData.getStaffList());
+        setStudents(newData.getStudentList());
     }
 
     //// person-level operations
@@ -96,6 +107,14 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Returns true if a student with the same identity as {@code student} exists in the address book.
+     */
+    public boolean hasStudent(Student student) {
+        requireNonNull(student);
+        return this.students.contains(student);
+    }
+
+    /**
      * Adds a person to the address book.
      * The person must not already exist in the address book.
      */
@@ -112,6 +131,14 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Adds a student to the address book.
+     * The student must not already exist in the address book.
+     */
+    public void addStudent(Student s) {
+        this.students.add(s);
+    }
+
+    /**
      * Replaces the given person {@code target} in the list with {@code editedPerson}.
      * {@code target} must exist in the address book.
      * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
@@ -125,11 +152,21 @@ public class AddressBook implements ReadOnlyAddressBook {
     /**
      * Replaces the given staff {@code target} in the list with {@code editedStaff}.
      * {@code target} must exist in the address book.
-     * The person identity of {@code editedStaff} must not be the same as another existing staff in the address book.
+     * The staff identity of {@code editedStaff} must not be the same as another existing staff in the address book.
      */
     public void setStaff(Staff target, Staff editedStaff) {
         requireNonNull(editedStaff);
         this.staff.setStaff(target, editedStaff);
+    }
+
+    /**
+     * Replaces the given student {@code target} in the list with {@code editedStudent}.
+     * {@code target} must exist in the address book.
+     * The student identity of {@code editedStudent} must not be the same as another existing student in the address book.
+     */
+    public void setStudent(Student target, Student editedStudent) {
+        requireNonNull(editedStudent);
+        this.students.setStudent(target, editedStudent);
     }
 
     /**
@@ -184,6 +221,14 @@ public class AddressBook implements ReadOnlyAddressBook {
         this.staff.remove(key);
     }
 
+    /**
+     * Removes {@code key} from this {@code AddressBook}.
+     * {@code key} must exist in the address book.
+     */
+    public void removeStudent(Student key) {
+        this.students.remove(key);
+    }
+
     //// util methods
 
     @Override
@@ -204,6 +249,11 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     @Override
+    public ObservableList<Student> getStudentList() {
+        return this.students.asUnmodifiableObservableList();
+    }
+
+    @Override
     public boolean equals(Object other) {
         if (other == this) {
             return true;
@@ -218,7 +268,8 @@ public class AddressBook implements ReadOnlyAddressBook {
 
         return persons.equals(otherAddressBook.persons)
                 && events.equals(otherAddressBook.events)
-                && staff.equals(otherAddressBook.staff);
+                && staff.equals(otherAddressBook.staff)
+                && students.equals(otherAddressBook.students);
     }
 
     @Override
