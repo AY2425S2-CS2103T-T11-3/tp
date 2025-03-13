@@ -16,7 +16,6 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.SearchStaffCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.StaffMatchesAttributesPredicate;
 
 /**
  * Parses input arguments and creates a new SearchStaffCommand object

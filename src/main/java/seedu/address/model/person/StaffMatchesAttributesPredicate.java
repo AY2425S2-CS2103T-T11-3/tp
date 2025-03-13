@@ -1,11 +1,5 @@
 package seedu.address.model.person;
 
-import java.util.Map;
-import java.util.function.Predicate;
-
-import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.logic.parser.Prefix;
-
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_BLOCK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESIGNATION;
@@ -16,6 +10,14 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROOM;
 
+import java.util.Map;
+import java.util.function.Predicate;
+import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.logic.parser.Prefix;
+
+/**
+ * Tests that a {@code Staff}'s attributes match the specified criteria.
+ */
 public class StaffMatchesAttributesPredicate implements Predicate<Staff> {
     private final Map<Prefix, String> searchCriteria;
 
