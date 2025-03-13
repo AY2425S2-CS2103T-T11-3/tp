@@ -3,7 +3,6 @@ package seedu.address.logic.commands.event;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_END_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_NAME;
-
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_START_TIME;
 
 import java.util.List;
