@@ -75,4 +75,20 @@ public class ArgumentMultimap {
             throw new ParseException(Messages.getErrorMessageForDuplicatePrefixes(duplicatedPrefixes));
         }
     }
+
+    /**
+     * Returns a map of prefixes to their corresponding last values.
+     * If a prefix has no values, it will not be included in the map.
+     */
+    public Map<Prefix, String> getPrefixValueMap() {
+        Map<Prefix, String> prefixValueMap = new HashMap<>();
+        for (Map.Entry<Prefix, List<String>> entry : argMultimap.entrySet()) {
+            Prefix prefix = entry.getKey();
+            List<String> values = entry.getValue();
+            if (!values.isEmpty()) {
+                prefixValueMap.put(prefix, values.get(values.size() - 1)); // Use the last value
+            }
+        }
+        return prefixValueMap;
+    }
 }
