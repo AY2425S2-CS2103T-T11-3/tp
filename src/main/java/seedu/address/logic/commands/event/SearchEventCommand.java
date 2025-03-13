@@ -2,8 +2,8 @@ package seedu.address.logic.commands.event;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_START_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_END_TIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_START_TIME;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -15,8 +15,6 @@ import seedu.address.model.Model;
 import seedu.address.model.event.Event;
 import seedu.address.model.event.EventEndTime;
 import seedu.address.model.event.EventStartTime;
-
-
 
 /**
  * Searches for events in ResiConnect based on event name, start time and end time.
@@ -60,8 +58,8 @@ public class SearchEventCommand extends Command {
      */
     public List<Event> filterEvents(Model model) {
         return model.getFilteredEventList().stream()
-                .filter(event -> (eventName == null || event.getEventName().toString().
-                        toLowerCase().contains(eventName.toLowerCase()))
+                .filter(event -> (eventName == null || event.getEventName().toString()
+                        .toLowerCase().contains(eventName.toLowerCase()))
                         && (startTime == null || !event.getEventStartTime().equals(startTime))
                         && (endTime == null || !event.getEventEndTime().equals(endTime)))
                 .collect(Collectors.toList());
