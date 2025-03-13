@@ -12,8 +12,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ROOM;
 
 import java.util.Map;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
-import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.parser.Prefix;
 
 /**
@@ -83,6 +83,8 @@ public class StaffMatchesAttributesPredicate implements Predicate<Staff> {
 
     @Override
     public String toString() {
-        return new ToStringBuilder(this).add("searchCriteria", searchCriteria).toString();
+        return searchCriteria.entrySet().stream()
+                .map(entry -> entry.getKey().getPrefix() + entry.getValue())
+                .collect(Collectors.joining(", "));
     }
 }

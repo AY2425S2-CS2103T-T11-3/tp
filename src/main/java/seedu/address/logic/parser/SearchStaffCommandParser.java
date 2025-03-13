@@ -13,6 +13,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ROOM;
 
 import java.util.Map;
 import java.util.stream.Stream;
+import java.util.stream.Collectors;
 
 import seedu.address.logic.commands.SearchStaffCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -41,7 +42,9 @@ public class SearchStaffCommandParser implements Parser<SearchStaffCommand> {
         }
 
         // Create a map of prefixes to their corresponding values
-        Map<Prefix, String> searchCriteria = argMultimap.getPrefixValueMap();
+        Map<Prefix, String> searchCriteria = argMultimap.getPrefixValueMap().entrySet().stream()
+                .filter(entry -> entry.getKey() != null && !entry.getValue().isBlank())
+                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
 
         return new SearchStaffCommand(searchCriteria);
     }
