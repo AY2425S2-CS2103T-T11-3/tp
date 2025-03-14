@@ -66,7 +66,4 @@ public class StaffCard extends UiPart<Region> {
         room.setText(String.valueOf(staff.getRoom().value));
         designation.setText(staff.getDesignation().toString());
     }
-
-
-
 }
