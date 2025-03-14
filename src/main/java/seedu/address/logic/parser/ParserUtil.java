@@ -15,7 +15,7 @@ import seedu.address.model.event.EventStartTime;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Block;
 import seedu.address.model.person.Description;
-import seedu.address.model.person.Designation;
+import seedu.address.model.person.StaffDesignation;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Level;
 import seedu.address.model.person.Matric;
@@ -251,13 +251,13 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code designation} is invalid.
      */
-    public static Designation parseDesignation(String designation) throws ParseException {
+    public static StaffDesignation parseDesignation(String designation) throws ParseException {
         requireNonNull(designation);
         String trimmedDesignation = designation.trim();
-        if (!Designation.isValidDesignation(trimmedDesignation)) {
-            throw new ParseException(Designation.MESSAGE_CONSTRAINTS);
+        if (!StaffDesignation.isValidDesignation(trimmedDesignation)) {
+            throw new ParseException(StaffDesignation.MESSAGE_CONSTRAINTS);
         }
-        return new Designation(designation);
+        return new StaffDesignation(designation);
     }
 
     /**
