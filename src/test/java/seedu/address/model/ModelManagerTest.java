@@ -225,7 +225,7 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void updateFilteredStUDENTList_changesListTypeToStudent() {
+    public void updateFilteredStudentList_changesListTypeToStudent() {
         modelManager.setListType(ListType.STAFF);
         assertNotEquals(modelManager.getListType(), ListType.EVENT);
         assertEquals(modelManager.getListType(), ListType.STAFF);
