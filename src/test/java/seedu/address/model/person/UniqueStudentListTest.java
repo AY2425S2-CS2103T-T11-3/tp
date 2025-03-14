@@ -128,7 +128,7 @@ public class UniqueStudentListTest {
     }
 
     @Test
-    public void remove_existingStudent_removesStaff() {
+    public void remove_existingStudent_removesStudent() {
         Student student = new StudentBuilder().build();
         uniqueStudentList.add(student);
         uniqueStudentList.remove(student);
