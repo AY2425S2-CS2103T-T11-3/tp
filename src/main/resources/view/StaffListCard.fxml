@@ -45,18 +45,24 @@
          <Label fx:id="emergency" layoutX="25.0" layoutY="80.0" styleClass="cell_small_label" text="\$emergency" />
          <HBox alignment="CENTER_LEFT" layoutX="25.0" layoutY="100.0" spacing="0.5">
             <children>
-               <Label fx:id="block" layoutX="10.0" layoutY="10.0" minWidth="-Infinity" style="-fx-background-color: #20242e; -fx-background-radius: 4;" text="block" textFill="WHITE">
+               <Label fx:id="block" layoutX="10.0" layoutY="10.0" minWidth="-Infinity" text="block" textFill="WHITE">
                   <HBox.margin>
                      <Insets />
                   </HBox.margin>
                </Label>
-               <Label fx:id="level" layoutX="10.0" layoutY="10.0" minWidth="-Infinity" style="-fx-background-color: #20242e; -fx-background-radius: 4;" text="level" textFill="WHITE" />
-               <Label fx:id="room" layoutX="41.0" layoutY="10.0" minWidth="-Infinity" style="-fx-background-color: #20242e; -fx-background-radius: 4;" text="room" textFill="WHITE" />
+               <Label fx:id="level" layoutX="10.0" layoutY="10.0" minWidth="-Infinity" text="level" textFill="WHITE" />
+               <Label fx:id="room" layoutX="41.0" layoutY="10.0" minWidth="-Infinity" text="room" textFill="WHITE" />
             </children>
          </HBox>
+         <opaqueInsets>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </opaqueInsets>
         </VBox>
       <rowConstraints>
          <RowConstraints />
       </rowConstraints>
     </GridPane>
+   <opaqueInsets>
+      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+   </opaqueInsets>
 </HBox>

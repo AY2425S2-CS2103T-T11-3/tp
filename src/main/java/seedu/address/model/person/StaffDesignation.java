@@ -6,7 +6,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 /**
  * Represents the role of a Person, in ResiConnect, in their NUS residence
  */
-public class Designation {
+public class StaffDesignation {
 
     enum Role {
         SUPPORT_STAFF, BLOCK_IC, RESIDENCE_MASTER;
@@ -25,7 +25,7 @@ public class Designation {
      *
      * @param designation A valid designation.
      */
-    public Designation(String designation) {
+    public StaffDesignation(String designation) {
         requireNonNull(designation);
         checkArgument(isValidDesignation(designation), MESSAGE_CONSTRAINTS);
         value = Role.values()[Integer.parseInt(designation)];
@@ -50,11 +50,11 @@ public class Designation {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof Designation)) {
+        if (!(other instanceof StaffDesignation)) {
             return false;
         }
 
-        Designation otherDesignation = (Designation) other;
+        StaffDesignation otherDesignation = (StaffDesignation) other;
         return value.equals(otherDesignation.value);
     }
 

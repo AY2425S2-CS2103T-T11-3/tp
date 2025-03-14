@@ -61,12 +61,9 @@ public class StaffCard extends UiPart<Region> {
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
         emergency.setText(staff.getEmergency().value);
-        block.setText(staff.getBlock().value);
-        level.setText(String.valueOf(staff.getLevel().value));
-        room.setText(String.valueOf(staff.getRoom().value));
+        block.setText("Block " + staff.getBlock().value);
+        level.setText("Level " + staff.getLevel().value);
+        room.setText("Room " + staff.getRoom().value);
         designation.setText(staff.getDesignation().toString());
     }
-
-
-
 }

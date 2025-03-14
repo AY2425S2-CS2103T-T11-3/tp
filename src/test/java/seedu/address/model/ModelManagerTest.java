@@ -2,8 +2,12 @@ package seedu.address.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_EVENTS;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STAFF;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BENSON;
@@ -17,8 +21,12 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Staff;
+import seedu.address.model.person.Student;
+import seedu.address.model.person.exceptions.DuplicatePersonException;
+import seedu.address.model.person.exceptions.PersonNotFoundException;
 import seedu.address.testutil.AddressBookBuilder;
 import seedu.address.testutil.StaffBuilder;
+import seedu.address.testutil.StudentBuilder;
 
 public class ModelManagerTest {
 
@@ -103,6 +111,90 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void hasStudent_studentNotInAddressBook_returnsFalse() {
+        assertFalse(modelManager.hasStudent(new StudentBuilder().build()));
+    }
+
+    @Test
+    public void hasStudent_studentInAddressBook_returnsTrue() {
+        Student student = new StudentBuilder().build();
+        modelManager.addStudent(student);
+        assertTrue(modelManager.hasStudent(student));
+    }
+
+    @Test
+    public void deleteStaff_nullStaff_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.deleteStaff(null));
+    }
+
+    @Test
+    public void deleteStaff_staffDoesNotExist_throwsPersonNotFoundException() {
+        assertThrows(PersonNotFoundException.class, () -> modelManager.deleteStaff(new StaffBuilder().build()));
+    }
+
+    @Test
+    public void deleteStudent_nullStudent_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.deleteStudent(null));
+    }
+
+    @Test
+    public void deleteStudent_studentDoesNotExist_throwsPersonNotFoundException() {
+        assertThrows(PersonNotFoundException.class, () -> modelManager.deleteStudent(new StudentBuilder().build()));
+    }
+
+    @Test
+    public void setStaff_nullTargetPerson_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.setStaff(null, new StaffBuilder().build()));
+    }
+
+    @Test
+    public void setStaff_nullEditedPerson_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.setStaff(new StaffBuilder().build(), null));
+    }
+
+    @Test
+    public void setStaff_targetPersonNotInList_throwsPersonNotFoundException() {
+        assertThrows(PersonNotFoundException.class, () -> modelManager.setStaff(
+                new StaffBuilder().build(), new StaffBuilder().build()));
+    }
+
+    @Test
+    public void setStaff_editedPersonHasNonUniqueIdentity_throwsDuplicatePersonException() {
+        Staff staff = new StaffBuilder().build();
+        Staff staff1 = new StaffBuilder().withName("Haikel").build();
+        modelManager.addStaff(staff);
+        modelManager.addStaff(staff1);
+        assertThrows(DuplicatePersonException.class, () -> modelManager.setStaff(staff, staff1));
+    }
+
+    @Test
+    public void setStudent_nullTargetPerson_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.setStudent(null,
+                new StudentBuilder().build()));
+    }
+
+    @Test
+    public void setStudent_nullEditedPerson_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.setStudent(new StudentBuilder().build(),
+                null));
+    }
+
+    @Test
+    public void setStudent_targetStudentNotInList_throwsPersonNotFoundException() {
+        assertThrows(PersonNotFoundException.class, () -> modelManager.setStudent(
+                new StudentBuilder().build(), new StudentBuilder().build()));
+    }
+
+    @Test
+    public void setStudent_editedStudentHasNonUniqueIdentity_throwsDuplicatePersonException() {
+        Student student = new StudentBuilder().build();
+        Student student1 = new StudentBuilder().withName("Haikel").build();
+        modelManager.addStudent(student);
+        modelManager.addStudent(student1);
+        assertThrows(DuplicatePersonException.class, () -> modelManager.setStudent(student, student1));
+    }
+
+    @Test
     public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredPersonList().remove(0));
     }
@@ -113,12 +205,58 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void getFilteredStudentList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredStudentList().remove(0));
+    }
+
+    @Test
+    public void getFilteredEventsList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredEventList().remove(0));
+    }
+
+    @Test
+    public void updateFilteredStaffList_changesListTypeToStaff() {
+        modelManager.setListType(ListType.EVENT);
+        assertNotEquals(modelManager.getListType(), ListType.STAFF);
+        assertEquals(modelManager.getListType(), ListType.EVENT);
+
+        modelManager.updateFilteredStaffList(PREDICATE_SHOW_ALL_STAFF);
+        assertEquals(modelManager.getListType(), ListType.STAFF);
+    }
+
+    @Test
+    public void updateFilteredStudentList_changesListTypeToStudent() {
+        modelManager.setListType(ListType.STAFF);
+        assertNotEquals(modelManager.getListType(), ListType.EVENT);
+        assertEquals(modelManager.getListType(), ListType.STAFF);
+
+        modelManager.updateFilteredEventList(PREDICATE_SHOW_ALL_EVENTS);
+        assertEquals(modelManager.getListType(), ListType.EVENT);
+    }
+
+    @Test
+    public void updateFilteredStudentList_changesListTypeToStaff() {
+        modelManager.setListType(ListType.EVENT);
+        assertNotEquals(modelManager.getListType(), ListType.STUDENT);
+        assertEquals(modelManager.getListType(), ListType.EVENT);
+
+        modelManager.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
+        assertEquals(modelManager.getListType(), ListType.STUDENT);
+    }
+
+    @Test
     public void getListType_modify_success() {
         assertEquals(modelManager.getListType(), ListType.PERSON);
         assertEquals(modelManager.getListTypeProperty().get(), ListType.PERSON);
         modelManager.setListType(ListType.STAFF);
         assertEquals(modelManager.getListType(), ListType.STAFF);
         assertEquals(modelManager.getListTypeProperty().get(), ListType.STAFF);
+        modelManager.setListType(ListType.EVENT);
+        assertEquals(modelManager.getListType(), ListType.EVENT);
+        assertEquals(modelManager.getListTypeProperty().get(), ListType.EVENT);
+        modelManager.setListType(ListType.STUDENT);
+        assertEquals(modelManager.getListType(), ListType.STUDENT);
+        assertEquals(modelManager.getListTypeProperty().get(), ListType.STUDENT);
     }
 
     @Test

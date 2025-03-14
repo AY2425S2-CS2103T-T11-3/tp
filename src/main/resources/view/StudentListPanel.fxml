@@ -5,8 +5,8 @@
 <?import javafx.scene.layout.VBox?>
 
 <VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
-    <ListView fx:id="staffListView" minHeight="0.0" VBox.vgrow="ALWAYS">
-      <padding>
-         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-      </padding></ListView>
+    <ListView fx:id="studentListView" minHeight="0.0" VBox.vgrow="ALWAYS">
+        <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+        </padding></ListView>
 </VBox>

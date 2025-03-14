@@ -17,13 +17,13 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.commands.AddStaffCommand;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Block;
-import seedu.address.model.person.Designation;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Level;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Room;
 import seedu.address.model.person.Staff;
+import seedu.address.model.person.StaffDesignation;
 import seedu.address.testutil.StaffBuilder;
 
 public class AddStaffCommandParserTest {
@@ -90,7 +90,7 @@ public class AddStaffCommandParserTest {
 
         // invalid designation
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + " emergency/91234567 block/A level/10 room/2 designation/5", Designation.MESSAGE_CONSTRAINTS);
+                + " emergency/91234567 block/A level/10 room/2 designation/5", StaffDesignation.MESSAGE_CONSTRAINTS);
 
         // two invalid values, only first invalid value reported
         assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB + INVALID_ADDRESS_DESC
