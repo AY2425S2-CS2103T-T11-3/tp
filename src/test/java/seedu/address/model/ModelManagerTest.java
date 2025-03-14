@@ -17,8 +17,10 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Staff;
+import seedu.address.model.person.Student;
 import seedu.address.testutil.AddressBookBuilder;
 import seedu.address.testutil.StaffBuilder;
+import seedu.address.testutil.StudentBuilder;
 
 public class ModelManagerTest {
 
@@ -103,6 +105,18 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void hasStudent_studentNotInAddressBook_returnsFalse() {
+        assertFalse(modelManager.hasStudent(new StudentBuilder().build()));
+    }
+
+    @Test
+    public void hasStudent_studentInAddressBook_returnsTrue() {
+        Student student = new StudentBuilder().build();
+        modelManager.addStudent(student);
+        assertTrue(modelManager.hasStudent(student));
+    }
+
+    @Test
     public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredPersonList().remove(0));
     }
@@ -113,12 +127,28 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void getFilteredStudentList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredStudentList().remove(0));
+    }
+
+    @Test
+    public void getFilteredEventsList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredEventList().remove(0));
+    }
+
+    @Test
     public void getListType_modify_success() {
         assertEquals(modelManager.getListType(), ListType.PERSON);
         assertEquals(modelManager.getListTypeProperty().get(), ListType.PERSON);
         modelManager.setListType(ListType.STAFF);
         assertEquals(modelManager.getListType(), ListType.STAFF);
         assertEquals(modelManager.getListTypeProperty().get(), ListType.STAFF);
+        modelManager.setListType(ListType.EVENT);
+        assertEquals(modelManager.getListType(), ListType.EVENT);
+        assertEquals(modelManager.getListTypeProperty().get(), ListType.EVENT);
+        modelManager.setListType(ListType.STUDENT);
+        assertEquals(modelManager.getListType(), ListType.STUDENT);
+        assertEquals(modelManager.getListTypeProperty().get(), ListType.STUDENT);
     }
 
     @Test

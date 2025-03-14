@@ -99,6 +99,11 @@ public class LogicManagerTest {
     }
 
     @Test
+    public void getFilteredStudentList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredStudentList().remove(0));
+    }
+
+    @Test
     public void listTypeListener_detectsChange() {
         ModelStubWithChangesInCurrentListTypeProperty model = new ModelStubWithChangesInCurrentListTypeProperty();
 
