@@ -35,6 +35,8 @@ public class MainWindow extends UiPart<Stage> {
     private PersonListPanel personListPanel;
     private EventListPanel eventListPanel;
     private StaffListPanel staffListPanel;
+    private StudentListPanel studentListPanel;
+
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -52,6 +54,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane staffListPanelPlaceholder;
+
+    @FXML
+    private StackPane studentListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -88,6 +93,7 @@ public class MainWindow extends UiPart<Stage> {
     private void updateListView(ListType type) {
         personListPanelPlaceholder.getChildren().clear();
         staffListPanelPlaceholder.getChildren().clear();
+        studentListPanelPlaceholder.getChildren().clear();
 
         switch (type) {
 
@@ -99,6 +105,11 @@ public class MainWindow extends UiPart<Stage> {
         case STAFF:
             staffListPanel = new StaffListPanel(logic.getFilteredStaffList());
             staffListPanelPlaceholder.getChildren().add(staffListPanel.getRoot());
+            break;
+
+        case STUDENT:
+            studentListPanel = new StudentListPanel(logic.getFilteredStudentList());
+            studentListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
             break;
 
         default:

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+    <GridPane HBox.hgrow="ALWAYS">
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
+        </columnConstraints>
+        <VBox alignment="CENTER_LEFT" minHeight="105" GridPane.columnIndex="0">
+            <padding>
+                <Insets bottom="5" left="15" right="5" top="5" />
+            </padding>
+            <HBox alignment="CENTER_LEFT" spacing="0.5">
+                <Label fx:id="id" styleClass="cell_big_label">
+                    <minWidth>
+                        <!-- Ensures that the label text is never truncated -->
+                        <Region fx:constant="USE_PREF_SIZE" />
+                    </minWidth>
+                </Label>
+                <Label fx:id="name" styleClass="cell_big_label" text="\$name" />
+            </HBox>
+            <HBox alignment="CENTER_LEFT" layoutX="25.0" layoutY="32.0" spacing="0.5">
+                <children>
+                    <Label fx:id="studentLabel" minWidth="-Infinity" style="-fx-font-weight: bold; -fx-background-color: #839dc9;" text="Student" textFill="WHITE" />
+                    <Label fx:id="studentDesignation" layoutX="10.0" layoutY="10.0" minWidth="-Infinity" style="-fx-font-weight: bold; -fx-background-color: #becbeb; -fx-background-radius: 4;" text="\$studentDesignation" textFill="WHITE">
+                        <HBox.margin>
+                            <Insets left="5.0" />
+                        </HBox.margin>
+                    </Label>
+                </children>
+            </HBox>
+            <FlowPane fx:id="tags" />
+            <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
+            <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
+            <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
+            <Label fx:id="matric" layoutX="25.0" layoutY="80.0" styleClass="cell_small_label" text="\$matric" />
+            <Label fx:id="emergency" layoutX="25.0" layoutY="80.0" styleClass="cell_small_label" text="\$emergency" />
+            <HBox alignment="CENTER_LEFT" layoutX="25.0" layoutY="100.0" spacing="0.5" style="-fx-background-color: #20242e; -fx-background-radius: 4;">
+                <children>
+                    <Label fx:id="block" layoutX="10.0" layoutY="10.0" minWidth="-Infinity" text="Block " textFill="WHITE">
+                        <HBox.margin>
+                            <Insets />
+                        </HBox.margin>
+                    </Label>
+                    <Label fx:id="level" layoutX="10.0" layoutY="10.0" minWidth="-Infinity" text="level" textFill="WHITE">
+                  <HBox.margin>
+                     <Insets left="5.0" />
+                  </HBox.margin></Label>
+                    <Label fx:id="room" layoutX="41.0" layoutY="10.0" minWidth="-Infinity" text="room" textFill="WHITE">
+                  <HBox.margin>
+                     <Insets left="5.0" />
+                  </HBox.margin></Label>
+                </children>
+            </HBox>
+        </VBox>
+        <rowConstraints>
+            <RowConstraints />
+        </rowConstraints>
+    </GridPane>
+</HBox>

@@ -64,9 +64,10 @@ public class StudentCard extends UiPart<Region> {
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
         matric.setText(student.getMatric().value);
         emergency.setText(student.getEmergency().value);
-        block.setText(student.getBlock().value);
-        level.setText(String.valueOf(student.getLevel().value));
-        room.setText(String.valueOf(student.getRoom().value));
+        block.setText("Block " + student.getBlock().value);
+        level.setText("Level " + student.getLevel().value);
+        room.setText("Room " + student.getRoom().value);
         studentDesignation.setText(student.getStudentDesignation().toString());
     }
+
 }
