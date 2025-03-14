@@ -15,13 +15,13 @@ import seedu.address.model.event.EventStartTime;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Block;
 import seedu.address.model.person.Description;
-import seedu.address.model.person.StaffDesignation;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Level;
 import seedu.address.model.person.Matric;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Room;
+import seedu.address.model.person.StaffDesignation;
 import seedu.address.model.person.StudentDesignation;
 import seedu.address.model.tag.Tag;
 

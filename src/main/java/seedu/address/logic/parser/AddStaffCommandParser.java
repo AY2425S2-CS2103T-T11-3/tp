@@ -19,13 +19,13 @@ import seedu.address.logic.commands.AddStaffCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Block;
-import seedu.address.model.person.StaffDesignation;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Level;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Room;
 import seedu.address.model.person.Staff;
+import seedu.address.model.person.StaffDesignation;
 import seedu.address.model.tag.Tag;
 
 /**
