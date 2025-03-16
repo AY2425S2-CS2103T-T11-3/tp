@@ -6,15 +6,13 @@ import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.model.event.Event;
+import seedu.address.model.event.UniqueEventList;
 import seedu.address.model.person.ExternalParty;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Staff;
-import seedu.address.model.person.UniqueExternalPartyList;
-import seedu.address.model.event.Event;
-import seedu.address.model.event.UniqueEventList;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Staff;
 import seedu.address.model.person.Student;
+import seedu.address.model.person.UniqueExternalPartyList;
 import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.person.UniqueStaffList;
 import seedu.address.model.person.UniqueStudentList;
