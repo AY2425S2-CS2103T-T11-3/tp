@@ -19,8 +19,8 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.ExternalParty;
+import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Staff;
 import seedu.address.model.person.Student;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
@@ -219,10 +219,9 @@ public class ModelManagerTest {
     }
 
     @Test
-
     public void getFilteredExternalPartyList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class,
-                () -> modelManager.getFilteredExternalPartyList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.
+                     getFilteredExternalPartyList().remove(0));
     }
 
     @Test
