@@ -20,7 +20,8 @@ public class SearchStaffCommandParserTest {
 
     @Test
     public void parse_emptyArg_throwsParseException() {
-        assertParseFailure(parser, "     ", String.format(MESSAGE_INVALID_COMMAND_FORMAT, SearchStaffCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "     ", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                SearchStaffCommand.MESSAGE_USAGE));
     }
 
     @Test
@@ -34,7 +35,8 @@ public class SearchStaffCommandParserTest {
 
     @Test
     public void parse_invalidArgs_throwsParseException() {
-        assertParseFailure(parser, "Alice Bob", String.format(MESSAGE_INVALID_COMMAND_FORMAT, SearchStaffCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "Alice Bob", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                SearchStaffCommand.MESSAGE_USAGE));
     }
 
     @Test
@@ -44,6 +46,7 @@ public class SearchStaffCommandParserTest {
         expectedCriteria.put(PREFIX_EMAIL, "alice@example.com");
         expectedCriteria.put(PREFIX_ROOM, "101");
         SearchStaffCommand expectedCommand = new SearchStaffCommand(expectedCriteria);
-        assertParseSuccess(parser, " " + PREFIX_NAME + "Alice " + PREFIX_EMAIL + "alice@example.com " + PREFIX_ROOM + "101", expectedCommand);
+        assertParseSuccess(parser, " " + PREFIX_NAME + "Alice " + PREFIX_EMAIL + "alice@example.com "
+                + PREFIX_ROOM + "101", expectedCommand);
     }
 }
