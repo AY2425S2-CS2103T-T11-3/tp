@@ -80,7 +80,8 @@ public class StudentMatchesAttributesPredicate implements Predicate<Student> {
             return false;
         }
 
-        StudentMatchesAttributesPredicate otherStudentMatchesAttributesPredicate = (StudentMatchesAttributesPredicate) other;
+        StudentMatchesAttributesPredicate otherStudentMatchesAttributesPredicate =
+                (StudentMatchesAttributesPredicate) other;
         return searchCriteria.equals(otherStudentMatchesAttributesPredicate.searchCriteria);
     }
 
