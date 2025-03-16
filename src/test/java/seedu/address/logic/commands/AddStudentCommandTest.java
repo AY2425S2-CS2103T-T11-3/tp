@@ -28,7 +28,8 @@ public class AddStudentCommandTest {
 
     @Test
     public void execute_studentAcceptedByModel() throws Exception {
-        AddStudentCommandTest.ModelStubAcceptingStudentAdded model = new AddStudentCommandTest.ModelStubAcceptingStudentAdded();
+        AddStudentCommandTest.ModelStubAcceptingStudentAdded model =
+                new AddStudentCommandTest.ModelStubAcceptingStudentAdded();
         Student student = new StudentBuilder().build();
 
         CommandResult commandResult = new AddStudentCommand(student).execute(model);

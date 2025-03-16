@@ -1,7 +1,16 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.CommandTestUtil.*;
+import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_MATRIC_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.MATRIC_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
@@ -17,7 +26,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Room;
 import seedu.address.model.person.Student;
-import seedu.address.model.person.StaffDesignation;
+import seedu.address.model.person.StudentDesignation;
 import seedu.address.testutil.StudentBuilder;
 
 public class AddStudentCommandParserTest {
@@ -47,52 +56,63 @@ public class AddStudentCommandParserTest {
     @Test
     public void parse_invalidValue_failure() {
         // invalid name
-        assertParseFailure(parser, INVALID_NAME_DESC + " matric/A0234567B phone/85355255 email/amy@gmail.com a/123, "
+        assertParseFailure(parser, INVALID_NAME_DESC + " matric/A0234567B phone/85355255 "
+                + "email/amy@gmail.com a/123, "
                 + "Jurong West Ave 6, #08-111 emergency/91234567 block/A level/7 room/5 "
                 + "designation/0", Name.MESSAGE_CONSTRAINTS);
 
         // invalid matric
-        assertParseFailure(parser, NAME_DESC_BOB + INVALID_MATRIC_DESC + " phone/85355255 email/amy@gmail.com a/123, "
+        assertParseFailure(parser, NAME_DESC_BOB + INVALID_MATRIC_DESC + " phone/85355255 "
+                + "email/amy@gmail.com a/123, "
                 + "Jurong West Ave 6, #08-111 emergency/91234567 block/A level/7 room/5 "
                 + "designation/0", Matric.MESSAGE_CONSTRAINTS);
 
         // invalid phone
-        assertParseFailure(parser, NAME_DESC_BOB + MATRIC_DESC_BOB + INVALID_PHONE_DESC + " email/amy@gmail.com a/123, "
+        assertParseFailure(parser, NAME_DESC_BOB + MATRIC_DESC_BOB + INVALID_PHONE_DESC
+                + " email/amy@gmail.com a/123, "
                 + "Jurong West Ave 6, #08-111 emergency/91234567 block/A level/7 room/5 "
                 + "designation/0", Phone.MESSAGE_CONSTRAINTS);
 
         // invalid email
-        assertParseFailure(parser, NAME_DESC_BOB + MATRIC_DESC_BOB + PHONE_DESC_BOB + INVALID_EMAIL_DESC + " a/123, "
+        assertParseFailure(parser, NAME_DESC_BOB + MATRIC_DESC_BOB + PHONE_DESC_BOB + INVALID_EMAIL_DESC
+                + " a/123, "
                 + "Jurong West Ave 6, #08-111 emergency/91234567 block/A level/7 room/5 "
                 + "designation/0", Email.MESSAGE_CONSTRAINTS);
 
         // invalid address
-        assertParseFailure(parser, NAME_DESC_BOB + MATRIC_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + INVALID_ADDRESS_DESC
+        assertParseFailure(parser, NAME_DESC_BOB + MATRIC_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
+                + INVALID_ADDRESS_DESC
                 + " emergency/91234567 block/A level/7 room/5 "
                 + "designation/0", Address.MESSAGE_CONSTRAINTS);
 
         // invalid emergency
-        assertParseFailure(parser, NAME_DESC_BOB + MATRIC_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
+        assertParseFailure(parser, NAME_DESC_BOB + MATRIC_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
+                + ADDRESS_DESC_BOB
                 + " emergency/911a block/A level/7 room/5 designation/0", Phone.MESSAGE_CONSTRAINTS);
 
         // invalid block
-        assertParseFailure(parser, NAME_DESC_BOB + MATRIC_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
+        assertParseFailure(parser, NAME_DESC_BOB + MATRIC_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
+                + ADDRESS_DESC_BOB
                 + " emergency/91234567 block/? level/7 room/5 designation/0", Block.MESSAGE_CONSTRAINTS);
 
         // invalid level
-        assertParseFailure(parser, NAME_DESC_BOB + MATRIC_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
+        assertParseFailure(parser, NAME_DESC_BOB + MATRIC_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
+                + ADDRESS_DESC_BOB
                 + " mergency/91234567 block/A  level/1000 room/5 designation/0", Level.MESSAGE_CONSTRAINTS);
 
         // invalid room
-        assertParseFailure(parser, NAME_DESC_BOB + MATRIC_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
+        assertParseFailure(parser, NAME_DESC_BOB + MATRIC_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
+                + ADDRESS_DESC_BOB
                 + " emergency/91234567 block/A level/10 room/ABC designation/0", Room.MESSAGE_CONSTRAINTS);
 
         // invalid designation
-        assertParseFailure(parser, NAME_DESC_BOB + MATRIC_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + " emergency/91234567 block/A level/10 room/2 designation/5", StaffDesignation.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, NAME_DESC_BOB + MATRIC_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
+                + ADDRESS_DESC_BOB
+                + " emergency/91234567 block/A level/10 room/2 designation/5", StudentDesignation.MESSAGE_CONSTRAINTS);
 
         // two invalid values, only first invalid value reported
-        assertParseFailure(parser, INVALID_NAME_DESC + MATRIC_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + INVALID_ADDRESS_DESC
+        assertParseFailure(parser, INVALID_NAME_DESC + MATRIC_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
+                        + INVALID_ADDRESS_DESC
                         + " emergency/91234567 block/A level/7 room/5 designation/0",
                 Name.MESSAGE_CONSTRAINTS);
     }
