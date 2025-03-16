@@ -82,7 +82,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void setExternalParties(List<ExternalParty> externalParty) {
         this.externalParty.setExternalParties(externalParty);
     }
-    
+
     /**
      * Replaces the contents of the student list with {@code student}.
      * {@code students} must not contain duplicate students.
@@ -161,7 +161,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void addExternalParty(ExternalParty e) {
         this.externalParty.add(e);
     }
-      
+
     /**
      * Adds a student to the address book.
      * The student must not already exist in the address book.
@@ -201,7 +201,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireNonNull(editedExternalParty);
         this.externalParty.setExternalParty(target, editedExternalParty);
     }
-      
+
     /**
      * Replaces the given student {@code target} in the list with {@code editedStudent}.
      * {@code target} must exist in the address book.
@@ -272,7 +272,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void removeExternalParty(ExternalParty key) {
         this.externalParty.remove(key);
     }
-      
+
     /**
      * Removes {@code key} from this {@code AddressBook}.
      * {@code key} must exist in the address book.
