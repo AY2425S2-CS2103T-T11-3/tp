@@ -224,7 +224,7 @@ public class ModelManagerTest {
         assertThrows(UnsupportedOperationException.class,
                 () -> modelManager.getFilteredExternalPartyList().remove(0));
     }
-    
+
     @Test
     public void getFilteredStudentList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredStudentList().remove(0));
