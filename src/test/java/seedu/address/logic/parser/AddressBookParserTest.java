@@ -9,6 +9,7 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 import org.junit.jupiter.api.Test;
 
@@ -26,6 +27,8 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.ListStaffCommand;
 import seedu.address.logic.commands.ListStudentCommand;
+import seedu.address.logic.commands.SearchStaffCommand;
+import seedu.address.logic.commands.SearchStudentCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.ExternalParty;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
@@ -61,6 +64,47 @@ public class AddressBookParserTest {
                         + " name/Amy Bee matric/A0234567B phone/85355255 email/amy@gmail.com a/123, "
                         + "Jurong West Ave 6, #08-111 emergency/91234567 block/A level/7 room/5");
         assertEquals(new AddStudentCommand(student), command);
+    }
+
+    @Test
+    public void parseCommand_search_staff() throws Exception {
+        Map<Prefix, String> searchCriteria = Map.of(
+                CliSyntax.PREFIX_NAME, "Amy Bee",
+                CliSyntax.PREFIX_PHONE, "85355255",
+                CliSyntax.PREFIX_EMAIL, "amy@gmail.com",
+                CliSyntax.PREFIX_ADDRESS, "123, Jurong West Ave 6, #08-111",
+                CliSyntax.PREFIX_EMERGENCY, "91234567",
+                CliSyntax.PREFIX_BLOCK, "A",
+                CliSyntax.PREFIX_LEVEL, "7",
+                CliSyntax.PREFIX_ROOM, "5"
+        );
+        SearchStaffCommand expectedCommand = new SearchStaffCommand(searchCriteria);
+        SearchStaffCommand command = (SearchStaffCommand) parser.parseCommand(
+                SearchStaffCommand.COMMAND_WORD
+                        + " name/Amy Bee phone/85355255 email/amy@gmail.com a/123, "
+                        + "Jurong West Ave 6, #08-111 emergency/91234567 block/A level/7 room/5");
+        assertEquals(expectedCommand, command);
+    }
+
+    @Test
+    public void parseCommand_search_student() throws Exception {
+        Map<Prefix, String> searchCriteria = Map.of(
+                CliSyntax.PREFIX_NAME, "Amy Bee",
+                CliSyntax.PREFIX_MATRIC, "A0234567B",
+                CliSyntax.PREFIX_PHONE, "85355255",
+                CliSyntax.PREFIX_EMAIL, "amy@gmail.com",
+                CliSyntax.PREFIX_ADDRESS, "123, Jurong West Ave 6, #08-111",
+                CliSyntax.PREFIX_EMERGENCY, "91234567",
+                CliSyntax.PREFIX_BLOCK, "A",
+                CliSyntax.PREFIX_LEVEL, "7",
+                CliSyntax.PREFIX_ROOM, "5"
+        );
+        SearchStudentCommand expectedCommand = new SearchStudentCommand(searchCriteria);
+        SearchStudentCommand command = (SearchStudentCommand) parser.parseCommand(
+                SearchStudentCommand.COMMAND_WORD
+                        + " name/Amy Bee matric/A0234567B phone/85355255 email/amy@gmail.com a/123, "
+                        + "Jurong West Ave 6, #08-111 emergency/91234567 block/A level/7 room/5");
+        assertEquals(expectedCommand, command);
     }
 
     @Test
