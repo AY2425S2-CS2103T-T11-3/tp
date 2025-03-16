@@ -47,7 +47,7 @@ public interface Logic {
 
     /** Returns an unmodifiable view of the filtered list of external party */
     ObservableList<ExternalParty> getFilteredExternalPartyList();
-  
+
     /** Returns an unmodifiable view of the filtered list of students */
     ObservableList<Student> getFilteredStudentList();
 
