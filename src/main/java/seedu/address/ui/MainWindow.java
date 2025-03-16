@@ -34,6 +34,7 @@ public class MainWindow extends UiPart<Stage> {
     // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
     private StaffListPanel staffListPanel;
+    private ExternalPartyListPanel externalPartyListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -48,6 +49,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane staffListPanelPlaceholder;
+
+    @FXML
+    private StackPane externalPartyListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -95,6 +99,11 @@ public class MainWindow extends UiPart<Stage> {
         case STAFF:
             staffListPanel = new StaffListPanel(logic.getFilteredStaffList());
             staffListPanelPlaceholder.getChildren().add(staffListPanel.getRoot());
+            break;
+
+        case EXTERNAL:
+            externalPartyListPanel = new ExternalPartyListPanel((logic.getFilteredExternalPartyList()));
+            externalPartyListPanelPlaceholder.getChildren().add(externalPartyListPanel.getRoot());
             break;
 
         default:
