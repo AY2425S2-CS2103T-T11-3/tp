@@ -110,8 +110,8 @@ public class UniqueExternalPartyListTest {
         ExternalParty externalParty1 = new ExternalPartyBuilder().withName("Haikel").build();
         uniqueExternalPartyList.add(externalParty);
         uniqueExternalPartyList.add(externalParty1);
-        assertThrows(DuplicatePersonException.class, () -> uniqueExternalPartyList.
-                     setExternalParty(externalParty, externalParty1));
+        assertThrows(DuplicatePersonException.class, () 
+                -> uniqueExternalPartyList.setExternalParty(externalParty, externalParty1));
     }
 
     @Test
