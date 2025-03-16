@@ -80,7 +80,7 @@ public class JsonAdaptedStudent {
         block = source.getBlock().value;
         level = String.valueOf(source.getLevel());
         room = String.valueOf(source.getRoom());
-        studentDesignation = String.valueOf(source.getStudentDesignation());
+        studentDesignation = String.valueOf(source.getStudentDesignation().getOrdinalDesignation());
     }
 
     /**

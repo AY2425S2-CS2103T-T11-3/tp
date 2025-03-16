@@ -37,6 +37,10 @@ public class StudentDesignation {
         return test.matches(VALIDATION_REGEX);
     }
 
+    public int getOrdinalDesignation() {
+        return this.value.ordinal();
+    }
+
     @Override
     public String toString() {
         return value.name();
