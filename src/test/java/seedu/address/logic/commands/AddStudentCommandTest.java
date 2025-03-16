@@ -27,8 +27,9 @@ public class AddStudentCommandTest {
     }
 
     @Test
-    public void execute_staffAcceptedByModel() throws Exception {
-        ModelStubAcceptingStudentAdded model = new ModelStubAcceptingStudentAdded();
+    public void execute_studentAcceptedByModel() throws Exception {
+        ModelStubAcceptingStudentAdded model =
+                new ModelStubAcceptingStudentAdded();
         Student student = new StudentBuilder().build();
 
         CommandResult commandResult = new AddStudentCommand(student).execute(model);
@@ -38,7 +39,7 @@ public class AddStudentCommandTest {
     }
 
     @Test
-    public void execute_duplicateStaff() throws CommandException {
+    public void execute_duplicateStudent() throws CommandException {
         Student student = new StudentBuilder().build();
         AddStudentCommand cmd = new AddStudentCommand(student);
         ModelStubWithStudent model = new ModelStubWithStudent(student);
@@ -98,7 +99,7 @@ public class AddStudentCommandTest {
     }
 
     /**
-     * A Model stub that always accept the staff being added.
+     * A Model stub that always accept the student being added.
      */
     private class ModelStubAcceptingStudentAdded extends ModelStub {
         final ArrayList<Person> personsAdded = new ArrayList<>();

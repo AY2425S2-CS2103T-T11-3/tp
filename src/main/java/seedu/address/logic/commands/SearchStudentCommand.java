@@ -1,14 +1,15 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.Messages.MESSAGE_NO_STAFF_FOUND;
-import static seedu.address.logic.Messages.MESSAGE_STAFF_LISTED_OVERVIEW;
+import static seedu.address.logic.Messages.MESSAGE_NO_STUDENT_FOUND;
+import static seedu.address.logic.Messages.MESSAGE_STUDENT_LISTED_OVERVIEW;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_BLOCK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESIGNATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMERGENCY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LEVEL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MATRIC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROOM;
@@ -18,19 +19,20 @@ import java.util.Map;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.model.Model;
-import seedu.address.model.person.StaffMatchesAttributesPredicate;
+import seedu.address.model.person.StudentMatchesAttributesPredicate;
 
 /**
- * Searches for all staff in address book whose attributes match any of the argument keywords.
+ * Searches for all students in address book whose attributes match any of the argument keywords.
  * Keyword matching is case insensitive.
  */
-public class SearchStaffCommand extends Command {
-    public static final String COMMAND_WORD = "search_staff";
+public class SearchStudentCommand extends Command {
+    public static final String COMMAND_WORD = "search_stu";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Searches for all staff whose attributes match "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Searches for all students whose attributes match "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
             + "Parameters: "
             + PREFIX_NAME + "NAME "
+            + PREFIX_MATRIC + "MATRIC "
             + PREFIX_PHONE + "PHONE "
             + PREFIX_EMAIL + "EMAIL "
             + PREFIX_ADDRESS + "ADDRESS "
@@ -42,22 +44,22 @@ public class SearchStaffCommand extends Command {
             + "At least one of the parameters must be provided.\n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_PHONE + "91234567";
 
-    private final StaffMatchesAttributesPredicate predicate;
+    private final StudentMatchesAttributesPredicate predicate;
 
-    public SearchStaffCommand(Map<Prefix, String> searchCriteria) {
-        this.predicate = new StaffMatchesAttributesPredicate(searchCriteria);
+    public SearchStudentCommand(Map<Prefix, String> searchCriteria) {
+        this.predicate = new StudentMatchesAttributesPredicate(searchCriteria);
     }
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredStaffList(predicate);
-        int filteredListSize = model.getFilteredStaffList().size();
+        model.updateFilteredStudentList(predicate);
+        int filteredListSize = model.getFilteredStudentList().size();
         if (filteredListSize == 0) {
-            return new CommandResult(String.format(MESSAGE_NO_STAFF_FOUND, predicate));
+            return new CommandResult(String.format(MESSAGE_NO_STUDENT_FOUND, predicate));
         } else {
             return new CommandResult(
-                    String.format(MESSAGE_STAFF_LISTED_OVERVIEW, filteredListSize));
+                    String.format(MESSAGE_STUDENT_LISTED_OVERVIEW, filteredListSize));
         }
     }
 
@@ -68,12 +70,12 @@ public class SearchStaffCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof SearchStaffCommand)) {
+        if (!(other instanceof SearchStudentCommand)) {
             return false;
         }
 
-        SearchStaffCommand otherSearchStaffCommand = (SearchStaffCommand) other;
-        return predicate.equals(otherSearchStaffCommand.predicate);
+        SearchStudentCommand otherSearchStudentCommand = (SearchStudentCommand) other;
+        return predicate.equals(otherSearchStudentCommand.predicate);
     }
 
     @Override
@@ -83,5 +85,3 @@ public class SearchStaffCommand extends Command {
                 .toString();
     }
 }
-
-

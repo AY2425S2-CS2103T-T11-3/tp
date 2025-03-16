@@ -22,6 +22,10 @@ public class Messages {
             "Found no matching staff with the attributes: %1$s";
     public static final String MESSAGE_STAFF_LISTED_OVERVIEW =
             "Matching staff found in this list: %1$d staff members listed.";
+    public static final String MESSAGE_NO_STUDENT_FOUND =
+            "Found no matching students with the attributes: %1$s";
+    public static final String MESSAGE_STUDENT_LISTED_OVERVIEW =
+            "Matching students found in this list: %1$d staff members listed.";
     public static final String MESSAGE_DUPLICATE_FIELDS =
                 "Multiple values specified for the following single-valued field(s): ";
     public static final String MESSAGE_INVALID_EVENT_DISPLAYED_INDEX = "The event index provided is invalid";

@@ -8,12 +8,12 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class StudentDesignation {
     enum Role {
-        JCRC_MEMBER, BLOCK_HEAD, LEVEL_HEAD;
+        RESIDENT, BLOCK_HEAD, JCRC_MEMBER;
     }
 
     public static final String MESSAGE_CONSTRAINTS =
             "Designation should only be an integer from 0 to 2, and it should not be blank. "
-                    + "0 to 2 represents JCRC Member, Block Head and Level Head respectively";
+                    + "0 to 2 represents Resident, Block Head and JCRC Member respectively";
 
     public static final String VALIDATION_REGEX = "[0-2]";
 
