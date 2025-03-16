@@ -37,7 +37,7 @@ public class MainWindow extends UiPart<Stage> {
     private StaffListPanel staffListPanel;
     private ExternalPartyListPanel externalPartyListPanel;
     private StudentListPanel studentListPanel;
- 
+
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
