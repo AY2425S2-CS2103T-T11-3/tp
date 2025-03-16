@@ -88,6 +88,7 @@ public class MainWindow extends UiPart<Stage> {
     private void updateListView(ListType type) {
         personListPanelPlaceholder.getChildren().clear();
         staffListPanelPlaceholder.getChildren().clear();
+        externalPartyListPanelPlaceholder.getChildren().clear();
 
         switch (type) {
 
