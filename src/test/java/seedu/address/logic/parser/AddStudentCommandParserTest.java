@@ -98,7 +98,7 @@ public class AddStudentCommandParserTest {
         // invalid level
         assertParseFailure(parser, NAME_DESC_BOB + MATRIC_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + ADDRESS_DESC_BOB
-                + " mergency/91234567 block/A  level/1000 room/5 designation/0", Level.MESSAGE_CONSTRAINTS);
+                + " emergency/91234567 block/A  level/1000 room/5 designation/0", Level.MESSAGE_CONSTRAINTS);
 
         // invalid room
         assertParseFailure(parser, NAME_DESC_BOB + MATRIC_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
