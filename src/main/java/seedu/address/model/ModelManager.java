@@ -13,6 +13,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.person.ExternalParty;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Staff;
 
@@ -25,6 +26,7 @@ public class ModelManager implements Model {
     private final ObjectProperty<ListType> currentListTypeProperty = new SimpleObjectProperty<>(ListType.PERSON);
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
+    private final FilteredList<ExternalParty> filteredExternalParty;
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Staff> filteredStaff;
 
@@ -38,6 +40,7 @@ public class ModelManager implements Model {
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
+        filteredExternalParty = new FilteredList<>(this.addressBook.getExternalPartyList());
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         filteredStaff = new FilteredList<>(this.addressBook.getStaffList());
     }
@@ -106,6 +109,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasExternalParty(ExternalParty externalParty) {
+        requireNonNull(externalParty);
+        return addressBook.hasExternalParty(externalParty);
+    }
+
+    @Override
     public void deletePerson(Person target) {
         addressBook.removePerson(target);
     }
@@ -138,6 +147,23 @@ public class ModelManager implements Model {
     public void setStaff(Staff target, Staff editedStaff) {
         requireAllNonNull(target, editedStaff);
         addressBook.setStaff(target, editedStaff);
+    }
+
+    @Override
+    public void deleteExternalParty(ExternalParty target) {
+        addressBook.removeExternalParty(target);
+    }
+
+    @Override
+    public void addExternalParty(ExternalParty externalParty) {
+        addressBook.addExternalParty(externalParty);
+        updateFilteredExternalPartyList(PREDICATE_SHOW_ALL_EXTERNALPARTIES);
+    }
+
+    @Override
+    public void setExternalParty(ExternalParty target, ExternalParty editedExternalParty) {
+        requireAllNonNull(target, editedExternalParty);
+        addressBook.setExternalParty(target, editedExternalParty);
     }
 
     //=========== Filtered Person List Accessors =============================================================
@@ -187,6 +213,19 @@ public class ModelManager implements Model {
         filteredStaff.setPredicate(predicate);
         setListType(ListType.STAFF);
     }
+
+    //=========== Filtered External Party List Accessors =============================================================
+    @Override
+    public ObservableList<ExternalParty> getFilteredExternalPartyList() {
+        return filteredExternalParty;
+    }
+
+    @Override
+    public void updateFilteredExternalPartyList(Predicate<ExternalParty> predicate) {
+        requireNonNull(predicate);
+        filteredExternalParty.setPredicate(predicate);
+    }
+
 
     //=========== List Accessors ============================================================================
     @Override

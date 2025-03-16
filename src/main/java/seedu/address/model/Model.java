@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import javafx.beans.property.ObjectProperty;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.person.ExternalParty;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Staff;
 
@@ -16,6 +17,7 @@ public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
     Predicate<Staff> PREDICATE_SHOW_ALL_STAFF = unused -> true;
+    Predicate<ExternalParty> PREDICATE_SHOW_ALL_EXTERNALPARTIES = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -66,6 +68,11 @@ public interface Model {
     boolean hasStaff(Staff staff);
 
     /**
+     * Returns true if an external party with the same identity as {@code externalParty} exists in the address book.
+     */
+    boolean hasExternalParty(ExternalParty externalParty);
+
+    /**
      * Deletes the given person.
      * The person must exist in the address book.
      */
@@ -76,6 +83,12 @@ public interface Model {
      * The staff must exist in the address book.
      */
     void deleteStaff(Staff target);
+
+    /**
+     * Deletes the given external party.
+     * The external party must exist in the address book.
+     */
+    void deleteExternalParty(ExternalParty target);
 
     /**
      * Adds the given person.
@@ -90,6 +103,12 @@ public interface Model {
     void addStaff(Staff staff);
 
     /**
+     * Adds the given external party.
+     * {@code externalParty} must not already exist in the address book.
+     */
+    void addExternalParty(ExternalParty externalParty);
+
+    /**
      * Replaces the given person {@code target} with {@code editedPerson}.
      * {@code target} must exist in the address book.
      * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
@@ -102,6 +121,14 @@ public interface Model {
      * The staff identity of {@code editedPerson} must not be the same as another existing staff in the address book.
      */
     void setStaff(Staff target, Staff editedStaff);
+
+    /**
+     * Replaces the given external party {@code target} with {@code editedExternalParty}.
+     * {@code target} must exist in the address book.
+     * The external party identity of {@code editedPerson} must not be the same as another existing external party
+     * in the address book.
+     */
+    void setExternalParty(ExternalParty target, ExternalParty editedExternalParty);
 
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
@@ -120,6 +147,15 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredStaffList(Predicate<Staff> predicate);
+
+    /** Returns an unmodifiable view of the filtered external party list */
+    ObservableList<ExternalParty> getFilteredExternalPartyList();
+
+    /**
+     * Updates the filter of the filtered external party list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredExternalPartyList(Predicate<ExternalParty> predicate);
 
     /**
      * Gets the ObjectProperty of list (person, staff, etc) that should be displayed now.

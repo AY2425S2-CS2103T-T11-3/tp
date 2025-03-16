@@ -10,6 +10,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ListType;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.person.ExternalParty;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Staff;
 
@@ -38,6 +39,9 @@ public interface Logic {
 
     /** Returns an unmodifiable view of the filtered list of staff */
     ObservableList<Staff> getFilteredStaffList();
+
+    /** Returns an unmodifiable view of the filtered list of external party */
+    ObservableList<ExternalParty> getFilteredExternalPartyList();
 
     /**
      * Returns the user prefs' address book file path.
