@@ -119,7 +119,7 @@ public class ModelManager implements Model {
         requireNonNull(externalParty);
         return addressBook.hasExternalParty(externalParty);
     }
-  
+
     @Override
     public boolean hasStudent(Student student) {
         requireNonNull(student);
