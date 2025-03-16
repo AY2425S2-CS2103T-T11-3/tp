@@ -6,7 +6,7 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSucces
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
 import org.junit.jupiter.api.Test;
-import seedu.address.logic.commands.DeleteCommand;
+
 import seedu.address.logic.commands.DeleteStudentCommand;
 
 /**
