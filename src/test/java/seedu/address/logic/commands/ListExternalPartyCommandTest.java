@@ -23,6 +23,7 @@ public class ListExternalPartyCommandTest {
 
     @Test
     public void execute_listIsNotFiltered_showsSameList() {
-        assertCommandSuccess(new ListExternalPartyCommand(), model, ListExternalPartyCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ListExternalPartyCommand(), model,
+                ListExternalPartyCommand.MESSAGE_SUCCESS, expectedModel);
     }
 }

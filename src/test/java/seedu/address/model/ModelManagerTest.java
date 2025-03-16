@@ -16,8 +16,10 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.ExternalParty;
 import seedu.address.model.person.Staff;
 import seedu.address.testutil.AddressBookBuilder;
+import seedu.address.testutil.ExternalPartyBuilder;
 import seedu.address.testutil.StaffBuilder;
 
 public class ModelManagerTest {
@@ -103,6 +105,18 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void hasExternalParty_externalPartyNotInAddressBook_returnsFalse() {
+        assertFalse(modelManager.hasExternalParty(new ExternalPartyBuilder().build()));
+    }
+
+    @Test
+    public void hasExternalParty_externalPartyInAddressBook_returnsTrue() {
+        ExternalParty externalParty = new ExternalPartyBuilder().build();
+        modelManager.addExternalParty(externalParty);
+        assertTrue(modelManager.hasExternalParty(externalParty));
+    }
+
+    @Test
     public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredPersonList().remove(0));
     }
@@ -113,12 +127,21 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void getFilteredExternalPartyList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class,
+                () -> modelManager.getFilteredExternalPartyList().remove(0));
+    }
+
+    @Test
     public void getListType_modify_success() {
         assertEquals(modelManager.getListType(), ListType.PERSON);
         assertEquals(modelManager.getListTypeProperty().get(), ListType.PERSON);
         modelManager.setListType(ListType.STAFF);
         assertEquals(modelManager.getListType(), ListType.STAFF);
         assertEquals(modelManager.getListTypeProperty().get(), ListType.STAFF);
+        modelManager.setListType(ListType.EXTERNAL);
+        assertEquals(modelManager.getListType(), ListType.EXTERNAL);
+        assertEquals(modelManager.getListTypeProperty().get(), ListType.EXTERNAL);
     }
 
     @Test

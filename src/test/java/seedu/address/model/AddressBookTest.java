@@ -22,6 +22,7 @@ import seedu.address.model.person.ExternalParty;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Staff;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
+import seedu.address.testutil.ExternalPartyBuilder;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.StaffBuilder;
 
@@ -78,6 +79,13 @@ public class AddressBookTest {
         Staff staff = new StaffBuilder().build();
         addressBook.addStaff(staff);
         assertTrue(addressBook.hasStaff(staff));
+    }
+
+    @Test
+    public void hasExternalParty_externalPartyInAddressBook_returnsTrue() {
+        ExternalParty externalParty = new ExternalPartyBuilder().build();
+        addressBook.addExternalParty(externalParty);
+        assertTrue(addressBook.hasExternalParty(externalParty));
     }
 
     @Test
