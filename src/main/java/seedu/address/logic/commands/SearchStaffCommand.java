@@ -1,6 +1,8 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.Messages.MESSAGE_NO_STAFF_FOUND;
+import static seedu.address.logic.Messages.MESSAGE_STAFF_LISTED_OVERVIEW;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_BLOCK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESIGNATION;
@@ -14,7 +16,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ROOM;
 import java.util.Map;
 
 import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.logic.Messages;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.model.Model;
 import seedu.address.model.person.StaffMatchesAttributesPredicate;
@@ -53,10 +54,10 @@ public class SearchStaffCommand extends Command {
         model.updateFilteredStaffList(predicate);
         int filteredListSize = model.getFilteredStaffList().size();
         if (filteredListSize == 0) {
-            return new CommandResult(String.format(Messages.MESSAGE_NO_STAFF_FOUND, predicate));
+            return new CommandResult(String.format(MESSAGE_NO_STAFF_FOUND, predicate));
         } else {
             return new CommandResult(
-                    String.format(Messages.MESSAGE_STAFF_LISTED_OVERVIEW, filteredListSize));
+                    String.format(MESSAGE_STAFF_LISTED_OVERVIEW, filteredListSize));
         }
     }
 

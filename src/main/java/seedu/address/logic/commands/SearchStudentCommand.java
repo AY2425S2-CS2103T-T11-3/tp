@@ -1,6 +1,8 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.Messages.MESSAGE_NO_STUDENT_FOUND;
+import static seedu.address.logic.Messages.MESSAGE_STUDENT_LISTED_OVERVIEW;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_BLOCK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESIGNATION;
@@ -15,7 +17,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ROOM;
 import java.util.Map;
 
 import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.logic.Messages;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.model.Model;
 import seedu.address.model.person.StudentMatchesAttributesPredicate;
@@ -55,10 +56,10 @@ public class SearchStudentCommand extends Command {
         model.updateFilteredStudentList(predicate);
         int filteredListSize = model.getFilteredStudentList().size();
         if (filteredListSize == 0) {
-            return new CommandResult(String.format(Messages.MESSAGE_NO_STUDENT_FOUND, predicate));
+            return new CommandResult(String.format(MESSAGE_NO_STUDENT_FOUND, predicate));
         } else {
             return new CommandResult(
-                    String.format(Messages.MESSAGE_STUDENT_LISTED_OVERVIEW, filteredListSize));
+                    String.format(MESSAGE_STUDENT_LISTED_OVERVIEW, filteredListSize));
         }
     }
 

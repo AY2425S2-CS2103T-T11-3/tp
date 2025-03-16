@@ -28,8 +28,8 @@ public class AddStudentCommandTest {
 
     @Test
     public void execute_studentAcceptedByModel() throws Exception {
-        AddStudentCommandTest.ModelStubAcceptingStudentAdded model =
-                new AddStudentCommandTest.ModelStubAcceptingStudentAdded();
+        ModelStubAcceptingStudentAdded model =
+                new ModelStubAcceptingStudentAdded();
         Student student = new StudentBuilder().build();
 
         CommandResult commandResult = new AddStudentCommand(student).execute(model);
@@ -42,7 +42,7 @@ public class AddStudentCommandTest {
     public void execute_duplicateStudent() throws CommandException {
         Student student = new StudentBuilder().build();
         AddStudentCommand cmd = new AddStudentCommand(student);
-        ModelStubWithStudent model = new AddStudentCommandTest.ModelStubWithStudent(student);
+        ModelStubWithStudent model = new ModelStubWithStudent(student);
 
         Assert.assertThrows(
                 CommandException.class, AddStudentCommand.MESSAGE_DUPLICATE_PERSON, () -> cmd.execute(model));
