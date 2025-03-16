@@ -5,13 +5,13 @@ import java.util.Set;
 
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Block;
-import seedu.address.model.person.Designation;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Level;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Room;
 import seedu.address.model.person.Staff;
+import seedu.address.model.person.StaffDesignation;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -39,7 +39,7 @@ public class StaffBuilder {
     private Block block;
     private Level level;
     private Room room;
-    private Designation designation;
+    private StaffDesignation designation;
 
     /**
      * Creates a {@code StaffBuilder} with the default details.
@@ -54,7 +54,7 @@ public class StaffBuilder {
         block = new Block(DEFAULT_BLOCK);
         level = new Level(DEFAULT_LEVEL);
         room = new Room(DEFAULT_ROOM);
-        designation = new Designation(DEFAULT_DESIGNATION);
+        designation = new StaffDesignation(DEFAULT_DESIGNATION);
     }
 
     /**
@@ -141,7 +141,7 @@ public class StaffBuilder {
      * Sets the {@code Designation} of the {@code Staff} that we are building.
      */
     public StaffBuilder withDesignation(String designation) {
-        this.designation = new Designation(designation);
+        this.designation = new StaffDesignation(designation);
         return this;
     }
 

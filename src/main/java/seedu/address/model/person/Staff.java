@@ -18,13 +18,13 @@ public class Staff extends Person {
     private final Block block;
     private final Level level;
     private final Room room;
-    private final Designation designation;
+    private final StaffDesignation designation;
 
     /**
      * Every field must be present and not null.
      */
     public Staff(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Phone emergency,
-                 Block block, Level level, Room room, Designation designation) {
+                 Block block, Level level, Room room, StaffDesignation designation) {
         super(name, phone, email, address, tags);
         requireAllNonNull(name, phone, email, address, tags, emergency, block, level, room, designation);
         this.emergency = emergency;
@@ -50,7 +50,7 @@ public class Staff extends Person {
         return this.room;
     }
 
-    public Designation getDesignation() {
+    public StaffDesignation getDesignation() {
         return this.designation;
     }
 

@@ -33,8 +33,11 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
+    private EventListPanel eventListPanel;
     private StaffListPanel staffListPanel;
     private ExternalPartyListPanel externalPartyListPanel;
+    private StudentListPanel studentListPanel;
+ 
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -52,6 +55,12 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane externalPartyListPanelPlaceholder;
+
+    @FXML
+    private StackPane studentListPanelPlaceholder;
+
+    @FXML
+    private StackPane eventListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -86,9 +95,15 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     private void updateListView(ListType type) {
+        personListPanel = null;
+        eventListPanel = null;
+        staffListPanel = null;
+        studentListPanel = null;
         personListPanelPlaceholder.getChildren().clear();
         staffListPanelPlaceholder.getChildren().clear();
         externalPartyListPanelPlaceholder.getChildren().clear();
+        studentListPanelPlaceholder.getChildren().clear();
+        eventListPanelPlaceholder.getChildren().clear();
 
         switch (type) {
 
@@ -105,6 +120,16 @@ public class MainWindow extends UiPart<Stage> {
         case EXTERNAL:
             externalPartyListPanel = new ExternalPartyListPanel((logic.getFilteredExternalPartyList()));
             externalPartyListPanelPlaceholder.getChildren().add(externalPartyListPanel.getRoot());
+            break;
+
+        case STUDENT:
+            studentListPanel = new StudentListPanel(logic.getFilteredStudentList());
+            studentListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
+            break;
+
+        case EVENT:
+            eventListPanel = new EventListPanel(logic.getFilteredEventList());
+            eventListPanelPlaceholder.getChildren().add(eventListPanel.getRoot());
             break;
 
         default:

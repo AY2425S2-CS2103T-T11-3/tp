@@ -49,7 +49,7 @@ public class AddStudentCommand extends Command {
             + PREFIX_DESIGNATION + "1\n"
             + "Note that " + PREFIX_DESIGNATION + " "
             + "is an optional parameter. To use it, place an integer "
-            + "from 0 to 2, representing {“JCRC Member”, “Block Head”, “Level Head”} "
+            + "from 0 to 2, representing {“Resident”, “Block Head”, “JCRC Member”} "
             + "respectively.";
 
     public static final String MESSAGE_SUCCESS = "New student added: %1$s";
@@ -73,7 +73,7 @@ public class AddStudentCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
-        model.addPerson(toAdd);
+        model.addStudent(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(toAdd)));
     }
 

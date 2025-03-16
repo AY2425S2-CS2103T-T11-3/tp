@@ -9,52 +9,52 @@ import org.junit.jupiter.api.Test;
 public class DesignationTest {
     @Test
     public void constructor_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new Designation(null));
+        assertThrows(NullPointerException.class, () -> new StaffDesignation(null));
     }
 
     @Test
     public void constructor_invalidDesignation_throwsIllegalArgumentException() {
-        assertThrows(IllegalArgumentException.class, () -> new Designation("?"));
+        assertThrows(IllegalArgumentException.class, () -> new StaffDesignation("?"));
     }
 
     @Test
     public void isValidDesignation() {
         // null designation
-        assertThrows(NullPointerException.class, () -> Designation.isValidDesignation(null));
+        assertThrows(NullPointerException.class, () -> StaffDesignation.isValidDesignation(null));
 
         // blank designation
-        assertFalse(Designation.isValidDesignation(""));
-        assertFalse(Designation.isValidDesignation(" "));
+        assertFalse(StaffDesignation.isValidDesignation(""));
+        assertFalse(StaffDesignation.isValidDesignation(" "));
 
         // invalid designation
-        assertFalse(Designation.isValidDesignation("AA"));
-        assertFalse(Designation.isValidDesignation("BB"));
-        assertFalse(Designation.isValidDesignation("99"));
-        assertFalse(Designation.isValidDesignation("00"));
-        assertFalse(Designation.isValidDesignation("--"));
-        assertFalse(Designation.isValidDesignation("??"));
-        assertFalse(Designation.isValidDesignation("-"));
-        assertFalse(Designation.isValidDesignation("?"));
-        assertFalse(Designation.isValidDesignation("A0"));
-        assertFalse(Designation.isValidDesignation("A7"));
-        assertFalse(Designation.isValidDesignation("H4"));
-        assertFalse(Designation.isValidDesignation("Z8"));
-        assertFalse(Designation.isValidDesignation("10"));
-        assertFalse(Designation.isValidDesignation("11"));
-        assertFalse(Designation.isValidDesignation("22"));
+        assertFalse(StaffDesignation.isValidDesignation("AA"));
+        assertFalse(StaffDesignation.isValidDesignation("BB"));
+        assertFalse(StaffDesignation.isValidDesignation("99"));
+        assertFalse(StaffDesignation.isValidDesignation("00"));
+        assertFalse(StaffDesignation.isValidDesignation("--"));
+        assertFalse(StaffDesignation.isValidDesignation("??"));
+        assertFalse(StaffDesignation.isValidDesignation("-"));
+        assertFalse(StaffDesignation.isValidDesignation("?"));
+        assertFalse(StaffDesignation.isValidDesignation("A0"));
+        assertFalse(StaffDesignation.isValidDesignation("A7"));
+        assertFalse(StaffDesignation.isValidDesignation("H4"));
+        assertFalse(StaffDesignation.isValidDesignation("Z8"));
+        assertFalse(StaffDesignation.isValidDesignation("10"));
+        assertFalse(StaffDesignation.isValidDesignation("11"));
+        assertFalse(StaffDesignation.isValidDesignation("22"));
 
         // valid designation
-        assertTrue(Designation.isValidDesignation("0"));
-        assertTrue(Designation.isValidDesignation("1"));
-        assertTrue(Designation.isValidDesignation("2"));
+        assertTrue(StaffDesignation.isValidDesignation("0"));
+        assertTrue(StaffDesignation.isValidDesignation("1"));
+        assertTrue(StaffDesignation.isValidDesignation("2"));
     }
 
     @Test
     public void equals() {
-        Designation designation = new Designation("1");
+        StaffDesignation designation = new StaffDesignation("1");
 
         // same values -> returns true
-        assertTrue(designation.equals(new Designation("1")));
+        assertTrue(designation.equals(new StaffDesignation("1")));
 
         // same object -> returns true
         assertTrue(designation.equals(designation));
@@ -66,6 +66,6 @@ public class DesignationTest {
         assertFalse(designation.equals(5.0f));
 
         // different values -> returns false
-        assertFalse(designation.equals(new Designation("2")));
+        assertFalse(designation.equals(new StaffDesignation("2")));
     }
 }

@@ -14,8 +14,10 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.ExternalParty;
+import seedu.address.model.event.Event;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Staff;
+import seedu.address.model.person.Student;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -28,7 +30,9 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<ExternalParty> filteredExternalParty;
     private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Event> filteredEvents;
     private final FilteredList<Staff> filteredStaff;
+    private final FilteredList<Student> filteredStudents;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -42,7 +46,9 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredExternalParty = new FilteredList<>(this.addressBook.getExternalPartyList());
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredEvents = new FilteredList<>(this.addressBook.getEventList());
         filteredStaff = new FilteredList<>(this.addressBook.getStaffList());
+        filteredStudents = new FilteredList<>(this.addressBook.getStudentList());
     }
 
     public ModelManager() {
@@ -113,6 +119,12 @@ public class ModelManager implements Model {
         requireNonNull(externalParty);
         return addressBook.hasExternalParty(externalParty);
     }
+  
+    @Override
+    public boolean hasStudent(Student student) {
+        requireNonNull(student);
+        return addressBook.hasStudent(student);
+    }
 
     @Override
     public void deletePerson(Person target) {
@@ -166,6 +178,23 @@ public class ModelManager implements Model {
         addressBook.setExternalParty(target, editedExternalParty);
     }
 
+    @Override
+    public void deleteStudent(Student target) {
+        addressBook.removeStudent(target);
+    }
+
+    @Override
+    public void addStudent(Student student) {
+        addressBook.addStudent(student);
+        updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
+    }
+
+    @Override
+    public void setStudent(Student target, Student editedStudent) {
+        requireAllNonNull(target, editedStudent);
+        addressBook.setStudent(target, editedStudent);
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**
@@ -201,6 +230,38 @@ public class ModelManager implements Model {
                 && filteredPersons.equals(otherModelManager.filteredPersons);
     }
 
+
+
+    //=========== Filtered Event list Assessors =======================================================================
+    @Override
+    public boolean hasEvent(Event event) {
+        requireNonNull(event);
+        return addressBook.hasEvent(event);
+    }
+
+    @Override
+    public void addEvent(Event event) {
+        addressBook.addEvent(event);
+        updateFilteredEventList(e -> true);
+    }
+
+    @Override
+    public void deleteEvent(Event target) {
+        addressBook.removeEvent(target);
+    }
+
+    @Override
+    public ObservableList<Event> getFilteredEventList() {
+        return filteredEvents;
+    }
+
+    @Override
+    public void updateFilteredEventList(Predicate<Event> predicate) {
+        requireNonNull(predicate);
+        filteredEvents.setPredicate(predicate);
+        setListType(ListType.EVENT);
+    }
+
     //=========== Filtered Staff List Accessors =============================================================
     @Override
     public ObservableList<Staff> getFilteredStaffList() {
@@ -226,6 +287,18 @@ public class ModelManager implements Model {
         filteredExternalParty.setPredicate(predicate);
     }
 
+    //=========== Filtered Student List Accessors =============================================================
+    @Override
+    public ObservableList<Student> getFilteredStudentList() {
+        return filteredStudents;
+    }
+
+    @Override
+    public void updateFilteredStudentList(Predicate<Student> predicate) {
+        requireNonNull(predicate);
+        filteredStudents.setPredicate(predicate);
+        setListType(ListType.STUDENT);
+    }
 
     //=========== List Accessors ============================================================================
     @Override

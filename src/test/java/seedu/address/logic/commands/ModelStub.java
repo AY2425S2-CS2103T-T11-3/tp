@@ -11,8 +11,10 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.person.ExternalParty;
+import seedu.address.model.event.Event;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Staff;
+import seedu.address.model.person.Student;
 
 /**
  * A default model stub that have all of the methods failing.
@@ -89,6 +91,31 @@ public class ModelStub implements Model {
     }
 
     @Override
+    public boolean hasEvent(Event event) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void addEvent(Event event) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void deleteEvent(Event target) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public ObservableList<Event> getFilteredEventList() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void updateFilteredEventList(Predicate<Event> predicate) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
     public boolean hasStaff(Staff staff) {
         throw new AssertionError("This method should not be called.");
     }
@@ -161,6 +188,36 @@ public class ModelStub implements Model {
 
     @Override
     public void setListType(ListType listType) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public boolean hasStudent(Student student) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void deleteStudent(Student target) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void addStudent(Student student) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void setStudent(Student target, Student editedStudent) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public ObservableList<Student> getFilteredStudentList() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void updateFilteredStudentList(Predicate<Student> predicate) {
         throw new AssertionError("This method should not be called.");
     }
 }
