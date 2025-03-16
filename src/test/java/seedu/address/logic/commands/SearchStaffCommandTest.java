@@ -9,11 +9,11 @@ import java.util.Map;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.parser.CliSyntax;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.logic.parser.CliSyntax;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code SearchStaffCommand}.
