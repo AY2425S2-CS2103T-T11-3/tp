@@ -18,7 +18,6 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.StaffMatchesAttributesPredicate;
-import seedu.address.model.person.StudentMatchesAttributesPredicate;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code SearchStaffCommand}.
