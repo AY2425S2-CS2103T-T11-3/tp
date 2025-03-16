@@ -3,8 +3,6 @@ package seedu.address.model.person;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.List;
@@ -58,14 +56,14 @@ public class UniqueExternalPartyListTest {
 
     @Test
     public void setExternalParty_nullTargetPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class,
-                () -> uniqueExternalPartyList.setExternalParty(null, new ExternalPartyBuilder().build()));
+        assertThrows(NullPointerException.class, () -> uniqueExternalPartyList.setExternalParty(
+                null, new ExternalPartyBuilder().build()));
     }
 
     @Test
     public void setExternalParty_nullEditedPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class,
-                () -> uniqueExternalPartyList.setExternalParty(new ExternalPartyBuilder().build(), null));
+        assertThrows(NullPointerException.class, () -> uniqueExternalPartyList.setExternalParty(
+                new ExternalPartyBuilder().build(), null));
     }
 
     @Test
@@ -112,8 +110,8 @@ public class UniqueExternalPartyListTest {
         ExternalParty externalParty1 = new ExternalPartyBuilder().withName("Haikel").build();
         uniqueExternalPartyList.add(externalParty);
         uniqueExternalPartyList.add(externalParty1);
-        assertThrows(DuplicatePersonException.class,
-                () -> uniqueExternalPartyList.setExternalParty(externalParty, externalParty1));
+        assertThrows(DuplicatePersonException.class, () -> uniqueExternalPartyList.
+                     setExternalParty(externalParty, externalParty1));
     }
 
     @Test
@@ -123,8 +121,8 @@ public class UniqueExternalPartyListTest {
 
     @Test
     public void remove_externalPartyDoesNotExist_throwsPersonNotFoundException() {
-        assertThrows(PersonNotFoundException.class,
-                () -> uniqueExternalPartyList.remove(new ExternalPartyBuilder().build()));
+        assertThrows(PersonNotFoundException.class, ()
+                -> uniqueExternalPartyList.remove(new ExternalPartyBuilder().build()));
     }
 
     @Test
@@ -138,14 +136,14 @@ public class UniqueExternalPartyListTest {
 
     @Test
     public void setExternalParties_nullUniqueExternalPartyList_throwsNullPointerException() {
-        assertThrows(NullPointerException.class,
-                () -> uniqueExternalPartyList.setExternalParties((UniqueExternalPartyList) null));
+        assertThrows(NullPointerException.class, ()
+                -> uniqueExternalPartyList.setExternalParties((UniqueExternalPartyList) null));
     }
 
     @Test
     public void setPersons_nullList_throwsNullPointerException() {
-        assertThrows(NullPointerException.class,
-                () -> uniqueExternalPartyList.setExternalParties((List<ExternalParty>) null));
+        assertThrows(NullPointerException.class, ()
+                -> uniqueExternalPartyList.setExternalParties((List<ExternalParty>) null));
     }
 
     @Test
