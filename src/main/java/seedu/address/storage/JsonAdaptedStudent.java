@@ -127,31 +127,50 @@ public class JsonAdaptedStudent {
         }
         final Address modelAddress = new Address(address);
 
+        if (matric == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Matric.class.getSimpleName()));
+        }
         if (!Matric.isValidMatric(matric)) {
             throw new IllegalValueException(Matric.MESSAGE_CONSTRAINTS);
         }
         final Matric modelMatric = new Matric(matric);
 
+        if (emergency == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
+        }
         if (!Phone.isValidPhone(emergency)) {
             throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
         }
         final Phone modelEmergency = new Phone(emergency);
 
+        if (block == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Block.class.getSimpleName()));
+        }
         if (!Block.isValidBlock(block)) {
             throw new IllegalValueException(Block.MESSAGE_CONSTRAINTS);
         }
         final Block modelBlock = new Block(block);
 
+        if (level == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Level.class.getSimpleName()));
+        }
         if (!Level.isValidLevel(level)) {
             throw new IllegalValueException(Level.MESSAGE_CONSTRAINTS);
         }
         final Level modelLevel = new Level(level);
 
+        if (room == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Room.class.getSimpleName()));
+        }
         if (!Room.isValidRoom(room)) {
             throw new IllegalValueException(Room.MESSAGE_CONSTRAINTS);
         }
         final Room modelRoom = new Room(room);
 
+        if (studentDesignation == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    StudentDesignation.class.getSimpleName()));
+        }
         if (!StudentDesignation.isValidStudentDesignation(studentDesignation)) {
             throw new IllegalValueException(StudentDesignation.MESSAGE_CONSTRAINTS);
         }
