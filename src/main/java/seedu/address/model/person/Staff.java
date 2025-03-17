@@ -50,7 +50,7 @@ public class Staff extends Person {
         return this.room;
     }
 
-    public StaffDesignation getDesignation() {
+    public StaffDesignation getStaffDesignation() {
         return this.designation;
     }
 

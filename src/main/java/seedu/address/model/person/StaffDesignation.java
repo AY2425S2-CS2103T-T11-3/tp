@@ -27,15 +27,19 @@ public class StaffDesignation {
      */
     public StaffDesignation(String designation) {
         requireNonNull(designation);
-        checkArgument(isValidDesignation(designation), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidStaffDesignation(designation), MESSAGE_CONSTRAINTS);
         value = Role.values()[Integer.parseInt(designation)];
     }
 
     /**
      * Returns true if a given string is a valid designation.
      */
-    public static boolean isValidDesignation(String test) {
+    public static boolean isValidStaffDesignation(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    public int getOrdinalDesignation() {
+        return this.value.ordinal();
     }
 
     @Override
