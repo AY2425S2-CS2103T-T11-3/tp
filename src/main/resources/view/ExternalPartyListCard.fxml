@@ -30,11 +30,6 @@
             <HBox alignment="CENTER_LEFT" layoutX="25.0" layoutY="32.0" spacing="0.5">
                 <children>
                     <Label fx:id="externalPartyLabel" minWidth="-Infinity" style="-fx-font-weight: bold; -fx-background-color: #839dc9;" text="Staff" textFill="WHITE" />
-                    <Label fx:id="designation" layoutX="10.0" layoutY="10.0" minWidth="-Infinity" style="-fx-font-weight: bold; -fx-background-color: #becbeb; -fx-background-radius: 4;" text="Designation" textFill="WHITE">
-                        <HBox.margin>
-                            <Insets left="5.0" />
-                        </HBox.margin>
-                    </Label>
                 </children>
             </HBox>
             <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />

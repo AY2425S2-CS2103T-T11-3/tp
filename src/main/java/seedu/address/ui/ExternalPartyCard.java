@@ -11,7 +11,7 @@ import seedu.address.model.person.ExternalParty;
  */
 public class ExternalPartyCard extends UiPart<Region> {
 
-    private static final String FXML = "ExternalParty.fxml";
+    private static final String FXML = "ExternalPartyListCard.fxml";
 
     public final ExternalParty externalParty;
 

@@ -14,8 +14,8 @@ import seedu.address.model.person.ExternalParty;
  * Panel containing the list of ExternalParty
  */
 public class ExternalPartyListPanel extends UiPart<Region> {
-    private static final String FXML = "ExternalPartyPanel.fxml";
-    private final Logger logger = LogsCenter.getLogger(PersonListPanel.class);
+    private static final String FXML = "ExternalPartyListPanel.fxml";
+    private final Logger logger = LogsCenter.getLogger(ExternalPartyListPanel.class);
 
     @FXML
     private ListView<ExternalParty> externalPartyListView;

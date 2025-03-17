@@ -285,6 +285,7 @@ public class ModelManager implements Model {
     public void updateFilteredExternalPartyList(Predicate<ExternalParty> predicate) {
         requireNonNull(predicate);
         filteredExternalParty.setPredicate(predicate);
+        setListType(ListType.EXTERNAL);
     }
 
     //=========== Filtered Student List Accessors =============================================================

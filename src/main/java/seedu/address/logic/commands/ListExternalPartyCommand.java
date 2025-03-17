@@ -10,7 +10,7 @@ import seedu.address.model.Model;
  */
 public class ListExternalPartyCommand extends Command {
 
-    public static final String COMMAND_WORD = "list_external";
+    public static final String COMMAND_WORD = "list_ext";
 
     public static final String MESSAGE_SUCCESS = "Listed all external parties";
 
