@@ -2,8 +2,6 @@ package seedu.address.model.event;
 
 import java.util.Objects;
 
-import seedu.address.commons.util.ToStringBuilder;
-
 
 /**
  * Represents an Event in the address book.
@@ -80,11 +78,11 @@ public class Event {
 
     @Override
     public String toString() {
-        return new ToStringBuilder(this)
-                .add("Event's name", eventName)
-                .add("Event start time", eventStartTime)
-                .add("Event end time", eventEndTime)
-                .toString();
+        return String.format("%s (From: %s, To: %s)",
+                eventName.fullEventName,
+                eventStartTime.toString(),
+                eventEndTime.toString());
     }
+
 
 }
