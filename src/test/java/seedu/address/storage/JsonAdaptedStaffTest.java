@@ -27,7 +27,6 @@ public class JsonAdaptedStaffTest {
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TAG = "#friend";
-    private static final String INVALID_MATRIC = "B1234567B";
     private static final String INVALID_EMERGENCY = "+659876";
     private static final String INVALID_BLOCK = "A2";
     private static final String INVALID_LEVEL = "Z";
@@ -208,7 +207,7 @@ public class JsonAdaptedStaffTest {
     }
 
     @Test
-    public void toModelType_invalidStudentDesignation_throwsIllegalValueException() {
+    public void toModelType_invalidStaffDesignation_throwsIllegalValueException() {
         JsonAdaptedStaff staff =
                 new JsonAdaptedStaff(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_TAGS,
                         VALID_EMERGENCY, VALID_BLOCK, VALID_LEVEL, VALID_ROOM, INVALID_STAFF_DESIGNATION);
@@ -217,7 +216,7 @@ public class JsonAdaptedStaffTest {
     }
 
     @Test
-    public void toModelType_nullStudentDesignation_throwsIllegalValueException() {
+    public void toModelType_nullStaffDesignation_throwsIllegalValueException() {
         JsonAdaptedStaff staff =
                 new JsonAdaptedStaff(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_TAGS,
                         VALID_EMERGENCY, VALID_BLOCK, VALID_LEVEL, VALID_ROOM, null);
