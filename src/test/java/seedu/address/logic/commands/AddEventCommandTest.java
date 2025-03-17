@@ -11,6 +11,7 @@ import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.commands.event.AddEventCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
@@ -115,5 +116,18 @@ public class AddEventCommandTest {
             return new AddressBook();
         }
     }
+
+    @Test
+    public void toStringMethod() {
+        Event event = new EventBuilder().withName("Sample Event").build();
+        AddEventCommand addEventCommand = new AddEventCommand(event);
+
+        String expected = new ToStringBuilder(addEventCommand)
+                .add("toAdd", event)
+                .toString();
+
+        assertEquals(expected, addEventCommand.toString());
+    }
+
 }
 
