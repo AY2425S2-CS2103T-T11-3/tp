@@ -23,7 +23,7 @@ public class StudentDesignationTest {
 
         // blank designation
         assertFalse(StudentDesignation.isValidStudentDesignation(""));
-        assertFalse(StaffDesignation.isValidDesignation(" "));
+        assertFalse(StudentDesignation.isValidStudentDesignation(" "));
 
         // invalid designation
         assertFalse(StudentDesignation.isValidStudentDesignation("AA"));

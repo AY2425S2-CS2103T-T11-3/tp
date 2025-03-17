@@ -64,6 +64,6 @@ public class StaffCard extends UiPart<Region> {
         block.setText("Block " + staff.getBlock().value);
         level.setText("Level " + staff.getLevel().value);
         room.setText("Room " + staff.getRoom().value);
-        designation.setText(staff.getDesignation().toString());
+        designation.setText(staff.getStaffDesignation().toString());
     }
 }

@@ -70,7 +70,7 @@ public class StaffBuilder {
         block = staffToCopy.getBlock();
         level = staffToCopy.getLevel();
         room = staffToCopy.getRoom();
-        designation = staffToCopy.getDesignation();
+        designation = staffToCopy.getStaffDesignation();
     }
 
     /**

@@ -59,7 +59,7 @@ public class StaffMatchesAttributesPredicate implements Predicate<Staff> {
                             return false;
                         }
                     } else if (prefix.equals(PREFIX_DESIGNATION)) {
-                        return staff.getDesignation().toString().equalsIgnoreCase(value);
+                        return staff.getStaffDesignation().toString().equalsIgnoreCase(value);
                     } else {
                         return false;
                     }
