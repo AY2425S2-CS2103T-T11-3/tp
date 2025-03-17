@@ -1,10 +1,12 @@
 package seedu.address.model.person;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
+
 public class StudentDesignationTest {
     @Test
     public void constructor_null_throwsNullPointerException() {
@@ -17,7 +19,7 @@ public class StudentDesignationTest {
     }
 
     @Test
-    public void isValidDesignation() {
+    public void isValidStudentDesignation() {
         // null designation
         assertThrows(NullPointerException.class, () -> StudentDesignation.isValidStudentDesignation(null));
 
@@ -46,6 +48,17 @@ public class StudentDesignationTest {
         assertTrue(StudentDesignation.isValidStudentDesignation("0"));
         assertTrue(StudentDesignation.isValidStudentDesignation("1"));
         assertTrue(StudentDesignation.isValidStudentDesignation("2"));
+    }
+
+    @Test
+    public void getOrdinalDesignation() {
+        assertEquals(0, new StudentDesignation("0").getOrdinalDesignation());
+        assertEquals(1, new StudentDesignation("1").getOrdinalDesignation());
+        assertEquals(2, new StudentDesignation("2").getOrdinalDesignation());
+
+        assertEquals(0, StudentDesignation.Role.RESIDENT.ordinal());
+        assertEquals(1, StudentDesignation.Role.BLOCK_HEAD.ordinal());
+        assertEquals(2, StudentDesignation.Role.JCRC_MEMBER.ordinal());
     }
 
     @Test
