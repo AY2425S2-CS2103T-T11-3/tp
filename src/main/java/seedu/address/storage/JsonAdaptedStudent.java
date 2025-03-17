@@ -44,12 +44,12 @@ public class JsonAdaptedStudent {
      * Constructs a {@code JsonAdaptedStudent} with the given person details.
      */
     @JsonCreator
-    public JsonAdaptedStudent(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-                             @JsonProperty("email") String email, @JsonProperty("address") String address,
-                             @JsonProperty("tags") List<JsonAdaptedTag> tags, @JsonProperty("matric") String matric,
-                             @JsonProperty("emergency") String emergency, @JsonProperty("block") String block,
-                             @JsonProperty("level") String level, @JsonProperty("room") String room,
-                             @JsonProperty("studentDesignation") String studentDesignation) {
+    public JsonAdaptedStudent(@JsonProperty("name") String name, @JsonProperty("matric") String matric,
+                              @JsonProperty("phone") String phone, @JsonProperty("email") String email,
+                              @JsonProperty("address") String address, @JsonProperty("tags") List<JsonAdaptedTag> tags,
+                              @JsonProperty("emergency") String emergency, @JsonProperty("block") String block,
+                              @JsonProperty("level") String level, @JsonProperty("room") String room,
+                              @JsonProperty("studentDesignation") String studentDesignation) {
         this.name = name;
         this.phone = phone;
         this.email = email;
