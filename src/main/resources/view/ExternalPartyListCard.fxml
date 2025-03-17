@@ -29,12 +29,12 @@
             </HBox>
             <HBox alignment="CENTER_LEFT" layoutX="25.0" layoutY="32.0" spacing="0.5">
                 <children>
-                    <Label fx:id="externalPartyLabel" minWidth="-Infinity" style="-fx-font-weight: bold; -fx-background-color: #839dc9;" text="Staff" textFill="WHITE" />
+                    <Label fx:id="externalPartyLabel" minWidth="-Infinity" style="-fx-font-weight: bold; -fx-background-color: #839dc9;" text="External Party" textFill="WHITE" />
                 </children>
             </HBox>
             <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
             <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
-            <Label fx:id="desc" styleClass="cell_small_label" text="\$desc" />
+            <Label fx:id="description" styleClass="cell_small_label" text="\$description" />
         </VBox>
         <rowConstraints>
             <RowConstraints />

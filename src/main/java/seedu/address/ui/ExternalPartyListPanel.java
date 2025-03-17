@@ -30,7 +30,7 @@ public class ExternalPartyListPanel extends UiPart<Region> {
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Staff} using a {@code ExternalPartyCard}
+     * Custom {@code ListCell} that displays the graphics of a {@code ExternalParty} using a {@code ExternalPartyCard}
      */
     class ExternalPartyListViewCell extends ListCell<ExternalParty> {
         @Override

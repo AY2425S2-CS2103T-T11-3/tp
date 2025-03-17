@@ -118,7 +118,7 @@ public class MainWindow extends UiPart<Stage> {
             break;
 
         case EXTERNAL:
-            externalPartyListPanel = new ExternalPartyListPanel((logic.getFilteredExternalPartyList()));
+            externalPartyListPanel = new ExternalPartyListPanel(logic.getFilteredExternalPartyList());
             externalPartyListPanelPlaceholder.getChildren().add(externalPartyListPanel.getRoot());
             break;
 
