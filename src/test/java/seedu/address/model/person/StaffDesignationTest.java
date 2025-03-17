@@ -1,5 +1,6 @@
 package seedu.address.model.person;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -20,33 +21,44 @@ public class StaffDesignationTest {
     @Test
     public void isValidDesignation() {
         // null designation
-        assertThrows(NullPointerException.class, () -> StaffDesignation.isValidDesignation(null));
+        assertThrows(NullPointerException.class, () -> StaffDesignation.isValidStaffDesignation(null));
 
         // blank designation
-        assertFalse(StaffDesignation.isValidDesignation(""));
-        assertFalse(StaffDesignation.isValidDesignation(" "));
+        assertFalse(StaffDesignation.isValidStaffDesignation(""));
+        assertFalse(StaffDesignation.isValidStaffDesignation(" "));
 
         // invalid designation
-        assertFalse(StaffDesignation.isValidDesignation("AA"));
-        assertFalse(StaffDesignation.isValidDesignation("BB"));
-        assertFalse(StaffDesignation.isValidDesignation("99"));
-        assertFalse(StaffDesignation.isValidDesignation("00"));
-        assertFalse(StaffDesignation.isValidDesignation("--"));
-        assertFalse(StaffDesignation.isValidDesignation("??"));
-        assertFalse(StaffDesignation.isValidDesignation("-"));
-        assertFalse(StaffDesignation.isValidDesignation("?"));
-        assertFalse(StaffDesignation.isValidDesignation("A0"));
-        assertFalse(StaffDesignation.isValidDesignation("A7"));
-        assertFalse(StaffDesignation.isValidDesignation("H4"));
-        assertFalse(StaffDesignation.isValidDesignation("Z8"));
-        assertFalse(StaffDesignation.isValidDesignation("10"));
-        assertFalse(StaffDesignation.isValidDesignation("11"));
-        assertFalse(StaffDesignation.isValidDesignation("22"));
+        assertFalse(StaffDesignation.isValidStaffDesignation("AA"));
+        assertFalse(StaffDesignation.isValidStaffDesignation("BB"));
+        assertFalse(StaffDesignation.isValidStaffDesignation("99"));
+        assertFalse(StaffDesignation.isValidStaffDesignation("00"));
+        assertFalse(StaffDesignation.isValidStaffDesignation("--"));
+        assertFalse(StaffDesignation.isValidStaffDesignation("??"));
+        assertFalse(StaffDesignation.isValidStaffDesignation("-"));
+        assertFalse(StaffDesignation.isValidStaffDesignation("?"));
+        assertFalse(StaffDesignation.isValidStaffDesignation("A0"));
+        assertFalse(StaffDesignation.isValidStaffDesignation("A7"));
+        assertFalse(StaffDesignation.isValidStaffDesignation("H4"));
+        assertFalse(StaffDesignation.isValidStaffDesignation("Z8"));
+        assertFalse(StaffDesignation.isValidStaffDesignation("10"));
+        assertFalse(StaffDesignation.isValidStaffDesignation("11"));
+        assertFalse(StaffDesignation.isValidStaffDesignation("22"));
 
         // valid designation
-        assertTrue(StaffDesignation.isValidDesignation("0"));
-        assertTrue(StaffDesignation.isValidDesignation("1"));
-        assertTrue(StaffDesignation.isValidDesignation("2"));
+        assertTrue(StaffDesignation.isValidStaffDesignation("0"));
+        assertTrue(StaffDesignation.isValidStaffDesignation("1"));
+        assertTrue(StaffDesignation.isValidStaffDesignation("2"));
+    }
+
+    @Test
+    public void getOrdinalDesignation() {
+        assertEquals(0, new StaffDesignation("0").getOrdinalDesignation());
+        assertEquals(1, new StaffDesignation("1").getOrdinalDesignation());
+        assertEquals(2, new StaffDesignation("2").getOrdinalDesignation());
+
+        assertEquals(0, StaffDesignation.Role.SUPPORT_STAFF.ordinal());
+        assertEquals(1, StaffDesignation.Role.BLOCK_IC.ordinal());
+        assertEquals(2, StaffDesignation.Role.RESIDENCE_MASTER.ordinal());
     }
 
     @Test

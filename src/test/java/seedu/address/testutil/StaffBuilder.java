@@ -70,7 +70,7 @@ public class StaffBuilder {
         block = staffToCopy.getBlock();
         level = staffToCopy.getLevel();
         room = staffToCopy.getRoom();
-        designation = staffToCopy.getDesignation();
+        designation = staffToCopy.getStaffDesignation();
     }
 
     /**
@@ -114,6 +114,14 @@ public class StaffBuilder {
     }
 
     /**
+     * Sets the {@code Phone} emergency of the {@code Student} that we are building.
+     */
+    public StaffBuilder withEmergency(String emergency) {
+        this.emergency = new Phone(emergency);
+        return this;
+    }
+
+    /**
      * Sets the {@code Block} of the {@code Staff} that we are building.
      */
     public StaffBuilder withBlock(String block) {
@@ -140,7 +148,7 @@ public class StaffBuilder {
     /**
      * Sets the {@code Designation} of the {@code Staff} that we are building.
      */
-    public StaffBuilder withDesignation(String designation) {
+    public StaffBuilder withStaffDesignation(String designation) {
         this.designation = new StaffDesignation(designation);
         return this;
     }

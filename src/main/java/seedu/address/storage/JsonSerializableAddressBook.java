@@ -13,6 +13,7 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 //import seedu.address.model.event.Event;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Staff;
 import seedu.address.model.person.Student;
 
 /**
@@ -22,10 +23,12 @@ import seedu.address.model.person.Student;
 class JsonSerializableAddressBook {
 
     public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
+    public static final String MESSAGE_DUPLICATE_STAFF = "Staff list contains duplicate staff(s).";
     public static final String MESSAGE_DUPLICATE_STUDENT = "Students list contains duplicate student(s).";
     public static final String MESSAGE_DUPLICATE_EVENT = "Events list contains duplicate event(s).";
 
     private final List<JsonAdaptedPerson> persons = new ArrayList<>();
+    private final List<JsonAdaptedStaff> staffs = new ArrayList<>();
     private final List<JsonAdaptedStudent> students = new ArrayList<>();
     //    private final List<JsonAdaptedEvent> events = new ArrayList<>();      // DO NOT DELETE. FOR V1.3
 
@@ -47,6 +50,7 @@ class JsonSerializableAddressBook {
      */
     public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
         persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
+        staffs.addAll(source.getStaffList().stream().map(JsonAdaptedStaff::new).collect(Collectors.toList()));
         students.addAll(source.getStudentList().stream().map(JsonAdaptedStudent::new).collect(Collectors.toList()));
 
         //        events.addAll(source.getEventList().stream().map(JsonAdaptedEvent::new).collect(Collectors.toList()));
@@ -65,6 +69,14 @@ class JsonSerializableAddressBook {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
             }
             addressBook.addPerson(person);
+        }
+
+        for (JsonAdaptedStaff jsonAdaptedStaff : staffs) {
+            Staff staff = jsonAdaptedStaff.toModelType();
+            if (addressBook.hasStaff(staff)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_STAFF);
+            }
+            addressBook.addStaff(staff);
         }
 
         for (JsonAdaptedStudent jsonAdaptedStudent : students) {

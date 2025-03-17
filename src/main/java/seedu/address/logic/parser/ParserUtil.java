@@ -254,7 +254,7 @@ public class ParserUtil {
     public static StaffDesignation parseDesignation(String designation) throws ParseException {
         requireNonNull(designation);
         String trimmedDesignation = designation.trim();
-        if (!StaffDesignation.isValidDesignation(trimmedDesignation)) {
+        if (!StaffDesignation.isValidStaffDesignation(trimmedDesignation)) {
             throw new ParseException(StaffDesignation.MESSAGE_CONSTRAINTS);
         }
         return new StaffDesignation(designation);
