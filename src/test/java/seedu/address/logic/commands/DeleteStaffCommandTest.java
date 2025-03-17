@@ -18,15 +18,14 @@ import seedu.address.logic.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.Student;
-import seedu.address.testutil.StudentBuilder;
+import seedu.address.model.person.Staff;
+import seedu.address.testutil.StaffBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
- * {@code DeleteStudentCommand}.
+ * {@code DeleteStaffCommand}.
  */
-public class DeleteStudentCommandTest {
-
+public class DeleteStaffCommandTest {
     private Model model;
 
     @BeforeEach
@@ -36,40 +35,40 @@ public class DeleteStudentCommandTest {
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
-        model.addStudent(new StudentBuilder().build());
-        Student studentToDelete = model.getFilteredStudentList().get(INDEX_FIRST_PERSON.getZeroBased());
-        DeleteStudentCommand deleteStudentCommand = new DeleteStudentCommand(INDEX_FIRST_PERSON);
+        model.addStaff(new StaffBuilder().build());
+        Staff staffToDelete = model.getFilteredStaffList().get(INDEX_FIRST_PERSON.getZeroBased());
+        DeleteStaffCommand deleteStaffCommand = new DeleteStaffCommand(INDEX_FIRST_PERSON);
 
-        String expectedMessage = String.format(DeleteStudentCommand.MESSAGE_DELETE_STUDENT_SUCCESS,
-                Messages.format(studentToDelete));
+        String expectedMessage = String.format(DeleteStaffCommand.MESSAGE_DELETE_STAFF_SUCCESS,
+                Messages.format(staffToDelete));
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
 
-        expectedModel.deleteStudent(studentToDelete);
+        expectedModel.deleteStaff(staffToDelete);
 
-        assertCommandSuccess(deleteStudentCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(deleteStaffCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
-        DeleteStudentCommand deleteStudentCommand = new DeleteStudentCommand(outOfBoundIndex);
+        DeleteStaffCommand deleteStaffCommand = new DeleteStaffCommand(outOfBoundIndex);
 
-        assertCommandFailure(deleteStudentCommand, model, Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
+        assertCommandFailure(deleteStaffCommand, model, Messages.MESSAGE_INVALID_STAFF_DISPLAYED_INDEX);
     }
 
     @Test
     public void execute_validIndexFilteredList_success() {
-        model.addStudent(new StudentBuilder().build());
-        Student studentToDelete = model.getFilteredStudentList().get(INDEX_FIRST_PERSON.getZeroBased());
-        DeleteStudentCommand deleteStudentCommand = new DeleteStudentCommand(INDEX_FIRST_PERSON);
+        model.addStaff(new StaffBuilder().build());
+        Staff staffToDelete = model.getFilteredStaffList().get(INDEX_FIRST_PERSON.getZeroBased());
+        DeleteStaffCommand deleteStaffCommand = new DeleteStaffCommand(INDEX_FIRST_PERSON);
 
-        String expectedMessage = String.format(DeleteStudentCommand.MESSAGE_DELETE_STUDENT_SUCCESS,
-                Messages.format(studentToDelete));
+        String expectedMessage = String.format(DeleteStaffCommand.MESSAGE_DELETE_STAFF_SUCCESS,
+                Messages.format(staffToDelete));
 
         Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
-        assertCommandSuccess(deleteStudentCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(deleteStaffCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
@@ -80,21 +79,21 @@ public class DeleteStudentCommandTest {
         // ensures that outOfBoundIndex is still in bounds of address book list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getPersonList().size());
 
-        DeleteStudentCommand deleteStudentCommand = new DeleteStudentCommand(outOfBoundIndex);
+        DeleteStaffCommand deleteStaffCommand = new DeleteStaffCommand(outOfBoundIndex);
 
-        assertCommandFailure(deleteStudentCommand, model, Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
+        assertCommandFailure(deleteStaffCommand, model, Messages.MESSAGE_INVALID_STAFF_DISPLAYED_INDEX);
     }
 
     @Test
     public void equals() {
-        DeleteStudentCommand deleteFirstCommand = new DeleteStudentCommand(INDEX_FIRST_PERSON);
-        DeleteStudentCommand deleteSecondCommand = new DeleteStudentCommand(INDEX_SECOND_PERSON);
+        DeleteStaffCommand deleteFirstCommand = new DeleteStaffCommand(INDEX_FIRST_PERSON);
+        DeleteStaffCommand deleteSecondCommand = new DeleteStaffCommand(INDEX_SECOND_PERSON);
 
         // same object -> returns true
         assertTrue(deleteFirstCommand.equals(deleteFirstCommand));
 
         // same values -> returns true
-        DeleteStudentCommand deleteFirstCommandCopy = new DeleteStudentCommand(INDEX_FIRST_PERSON);
+        DeleteStaffCommand deleteFirstCommandCopy = new DeleteStaffCommand(INDEX_FIRST_PERSON);
         assertTrue(deleteFirstCommand.equals(deleteFirstCommandCopy));
 
         // different types -> returns false
@@ -110,8 +109,8 @@ public class DeleteStudentCommandTest {
     @Test
     public void toStringMethod() {
         Index targetIndex = Index.fromOneBased(1);
-        DeleteStudentCommand deleteCommand = new DeleteStudentCommand(targetIndex);
-        String expected = DeleteStudentCommand.class.getCanonicalName() + "{targetIndex=" + targetIndex + "}";
+        DeleteStaffCommand deleteCommand = new DeleteStaffCommand(targetIndex);
+        String expected = DeleteStaffCommand.class.getCanonicalName() + "{targetIndex=" + targetIndex + "}";
         assertEquals(expected, deleteCommand.toString());
     }
 
@@ -123,5 +122,4 @@ public class DeleteStudentCommandTest {
 
         assertTrue(model.getFilteredPersonList().isEmpty());
     }
-
 }
