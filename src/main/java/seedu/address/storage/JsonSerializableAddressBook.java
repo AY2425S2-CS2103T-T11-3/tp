@@ -73,7 +73,7 @@ class JsonSerializableAddressBook {
 
         for (JsonAdaptedStaff jsonAdaptedStaff : staffs) {
             Staff staff = jsonAdaptedStaff.toModelType();
-            if (addressBook.hasPerson(staff)) {
+            if (addressBook.hasStaff(staff)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_STAFF);
             }
             addressBook.addStaff(staff);

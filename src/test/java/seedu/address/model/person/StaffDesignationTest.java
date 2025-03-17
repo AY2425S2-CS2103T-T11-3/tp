@@ -1,5 +1,6 @@
 package seedu.address.model.person;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -47,6 +48,17 @@ public class StaffDesignationTest {
         assertTrue(StaffDesignation.isValidStaffDesignation("0"));
         assertTrue(StaffDesignation.isValidStaffDesignation("1"));
         assertTrue(StaffDesignation.isValidStaffDesignation("2"));
+    }
+
+    @Test
+    public void getOrdinalDesignation() {
+        assertEquals(0, new StaffDesignation("0").getOrdinalDesignation());
+        assertEquals(1, new StaffDesignation("1").getOrdinalDesignation());
+        assertEquals(2, new StaffDesignation("2").getOrdinalDesignation());
+
+        assertEquals(0, StaffDesignation.Role.SUPPORT_STAFF.ordinal());
+        assertEquals(1, StaffDesignation.Role.BLOCK_IC.ordinal());
+        assertEquals(2, StaffDesignation.Role.RESIDENCE_MASTER.ordinal());
     }
 
     @Test
