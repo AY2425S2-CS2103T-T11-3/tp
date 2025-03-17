@@ -158,6 +158,14 @@ public class StudentBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Phone} emergency of the {@code Student} that we are building.
+     */
+    public StudentBuilder withEmergency(String emergency) {
+        this.emergency = new Phone(emergency);
+        return this;
+    }
+
     public Student build() {
         return new Student(name, matric, phone, email, address, tags, emergency, block, level, room, designation);
     }
