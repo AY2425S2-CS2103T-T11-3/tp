@@ -112,7 +112,7 @@ public class AddressBookParserTest {
     }
 
     @Test
-    public void parseCommand_search_external_party() throws Exception {
+    public void parseCommand_search_externalParty() throws Exception {
         Map<Prefix, String> searchCriteria = Map.of(
                 CliSyntax.PREFIX_NAME, "Amy Bee",
                 CliSyntax.PREFIX_PHONE, "85355255",

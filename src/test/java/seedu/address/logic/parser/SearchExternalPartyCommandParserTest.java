@@ -44,7 +44,7 @@ public class SearchExternalPartyCommandParserTest {
         expectedCriteria.put(PREFIX_NAME, "Alice");
         expectedCriteria.put(PREFIX_EMAIL, "alice@example.com");
         SearchExternalPartyCommand expectedCommand = new SearchExternalPartyCommand(expectedCriteria);
-        assertParseSuccess(parser, " " + PREFIX_NAME + "Alice " + PREFIX_EMAIL + "alice@example.com "
-                , expectedCommand);
+        assertParseSuccess(parser, " " + PREFIX_NAME + "Alice " + PREFIX_EMAIL + "alice@example.com ",
+                expectedCommand);
     }
 }
