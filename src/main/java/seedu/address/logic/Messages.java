@@ -30,6 +30,10 @@ public class Messages {
             "Found no matching students with the attributes: %1$s";
     public static final String MESSAGE_STUDENT_LISTED_OVERVIEW =
             "Matching students found in this list: %1$d staff members listed.";
+    public static final String MESSAGE_NO_EXTERNAL_PARTY_FOUND =
+            "Found no matching external parties with the attributes: %1$s";
+    public static final String MESSAGE_EXTERNAL_PARTY_LISTED_OVERVIEW =
+            "Matching external parties found in this list: %1$d external party members listed.";
     public static final String MESSAGE_DUPLICATE_FIELDS =
                 "Multiple values specified for the following single-valued field(s): ";
     public static final String MESSAGE_INVALID_EVENT_DISPLAYED_INDEX = "The event index provided is invalid";
