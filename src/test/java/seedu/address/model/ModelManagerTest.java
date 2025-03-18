@@ -19,12 +19,14 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.person.ExternalParty;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Staff;
 import seedu.address.model.person.Student;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
 import seedu.address.testutil.AddressBookBuilder;
+import seedu.address.testutil.ExternalPartyBuilder;
 import seedu.address.testutil.StaffBuilder;
 import seedu.address.testutil.StudentBuilder;
 
@@ -108,6 +110,18 @@ public class ModelManagerTest {
         Staff staff = new StaffBuilder().build();
         modelManager.addStaff(staff);
         assertTrue(modelManager.hasStaff(staff));
+    }
+
+    @Test
+    public void hasExternalParty_externalPartyNotInAddressBook_returnsFalse() {
+        assertFalse(modelManager.hasExternalParty(new ExternalPartyBuilder().build()));
+    }
+
+    @Test
+    public void hasExternalParty_externalPartyInAddressBook_returnsTrue() {
+        ExternalParty externalParty = new ExternalPartyBuilder().build();
+        modelManager.addExternalParty(externalParty);
+        assertTrue(modelManager.hasExternalParty(externalParty));
     }
 
     @Test
@@ -205,6 +219,12 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void getFilteredExternalPartyList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, ()
+                     -> modelManager.getFilteredExternalPartyList().remove(0));
+    }
+
+    @Test
     public void getFilteredStudentList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredStudentList().remove(0));
     }
@@ -251,6 +271,9 @@ public class ModelManagerTest {
         modelManager.setListType(ListType.STAFF);
         assertEquals(modelManager.getListType(), ListType.STAFF);
         assertEquals(modelManager.getListTypeProperty().get(), ListType.STAFF);
+        modelManager.setListType(ListType.EXTERNAL);
+        assertEquals(modelManager.getListType(), ListType.EXTERNAL);
+        assertEquals(modelManager.getListTypeProperty().get(), ListType.EXTERNAL);
         modelManager.setListType(ListType.EVENT);
         assertEquals(modelManager.getListType(), ListType.EVENT);
         assertEquals(modelManager.getListTypeProperty().get(), ListType.EVENT);

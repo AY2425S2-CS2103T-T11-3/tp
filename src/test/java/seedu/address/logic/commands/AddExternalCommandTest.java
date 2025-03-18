@@ -106,9 +106,9 @@ public class AddExternalCommandTest {
         }
 
         @Override
-        public void addPerson(Person person) {
-            requireNonNull(person);
-            personsAdded.add(person);
+        public void addExternalParty(ExternalParty externalParty) {
+            requireNonNull(externalParty);
+            personsAdded.add(externalParty);
         }
 
         @Override

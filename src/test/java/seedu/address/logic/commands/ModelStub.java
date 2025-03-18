@@ -11,6 +11,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.event.Event;
+import seedu.address.model.person.ExternalParty;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Staff;
 import seedu.address.model.person.Student;
@@ -143,6 +144,37 @@ public class ModelStub implements Model {
     public void updateFilteredStaffList(Predicate<Staff> predicate) {
         throw new AssertionError("This method should not be called.");
     }
+
+    @Override
+    public boolean hasExternalParty(ExternalParty externalParty) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void deleteExternalParty(ExternalParty externalParty) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void addExternalParty(ExternalParty externalParty) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void setExternalParty(ExternalParty target, ExternalParty editedExternalParty) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public ObservableList<ExternalParty> getFilteredExternalPartyList() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void updateFilteredExternalPartyList(Predicate<ExternalParty> predicate) {
+        throw new AssertionError("This method should not be called.");
+    }
+
 
     @Override
     public ObjectProperty<ListType> getListTypeProperty() {

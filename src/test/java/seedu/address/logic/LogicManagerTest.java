@@ -99,6 +99,11 @@ public class LogicManagerTest {
     }
 
     @Test
+    public void getFilteredExternalPartyList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredExternalPartyList().remove(0));
+    }
+
+    @Test
     public void getFilteredStudentList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredStudentList().remove(0));
     }

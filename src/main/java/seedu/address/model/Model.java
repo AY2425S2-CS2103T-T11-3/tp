@@ -7,6 +7,7 @@ import javafx.beans.property.ObjectProperty;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.event.Event;
+import seedu.address.model.person.ExternalParty;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Staff;
 import seedu.address.model.person.Student;
@@ -18,7 +19,7 @@ public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
     Predicate<Staff> PREDICATE_SHOW_ALL_STAFF = unused -> true;
-    /** {@code Predicate} that always evaluate to true */
+    Predicate<ExternalParty> PREDICATE_SHOW_ALL_EXTERNALPARTIES = unused -> true;
     Predicate<Event> PREDICATE_SHOW_ALL_EVENTS = unused -> true;
     Predicate<Student> PREDICATE_SHOW_ALL_STUDENTS = unused -> true;
 
@@ -72,6 +73,11 @@ public interface Model {
     boolean hasStaff(Staff staff);
 
     /**
+     * Returns true if an external party with the same identity as {@code externalParty} exists in the address book.
+     */
+    boolean hasExternalParty(ExternalParty externalParty);
+
+    /**
      * Returns true if a student with the same identity as {@code student} exists in the address book.
      */
     boolean hasStudent(Student student);
@@ -89,10 +95,17 @@ public interface Model {
     void deleteStaff(Staff target);
 
     /**
+     * Deletes the given external party.
+     * The external party must exist in the address book.
+     */
+    void deleteExternalParty(ExternalParty target);
+
+    /**
      * Deletes the given student.
      * The student must exist in the address book.
      */
     void deleteStudent(Student student);
+
 
     /**
      * Adds the given person.
@@ -105,6 +118,12 @@ public interface Model {
      * {@code staff} must not already exist in the address book.
      */
     void addStaff(Staff staff);
+
+    /**
+     * Adds the given external party.
+     * {@code externalParty} must not already exist in the address book.
+     */
+    void addExternalParty(ExternalParty externalParty);
 
     /**
      * Adds the given student.
@@ -125,6 +144,14 @@ public interface Model {
      * The staff identity of {@code editedStaff} must not be the same as another existing staff in the address book.
      */
     void setStaff(Staff target, Staff editedStaff);
+
+    /**
+     * Replaces the given external party {@code target} with {@code editedExternalParty}.
+     * {@code target} must exist in the address book.
+     * The external party identity of {@code editedPerson} must not be the same as another existing external party
+     * in the address book.
+     */
+    void setExternalParty(ExternalParty target, ExternalParty editedExternalParty);
 
     /**
      * Replaces the given student {@code target} with {@code editedStudent}.
@@ -168,6 +195,15 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredStaffList(Predicate<Staff> predicate);
+
+    /** Returns an unmodifiable view of the filtered external party list */
+    ObservableList<ExternalParty> getFilteredExternalPartyList();
+
+    /**
+     * Updates the filter of the filtered external party list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredExternalPartyList(Predicate<ExternalParty> predicate);
 
     /** Returns an unmodifiable view of the filtered student list */
     ObservableList<Student> getFilteredStudentList();

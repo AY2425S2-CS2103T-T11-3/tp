@@ -8,9 +8,11 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.event.Event;
 import seedu.address.model.event.UniqueEventList;
+import seedu.address.model.person.ExternalParty;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Staff;
 import seedu.address.model.person.Student;
+import seedu.address.model.person.UniqueExternalPartyList;
 import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.person.UniqueStaffList;
 import seedu.address.model.person.UniqueStudentList;
@@ -26,6 +28,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     private final UniqueStaffList staff;
     private final UniqueStudentList students;
 
+    private final UniqueExternalPartyList externalParty;
+
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
      * between constructors. See https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html
@@ -37,6 +41,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons = new UniquePersonList();
         events = new UniqueEventList();
         staff = new UniqueStaffList();
+        externalParty = new UniqueExternalPartyList();
         students = new UniqueStudentList();
     }
 
@@ -69,6 +74,14 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Replaces the contents of the external party list with {@code externalParty}.
+     * {@code externalParty} must not contain duplicate persons.
+     */
+    public void setExternalParties(List<ExternalParty> externalParty) {
+        this.externalParty.setExternalParties(externalParty);
+    }
+
+    /**
      * Replaces the contents of the student list with {@code student}.
      * {@code students} must not contain duplicate students.
      */
@@ -85,6 +98,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         setPersons(newData.getPersonList());
         setEvents(newData.getEventList());
         setStaffs(newData.getStaffList());
+        setExternalParties(newData.getExternalPartyList());
         setStudents(newData.getStudentList());
     }
 
@@ -104,6 +118,14 @@ public class AddressBook implements ReadOnlyAddressBook {
     public boolean hasStaff(Staff staff) {
         requireNonNull(staff);
         return this.staff.contains(staff);
+    }
+
+    /**
+     * Returns true if an external party with the same identity as {@code externalParty} exists in the address book.
+     */
+    public boolean hasExternalParty(ExternalParty externalParty) {
+        requireNonNull(externalParty);
+        return this.externalParty.contains(externalParty);
     }
 
     /**
@@ -128,6 +150,14 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void addStaff(Staff s) {
         this.staff.add(s);
+    }
+
+    /**
+     * Adds an external party to the address book.
+     * The external party must not already exist in the address book.
+     */
+    public void addExternalParty(ExternalParty e) {
+        this.externalParty.add(e);
     }
 
     /**
@@ -157,6 +187,17 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void setStaff(Staff target, Staff editedStaff) {
         requireNonNull(editedStaff);
         this.staff.setStaff(target, editedStaff);
+    }
+
+    /**
+     * Replaces the given external party {@code target} in the list with {@code editedStaff}.
+     * {@code target} must exist in the address book.
+     * The person identity of {@code editedExternalParty} must not be the same as another existing external party
+     * in the address book.
+     */
+    public void setExternalParty(ExternalParty target, ExternalParty editedExternalParty) {
+        requireNonNull(editedExternalParty);
+        this.externalParty.setExternalParty(target, editedExternalParty);
     }
 
     /**
@@ -226,6 +267,14 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Removes {@code key} from this {@code AddressBook}.
      * {@code key} must exist in the address book.
      */
+    public void removeExternalParty(ExternalParty key) {
+        this.externalParty.remove(key);
+    }
+
+    /**
+     * Removes {@code key} from this {@code AddressBook}.
+     * {@code key} must exist in the address book.
+     */
     public void removeStudent(Student key) {
         this.students.remove(key);
     }
@@ -250,6 +299,11 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     @Override
+    public ObservableList<ExternalParty> getExternalPartyList() {
+        return this.externalParty.asUnmodifiableObservableList();
+    }
+
+    @Override
     public ObservableList<Student> getStudentList() {
         return this.students.asUnmodifiableObservableList();
     }
@@ -270,7 +324,9 @@ public class AddressBook implements ReadOnlyAddressBook {
         return persons.equals(otherAddressBook.persons)
                 && events.equals(otherAddressBook.events)
                 && staff.equals(otherAddressBook.staff)
-                && students.equals(otherAddressBook.students);
+                && students.equals(otherAddressBook.students)
+                && externalParty.equals(otherAddressBook.externalParty);
+
     }
 
     @Override
