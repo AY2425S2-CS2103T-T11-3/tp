@@ -30,6 +30,7 @@ import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.ListExternalPartyCommand;
 import seedu.address.logic.commands.ListStaffCommand;
 import seedu.address.logic.commands.ListStudentCommand;
+import seedu.address.logic.commands.SearchExternalPartyCommand;
 import seedu.address.logic.commands.SearchStaffCommand;
 import seedu.address.logic.commands.SearchStudentCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -107,6 +108,21 @@ public class AddressBookParserTest {
                 SearchStudentCommand.COMMAND_WORD
                         + " name/Amy Bee matric/A0234567B phone/85355255 email/amy@gmail.com a/123, "
                         + "Jurong West Ave 6, #08-111 emergency/91234567 block/A level/7 room/5");
+        assertEquals(expectedCommand, command);
+    }
+
+    @Test
+    public void parseCommand_search_external_party() throws Exception {
+        Map<Prefix, String> searchCriteria = Map.of(
+                CliSyntax.PREFIX_NAME, "Amy Bee",
+                CliSyntax.PREFIX_PHONE, "85355255",
+                CliSyntax.PREFIX_EMAIL, "amy@gmail.com",
+                CliSyntax.PREFIX_DESCRIPTION, "Vendor for beverages"
+        );
+        SearchExternalPartyCommand expectedCommand = new SearchExternalPartyCommand(searchCriteria);
+        SearchExternalPartyCommand command = (SearchExternalPartyCommand) parser.parseCommand(
+                SearchExternalPartyCommand.COMMAND_WORD
+                        + " name/Amy Bee phone/85355255 email/amy@gmail.com desc/Vendor for beverages");
         assertEquals(expectedCommand, command);
     }
 
