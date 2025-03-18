@@ -1,8 +1,8 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.Messages.MESSAGE_NO_EXTERNAL_PARTY_FOUND;
 import static seedu.address.logic.Messages.MESSAGE_EXTERNAL_PARTY_LISTED_OVERVIEW;
+import static seedu.address.logic.Messages.MESSAGE_NO_EXTERNAL_PARTY_FOUND;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
