@@ -35,6 +35,7 @@ public class MainWindow extends UiPart<Stage> {
     private PersonListPanel personListPanel;
     private EventListPanel eventListPanel;
     private StaffListPanel staffListPanel;
+    private ExternalPartyListPanel externalPartyListPanel;
     private StudentListPanel studentListPanel;
 
     private ResultDisplay resultDisplay;
@@ -51,6 +52,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane staffListPanelPlaceholder;
+
+    @FXML
+    private StackPane externalPartyListPanelPlaceholder;
 
     @FXML
     private StackPane studentListPanelPlaceholder;
@@ -97,6 +101,7 @@ public class MainWindow extends UiPart<Stage> {
         studentListPanel = null;
         personListPanelPlaceholder.getChildren().clear();
         staffListPanelPlaceholder.getChildren().clear();
+        externalPartyListPanelPlaceholder.getChildren().clear();
         studentListPanelPlaceholder.getChildren().clear();
         eventListPanelPlaceholder.getChildren().clear();
 
@@ -110,6 +115,11 @@ public class MainWindow extends UiPart<Stage> {
         case STAFF:
             staffListPanel = new StaffListPanel(logic.getFilteredStaffList());
             staffListPanelPlaceholder.getChildren().add(staffListPanel.getRoot());
+            break;
+
+        case EXTERNAL:
+            externalPartyListPanel = new ExternalPartyListPanel(logic.getFilteredExternalPartyList());
+            externalPartyListPanelPlaceholder.getChildren().add(externalPartyListPanel.getRoot());
             break;
 
         case STUDENT:

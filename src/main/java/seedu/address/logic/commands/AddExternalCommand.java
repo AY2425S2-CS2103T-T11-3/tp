@@ -53,7 +53,7 @@ public class AddExternalCommand extends Command {
         if (model.hasPerson(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_PARTY);
         }
-        model.addPerson(toAdd);
+        model.addExternalParty(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(toAdd)));
     }
 

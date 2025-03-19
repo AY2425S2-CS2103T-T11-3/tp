@@ -19,11 +19,13 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.event.Event;
+import seedu.address.model.person.ExternalParty;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Staff;
 import seedu.address.model.person.Student;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
+import seedu.address.testutil.ExternalPartyBuilder;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.StaffBuilder;
 import seedu.address.testutil.StudentBuilder;
@@ -81,6 +83,13 @@ public class AddressBookTest {
         Staff staff = new StaffBuilder().build();
         addressBook.addStaff(staff);
         assertTrue(addressBook.hasStaff(staff));
+    }
+
+    @Test
+    public void hasExternalParty_externalPartyInAddressBook_returnsTrue() {
+        ExternalParty externalParty = new ExternalPartyBuilder().build();
+        addressBook.addExternalParty(externalParty);
+        assertTrue(addressBook.hasExternalParty(externalParty));
     }
 
     @Test
@@ -187,6 +196,7 @@ public class AddressBookTest {
     private static class AddressBookStub implements ReadOnlyAddressBook {
         private final ObservableList<Person> persons = FXCollections.observableArrayList();
         private final ObservableList<Staff> staffs = FXCollections.observableArrayList();
+        private final ObservableList<ExternalParty> externalParties = FXCollections.observableArrayList();
         private final ObservableList<Event> events = FXCollections.observableArrayList();
         private final ObservableList<Student> students = FXCollections.observableArrayList();
 
@@ -202,6 +212,11 @@ public class AddressBookTest {
         @Override
         public ObservableList<Staff> getStaffList() {
             return staffs;
+        }
+
+        @Override
+        public ObservableList<ExternalParty> getExternalPartyList() {
+            return externalParties;
         }
 
         @Override
