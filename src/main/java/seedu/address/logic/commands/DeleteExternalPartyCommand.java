@@ -1,7 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.Messages.MESSAGE_INVALID_EXTERNAL_DISPLAYED_INDEX;
+import static seedu.address.logic.Messages.MESSAGE_INVALID_EXTERNAL_PARTY_DISPLAYED_INDEX;
 
 import java.util.List;
 
@@ -15,7 +15,7 @@ import seedu.address.model.person.ExternalParty;
 /**
  * Deletes an external party identified using it's displayed index from the address book.
  */
-public class DeleteExternalCommand extends Command {
+public class DeleteExternalPartyCommand extends Command {
     public static final String COMMAND_WORD = "delete_ext";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
@@ -23,11 +23,11 @@ public class DeleteExternalCommand extends Command {
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_DELETE_EXTERNAL_SUCCESS = "Deleted External Party: %1$s";
+    public static final String MESSAGE_DELETE_EXTERNAL_PARTY_SUCCESS = "Deleted External Party: %1$s";
 
     private final Index targetIndex;
 
-    public DeleteExternalCommand(Index targetIndex) {
+    public DeleteExternalPartyCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }
 
@@ -37,12 +37,13 @@ public class DeleteExternalCommand extends Command {
         List<ExternalParty> lastShownList = model.getFilteredExternalPartyList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(MESSAGE_INVALID_EXTERNAL_DISPLAYED_INDEX);
+            throw new CommandException(MESSAGE_INVALID_EXTERNAL_PARTY_DISPLAYED_INDEX);
         }
 
         ExternalParty externalPartyToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deleteExternalParty(externalPartyToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_EXTERNAL_SUCCESS, Messages.format(externalPartyToDelete)));
+        return new CommandResult(String.format(MESSAGE_DELETE_EXTERNAL_PARTY_SUCCESS,
+                Messages.format(externalPartyToDelete)));
     }
 
     @Override
@@ -52,12 +53,12 @@ public class DeleteExternalCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof DeleteExternalCommand)) {
+        if (!(other instanceof DeleteExternalPartyCommand)) {
             return false;
         }
 
-        DeleteExternalCommand otherDeleteExternalCommand = (DeleteExternalCommand) other;
-        return targetIndex.equals(otherDeleteExternalCommand.targetIndex);
+        DeleteExternalPartyCommand otherDeleteExternalPartyCommand = (DeleteExternalPartyCommand) other;
+        return targetIndex.equals(otherDeleteExternalPartyCommand.targetIndex);
     }
 
     @Override

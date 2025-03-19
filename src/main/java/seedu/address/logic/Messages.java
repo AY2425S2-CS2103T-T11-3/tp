@@ -21,7 +21,7 @@ public class Messages {
             "The student index provided is invalid";
     public static final String MESSAGE_INVALID_STAFF_DISPLAYED_INDEX =
             "The staff index provided is invalid";
-    public static final String MESSAGE_INVALID_EXTERNAL_DISPLAYED_INDEX =
+    public static final String MESSAGE_INVALID_EXTERNAL_PARTY_DISPLAYED_INDEX =
             "The external party index provided is invalid";
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";
     public static final String MESSAGE_NO_STAFF_FOUND =

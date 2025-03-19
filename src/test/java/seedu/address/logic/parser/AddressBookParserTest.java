@@ -19,7 +19,7 @@ import seedu.address.logic.commands.AddStaffCommand;
 import seedu.address.logic.commands.AddStudentCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
-import seedu.address.logic.commands.DeleteExternalCommand;
+import seedu.address.logic.commands.DeleteExternalPartyCommand;
 import seedu.address.logic.commands.DeleteStaffCommand;
 import seedu.address.logic.commands.DeleteStudentCommand;
 import seedu.address.logic.commands.EditCommand;
@@ -167,9 +167,9 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_deleteExternalParty() throws Exception {
-        DeleteExternalCommand command = (DeleteExternalCommand) parser.parseCommand(
-                DeleteExternalCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
-        assertEquals(new DeleteExternalCommand(INDEX_FIRST_PERSON), command);
+        DeleteExternalPartyCommand command = (DeleteExternalPartyCommand) parser.parseCommand(
+                DeleteExternalPartyCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
+        assertEquals(new DeleteExternalPartyCommand(INDEX_FIRST_PERSON), command);
     }
 
     @Test

@@ -23,9 +23,9 @@ import seedu.address.testutil.ExternalPartyBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
- * {@code DeleteExternalCommand}.
+ * {@code DeleteExternalPartyCommand}.
  */
-public class DeleteExternalCommandTest {
+public class DeleteExternalPartyCommandTest {
 
     private Model model;
 
@@ -37,40 +37,42 @@ public class DeleteExternalCommandTest {
     @Test
     public void execute_validIndexUnfilteredList_success() {
         model.addExternalParty(new ExternalPartyBuilder().build());
-        ExternalParty externalPartyToDelete = model.getFilteredExternalPartyList().get(INDEX_FIRST_PERSON.getZeroBased());
-        DeleteExternalCommand deleteExternalCommand = new DeleteExternalCommand(INDEX_FIRST_PERSON);
+        ExternalParty externalPartyToDelete = model.getFilteredExternalPartyList()
+                .get(INDEX_FIRST_PERSON.getZeroBased());
+        DeleteExternalPartyCommand deleteExternalPartyCommand = new DeleteExternalPartyCommand(INDEX_FIRST_PERSON);
 
-        String expectedMessage = String.format(DeleteExternalCommand.MESSAGE_DELETE_EXTERNAL_SUCCESS,
+        String expectedMessage = String.format(DeleteExternalPartyCommand.MESSAGE_DELETE_EXTERNAL_PARTY_SUCCESS,
                 Messages.format(externalPartyToDelete));
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
 
         expectedModel.deleteExternalParty(externalPartyToDelete);
 
-        assertCommandSuccess(deleteExternalCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(deleteExternalPartyCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
-        DeleteExternalCommand deleteExternalCommand = new DeleteExternalCommand(outOfBoundIndex);
+        DeleteExternalPartyCommand deleteExternalPartyCommand = new DeleteExternalPartyCommand(outOfBoundIndex);
 
-        assertCommandFailure(deleteExternalCommand, model, Messages.MESSAGE_INVALID_EXTERNAL_DISPLAYED_INDEX);
+        assertCommandFailure(deleteExternalPartyCommand,
+                model, Messages.MESSAGE_INVALID_EXTERNAL_PARTY_DISPLAYED_INDEX);
     }
 
     @Test
     public void execute_validIndexFilteredList_success() {
         model.addExternalParty(new ExternalPartyBuilder().build());
-        ExternalParty externalPartyToDelete = model.getFilteredExternalPartyList().
-                get(INDEX_FIRST_PERSON.getZeroBased());
-        DeleteExternalCommand deleteExternalCommand = new DeleteExternalCommand(INDEX_FIRST_PERSON);
+        ExternalParty externalPartyToDelete = model.getFilteredExternalPartyList()
+                .get(INDEX_FIRST_PERSON.getZeroBased());
+        DeleteExternalPartyCommand deleteExternalPartyCommand = new DeleteExternalPartyCommand(INDEX_FIRST_PERSON);
 
-        String expectedMessage = String.format(DeleteExternalCommand.MESSAGE_DELETE_EXTERNAL_SUCCESS,
+        String expectedMessage = String.format(DeleteExternalPartyCommand.MESSAGE_DELETE_EXTERNAL_PARTY_SUCCESS,
                 Messages.format(externalPartyToDelete));
 
         Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
-        assertCommandSuccess(deleteExternalCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(deleteExternalPartyCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
@@ -81,21 +83,22 @@ public class DeleteExternalCommandTest {
         // ensures that outOfBoundIndex is still in bounds of address book list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getPersonList().size());
 
-        DeleteExternalCommand deleteExternalCommand = new DeleteExternalCommand(outOfBoundIndex);
+        DeleteExternalPartyCommand deleteExternalPartyCommand = new DeleteExternalPartyCommand(outOfBoundIndex);
 
-        assertCommandFailure(deleteExternalCommand, model, Messages.MESSAGE_INVALID_EXTERNAL_DISPLAYED_INDEX);
+        assertCommandFailure(deleteExternalPartyCommand,
+                model, Messages.MESSAGE_INVALID_EXTERNAL_PARTY_DISPLAYED_INDEX);
     }
 
     @Test
     public void equals() {
-        DeleteExternalCommand deleteFirstCommand = new DeleteExternalCommand(INDEX_FIRST_PERSON);
-        DeleteExternalCommand deleteSecondCommand = new DeleteExternalCommand(INDEX_SECOND_PERSON);
+        DeleteExternalPartyCommand deleteFirstCommand = new DeleteExternalPartyCommand(INDEX_FIRST_PERSON);
+        DeleteExternalPartyCommand deleteSecondCommand = new DeleteExternalPartyCommand(INDEX_SECOND_PERSON);
 
         // same object -> returns true
         assertTrue(deleteFirstCommand.equals(deleteFirstCommand));
 
         // same values -> returns true
-        DeleteExternalCommand deleteFirstCommandCopy = new DeleteExternalCommand(INDEX_FIRST_PERSON);
+        DeleteExternalPartyCommand deleteFirstCommandCopy = new DeleteExternalPartyCommand(INDEX_FIRST_PERSON);
         assertTrue(deleteFirstCommand.equals(deleteFirstCommandCopy));
 
         // different types -> returns false
@@ -111,8 +114,8 @@ public class DeleteExternalCommandTest {
     @Test
     public void toStringMethod() {
         Index targetIndex = Index.fromOneBased(1);
-        DeleteExternalCommand deleteCommand = new DeleteExternalCommand(targetIndex);
-        String expected = DeleteExternalCommand.class.getCanonicalName() + "{targetIndex=" + targetIndex + "}";
+        DeleteExternalPartyCommand deleteCommand = new DeleteExternalPartyCommand(targetIndex);
+        String expected = DeleteExternalPartyCommand.class.getCanonicalName() + "{targetIndex=" + targetIndex + "}";
         assertEquals(expected, deleteCommand.toString());
     }
 
