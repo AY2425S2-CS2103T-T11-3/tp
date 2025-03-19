@@ -33,9 +33,7 @@ public class Description {
      * Returns true if a given string is a valid description.
      */
     public static boolean isValidDescription(String test) {
-        System.out.println("Validating description: [" + test + "]");
         boolean isValid = test.matches(VALIDATION_REGEX); // Example regex: no leading spaces
-        System.out.println("Validation result for [" + test + "]: " + isValid);
         return test.matches("^[^\\s].*");
     }
 

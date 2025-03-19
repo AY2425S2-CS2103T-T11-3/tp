@@ -56,8 +56,8 @@ class JsonSerializableAddressBook {
         persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
         staffs.addAll(source.getStaffList().stream().map(JsonAdaptedStaff::new).collect(Collectors.toList()));
         students.addAll(source.getStudentList().stream().map(JsonAdaptedStudent::new).collect(Collectors.toList()));
-        externalParties.addAll(source.getExternalPartyList().stream().map(JsonAdaptedExternalParty::new).
-                collect(Collectors.toList()));
+        externalParties.addAll(source.getExternalPartyList().stream().map(JsonAdaptedExternalParty::new)
+                .collect(Collectors.toList()));
         //        events.addAll(source.getEventList().stream().map(JsonAdaptedEvent::new).collect(Collectors.toList()));
     }
 
@@ -98,7 +98,7 @@ class JsonSerializableAddressBook {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_EXTERNAL_PARTY);
             }
         }
-            
+
         //        // Convert events back into the AddressBook
         //        for (JsonAdaptedEvent jsonAdaptedEvent : events) {
         //            Event event = jsonAdaptedEvent.toModelType();
