@@ -46,4 +46,19 @@ public class EventCard extends UiPart<Region> {
         startTime.setText(event.getEventStartTime().toString());
         endTime.setText(event.getEventEndTime().toString());
     }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof EventCard)) {
+            return false;
+        }
+
+        EventCard card = (EventCard) other;
+        return id.getText().equals(card.id.getText())
+                && event.equals(card.event);
+    }
 }
