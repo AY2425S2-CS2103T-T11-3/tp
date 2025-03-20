@@ -16,6 +16,7 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.event.EventMatchesPredicate;
 
+@SuppressWarnings("checkstyle:Regexp")
 public class SearchEventCommandTest {
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
@@ -43,6 +44,24 @@ public class SearchEventCommandTest {
     public void execute_nameKeyword_multipleEventsFound() throws CommandException {
         String expectedMessage = String.format(SearchEventCommand.MESSAGE_SUCCESS, 2);
         EventMatchesPredicate predicate = new EventMatchesPredicate("e", null, null);
+        SearchEventCommand command = new SearchEventCommand(predicate);
+        CommandResult result = command.execute(model);
+        assertEquals(expectedMessage, result.getFeedbackToUser());
+    }
+
+    @Test
+    public void execute_validStartTimeKeyword_eventFound() throws CommandException {
+        String expectedMessage = String.format(SearchEventCommand.MESSAGE_SUCCESS, 1);
+        EventMatchesPredicate predicate = new EventMatchesPredicate(null, DANCE_EVENT.getEventStartTime(), null);
+        SearchEventCommand command = new SearchEventCommand(predicate);
+        CommandResult result = command.execute(model);
+        assertEquals(expectedMessage, result.getFeedbackToUser());
+    }
+
+    @Test
+    public void execute_multipleKeywords_multipleEventsFound() throws CommandException {
+        String expectedMessage = String.format(SearchEventCommand.MESSAGE_SUCCESS, 1);
+        EventMatchesPredicate predicate = new EventMatchesPredicate("e", DANCE_EVENT.getEventStartTime(), null);
         SearchEventCommand command = new SearchEventCommand(predicate);
         CommandResult result = command.execute(model);
         assertEquals(expectedMessage, result.getFeedbackToUser());
