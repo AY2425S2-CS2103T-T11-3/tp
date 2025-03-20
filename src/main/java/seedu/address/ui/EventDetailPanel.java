@@ -53,8 +53,9 @@ public class EventDetailPanel extends UiPart<Region> {
         staffListPlaceholder.getChildren().add(staffListPanel.getRoot());
 
         // Display External Party List
-        externalPartyListPanel = new ExternalPartyListPanel(event.getExternalParties());
-        externalListPlaceholder.getChildren().add(externalPartyListPanel.getRoot());
+        //externalPartyListPanel = new ExternalPartyListPanel(event.getExternalParties());
+        //externalListPlaceholder.getChildren().add(externalPartyListPanel.getRoot());
+
 
     }
 

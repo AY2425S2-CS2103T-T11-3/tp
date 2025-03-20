@@ -18,7 +18,8 @@ public class DeleteEventMemberCommandParser implements Parser<DeleteEventMemberC
 
     @Override
     public DeleteEventMemberCommand parse(String args) throws ParseException {
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_EVENT_STUDENT, PREFIX_EVENT_STAFF, PREFIX_EVENT_EXTERNAL);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_EVENT_STUDENT, PREFIX_EVENT_STAFF,
+                PREFIX_EVENT_EXTERNAL);
 
         Index eventIndex;
         Optional<Index> studentIndex = Optional.empty();
@@ -28,7 +29,8 @@ public class DeleteEventMemberCommandParser implements Parser<DeleteEventMemberC
         try {
             eventIndex = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException e) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteEventMemberCommand.MESSAGE_USAGE), e);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    DeleteEventMemberCommand.MESSAGE_USAGE), e);
         }
 
         try {

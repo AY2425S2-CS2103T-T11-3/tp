@@ -4,6 +4,10 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_EXTERNAL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_STAFF;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_STUDENT;
+
+import java.util.List;
+import java.util.Optional;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.Command;
@@ -15,16 +19,16 @@ import seedu.address.model.person.ExternalParty;
 import seedu.address.model.person.Staff;
 import seedu.address.model.person.Student;
 
-import java.util.List;
-import java.util.Optional;
-
+/**
+ * Adds a member (Student, Staff, or External Party) to an event.
+ */
 public class AddEventMemberCommand extends Command {
 
     public static final String COMMAND_WORD = "add_event_member";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a student to an event.\n"
             + "Parameters: <Event Index> " + PREFIX_EVENT_STUDENT + "<Student Index> OR "
-            + PREFIX_EVENT_STAFF +"<Staff Index> OR " + PREFIX_EVENT_EXTERNAL + "<External Index>\n"
+            + PREFIX_EVENT_STAFF + "<Staff Index> OR " + PREFIX_EVENT_EXTERNAL + "<External Index>\n"
             + "Example: " + COMMAND_WORD + " 1 " + PREFIX_EVENT_STUDENT + "3";
 
     public static final String MESSAGE_SUCCESS = "Added student %s to event: %s";
@@ -36,9 +40,17 @@ public class AddEventMemberCommand extends Command {
     private final Optional<Index> staffIndex;
     private final Optional<Index> externalIndex;
 
-    public AddEventMemberCommand(Index eventIndex, Optional<Index> studentIndex, Optional<Index> staffIndex, Optional<Index> externalIndex) {
+    /**
+     * Creates an {@code AddEventMemberCommand}.
+     *
+     * @param eventIndex   The index of the event (required).
+     * @param studentIndex The optional index of the student.
+     * @param staffIndex   The optional index of the staff member.
+     * @param externalIndex The optional index of the external member.
+     */
+    public AddEventMemberCommand(Index eventIndex, Optional<Index> studentIndex, Optional<Index> staffIndex,
+                                 Optional<Index> externalIndex) {
         requireNonNull(eventIndex);
-        requireNonNull(studentIndex);
         this.eventIndex = eventIndex;
         this.studentIndex = studentIndex;
         this.staffIndex = staffIndex;

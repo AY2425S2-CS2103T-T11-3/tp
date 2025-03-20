@@ -33,8 +33,8 @@ import seedu.address.logic.commands.event.AddEventMemberCommand;
 import seedu.address.logic.commands.event.DeleteEventCommand;
 import seedu.address.logic.commands.event.DeleteEventMemberCommand;
 import seedu.address.logic.commands.event.ListEventCommand;
-import seedu.address.logic.commands.event.ViewEventCommand;
 import seedu.address.logic.commands.event.SearchEventCommand;
+import seedu.address.logic.commands.event.ViewEventCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**

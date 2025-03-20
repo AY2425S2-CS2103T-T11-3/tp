@@ -44,7 +44,8 @@ public class DeleteEventMemberCommand extends Command {
     /**
      * Creates a DeleteEventMemberCommand to remove a member from an event.
      */
-    public DeleteEventMemberCommand(Index eventIndex, Optional<Index> studentIndex, Optional<Index> staffIndex, Optional<Index> externalIndex) {
+    public DeleteEventMemberCommand(Index eventIndex, Optional<Index> studentIndex, Optional<Index> staffIndex,
+                                    Optional<Index> externalIndex) {
         requireNonNull(eventIndex);
         this.eventIndex = eventIndex;
         this.studentIndex = studentIndex;
@@ -79,7 +80,8 @@ public class DeleteEventMemberCommand extends Command {
             }
             Student studentToRemove = studentList.get(studentIndex.get().getZeroBased());
             eventToEdit.removeStudent(studentToRemove);
-            return new CommandResult(String.format(MESSAGE_DELETE_SUCCESS, studentToRemove.getName(), eventToEdit.getEventName()));
+            return new CommandResult(String.format(MESSAGE_DELETE_SUCCESS, studentToRemove.getName(),
+                    eventToEdit.getEventName()));
         }
 
         // Remove Staff
@@ -90,7 +92,8 @@ public class DeleteEventMemberCommand extends Command {
             }
             Staff staffToRemove = staffList.get(staffIndex.get().getZeroBased());
             eventToEdit.removeStaff(staffToRemove);
-            return new CommandResult(String.format(MESSAGE_DELETE_SUCCESS, staffToRemove.getName(), eventToEdit.getEventName()));
+            return new CommandResult(String.format(MESSAGE_DELETE_SUCCESS, staffToRemove.getName(),
+                    eventToEdit.getEventName()));
         }
 
         // Remove External Member
@@ -101,7 +104,8 @@ public class DeleteEventMemberCommand extends Command {
             }
             ExternalParty externalToRemove = externalList.get(externalIndex.get().getZeroBased());
             eventToEdit.removeExternalParty(externalToRemove);
-            return new CommandResult(String.format(MESSAGE_DELETE_SUCCESS, externalToRemove.getName(), eventToEdit.getEventName()));
+            return new CommandResult(String.format(MESSAGE_DELETE_SUCCESS, externalToRemove.getName(),
+                    eventToEdit.getEventName()));
         }
 
         throw new CommandException(MESSAGE_INVALID);

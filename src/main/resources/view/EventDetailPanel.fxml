@@ -2,6 +2,10 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.ScrollPane?>
+
+
+
 
 <VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
       fx:id="eventDetailContainer" styleClass="pane-with-border"
@@ -14,7 +18,7 @@
 
     <!-- Placeholder for EventCard -->
     <VBox fx:id="eventDetailPlaceholder" styleClass="list-cell"
-          minHeight="0.0" VBox.vgrow="ALWAYS"
+          minHeight="100" VBox.vgrow="NEVER"
           style="-fx-background-color: #515658; -fx-text-fill: white;">
     </VBox>
 
@@ -30,11 +34,11 @@
           style="-fx-background-color: #3b4c5f; -fx-text-fill: white;">
     </VBox>
 
-    <!-- External Party List -->
-    <VBox fx:id="externalPartyListPlaceholder" styleClass="list-cell"
-          minHeight="0.0" VBox.vgrow="ALWAYS"
-          style="-fx-background-color: #2b3b4f; -fx-text-fill: white;">
-    </VBox>
+<!--    &lt;!&ndash; External Party List &ndash;&gt;-->
+<!--    <VBox fx:id="externalPartyListPlaceholder" styleClass="list-cell"-->
+<!--          minHeight="0.0" VBox.vgrow="ALWAYS"-->
+<!--          style="-fx-background-color: #2b3b4f; -fx-text-fill: white;">-->
+<!--    </VBox>-->
 
 
 
@@ -43,3 +47,4 @@
 
 
 </VBox>
+
