@@ -37,7 +37,7 @@ public class MainWindow extends UiPart<Stage> {
     private StaffListPanel staffListPanel;
     private ExternalPartyListPanel externalPartyListPanel;
     private StudentListPanel studentListPanel;
-
+    private EventDetailPanel eventDetailPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -61,6 +61,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane eventListPanelPlaceholder;
+
+    @FXML
+    private StackPane eventDetailPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -99,11 +102,13 @@ public class MainWindow extends UiPart<Stage> {
         eventListPanel = null;
         staffListPanel = null;
         studentListPanel = null;
+        eventDetailPanel = null;
         personListPanelPlaceholder.getChildren().clear();
         staffListPanelPlaceholder.getChildren().clear();
         externalPartyListPanelPlaceholder.getChildren().clear();
         studentListPanelPlaceholder.getChildren().clear();
         eventListPanelPlaceholder.getChildren().clear();
+        eventDetailPanelPlaceholder.getChildren().clear();
 
         switch (type) {
 
@@ -130,6 +135,11 @@ public class MainWindow extends UiPart<Stage> {
         case EVENT:
             eventListPanel = new EventListPanel(logic.getFilteredEventList());
             eventListPanelPlaceholder.getChildren().add(eventListPanel.getRoot());
+            break;
+
+        case EVENTDETAIL:
+            eventDetailPanel = new EventDetailPanel(logic.getSelectedEventDetail(), logic.getSelectedEventIndex());
+            eventDetailPanelPlaceholder.getChildren().add(eventDetailPanel.getRoot());
             break;
 
         default:
