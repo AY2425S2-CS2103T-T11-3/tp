@@ -1,7 +1,6 @@
 package seedu.address.logic.commands.event;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalEvents.DANCE_EVENT;
 import static seedu.address.testutil.TypicalEvents.getEmptyAddressBook;
@@ -82,4 +81,30 @@ public class SearchEventCommandTest {
         CommandResult result = command.execute(model);
         assertEquals(SearchEventCommand.MESSAGE_NO_MATCH, result.getFeedbackToUser());
     }
+
+    @Test
+    public void equals() {
+        EventMatchesPredicate firstPredicate = new EventMatchesPredicate("first", null, null);
+        EventMatchesPredicate secondPredicate = new EventMatchesPredicate("second", null, null);
+
+        SearchEventCommand firstCommand = new SearchEventCommand(firstPredicate);
+        SearchEventCommand secondCommand = new SearchEventCommand(secondPredicate);
+
+        // same object -> returns true
+        assertEquals(firstCommand, firstCommand);
+
+        // same values -> returns true
+        SearchEventCommand firstCommandCopy = new SearchEventCommand(firstPredicate);
+        assertEquals(firstCommand, firstCommandCopy);
+
+        // different types -> returns false
+        assertNotEquals(firstCommand, 1);
+
+        // null -> returns false
+        assertNotEquals(firstCommand, null);
+
+        // different event -> returns false
+        assertNotEquals(firstCommand, secondCommand);
+    }
 }
+
