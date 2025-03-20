@@ -1,5 +1,6 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_END_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_START_TIME;
@@ -12,11 +13,11 @@ import seedu.address.model.event.EventEndTime;
 import seedu.address.model.event.EventMatchesPredicate;
 import seedu.address.model.event.EventStartTime;
 
+
 /**
  * Parses input arguments and creates a new SearchEventCommand object.
  */
 public class SearchEventCommandParser implements Parser<SearchEventCommand> {
-
     @Override
     public SearchEventCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_EVENT_NAME,
@@ -25,7 +26,7 @@ public class SearchEventCommandParser implements Parser<SearchEventCommand> {
         if (!argMultimap.getValue(PREFIX_EVENT_NAME).isPresent()
                 && !argMultimap.getValue(PREFIX_EVENT_START_TIME).isPresent()
                 && !argMultimap.getValue(PREFIX_EVENT_END_TIME).isPresent()) {
-            throw new ParseException(SearchEventCommand.MESSAGE_USAGE);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SearchEventCommand.MESSAGE_USAGE));
         }
 
         Optional<String> eventName = argMultimap.getValue(PREFIX_EVENT_NAME);

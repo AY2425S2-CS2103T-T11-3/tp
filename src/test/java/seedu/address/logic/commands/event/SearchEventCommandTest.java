@@ -23,11 +23,12 @@ public class SearchEventCommandTest {
     private Model emptyModel = new ModelManager(getEmptyAddressBook(), new UserPrefs());
 
     @Test
-    public void execute_zeroKeywords_noEventFound() throws CommandException {
-        String expectedMessage = SearchEventCommand.MESSAGE_NO_MATCH;
-        EventMatchesPredicate predicate = new EventMatchesPredicate("NonExistentEvent", null, null);
+    public void execute_zeroKeywords_allEventsFound() throws CommandException {
+        String expectedMessage = String.format(SearchEventCommand.MESSAGE_SUCCESS, 2);
+        EventMatchesPredicate predicate = new EventMatchesPredicate(null, null, null);
         SearchEventCommand command = new SearchEventCommand(predicate);
-        assertThrows(CommandException.class, () -> command.execute(emptyModel));
+        CommandResult result = command.execute(model);
+        assertEquals(expectedMessage, result.getFeedbackToUser());
     }
 
     @Test
@@ -65,5 +66,20 @@ public class SearchEventCommandTest {
         SearchEventCommand command = new SearchEventCommand(predicate);
         CommandResult result = command.execute(model);
         assertEquals(expectedMessage, result.getFeedbackToUser());
+    }
+
+    @Test
+    public void execute_noEventsExist_throwsCommandException() {
+        EventMatchesPredicate predicate = new EventMatchesPredicate("NonExistentEvent", null, null);
+        SearchEventCommand command = new SearchEventCommand(predicate);
+        assertThrows(CommandException.class, () -> command.execute(emptyModel));
+    }
+
+    @Test
+    public void execute_noMatchingEvents_returnsNoMatchMessage() throws CommandException {
+        EventMatchesPredicate predicate = new EventMatchesPredicate("NonExistentEvent", null, null);
+        SearchEventCommand command = new SearchEventCommand(predicate);
+        CommandResult result = command.execute(model);
+        assertEquals(SearchEventCommand.MESSAGE_NO_MATCH, result.getFeedbackToUser());
     }
 }
