@@ -71,6 +71,11 @@ public class SearchEventCommand extends Command {
     }
 
     @Override
+    public int hashCode() {
+        return predicate.hashCode();
+    }
+
+    @Override
     public String toString() {
         return new ToStringBuilder(this)
                 .add("predicate", predicate)

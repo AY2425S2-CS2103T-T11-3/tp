@@ -21,5 +21,21 @@ public class SearchEventCommandParserTest {
         assertParseFailure(parser, userInput, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 SearchEventCommand.MESSAGE_USAGE));
     }
+
+    @Test
+    public void parse_missingAllPrefixed_failure() {
+        String userInput = "random text without prefix";
+        assertParseFailure(parser, userInput,
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                SearchEventCommand.MESSAGE_USAGE));
+    }
+
+    @Test
+    public void parse_noParameters_failure() {
+        String userInput = "";
+        assertParseFailure(parser, userInput,
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                SearchEventCommand.MESSAGE_USAGE));
+    }
 }
 
