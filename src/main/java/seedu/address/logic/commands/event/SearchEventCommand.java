@@ -22,6 +22,7 @@ public class SearchEventCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Matching events found: %1$d";
     public static final String MESSAGE_NO_MATCH = "No matching events found.";
+    public static final String NO_EVENT_EXIST = "No events exist by now.";
 
     private final EventMatchesPredicate predicate;
 
@@ -29,9 +30,20 @@ public class SearchEventCommand extends Command {
         this.predicate = predicate;
     }
 
+    /**
+     * Executes the search event command.
+     * @param model {@code Model} which the command should operate on.
+     * @return {@code CommandResult} that describes the result of executing the command.
+     * @throws CommandException If an error occurs during command execution.
+     */
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
+        if (model.getEventList().isEmpty()) {
+            throw new CommandException(NO_EVENT_EXIST);
+        }
+
         model.updateFilteredEventList(predicate);
 
         int eventCount = model.getFilteredEventList().size();

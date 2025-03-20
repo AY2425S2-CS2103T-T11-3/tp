@@ -187,6 +187,9 @@ public interface Model {
     /** Updates the filter for displaying events. */
     void updateFilteredEventList(Predicate<Event> predicate);
 
+    /** Returns an unmodifiable view of the list of events */
+    ObservableList<Event> getEventList();
+
     /** Returns an unmodifiable view of the filtered staff list */
     ObservableList<Staff> getFilteredStaffList();
 
@@ -218,6 +221,7 @@ public interface Model {
      * Gets the ObjectProperty of list (person, staff, etc) that should be displayed now.
      */
     ObjectProperty<ListType> getListTypeProperty();
+
 
     /**
      * Gets the list type of the list that should be displayed now

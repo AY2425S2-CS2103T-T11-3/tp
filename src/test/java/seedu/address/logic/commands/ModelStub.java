@@ -17,7 +17,7 @@ import seedu.address.model.person.Staff;
 import seedu.address.model.person.Student;
 
 /**
- * A default model stub that have all of the methods failing.
+ * A default model stub that have all the methods failing.
  */
 public class ModelStub implements Model {
     @Override
@@ -112,6 +112,11 @@ public class ModelStub implements Model {
 
     @Override
     public void updateFilteredEventList(Predicate<Event> predicate) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public ObservableList<Event> getEventList() {
         throw new AssertionError("This method should not be called.");
     }
 
