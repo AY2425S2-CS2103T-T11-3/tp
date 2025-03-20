@@ -1,40 +1,45 @@
 package seedu.address.ui;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.event.Event;
 
-public class EventDetailsPanel extends UiPart<VBox> {
-
-    private static final String FXML = "EventDetailsPanel.fxml";
-
-    @FXML
-    private VBox eventDetailsContainer;
-
-    @FXML
-    private Label eventTitleLabel;
+/**
+ * Panel for displaying event details and student list.
+ */
+public class EventDetailPanel extends UiPart<Region> {
+    private static final String FXML = "EventDetailPanel.fxml";
 
     @FXML
-    private Label eventDetailsLabel;
+    private VBox eventDetailPlaceholder;
 
-    public EventDetailsPanel() {
-        super(FXML);
-    }
+    @FXML
+    private VBox studentListPlaceholder;
+
+    private final EventCard eventCard;
+    private StudentListPanel studentListPanel;
 
     /**
-     * Updates the event details panel with the selected event's data.
+     * Creates an EventDetailPanel and displays the given event details.
+     *
+     * @param event The event to display.
+     * @param eventIndex The index of the event from the list.
      */
-    public void setEventDetails(Event event) {
-        if (event == null) {
-            eventTitleLabel.setText("No Event Selected");
-            eventDetailsLabel.setText("");
-        } else {
-            eventTitleLabel.setText("Event: " + event.getEventName().fullEventName);
-            eventDetailsLabel.setText(String.format(
-                    "Start Time: %s\nEnd Time: %s\nParticipants: %d",
-                    event.getEventStartTime(), event.getEventEndTime(), event.getStudents().size()
-            ));
-        }
+    public EventDetailPanel(Event event, Index eventIndex) {
+        super(FXML);
+
+        // Use EventCard for displaying event details
+        eventCard = new EventCard(event, eventIndex.getOneBased());
+
+        // Add it to the UI placeholder
+        eventDetailPlaceholder.getChildren().add(eventCard.getRoot());
+
+        // Create and display StudentListPanel
+        studentListPanel = new StudentListPanel(event.getStudents());
+        studentListPlaceholder.getChildren().add(studentListPanel.getRoot());
     }
+
+
 }

@@ -5,6 +5,7 @@ import java.nio.file.Path;
 import javafx.beans.property.ObjectProperty;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -40,6 +41,12 @@ public interface Logic {
 
     /** Returns an unmodifiable view of the filtered list of events */
     ObservableList<Event> getFilteredEventList();
+
+    /** Returns the event currently being viewed in the Event Detail Panel */
+    Event getSelectedEventDetail();
+
+    /** Returns the event index currently being viewed in the Event Detail Panel */
+    Index getSelectedEventIndex();
 
     /** Returns an unmodifiable view of the filtered list of staff */
     ObservableList<Staff> getFilteredStaffList();

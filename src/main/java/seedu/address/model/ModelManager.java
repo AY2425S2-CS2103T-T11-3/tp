@@ -13,6 +13,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.event.Event;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Staff;
@@ -31,6 +32,8 @@ public class ModelManager implements Model {
     private final FilteredList<Event> filteredEvents;
     private final FilteredList<Staff> filteredStaff;
     private final FilteredList<Student> filteredStudents;
+    private Event selectedEventDetail;
+    private Index selectedEventIndex;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -236,6 +239,30 @@ public class ModelManager implements Model {
         setListType(ListType.EVENT);
     }
 
+    //=========== View Event Detail Accessors =============================================================
+    @Override
+    public void setSelectedEventDetail(Event event, Index eventIndex) {
+        requireNonNull(event);
+        requireNonNull(eventIndex);
+
+        this.selectedEventDetail = event;
+        this.selectedEventIndex = eventIndex;
+
+        setListType(ListType.EVENT); // Temporarily switch to EVENT to Force a property update by resetting
+        setListType(ListType.EVENTDETAIL);
+    }
+
+    @Override
+    public Event getSelectedEventDetail() {
+        return this.selectedEventDetail;
+    }
+
+    @Override
+    public Index getSelectedEventIndex() {
+        return this.selectedEventIndex;
+    }
+
+
     //=========== Filtered Staff List Accessors =============================================================
     @Override
     public ObservableList<Staff> getFilteredStaffList() {
@@ -277,5 +304,7 @@ public class ModelManager implements Model {
     public void setListType(ListType listType) {
         currentListTypeProperty.set(listType);
     };
+
+
 
 }
