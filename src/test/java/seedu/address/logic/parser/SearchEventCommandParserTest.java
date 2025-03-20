@@ -34,7 +34,8 @@ public class SearchEventCommandParserTest {
     @Test
     public void parse_noFieldsPresent_failure() {
         String userInput = "";
-        assertParseFailure(parser, userInput, String.format(SearchEventCommand.MESSAGE_USAGE, SearchEventCommand.COMMAND_WORD));
+        assertParseFailure(parser, userInput, String.format(SearchEventCommand.MESSAGE_USAGE,
+                SearchEventCommand.COMMAND_WORD));
     }
 
     @Test

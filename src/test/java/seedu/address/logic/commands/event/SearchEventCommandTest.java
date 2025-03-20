@@ -1,6 +1,7 @@
 package seedu.address.logic.commands.event;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalEvents.DANCE_EVENT;
 import static seedu.address.testutil.TypicalEvents.getEmptyAddressBook;
