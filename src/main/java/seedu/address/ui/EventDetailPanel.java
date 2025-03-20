@@ -18,8 +18,16 @@ public class EventDetailPanel extends UiPart<Region> {
     @FXML
     private VBox studentListPlaceholder;
 
+    @FXML
+    private VBox staffListPlaceholder;
+
+    @FXML
+    private VBox externalListPlaceholder;
+
     private final EventCard eventCard;
     private StudentListPanel studentListPanel;
+    private StaffListPanel staffListPanel;
+    private ExternalPartyListPanel externalPartyListPanel;
 
     /**
      * Creates an EventDetailPanel and displays the given event details.
@@ -39,6 +47,15 @@ public class EventDetailPanel extends UiPart<Region> {
         // Create and display StudentListPanel
         studentListPanel = new StudentListPanel(event.getStudents());
         studentListPlaceholder.getChildren().add(studentListPanel.getRoot());
+
+        // Display Staff List
+        staffListPanel = new StaffListPanel(event.getStaff());
+        staffListPlaceholder.getChildren().add(staffListPanel.getRoot());
+
+        // Display External Party List
+        externalPartyListPanel = new ExternalPartyListPanel(event.getExternalParties());
+        externalListPlaceholder.getChildren().add(externalPartyListPanel.getRoot());
+
     }
 
 

@@ -11,6 +11,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.event.Event;
+import seedu.address.model.person.ExternalParty;
 import seedu.address.model.person.Staff;
 import seedu.address.model.person.Student;
 
@@ -49,7 +50,7 @@ public class AddEventMemberCommand extends Command {
         // Ensure only one type of member is provided
         long count = studentIndex.isPresent() ? 1 : 0;
         count += staffIndex.isPresent() ? 1 : 0;
-//        count += externalName.isPresent() ? 1 : 0;
+        count += externalIndex.isPresent() ? 1 : 0;
         if (count != 1) {
             throw new CommandException(MESSAGE_INVALID);
         }
@@ -84,15 +85,15 @@ public class AddEventMemberCommand extends Command {
             return new CommandResult(String.format(MESSAGE_SUCCESS, staff.getName().fullName, event.getEventName()));
         }
 
-//        // Add External Member
-//        if (externalIndex.isPresent()) {
-//            if (externalIndex.get().getZeroBased() >= model.getFilteredExternalList().size()) {
-//                throw new CommandException(MESSAGE_NOT_FOUND);
-//            }
-//            ExternalMember external = model.getFilteredExternalList().get(externalIndex.get().getZeroBased());
-//            event.addExternalMember(external);
-//            return new CommandResult(String.format(MESSAGE_SUCCESS, external.getName(), event.getEventName()));
-//        }
+        // Add External Member
+        if (externalIndex.isPresent()) {
+            if (externalIndex.get().getZeroBased() >= model.getFilteredExternalPartyList().size()) {
+                throw new CommandException(MESSAGE_NOT_FOUND);
+            }
+            ExternalParty external = model.getFilteredExternalPartyList().get(externalIndex.get().getZeroBased());
+            event.addExternalParty(external);
+            return new CommandResult(String.format(MESSAGE_SUCCESS, external.getName(), event.getEventName()));
+        }
 
         throw new CommandException(MESSAGE_INVALID);
     }

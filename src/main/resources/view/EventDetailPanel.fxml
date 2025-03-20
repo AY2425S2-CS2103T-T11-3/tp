@@ -24,4 +24,22 @@
           style="-fx-background-color: #424d5f; -fx-text-fill: white;">
     </VBox>
 
+    <!-- Staff List -->
+    <VBox fx:id="staffListPlaceholder" styleClass="list-cell"
+          minHeight="0.0" VBox.vgrow="ALWAYS"
+          style="-fx-background-color: #3b4c5f; -fx-text-fill: white;">
+    </VBox>
+
+    <!-- External Party List -->
+    <VBox fx:id="externalPartyListPlaceholder" styleClass="list-cell"
+          minHeight="0.0" VBox.vgrow="ALWAYS"
+          style="-fx-background-color: #2b3b4f; -fx-text-fill: white;">
+    </VBox>
+
+
+
+
+
+
+
 </VBox>

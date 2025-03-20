@@ -20,6 +20,7 @@ import seedu.address.model.ListType;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.event.Event;
+import seedu.address.model.person.ExternalParty;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Staff;
 import seedu.address.model.person.Student;
@@ -111,6 +112,11 @@ public class LogicManager implements Logic {
     @Override
     public ObservableList<Staff> getFilteredStaffList() {
         return model.getFilteredStaffList();
+    }
+
+    @Override
+    public ObservableList<ExternalParty> getFilteredExternalPartyList() {
+        return model.getFilteredExternalPartyList();
     }
 
     @Override

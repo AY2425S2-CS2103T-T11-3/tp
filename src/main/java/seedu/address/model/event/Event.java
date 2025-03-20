@@ -2,8 +2,10 @@ package seedu.address.model.event;
 
 import java.util.Objects;
 import javafx.collections.ObservableList;
+import seedu.address.model.person.ExternalParty;
 import seedu.address.model.person.Staff;
 import seedu.address.model.person.Student;
+import seedu.address.model.person.UniqueExternalPartyList;
 import seedu.address.model.person.UniqueStaffList;
 import seedu.address.model.person.UniqueStudentList;
 
@@ -19,6 +21,7 @@ public class Event {
     private final EventEndTime eventEndTime;
     private final UniqueStudentList students;
     private final UniqueStaffList staffs;
+    private final UniqueExternalPartyList externalParties;
 
     /**
      * Constructs an {@code Event} with the given details.
@@ -29,6 +32,7 @@ public class Event {
         this.eventEndTime = eventEndTime;
         this.students = new UniqueStudentList();
         this.staffs = new UniqueStaffList();
+        this.externalParties = new UniqueExternalPartyList();
 
     }
 
@@ -77,7 +81,8 @@ public class Event {
                 && eventStartTime.equals(otherEvent.eventStartTime)
                 && eventEndTime.equals(otherEvent.eventEndTime)
                 && students.equals(otherEvent.students)
-                && staffs.equals(otherEvent.staffs);
+                && staffs.equals(otherEvent.staffs)
+                && externalParties.equals(otherEvent.externalParties);
     }
 
 
@@ -128,7 +133,28 @@ public class Event {
         staffs.remove(staff);
     }
 
+    /**
+     * Adds an external party to the event.
+     * Ensures no duplicate external parties are added.
+     */
+    public void addExternalParty(ExternalParty externalParty) {
+        externalParties.add(externalParty);
+    }
 
+    /**
+     * Removes an external party from the event.
+     * Ensures the external party exists before removal.
+     */
+    public void removeExternalParty(ExternalParty externalParty) {
+        externalParties.remove(externalParty);
+    }
+
+    /**
+     * Returns an unmodifiable list of external parties involved in the event.
+     */
+    public ObservableList<ExternalParty> getExternalParties() {
+        return externalParties.asUnmodifiableObservableList();
+    }
 
 
 
