@@ -262,6 +262,11 @@ public class ModelManager implements Model {
         setListType(ListType.EVENT);
     }
 
+    @Override
+    public ObservableList<Event> getEventList() {
+        return addressBook.getEventList();
+    }
+
     //=========== Filtered Staff List Accessors =============================================================
     @Override
     public ObservableList<Staff> getFilteredStaffList() {
