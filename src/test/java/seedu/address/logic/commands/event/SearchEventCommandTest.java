@@ -4,8 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalEvents.DANCE_EVENT;
-import static seedu.address.testutil.TypicalEvents.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalEvents.getEmptyAddressBook;
+import static seedu.address.testutil.TypicalEvents.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
 
@@ -30,9 +30,19 @@ public class SearchEventCommandTest {
     }
 
     @Test
-    public void execute_multipleKeywords_multipleEventsFound() throws CommandException {
+    public void execute_nameKeyword_oneEventFound() throws CommandException {
         String expectedMessage = String.format(SearchEventCommand.MESSAGE_SUCCESS, 1);
-        EventMatchesPredicate predicate = new EventMatchesPredicate(DANCE_EVENT.getEventName().fullEventName, null, null);
+        EventMatchesPredicate predicate = new EventMatchesPredicate(DANCE_EVENT.getEventName().fullEventName,
+                null, null);
+        SearchEventCommand command = new SearchEventCommand(predicate);
+        CommandResult result = command.execute(model);
+        assertEquals(expectedMessage, result.getFeedbackToUser());
+    }
+
+    @Test
+    public void execute_nameKeyword_multipleEventsFound() throws CommandException {
+        String expectedMessage = String.format(SearchEventCommand.MESSAGE_SUCCESS, 2);
+        EventMatchesPredicate predicate = new EventMatchesPredicate("e", null, null);
         SearchEventCommand command = new SearchEventCommand(predicate);
         CommandResult result = command.execute(model);
         assertEquals(expectedMessage, result.getFeedbackToUser());

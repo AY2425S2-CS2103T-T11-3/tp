@@ -2,9 +2,6 @@ package seedu.address.testutil;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.event.Event;
-import seedu.address.model.event.EventName;
-import seedu.address.model.event.EventStartTime;
-import seedu.address.model.event.EventEndTime;
 
 /**
  * A utility class containing a list of {@code Event} objects to be used in tests.

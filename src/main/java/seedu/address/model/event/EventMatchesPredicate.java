@@ -10,6 +10,13 @@ public class EventMatchesPredicate implements Predicate<Event> {
     private final EventStartTime startTime;
     private final EventEndTime endTime;
 
+    /**
+     * Constructs a predicate that tests if an event matches the given criteria.
+     *
+     * @param eventName The name of the event to match.
+     * @param startTime The start time of the event to match.
+     * @param endTime The end time of the event to match.
+     */
     public EventMatchesPredicate(String eventName, EventStartTime startTime, EventEndTime endTime) {
         this.eventName = eventName;
         this.startTime = startTime;
