@@ -22,6 +22,7 @@ import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.ListCommand;
@@ -33,10 +34,12 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.event.Event;
 import seedu.address.model.person.Person;
 import seedu.address.storage.JsonAddressBookStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.StorageManager;
+import seedu.address.testutil.EventBuilder;
 import seedu.address.testutil.PersonBuilder;
 
 public class LogicManagerTest {
@@ -107,6 +110,12 @@ public class LogicManagerTest {
     public void getFilteredStudentList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredStudentList().remove(0));
     }
+
+    @Test
+    public void getFilteredEventList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredEventList().remove(0));
+    }
+
 
     @Test
     public void listTypeListener_detectsChange() {
@@ -219,4 +228,25 @@ public class LogicManagerTest {
             currentListTypeProperty.set(listType);
         };
     }
+
+    @Test
+    public void getSelectedEventDetail_returnsCorrectEvent() {
+        Event testEvent = new EventBuilder().build();
+        model.addEvent(testEvent);
+        model.setSelectedEventDetail(testEvent, Index.fromZeroBased(0));
+
+        assertEquals(testEvent, logic.getSelectedEventDetail());
+    }
+
+    @Test
+    public void getSelectedEventIndex_returnsCorrectIndex() {
+        Event testEvent = new EventBuilder().build();
+        model.addEvent(testEvent);
+        Index index = Index.fromZeroBased(0);
+        model.setSelectedEventDetail(testEvent, index);
+
+        assertEquals(index, logic.getSelectedEventIndex());
+    }
+
+
 }
