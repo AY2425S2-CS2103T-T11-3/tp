@@ -45,5 +45,23 @@ public class ViewEventCommand extends Command {
         return new CommandResult(String.format(MESSAGE_SUCCESS, eventToView.getEventName()));
     }
 
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof ViewEventCommand)) {
+            return false;
+        }
+
+        ViewEventCommand otherCommand = (ViewEventCommand) other;
+        return eventIndex.equals(otherCommand.eventIndex);
+    }
+
+    @Override
+    public int hashCode() {
+        return eventIndex.hashCode();
+    }
 
 }

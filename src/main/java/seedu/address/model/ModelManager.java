@@ -314,7 +314,6 @@ public class ModelManager implements Model {
         return currentListTypeProperty;
     }
 
-    ;
 
     @Override
     public ListType getListType() {
@@ -325,8 +324,6 @@ public class ModelManager implements Model {
     public void setListType(ListType listType) {
         currentListTypeProperty.set(listType);
     }
-
-    ;
 
 
     //=========== View Event Detail Accessors =============================================================

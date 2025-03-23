@@ -13,6 +13,7 @@ import java.util.Map;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.AddExternalCommand;
 import seedu.address.logic.commands.AddStaffCommand;
@@ -34,13 +35,18 @@ import seedu.address.logic.commands.ListStudentCommand;
 import seedu.address.logic.commands.SearchExternalPartyCommand;
 import seedu.address.logic.commands.SearchStaffCommand;
 import seedu.address.logic.commands.SearchStudentCommand;
+import seedu.address.logic.commands.event.AddEventCommand;
+import seedu.address.logic.commands.event.DeleteEventCommand;
+import seedu.address.logic.commands.event.ViewEventCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.event.Event;
 import seedu.address.model.person.ExternalParty;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Staff;
 import seedu.address.model.person.Student;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
+import seedu.address.testutil.EventBuilder;
 import seedu.address.testutil.ExternalPartyBuilder;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
@@ -239,4 +245,39 @@ public class AddressBookParserTest {
     public void parseCommand_unknownCommand_throwsParseException() {
         assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, () -> parser.parseCommand("unknownCommand"));
     }
+
+    @Test
+    public void parseCommand_addEvent() throws Exception {
+        Event event = new EventBuilder()
+                .withEventName("Concert")
+                .withEventStartTime("2025-07-01 18:00")
+                .withEventEndTime("2025-07-01 22:00")
+                .build();
+
+        String userInput = AddEventCommand.COMMAND_WORD + " "
+                + CliSyntax.PREFIX_EVENT_NAME + "Concert "
+                + CliSyntax.PREFIX_EVENT_START_TIME + "2025-07-01 18:00 "
+                + CliSyntax.PREFIX_EVENT_END_TIME + "2025-07-01 22:00";
+
+        AddEventCommand command = (AddEventCommand) parser.parseCommand(userInput);
+        assertEquals(new AddEventCommand(event), command);
+    }
+
+    @Test
+    public void parseCommand_deleteEvent() throws Exception {
+        DeleteEventCommand command =
+                (DeleteEventCommand) parser.parseCommand(DeleteEventCommand.COMMAND_WORD + " 1");
+        assertEquals(new DeleteEventCommand(Index.fromOneBased(1)), command);
+    }
+
+
+
+    @Test
+    public void parseCommand_viewEvent() throws Exception {
+        ViewEventCommand command = (ViewEventCommand) parser.parseCommand("view_event 1");
+        assertEquals(new ViewEventCommand(Index.fromOneBased(1)), command);
+    }
+
+
+
 }

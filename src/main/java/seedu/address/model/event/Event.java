@@ -3,7 +3,6 @@ package seedu.address.model.event;
 import java.util.Objects;
 
 import javafx.collections.ObservableList;
-import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.person.ExternalParty;
 import seedu.address.model.person.Staff;
 import seedu.address.model.person.Student;
