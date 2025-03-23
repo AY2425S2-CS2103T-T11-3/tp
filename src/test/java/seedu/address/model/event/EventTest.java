@@ -92,7 +92,6 @@ public class EventTest {
         assertEquals(true, event1.isSameEvent(event2));
     }
 
-
     @Test
     public void isSameEvent_differentNameSameTime_returnsFalse() {
         Event event1 = new Event(new EventName("Concert"),
@@ -104,4 +103,30 @@ public class EventTest {
 
         assertEquals(false, event1.isSameEvent(event2));
     }
+
+    @Test
+    public void hashCode_sameEvent_equalHashCodes() {
+        Event event1 = new Event(new EventName("Concert"), new EventStartTime("2025-07-01 18:00"),
+                new EventEndTime("2025-07-01 22:00"));
+        Event event2 = new Event(new EventName("Concert"), new EventStartTime("2025-07-01 18:00"),
+                new EventEndTime("2025-07-01 22:00"));
+        assertEquals(event1.hashCode(), event2.hashCode());
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
