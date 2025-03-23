@@ -78,6 +78,7 @@ public class Event {
         }
 
         Event otherEvent = (Event) other;
+
         return eventName.equals(otherEvent.eventName)
                 && eventStartTime.equals(otherEvent.eventStartTime)
                 && eventEndTime.equals(otherEvent.eventEndTime);
@@ -164,8 +165,7 @@ public class Event {
         return String.format("%s (From: %s, To: %s)",
                 eventName.fullEventName,
                 eventStartTime.toString(),
-                eventEndTime.toString(),
-                students.asUnmodifiableObservableList().size());
+                eventEndTime.toString());
     }
 
 }

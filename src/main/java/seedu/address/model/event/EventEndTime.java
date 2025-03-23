@@ -55,7 +55,7 @@ public class EventEndTime {
             return true;
         }
 
-        if (!(other instanceof EventStartTime)) {
+        if (!(other instanceof EventEndTime)) {
             return false;
         }
 
