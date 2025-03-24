@@ -10,6 +10,7 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 
@@ -36,6 +37,7 @@ import seedu.address.logic.commands.SearchExternalPartyCommand;
 import seedu.address.logic.commands.SearchStaffCommand;
 import seedu.address.logic.commands.SearchStudentCommand;
 import seedu.address.logic.commands.event.AddEventCommand;
+import seedu.address.logic.commands.event.AddEventMemberCommand;
 import seedu.address.logic.commands.event.DeleteEventCommand;
 import seedu.address.logic.commands.event.ViewEventCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -278,6 +280,45 @@ public class AddressBookParserTest {
         assertEquals(new ViewEventCommand(Index.fromOneBased(1)), command);
     }
 
+    @Test
+    public void parseCommand_addEventMember() throws Exception {
+        // Test adding a student to an event
+        Index eventIndex = Index.fromOneBased(1);
+        Index studentIndex = Index.fromOneBased(2);
+        AddEventMemberCommand expectedCommand = new AddEventMemberCommand(
+                eventIndex, Optional.of(studentIndex), Optional.empty(), Optional.empty());
+
+        String userInput = AddEventMemberCommand.COMMAND_WORD + " "
+                + eventIndex.getOneBased() + " "
+                + CliSyntax.PREFIX_EVENT_STUDENT + studentIndex.getOneBased();
+
+        AddEventMemberCommand command = (AddEventMemberCommand) parser.parseCommand(userInput);
+        assertEquals(expectedCommand, command);
+
+        // Test adding a staff to an event
+        Index staffIndex = Index.fromOneBased(3);
+        expectedCommand = new AddEventMemberCommand(
+                eventIndex, Optional.empty(), Optional.of(staffIndex), Optional.empty());
+
+        userInput = AddEventMemberCommand.COMMAND_WORD + " "
+                + eventIndex.getOneBased() + " "
+                + CliSyntax.PREFIX_EVENT_STAFF + staffIndex.getOneBased();
+
+        command = (AddEventMemberCommand) parser.parseCommand(userInput);
+        assertEquals(expectedCommand, command);
+
+        // Test adding an external party to an event
+        Index externalIndex = Index.fromOneBased(4);
+        expectedCommand = new AddEventMemberCommand(
+                eventIndex, Optional.empty(), Optional.empty(), Optional.of(externalIndex));
+
+        userInput = AddEventMemberCommand.COMMAND_WORD + " "
+                + eventIndex.getOneBased() + " "
+                + CliSyntax.PREFIX_EVENT_EXTERNAL + externalIndex.getOneBased();
+
+        command = (AddEventMemberCommand) parser.parseCommand(userInput);
+        assertEquals(expectedCommand, command);
+    }
 
 
 }
