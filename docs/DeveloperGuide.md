@@ -381,7 +381,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-#### UC04 - Add an event
+**UC04: Add an event**
 
 **MSS**
 
@@ -403,7 +403,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes from step 3.
 
-#### UC05 - Delete an event
+**UC05: Delete an event**
 
 **MSS**
 
