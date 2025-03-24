@@ -50,7 +50,7 @@ public class AddExternalCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (model.hasPerson(toAdd)) {
+        if (model.hasExternalParty(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_PARTY);
         }
         model.addExternalParty(toAdd);
