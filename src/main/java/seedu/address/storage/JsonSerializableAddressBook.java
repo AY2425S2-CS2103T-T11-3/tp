@@ -30,22 +30,11 @@ class JsonSerializableAddressBook {
             "External parties list contains duplicate external party(ies).";
     public static final String MESSAGE_DUPLICATE_EVENT = "Events list contains duplicate event(s).";
 
-    private final List<JsonAdaptedPerson> persons = new ArrayList<>();
     private final List<JsonAdaptedStaff> staffs = new ArrayList<>();
     private final List<JsonAdaptedStudent> students = new ArrayList<>();
     private final List<JsonAdaptedExternalParty> externalParties = new ArrayList<>();
     //    private final List<JsonAdaptedEvent> events = new ArrayList<>();      // DO NOT DELETE. FOR V1.3
 
-    /**
-     * Constructs a {@code JsonSerializableAddressBook} with the given persons.
-     */
-    @JsonCreator
-    public JsonSerializableAddressBook(@JsonProperty("persons") List<JsonAdaptedPerson> persons) {
-        //@JsonProperty("events") List<JsonAdaptedEvent> events) {
-        this.persons.addAll(persons);
-        //        this.events.addAll(events);   // DO NOT DELETE. FOR V1.3
-
-    }
 
     /**
      * Converts a given {@code ReadOnlyAddressBook} into this class for Jackson use.
@@ -53,7 +42,6 @@ class JsonSerializableAddressBook {
      * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
      */
     public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
-        persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
         staffs.addAll(source.getStaffList().stream().map(JsonAdaptedStaff::new).collect(Collectors.toList()));
         students.addAll(source.getStudentList().stream().map(JsonAdaptedStudent::new).collect(Collectors.toList()));
         externalParties.addAll(source.getExternalPartyList().stream().map(JsonAdaptedExternalParty::new)
@@ -68,13 +56,6 @@ class JsonSerializableAddressBook {
      */
     public AddressBook toModelType() throws IllegalValueException {
         AddressBook addressBook = new AddressBook();
-        for (JsonAdaptedPerson jsonAdaptedPerson : persons) {
-            Person person = jsonAdaptedPerson.toModelType();
-            if (addressBook.hasPerson(person)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
-            }
-            addressBook.addPerson(person);
-        }
 
         for (JsonAdaptedStaff jsonAdaptedStaff : staffs) {
             Staff staff = jsonAdaptedStaff.toModelType();
