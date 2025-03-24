@@ -19,6 +19,9 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.core.index.Index;
+import seedu.address.model.event.Event;
+import seedu.address.model.event.exceptions.EventNotFoundException;
 import seedu.address.model.person.ExternalParty;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Staff;
@@ -26,6 +29,7 @@ import seedu.address.model.person.Student;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
 import seedu.address.testutil.AddressBookBuilder;
+import seedu.address.testutil.EventBuilder;
 import seedu.address.testutil.ExternalPartyBuilder;
 import seedu.address.testutil.StaffBuilder;
 import seedu.address.testutil.StudentBuilder;
@@ -283,6 +287,38 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void deleteEvent_eventNotInAddressBook_throwsException() {
+        Event event = new EventBuilder().build();
+        assertThrows(EventNotFoundException.class, () -> modelManager.deleteEvent(event));
+    }
+
+    @Test
+    public void hasEvent_eventNotInAddressBook_returnsFalse() {
+        Event event = new EventBuilder().build();
+        assertFalse(modelManager.hasEvent(event));
+    }
+
+    @Test
+    public void hasEvent_eventInAddressBook_returnsTrue() {
+        Event event = new EventBuilder().build();
+        modelManager.addEvent(event);
+        assertTrue(modelManager.hasEvent(event));
+    }
+
+    @Test
+    public void setSelectedEventDetail_setsCorrectEventAndIndex() {
+        Event event = new EventBuilder().build();
+        Index index = Index.fromZeroBased(0);
+        modelManager.addEvent(event);
+
+        modelManager.setSelectedEventDetail(event, index);
+        assertEquals(event, modelManager.getSelectedEventDetail());
+        assertEquals(index, modelManager.getSelectedEventIndex());
+    }
+
+
+
+    @Test
     public void equals() {
         AddressBook addressBook = new AddressBookBuilder().withPerson(ALICE).withPerson(BENSON).build();
         AddressBook differentAddressBook = new AddressBook();
@@ -318,4 +354,6 @@ public class ModelManagerTest {
         differentUserPrefs.setAddressBookFilePath(Paths.get("differentFilePath"));
         assertFalse(modelManager.equals(new ModelManager(addressBook, differentUserPrefs)));
     }
+
+
 }

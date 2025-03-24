@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import javafx.beans.property.ObjectProperty;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.ListType;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
@@ -225,4 +226,20 @@ public class ModelStub implements Model {
     public void updateFilteredStudentList(Predicate<Student> predicate) {
         throw new AssertionError("This method should not be called.");
     }
+
+    @Override
+    public void setSelectedEventDetail(Event event, Index eventIndex) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public Index getSelectedEventIndex() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public Event getSelectedEventDetail() {
+        throw new AssertionError("This method should not be called.");
+    }
+
 }

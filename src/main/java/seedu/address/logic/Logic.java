@@ -5,6 +5,7 @@ import java.nio.file.Path;
 import javafx.beans.property.ObjectProperty;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -71,4 +72,12 @@ public interface Logic {
      * Gets the ObjectProperty of list (person, staff, etc) that should be displayed now.
      */
     ObjectProperty<ListType> getCurrentListTypeProperty();
+
+    /** Returns the event currently being viewed in the Event Detail Panel */
+    Event getSelectedEventDetail();
+
+    /** Returns the event index currently being viewed in the Event Detail Panel */
+    Index getSelectedEventIndex();
+
+
 }

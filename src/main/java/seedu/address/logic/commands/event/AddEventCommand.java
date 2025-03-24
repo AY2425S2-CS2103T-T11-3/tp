@@ -59,4 +59,24 @@ public class AddEventCommand extends Command {
         return new CommandResult(MESSAGE_SUCCESS);
     }
 
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof AddEventCommand)) {
+            return false;
+        }
+
+        AddEventCommand otherCommand = (AddEventCommand) other;
+        return toAdd.equals(otherCommand.toAdd);
+    }
+
+    @Override
+    public int hashCode() {
+        return toAdd.hashCode();
+    }
+
+
 }

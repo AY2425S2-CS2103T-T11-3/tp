@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import javafx.beans.property.ObjectProperty;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.event.Event;
 import seedu.address.model.person.ExternalParty;
 import seedu.address.model.person.Person;
@@ -232,5 +233,14 @@ public interface Model {
      * Set the type of list (person, staff) to be displayed now
      */
     void setListType(ListType listType);
+
+    /** set display for details of a single event. */
+    void setSelectedEventDetail(Event event, Index eventIndex);
+
+    /** Retrieves the event that is currently selected for viewing in the Event Detail Panel. */
+    Event getSelectedEventDetail();
+
+    /** Retrieves the event index that is currently selected for viewing in the Event Detail Panel. */
+    Index getSelectedEventIndex();
 
 }
