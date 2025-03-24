@@ -25,6 +25,13 @@ public class TypicalStudents {
             .withBlock("P").withLevel("6")
             .withRoom("9").withDesignation("1").build();
 
+    public static final Student SAUL = new StudentBuilder().withName("Saul")
+            .withMatric("A7123456Y").withPhone("84123456")
+            .withEmail("saul@example.com").withAddress("Prison")
+            .withTags("lawyer").withEmergency("83834567")
+            .withBlock("D").withLevel("6")
+            .withRoom("9").withDesignation("2").build();
+
     private TypicalStudents() {} // prevents instantiation
 
     /**

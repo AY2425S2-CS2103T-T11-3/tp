@@ -91,9 +91,9 @@ public class AddStudentCommandTest {
         }
 
         @Override
-        public boolean hasPerson(Person person) {
-            requireNonNull(person);
-            return this.student.isSamePerson(person);
+        public boolean hasStudent(Student student) {
+            requireNonNull(student);
+            return this.student.equals(student);
         }
 
     }
@@ -102,18 +102,18 @@ public class AddStudentCommandTest {
      * A Model stub that always accept the student being added.
      */
     private class ModelStubAcceptingStudentAdded extends ModelStub {
-        final ArrayList<Person> personsAdded = new ArrayList<>();
+        final ArrayList<Student> studentsAdded = new ArrayList<>();
 
         @Override
-        public boolean hasPerson(Person person) {
-            requireNonNull(person);
-            return personsAdded.stream().anyMatch(person::isSamePerson);
+        public boolean hasStudent(Student student) {
+            requireNonNull(student);
+            return studentsAdded.stream().anyMatch(student::isSamePerson);
         }
 
         @Override
         public void addStudent(Student student) {
             requireNonNull(student);
-            personsAdded.add(student);
+            studentsAdded.add(student);
         }
 
         @Override

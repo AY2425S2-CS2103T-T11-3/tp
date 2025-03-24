@@ -21,6 +21,11 @@ public class TypicalExternalParties {
             .withEmail("jessica@example.com")
             .withDescription("Drinks Vendor").build();
 
+    public static final ExternalParty LAMAR = new ExternalPartyBuilder().withName("LAMAR")
+            .withPhone("94981234")
+            .withEmail("lamar@example.com")
+            .withDescription("Bike Vendor").build();
+
     private TypicalExternalParties() {} // prevents instantiation
 
     /**

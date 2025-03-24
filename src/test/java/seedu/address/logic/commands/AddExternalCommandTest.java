@@ -87,9 +87,9 @@ public class AddExternalCommandTest {
         }
 
         @Override
-        public boolean hasPerson(Person person) {
-            requireNonNull(person);
-            return this.externalParty.isSamePerson(person);
+        public boolean hasExternalParty(ExternalParty externalParty) {
+            requireNonNull(externalParty);
+            return this.externalParty.isSamePerson(externalParty);
         }
     }
 
@@ -97,18 +97,18 @@ public class AddExternalCommandTest {
      * A Model stub that always accepts the external party being added.
      */
     private class ModelStubAcceptingExternalPartyAdded extends ModelStub {
-        final ArrayList<Person> personsAdded = new ArrayList<>();
+        final ArrayList<ExternalParty> externalPartyAdded = new ArrayList<>();
 
         @Override
-        public boolean hasPerson(Person person) {
-            requireNonNull(person);
-            return personsAdded.stream().anyMatch(person::isSamePerson);
+        public boolean hasExternalParty(ExternalParty externalParty) {
+            requireNonNull(externalParty);
+            return externalPartyAdded.stream().anyMatch(externalParty::isSamePerson);
         }
 
         @Override
         public void addExternalParty(ExternalParty externalParty) {
             requireNonNull(externalParty);
-            personsAdded.add(externalParty);
+            externalPartyAdded.add(externalParty);
         }
 
         @Override

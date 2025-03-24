@@ -25,6 +25,13 @@ public class TypicalStaffs {
             .withLevel("4").withRoom("7")
             .withStaffDesignation("0").build();
 
+    public static final Staff WALTER = new StaffBuilder().withName("Walter")
+            .withPhone("97954785").withEmail("walter@example.com")
+            .withAddress("NUS").withTags("chemistry")
+            .withEmergency("92389412").withBlock("C")
+            .withLevel("3").withRoom("4")
+            .withStaffDesignation("1").build();
+
     private TypicalStaffs() {} // prevents instantiation
 
     /**
