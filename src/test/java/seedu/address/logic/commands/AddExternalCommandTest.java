@@ -87,9 +87,9 @@ public class AddExternalCommandTest {
         }
 
         @Override
-        public boolean hasPerson(Person person) {
-            requireNonNull(person);
-            return this.externalParty.isSamePerson(person);
+        public boolean hasExternalParty(ExternalParty externalParty) {
+            requireNonNull(externalParty);
+            return this.externalParty.isSamePerson(externalParty);
         }
     }
 
@@ -100,9 +100,9 @@ public class AddExternalCommandTest {
         final ArrayList<Person> personsAdded = new ArrayList<>();
 
         @Override
-        public boolean hasPerson(Person person) {
-            requireNonNull(person);
-            return personsAdded.stream().anyMatch(person::isSamePerson);
+        public boolean hasExternalParty(ExternalParty externalParty) {
+            requireNonNull(externalParty);
+            return personsAdded.stream().anyMatch(externalParty::isSamePerson);
         }
 
         @Override

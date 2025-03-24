@@ -36,5 +36,20 @@ public class ExternalParty extends Person {
                 .toString();
     }
 
+    @Override
+    public boolean isSamePerson(Person otherPerson) {
+        if (otherPerson == this) {
+            return true;
+        }
+
+        if (!(otherPerson instanceof ExternalParty)) {
+            return false;
+        }
+
+        ExternalParty other = (ExternalParty) otherPerson;
+        return other.getPhone().equals(getPhone())
+                || other.getEmail().equals(getEmail());
+    }
+
 
 }
