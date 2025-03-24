@@ -39,6 +39,7 @@ import seedu.address.logic.commands.SearchStudentCommand;
 import seedu.address.logic.commands.event.AddEventCommand;
 import seedu.address.logic.commands.event.AddEventMemberCommand;
 import seedu.address.logic.commands.event.DeleteEventCommand;
+import seedu.address.logic.commands.event.DeleteEventMemberCommand;
 import seedu.address.logic.commands.event.ViewEventCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.event.Event;
@@ -319,6 +320,48 @@ public class AddressBookParserTest {
         command = (AddEventMemberCommand) parser.parseCommand(userInput);
         assertEquals(expectedCommand, command);
     }
+
+
+    @Test
+    public void parseCommand_deleteEventMember() throws Exception {
+        // Test deleting a student from an event
+        Index eventIndex = Index.fromOneBased(1);
+        Index studentIndex = Index.fromOneBased(2);
+        DeleteEventMemberCommand expectedCommand = new DeleteEventMemberCommand(
+                eventIndex, Optional.of(studentIndex), Optional.empty(), Optional.empty());
+
+        String userInput = DeleteEventMemberCommand.COMMAND_WORD + " "
+                + eventIndex.getOneBased() + " "
+                + CliSyntax.PREFIX_EVENT_STUDENT + studentIndex.getOneBased();
+
+        DeleteEventMemberCommand command = (DeleteEventMemberCommand) parser.parseCommand(userInput);
+        assertEquals(expectedCommand, command);
+
+        // Test deleting a staff from an event
+        Index staffIndex = Index.fromOneBased(3);
+        expectedCommand = new DeleteEventMemberCommand(
+                eventIndex, Optional.empty(), Optional.of(staffIndex), Optional.empty());
+
+        userInput = DeleteEventMemberCommand.COMMAND_WORD + " "
+                + eventIndex.getOneBased() + " "
+                + CliSyntax.PREFIX_EVENT_STAFF + staffIndex.getOneBased();
+
+        command = (DeleteEventMemberCommand) parser.parseCommand(userInput);
+        assertEquals(expectedCommand, command);
+
+        // Test deleting an external party from an event
+        Index externalIndex = Index.fromOneBased(4);
+        expectedCommand = new DeleteEventMemberCommand(
+                eventIndex, Optional.empty(), Optional.empty(), Optional.of(externalIndex));
+
+        userInput = DeleteEventMemberCommand.COMMAND_WORD + " "
+                + eventIndex.getOneBased() + " "
+                + CliSyntax.PREFIX_EVENT_EXTERNAL + externalIndex.getOneBased();
+
+        command = (DeleteEventMemberCommand) parser.parseCommand(userInput);
+        assertEquals(expectedCommand, command);
+    }
+
 
 
 }
