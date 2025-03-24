@@ -7,7 +7,10 @@ import java.nio.file.Paths;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.Model;
+import seedu.address.model.person.ExternalParty;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Staff;
+import seedu.address.model.person.Student;
 
 /**
  * A utility class for test cases.
@@ -33,23 +36,65 @@ public class TestUtil {
     }
 
     /**
-     * Returns the middle index of the person in the {@code model}'s person list.
+     * Returns the middle index of the staff in the {@code model}'s staff list.
      */
-    public static Index getMidIndex(Model model) {
-        return Index.fromOneBased(model.getFilteredPersonList().size() / 2);
+    public static Index getStaffMidIndex(Model model) {
+        return Index.fromOneBased(model.getFilteredStaffList().size() / 2);
     }
 
     /**
-     * Returns the last index of the person in the {@code model}'s person list.
+     * Returns the last index of the staff in the {@code model}'s staff list.
      */
-    public static Index getLastIndex(Model model) {
-        return Index.fromOneBased(model.getFilteredPersonList().size());
+    public static Index getStaffLastIndex(Model model) {
+        return Index.fromOneBased(model.getFilteredStaffList().size());
     }
 
     /**
-     * Returns the person in the {@code model}'s person list at {@code index}.
+     * Returns the staff in the {@code model}'s staff list at {@code index}.
      */
-    public static Person getPerson(Model model, Index index) {
-        return model.getFilteredPersonList().get(index.getZeroBased());
+    public static Staff getStaff(Model model, Index index) {
+        return model.getFilteredStaffList().get(index.getZeroBased());
+    }
+
+    /**
+     * Returns the middle index of the student in the {@code model}'s student list.
+     */
+    public static Index getStudentMidIndex(Model model) {
+        return Index.fromOneBased(model.getFilteredStudentList().size() / 2);
+    }
+
+    /**
+     * Returns the last index of the student in the {@code model}'s student list.
+     */
+    public static Index getStudentLastIndex(Model model) {
+        return Index.fromOneBased(model.getFilteredStudentList().size());
+    }
+
+    /**
+     * Returns the student in the {@code model}'s student list at {@code index}.
+     */
+    public static Student getStudent(Model model, Index index) {
+        return model.getFilteredStudentList().get(index.getZeroBased());
+    }
+
+    /**
+     * Returns the middle index of the external party in the {@code model}'s external party list.
+     */
+    public static Index getExternalPartyMidIndex(Model model) {
+        return Index.fromOneBased(model.getFilteredExternalPartyList().size() / 2);
+    }
+
+    /**
+     * Returns the last index of the external party in the {@code model}'s external party list.
+     */
+    public static Index getExternalPartyLastIndex(Model model) {
+        return Index.fromOneBased(model.getFilteredExternalPartyList().size());
+    }
+
+    /**
+     * Returns the external party in the {@code model}'s external party list at {@code index}.
+     */
+    public static ExternalParty getExternalParty(Model model, Index index) {
+        return model.getFilteredExternalPartyList().get(index.getZeroBased());
     }
 }

@@ -8,12 +8,12 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_EVENTS;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STAFF;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.BENSON;
+import static seedu.address.testutil.TypicalExternalParties.JESSICA;
+import static seedu.address.testutil.TypicalStaffs.HARIS;
+import static seedu.address.testutil.TypicalStudents.JAMAL;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
@@ -22,7 +22,6 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.model.event.Event;
 import seedu.address.model.event.exceptions.EventNotFoundException;
 import seedu.address.model.person.ExternalParty;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Staff;
 import seedu.address.model.person.Student;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
@@ -88,19 +87,18 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void hasPerson_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> modelManager.hasPerson(null));
+    public void hasStaff_nullStaff_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.hasStaff(null));
     }
 
     @Test
-    public void hasPerson_personNotInAddressBook_returnsFalse() {
-        assertFalse(modelManager.hasPerson(ALICE));
+    public void hasStudent_nullStudent_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.hasStudent(null));
     }
 
     @Test
-    public void hasPerson_personInAddressBook_returnsTrue() {
-        modelManager.addPerson(ALICE);
-        assertTrue(modelManager.hasPerson(ALICE));
+    public void hasExternalParty_nullExternalParty_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.hasExternalParty(null));
     }
 
     @Test
@@ -212,11 +210,6 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredPersonList().remove(0));
-    }
-
-    @Test
     public void getFilteredStaffList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredStaffList().remove(0));
     }
@@ -269,8 +262,8 @@ public class ModelManagerTest {
 
     @Test
     public void getListType_modify_success() {
-        assertEquals(modelManager.getListType(), ListType.PERSON);
-        assertEquals(modelManager.getListTypeProperty().get(), ListType.PERSON);
+        assertEquals(modelManager.getListType(), ListType.STUDENT);
+        assertEquals(modelManager.getListTypeProperty().get(), ListType.STUDENT);
         modelManager.setListType(ListType.STAFF);
         assertEquals(modelManager.getListType(), ListType.STAFF);
         assertEquals(modelManager.getListTypeProperty().get(), ListType.STAFF);
@@ -316,10 +309,9 @@ public class ModelManagerTest {
     }
 
 
-
     @Test
     public void equals() {
-        AddressBook addressBook = new AddressBookBuilder().withPerson(ALICE).withPerson(BENSON).build();
+        AddressBook addressBook = new AddressBookBuilder().withStaff(HARIS).withStudent(JAMAL).withExternalParty(JESSICA).build();
         AddressBook differentAddressBook = new AddressBook();
         UserPrefs userPrefs = new UserPrefs();
 
@@ -339,14 +331,6 @@ public class ModelManagerTest {
 
         // different addressBook -> returns false
         assertFalse(modelManager.equals(new ModelManager(differentAddressBook, userPrefs)));
-
-        // different filteredList -> returns false
-        String[] keywords = ALICE.getName().fullName.split("\\s+");
-        modelManager.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
-        assertFalse(modelManager.equals(new ModelManager(addressBook, userPrefs)));
-
-        // resets modelManager to initial state for upcoming tests
-        modelManager.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
 
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();
