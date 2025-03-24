@@ -48,9 +48,6 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane personListPanelPlaceholder;
-
-    @FXML
     private StackPane staffListPanelPlaceholder;
 
     @FXML
@@ -102,7 +99,6 @@ public class MainWindow extends UiPart<Stage> {
         eventDetailPanel = null;
         staffListPanel = null;
         studentListPanel = null;
-        personListPanelPlaceholder.getChildren().clear();
         staffListPanelPlaceholder.getChildren().clear();
         externalPartyListPanelPlaceholder.getChildren().clear();
         studentListPanelPlaceholder.getChildren().clear();
