@@ -35,15 +35,10 @@ import seedu.address.logic.commands.event.ViewEventCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.event.Event;
 import seedu.address.model.person.ExternalParty;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
-import seedu.address.model.person.Person;
 import seedu.address.model.person.Staff;
 import seedu.address.model.person.Student;
-import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.EventBuilder;
 import seedu.address.testutil.ExternalPartyBuilder;
-import seedu.address.testutil.PersonBuilder;
-import seedu.address.testutil.PersonUtil;
 import seedu.address.testutil.StaffBuilder;
 import seedu.address.testutil.StudentBuilder;
 

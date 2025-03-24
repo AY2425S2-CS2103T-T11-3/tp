@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_EVENTS;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STAFF;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 import static seedu.address.testutil.Assert.assertThrows;

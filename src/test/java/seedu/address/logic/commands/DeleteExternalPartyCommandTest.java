@@ -5,10 +5,10 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
+import static seedu.address.logic.commands.CommandTestUtil.showExternalPartyAtIndex;
+import static seedu.address.testutil.TypicalExternalParties.getExternalPartyOnlyAddressBook;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -31,7 +31,7 @@ public class DeleteExternalPartyCommandTest {
 
     @BeforeEach
     public void initialiseModel() {
-        model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        model = new ModelManager(getExternalPartyOnlyAddressBook(), new UserPrefs());
     }
 
     @Test
@@ -53,7 +53,7 @@ public class DeleteExternalPartyCommandTest {
 
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
-        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
+        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredExternalPartyList().size() + 1);
         DeleteExternalPartyCommand deleteExternalPartyCommand = new DeleteExternalPartyCommand(outOfBoundIndex);
 
         assertCommandFailure(deleteExternalPartyCommand,
@@ -70,18 +70,18 @@ public class DeleteExternalPartyCommandTest {
         String expectedMessage = String.format(DeleteExternalPartyCommand.MESSAGE_DELETE_EXTERNAL_PARTY_SUCCESS,
                 Messages.format(externalPartyToDelete));
 
-        Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(getExternalPartyOnlyAddressBook(), new UserPrefs());
 
         assertCommandSuccess(deleteExternalPartyCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_invalidIndexFilteredList_throwsCommandException() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+        showExternalPartyAtIndex(model, INDEX_FIRST_PERSON);
 
         Index outOfBoundIndex = INDEX_SECOND_PERSON;
         // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getPersonList().size());
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getExternalPartyList().size());
 
         DeleteExternalPartyCommand deleteExternalPartyCommand = new DeleteExternalPartyCommand(outOfBoundIndex);
 
@@ -123,9 +123,9 @@ public class DeleteExternalPartyCommandTest {
      * Updates {@code model}'s filtered list to show no one.
      */
     private void showNoPerson(Model model) {
-        model.updateFilteredPersonList(p -> false);
+        model.updateFilteredExternalPartyList(p -> false);
 
-        assertTrue(model.getFilteredPersonList().isEmpty());
+        assertTrue(model.getFilteredExternalPartyList().isEmpty());
     }
 
 }
