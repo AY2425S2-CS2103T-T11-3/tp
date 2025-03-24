@@ -2,6 +2,8 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.commons.util.ToStringBuilder;
@@ -13,6 +15,8 @@ import seedu.address.model.tag.Tag;
  */
 public class Student extends Person {
     //Data fields
+    private final Address address;
+    private final Set<Tag> tags = new HashSet<>();
     private final Matric matric;
     private final Phone emergency;
     private final Block block;
@@ -25,14 +29,28 @@ public class Student extends Person {
      */
     public Student(Name name, Matric matric, Phone phone, Email email, Address address, Set<Tag> tags, Phone emergency,
                  Block block, Level level, Room room, StudentDesignation studentDesignation) {
-        super(name, phone, email, address, tags);
+        super(name, phone, email);
         requireAllNonNull(name, matric, phone, email, address, tags, emergency, block, level, room, studentDesignation);
+        this.address = address;
+        this.tags.addAll(tags);
         this.matric = matric;
         this.emergency = emergency;
         this.block = block;
         this.level = level;
         this.room = room;
         this.studentDesignation = studentDesignation;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    /**
+     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public Set<Tag> getTags() {
+        return Collections.unmodifiableSet(tags);
     }
 
     public Matric getMatric() {
@@ -66,8 +84,8 @@ public class Student extends Person {
                 .add("matric", this.matric)
                 .add("phone", super.getPhone())
                 .add("email", super.getEmail())
-                .add("address", super.getAddress())
-                .add("tags", super.getTags())
+                .add("address", this.getAddress())
+                .add("tags", this.getTags())
                 .add("emergency", this.emergency)
                 .add("block", this.block)
                 .add("level", this.level)

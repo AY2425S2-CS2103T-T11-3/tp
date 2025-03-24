@@ -35,6 +35,4 @@ public class ExternalParty extends Person {
                 .add("description", this.getDescription())
                 .toString();
     }
-
-
 }
