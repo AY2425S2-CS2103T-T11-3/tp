@@ -9,9 +9,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.event.Event;
+import seedu.address.model.event.EventEndTime;
 import seedu.address.model.event.EventName;
 import seedu.address.model.event.EventStartTime;
-import seedu.address.model.event.EventEndTime;
 
 /**
  * Jackson-friendly version of {@link Event}.
@@ -76,17 +76,20 @@ class JsonAdaptedEvent {
      */
     public Event toModelType() throws IllegalValueException {
         if (eventName == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, EventName.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    EventName.class.getSimpleName()));
         }
         final EventName modelEventName = new EventName(eventName);
 
         if (eventStartTime == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, EventStartTime.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    EventStartTime.class.getSimpleName()));
         }
         final EventStartTime modelEventStartTime = new EventStartTime(eventStartTime);
 
         if (eventEndTime == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, EventEndTime.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    EventEndTime.class.getSimpleName()));
         }
         final EventEndTime modelEventEndTime = new EventEndTime(eventEndTime);
 
