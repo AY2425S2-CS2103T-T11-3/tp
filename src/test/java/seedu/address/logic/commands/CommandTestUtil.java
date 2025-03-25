@@ -116,7 +116,8 @@ public class CommandTestUtil {
         AddressBook expectedAddressBook = new AddressBook(actualModel.getAddressBook());
         List<Staff> expectedFilteredStaffList = new ArrayList<>(actualModel.getFilteredStaffList());
         List<Student> expectedFilteredStudentList = new ArrayList<>(actualModel.getFilteredStudentList());
-        List<ExternalParty> expectedFilteredExternalPartyList = new ArrayList<>(actualModel.getFilteredExternalPartyList());
+        List<ExternalParty> expectedFilteredExternalPartyList =
+                new ArrayList<>(actualModel.getFilteredExternalPartyList());
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
         assertEquals(expectedAddressBook, actualModel.getAddressBook());

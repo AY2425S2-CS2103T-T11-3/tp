@@ -8,6 +8,7 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showStaffAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_PERSON;
 import static seedu.address.testutil.TypicalStaffs.getStaffOnlyAddressBook;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -60,8 +61,8 @@ public class DeleteStaffCommandTest {
     @Test
     public void execute_validIndexFilteredList_success() {
         model.addStaff(new StaffBuilder().build());
-        Staff staffToDelete = model.getFilteredStaffList().get(INDEX_FIRST_PERSON.getZeroBased());
-        DeleteStaffCommand deleteStaffCommand = new DeleteStaffCommand(INDEX_FIRST_PERSON);
+        Staff staffToDelete = model.getFilteredStaffList().get(INDEX_THIRD_PERSON.getZeroBased());
+        DeleteStaffCommand deleteStaffCommand = new DeleteStaffCommand(INDEX_THIRD_PERSON);
 
         String expectedMessage = String.format(DeleteStaffCommand.MESSAGE_DELETE_STAFF_SUCCESS,
                 Messages.format(staffToDelete));

@@ -25,7 +25,7 @@
   "students" : [ {
     "name" : "Alex Yeoh",
     "matric" : "A0123456A",
-    "phone" : "87438807",
+    "phone" : "87",
     "email" : "invalid@ex",
     "address" : "Blk 30 Geylang Street 29, #06-40",
     "tags" : [ "friends" ],

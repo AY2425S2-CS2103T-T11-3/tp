@@ -23,18 +23,6 @@
       "level": "4",
       "room": "7",
       "staffDesignation": "0"
-    },
-    {
-      "name": "Walter",
-      "phone": "97954785",
-      "email": "walter@example.com",
-      "address": "NUS",
-      "tags": ["chemistry"],
-      "emergency": "92389412",
-      "block": "C",
-      "level": "3",
-      "room": "4",
-      "staffDesignation": "1"
     }
   ],
   "students": [
@@ -63,19 +51,6 @@
       "level": "6",
       "room": "9",
       "studentDesignation": "1"
-    },
-    {
-      "name": "Saul",
-      "matric": "A7123456Y",
-      "phone": "84123456",
-      "email": "saul@example.com",
-      "address": "Prison",
-      "tags": ["lawyer"],
-      "emergency": "83834567",
-      "block": "D",
-      "level": "6",
-      "room": "9",
-      "studentDesignation": "2"
     }
   ],
   "externalParties": [
@@ -90,12 +65,6 @@
       "phone": "96781234",
       "email": "jessica@example.com",
       "description": "Drinks Vendor"
-    },
-    {
-      "name": "LAMAR",
-      "phone": "94981234",
-      "email": "lamar@example.com",
-      "description": "Bike Vendor"
     }
   ]
 }

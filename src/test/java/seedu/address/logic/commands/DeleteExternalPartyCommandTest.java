@@ -9,6 +9,7 @@ import static seedu.address.logic.commands.CommandTestUtil.showExternalPartyAtIn
 import static seedu.address.testutil.TypicalExternalParties.getExternalPartyOnlyAddressBook;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_PERSON;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -64,14 +65,13 @@ public class DeleteExternalPartyCommandTest {
     public void execute_validIndexFilteredList_success() {
         model.addExternalParty(new ExternalPartyBuilder().build());
         ExternalParty externalPartyToDelete = model.getFilteredExternalPartyList()
-                .get(INDEX_FIRST_PERSON.getZeroBased());
-        DeleteExternalPartyCommand deleteExternalPartyCommand = new DeleteExternalPartyCommand(INDEX_FIRST_PERSON);
+                .get(INDEX_THIRD_PERSON.getZeroBased());
+        DeleteExternalPartyCommand deleteExternalPartyCommand = new DeleteExternalPartyCommand(INDEX_THIRD_PERSON);
 
         String expectedMessage = String.format(DeleteExternalPartyCommand.MESSAGE_DELETE_EXTERNAL_PARTY_SUCCESS,
                 Messages.format(externalPartyToDelete));
 
         Model expectedModel = new ModelManager(getExternalPartyOnlyAddressBook(), new UserPrefs());
-
         assertCommandSuccess(deleteExternalPartyCommand, model, expectedMessage, expectedModel);
     }
 

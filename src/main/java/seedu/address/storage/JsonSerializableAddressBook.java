@@ -87,6 +87,7 @@ class JsonSerializableAddressBook {
             if (addressBook.hasExternalParty(externalParty)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_EXTERNAL_PARTY);
             }
+            addressBook.addExternalParty(externalParty);
         }
 
         //        // Convert events back into the AddressBook
