@@ -1,6 +1,7 @@
 package seedu.address.logic.commands.event;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.Messages.MESSAGE_INVALID_INDEX_OUT_OF_RANGE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_EXTERNAL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_STAFF;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_STUDENT;
@@ -57,60 +58,69 @@ public class DeleteEventMemberCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Event> lastShownEventList = model.getFilteredEventList();
 
-        if (eventIndex.getZeroBased() >= lastShownEventList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_EVENT_DISPLAYED_INDEX + "\n" + MESSAGE_USAGE);
-        }
+        try {
+            List<Event> lastShownEventList = model.getFilteredEventList();
 
-        Event eventToEdit = lastShownEventList.get(eventIndex.getZeroBased());
+            if (eventIndex.getZeroBased() >= lastShownEventList.size()) {
+                throw new CommandException(Messages.MESSAGE_INVALID_EVENT_DISPLAYED_INDEX + "\n" + MESSAGE_USAGE);
+            }
 
-        // Ensure exactly one type of member is specified
-        long count = studentIndex.isPresent() ? 1 : 0;
-        count += staffIndex.isPresent() ? 1 : 0;
-        count += externalIndex.isPresent() ? 1 : 0;
-        if (count != 1) {
+            Event eventToEdit = lastShownEventList.get(eventIndex.getZeroBased());
+
+            // Ensure exactly one type of member is specified
+            long count = studentIndex.isPresent() ? 1 : 0;
+            count += staffIndex.isPresent() ? 1 : 0;
+            count += externalIndex.isPresent() ? 1 : 0;
+            if (count != 1) {
+                throw new CommandException(MESSAGE_INVALID + "\n" + MESSAGE_USAGE);
+            }
+
+            // Remove Student
+            if (studentIndex.isPresent()) {
+                List<Student> studentList = eventToEdit.getStudents();
+                int studentZeroBased = studentIndex.get().getZeroBased();
+                if (studentZeroBased < 0 || studentZeroBased >= studentList.size()) {
+                    throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX + "\n" + MESSAGE_USAGE);
+                }
+                Student studentToRemove = studentList.get(studentIndex.get().getZeroBased());
+                eventToEdit.removeStudent(studentToRemove);
+                return new CommandResult(String.format(MESSAGE_DELETE_STUDENT_SUCCESS, studentToRemove.getName(),
+                        eventToEdit.getEventName()));
+            }
+
+            // Remove Staff
+            if (staffIndex.isPresent()) {
+                List<Staff> staffList = eventToEdit.getStaff();
+                int staffZeroBased = staffIndex.get().getZeroBased();
+                if (staffZeroBased < 0 || staffZeroBased >= staffList.size()) {
+                    throw new CommandException(Messages.MESSAGE_INVALID_STAFF_DISPLAYED_INDEX + "\n" + MESSAGE_USAGE);
+                }
+                Staff staffToRemove = staffList.get(staffIndex.get().getZeroBased());
+                eventToEdit.removeStaff(staffToRemove);
+                return new CommandResult(String.format(MESSAGE_DELETE_STAFF_SUCCESS, staffToRemove.getName(),
+                        eventToEdit.getEventName()));
+            }
+
+            // Remove External Member
+            if (externalIndex.isPresent()) {
+                List<ExternalParty> externalList = eventToEdit.getExternalParties();
+                int externalZeroBased = externalIndex.get().getZeroBased();
+                if (externalZeroBased < 0 || externalZeroBased >= externalList.size()) {
+                    throw new CommandException(Messages.MESSAGE_INVALID_EXTERNAL_PARTY_DISPLAYED_INDEX
+                            + "\n" + MESSAGE_USAGE);
+                }
+                ExternalParty externalToRemove = externalList.get(externalIndex.get().getZeroBased());
+                eventToEdit.removeExternalParty(externalToRemove);
+                return new CommandResult(String.format(MESSAGE_DELETE_EXTERNAL_PARTY_SUCCESS,
+                        externalToRemove.getName(), eventToEdit.getEventName()));
+            }
+
             throw new CommandException(MESSAGE_INVALID + "\n" + MESSAGE_USAGE);
-        }
 
-        // Remove Student
-        if (studentIndex.isPresent()) {
-            List<Student> studentList = eventToEdit.getStudents();
-            if (studentIndex.get().getZeroBased() >= studentList.size()) {
-                throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX + "\n" + MESSAGE_USAGE);
-            }
-            Student studentToRemove = studentList.get(studentIndex.get().getZeroBased());
-            eventToEdit.removeStudent(studentToRemove);
-            return new CommandResult(String.format(MESSAGE_DELETE_STUDENT_SUCCESS, studentToRemove.getName(),
-                    eventToEdit.getEventName()));
+        } catch (IndexOutOfBoundsException e) {
+            throw new CommandException(MESSAGE_INVALID_INDEX_OUT_OF_RANGE + "\n" + MESSAGE_USAGE);
         }
-
-        // Remove Staff
-        if (staffIndex.isPresent()) {
-            List<Staff> staffList = eventToEdit.getStaff();
-            if (staffIndex.get().getZeroBased() >= staffList.size()) {
-                throw new CommandException(Messages.MESSAGE_INVALID_STAFF_DISPLAYED_INDEX + "\n" + MESSAGE_USAGE);
-            }
-            Staff staffToRemove = staffList.get(staffIndex.get().getZeroBased());
-            eventToEdit.removeStaff(staffToRemove);
-            return new CommandResult(String.format(MESSAGE_DELETE_STAFF_SUCCESS, staffToRemove.getName(),
-                    eventToEdit.getEventName()));
-        }
-
-        // Remove External Member
-        if (externalIndex.isPresent()) {
-            List<ExternalParty> externalList = eventToEdit.getExternalParties();
-            if (externalIndex.get().getZeroBased() >= externalList.size()) {
-                throw new CommandException(Messages.MESSAGE_INVALID_EXTERNAL_PARTY_DISPLAYED_INDEX
-                        + "\n" + MESSAGE_USAGE);
-            }
-            ExternalParty externalToRemove = externalList.get(externalIndex.get().getZeroBased());
-            eventToEdit.removeExternalParty(externalToRemove);
-            return new CommandResult(String.format(MESSAGE_DELETE_EXTERNAL_PARTY_SUCCESS, externalToRemove.getName(),
-                    eventToEdit.getEventName()));
-        }
-
-        throw new CommandException(MESSAGE_INVALID + "\n" + MESSAGE_USAGE);
     }
 
     @Override
