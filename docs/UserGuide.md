@@ -108,7 +108,7 @@ Format: `add_staff name/NAME phone/PHONE email/EMAIL a/ADDRESS emergency/EMERGEN
 Examples:
 * `add_staff name/John Doe phone/98765432 email/johnd@example.com a/311, Clementi Ave 2, #02-25 emergency/91234567 block/A level/5 room/3 designation/1`
 
-### Adding a staff: `add_ext`
+### Adding an external party: `add_ext`
 
 Adds an external party to the address book.
 
@@ -123,22 +123,45 @@ Shows a list of all students in the address book.
 
 Format: `list_stu`
 
-### Editing a person : `edit`
+### Listing all staff : `list_staff`
 
-Edits an existing person in the address book.
+Shows a list of all staffs in the address book.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Format: `list_staff`
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
+### Listing all external parties : `list_ext`
+
+Shows a list of all external parties in the address book.
+
+Format: `list_ext`
+
+### Deleting a student : `delete_stu`
+
+Deletes the specified student from the address book.
+
+Format: `delete_stu INDEX`
+
+* Deletes the student at the specified `INDEX`.
+* The index refers to the index number shown in the displayed student list.
+* The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+* `list_stu` followed by `delete 2` deletes the 2nd student in the address book.
+* `search_stu Betsy` followed by `delete 1` deletes the 1st student in the results of the `search_stu` command.
+
+### Deleting a staff : `delete_staff`
+
+Deletes the specified staff from the address book.
+
+Format: `delete_staff INDEX`
+
+* Deletes the staff at the specified `INDEX`.
+* The index refers to the index number shown in the displayed staff list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `list_staff` followed by `delete 2` deletes the 2nd staff in the address book.
+* `search_staff Betsy` followed by `delete 1` deletes the 1st staff in the results of the `search_staff` command.
 
 ### Deleting an external party : `delete_ext`
 
@@ -152,6 +175,7 @@ Format: `delete_ext INDEX`
 
 Examples:
 * `list_ext` followed by `delete_ext 2` deletes the 2nd external party in the external party list.
+* `search_ext Betsy` followed by `delete 1` deletes the 1st external party in the results of the `search_ext` command.
 
 ### Searching for students: `search_stu`
 
@@ -201,15 +225,6 @@ Examples:
 * `search_ext name/Bob description/Food Vendor` returns a list of external parties that are both named `Bob` and 
 work as `Food Vendor`.
 
-
-
-### Listing all event : `list_event`
-
-Shows a list of all events in the address book.
-
-Format: `list_event`
-
-
 ### Adding an event : `add_event`
 
 Add an event to the address book.
@@ -222,6 +237,11 @@ Examples:
 * `add_event name/ Dance Club Rehearsal from/ 2025-06-15 18:00 to/ 2025-06-15 21:00`
 * `add_event name/ Basketball Club Training from/ 2025-06-16 18:00 to/ 2025-06-16 21:00`
 
+### Listing all event : `list_event`
+
+Shows a list of all events in the address book.
+
+Format: `list_event`
 
 ### Deleting an event : `delete_event`
 
@@ -364,10 +384,12 @@ Action     | Format, Examples
 **Add External Party**    | `add_ext name/NAME phone/PHONE email/EMAIL desc/DESCRIPTION` <br><br> e.g., `add_ext name/John Doe phone/98765432 email/johnd@example.com desc/External party for food.`
 **List Students**  | `list_stu`
 **Clear**  | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
+**Delete Student** | `delete_stu INDEX`<br> e.g., `delete_stu 3` 
+**Delete Staff** | `delete_staff INDEX` <br> e.g., `delete_staff 3`
 **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List**   | `list`
+**List Staff**   | `list_staff`
+**List External Party**   | `list_ext`
 **List events**   | `list_event`
 **Add an event**    | `add_event name/EVENT_NAME from/START_TIME to/END_TIME` <br> e.g., `add_event name/ Dance Club Rehearsal from/ 2025-06-15 18:00 to/ 2025-06-15 21:00`
 **Delete an event**    | `delete_event INDEX` <br> e.g., `delete_event 2`

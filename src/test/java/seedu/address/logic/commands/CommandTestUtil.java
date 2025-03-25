@@ -50,7 +50,6 @@ public class CommandTestUtil {
     public static final String VALID_LEVEL_BOB = "1";
     public static final String VALID_ROOM_BOB = "1";
     public static final String VALID_DESIGNATION_BOB = "1";
-
     public static final String VALID_DESCRIPTION_FATIMAH = "Sells rendang.";
 
 
