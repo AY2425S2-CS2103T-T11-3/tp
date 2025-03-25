@@ -75,4 +75,20 @@ public class Student extends Person {
                 .add("designation", this.studentDesignation)
                 .toString();
     }
+
+    @Override
+    public boolean isSamePerson(Person otherPerson) {
+        if (otherPerson == this) {
+            return true;
+        }
+
+        if (!(otherPerson instanceof Student)) {
+            return false;
+        }
+
+        Student other = (Student) otherPerson;
+        return other.getPhone().equals(getPhone())
+                || other.getEmail().equals(getEmail())
+                || other.getMatric().equals(getMatric());
+    }
 }
