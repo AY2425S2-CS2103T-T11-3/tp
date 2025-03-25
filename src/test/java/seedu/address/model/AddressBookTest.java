@@ -51,17 +51,17 @@ public class AddressBookTest {
     }
 
     @Test
-    public void hasPerson_nullStaff_throwsNullPointerException() {
+    public void hasStaff_nullStaff_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> addressBook.hasStaff(null));
     }
 
     @Test
-    public void hasPerson_nullStudent_throwsNullPointerException() {
+    public void hasStudent_nullStudent_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> addressBook.hasStudent(null));
     }
 
     @Test
-    public void hasPerson_nullExternalParty_throwsNullPointerException() {
+    public void hasExternalParty_nullExternalParty_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> addressBook.hasExternalParty(null));
     }
 

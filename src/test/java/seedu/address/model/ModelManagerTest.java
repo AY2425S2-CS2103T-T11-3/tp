@@ -4,6 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MATRIC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_EVENTS;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STAFF;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
@@ -203,7 +206,8 @@ public class ModelManagerTest {
     @Test
     public void setStudent_editedStudentHasNonUniqueIdentity_throwsDuplicatePersonException() {
         Student student = new StudentBuilder().build();
-        Student student1 = new StudentBuilder().withName("Haikel").build();
+        Student student1 = new StudentBuilder().withMatric(VALID_MATRIC_BOB).withPhone(VALID_PHONE_BOB)
+                .withEmail(VALID_EMAIL_BOB).build();
         modelManager.addStudent(student);
         modelManager.addStudent(student1);
         assertThrows(DuplicatePersonException.class, () -> modelManager.setStudent(student, student1));

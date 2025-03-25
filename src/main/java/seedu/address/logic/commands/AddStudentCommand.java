@@ -53,7 +53,8 @@ public class AddStudentCommand extends Command {
             + "respectively.";
 
     public static final String MESSAGE_SUCCESS = "New student added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This student already exists in ResiConnect";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This student already exists in ResiConnect. No two "
+            + "students can have the same matric, phone or email.";
 
     private final Student toAdd;
 

@@ -92,7 +92,7 @@ public class AddStudentCommandTest {
         @Override
         public boolean hasStudent(Student student) {
             requireNonNull(student);
-            return this.student.equals(student);
+            return this.student.isSamePerson(student);
         }
 
     }
