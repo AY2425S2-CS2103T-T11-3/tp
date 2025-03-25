@@ -59,7 +59,7 @@ public class AddEventMemberCommandTest {
 
         CommandResult result = command.execute(model);
 
-        assertEquals(String.format(AddEventMemberCommand.MESSAGE_SUCCESS, student.getName().fullName,
+        assertEquals(String.format(AddEventMemberCommand.MESSAGE_STUDENT_ADDED_TO_EVENT, student.getName().fullName,
                         sampleEvent.getEventName()),
                 result.getFeedbackToUser());
     }
@@ -77,7 +77,7 @@ public class AddEventMemberCommandTest {
 
         CommandResult result = command.execute(model);
 
-        assertEquals(String.format(AddEventMemberCommand.MESSAGE_SUCCESS, staff.getName().fullName,
+        assertEquals(String.format(AddEventMemberCommand.MESSAGE_STAFF_ADDED_TO_EVENT, staff.getName().fullName,
                         sampleEvent.getEventName()),
                 result.getFeedbackToUser());
     }
@@ -95,8 +95,8 @@ public class AddEventMemberCommandTest {
 
         CommandResult result = command.execute(model);
 
-        assertEquals(String.format(AddEventMemberCommand.MESSAGE_SUCCESS, external.getName(),
-                        sampleEvent.getEventName()),
+        assertEquals(String.format(AddEventMemberCommand.MESSAGE_EXTERNAL_PARTY_ADDED_TO_EVENT,
+                        external.getName().fullName, sampleEvent.getEventName()),
                 result.getFeedbackToUser());
     }
 
