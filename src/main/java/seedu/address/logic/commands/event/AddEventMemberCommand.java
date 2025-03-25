@@ -3,6 +3,7 @@ package seedu.address.logic.commands.event;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_EVENT_DISPLAYED_INDEX;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_EXTERNAL_PARTY_DISPLAYED_INDEX;
+import static seedu.address.logic.Messages.MESSAGE_INVALID_INDEX_OUT_OF_RANGE;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_STAFF_DISPLAYED_INDEX;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_EXTERNAL;
@@ -39,6 +40,7 @@ public class AddEventMemberCommand extends Command {
     public static final String MESSAGE_EXTERNAL_PARTY_ADDED_TO_EVENT = "Added external party %s to event: %s";
     public static final String MESSAGE_INVALID = "You must specify exactly one member type: stu/, staff/, or ext/.";
 
+
     private final Index eventIndex;
     private final Optional<Index> studentIndex;
     private final Optional<Index> staffIndex;
@@ -63,6 +65,9 @@ public class AddEventMemberCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        requireNonNull(model);
+
+
         // Ensure only one type of member is provided
         long count = studentIndex.isPresent() ? 1 : 0;
         count += staffIndex.isPresent() ? 1 : 0;
@@ -71,49 +76,57 @@ public class AddEventMemberCommand extends Command {
             throw new CommandException(MESSAGE_INVALID + "\n" + MESSAGE_USAGE);
         }
 
+        try {
+            List<Event> lastShownEventList = model.getFilteredEventList();
 
-        List<Event> lastShownEventList = model.getFilteredEventList();
-
-        if (eventIndex.getZeroBased() >= lastShownEventList.size()) {
-            throw new CommandException(MESSAGE_INVALID_EVENT_DISPLAYED_INDEX + "\n" + MESSAGE_USAGE);
-        }
-        Event event = lastShownEventList.get(eventIndex.getZeroBased());
-
-
-        // Add Student
-        if (studentIndex.isPresent()) {
-            if (studentIndex.get().getZeroBased() >= model.getFilteredStudentList().size()) {
-                throw new CommandException(MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX + "\n" + MESSAGE_USAGE);
+            if (eventIndex.getZeroBased() < 0 || eventIndex.getZeroBased() >= lastShownEventList.size()) {
+                throw new CommandException(MESSAGE_INVALID_EVENT_DISPLAYED_INDEX + "\n" + MESSAGE_USAGE);
             }
-            Student student = model.getFilteredStudentList().get(studentIndex.get().getZeroBased());
-            event.addStudent(student);
-            return new CommandResult(String.format(MESSAGE_STUDENT_ADDED_TO_EVENT, student.getName().fullName,
-                    event.getEventName()));
-        }
+            Event event = lastShownEventList.get(eventIndex.getZeroBased());
 
-        // Add Staff
-        if (staffIndex.isPresent()) {
-            if (staffIndex.get().getZeroBased() >= model.getFilteredStaffList().size()) {
-                throw new CommandException(MESSAGE_INVALID_STAFF_DISPLAYED_INDEX + "\n" + MESSAGE_USAGE);
+
+            // Add Student
+            if (studentIndex.isPresent()) {
+                int studentZeroBased = studentIndex.get().getZeroBased();
+                if (studentZeroBased < 0 || studentZeroBased >= model.getFilteredStudentList().size()) {
+                    throw new CommandException(MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX + "\n" + MESSAGE_USAGE);
+                }
+                Student student = model.getFilteredStudentList().get(studentZeroBased);
+                event.addStudent(student);
+                return new CommandResult(String.format(MESSAGE_STUDENT_ADDED_TO_EVENT, student.getName().fullName,
+                        event.getEventName()));
             }
-            Staff staff = model.getFilteredStaffList().get(staffIndex.get().getZeroBased());
-            event.addStaff(staff);
-            return new CommandResult(String.format(MESSAGE_STAFF_ADDED_TO_EVENT, staff.getName().fullName,
-                    event.getEventName()));
-        }
 
-        // Add External Member
-        if (externalIndex.isPresent()) {
-            if (externalIndex.get().getZeroBased() >= model.getFilteredExternalPartyList().size()) {
-                throw new CommandException(MESSAGE_INVALID_EXTERNAL_PARTY_DISPLAYED_INDEX + "\n" + MESSAGE_USAGE);
+            // Add Staff
+            if (staffIndex.isPresent()) {
+                int staffZeroBased = staffIndex.get().getZeroBased();
+                if (staffZeroBased < 0 || staffZeroBased >= model.getFilteredStaffList().size()) {
+                    throw new CommandException(MESSAGE_INVALID_STAFF_DISPLAYED_INDEX + "\n" + MESSAGE_USAGE);
+                }
+                Staff staff = model.getFilteredStaffList().get(staffZeroBased);
+                event.addStaff(staff);
+                return new CommandResult(String.format(MESSAGE_STAFF_ADDED_TO_EVENT, staff.getName().fullName,
+                        event.getEventName()));
             }
-            ExternalParty external = model.getFilteredExternalPartyList().get(externalIndex.get().getZeroBased());
-            event.addExternalParty(external);
-            return new CommandResult(String.format(MESSAGE_EXTERNAL_PARTY_ADDED_TO_EVENT, external.getName(),
-                    event.getEventName()));
+
+            // Add External Member
+            if (externalIndex.isPresent()) {
+                int externalZeroBased = externalIndex.get().getZeroBased();
+                if (externalZeroBased < 0 || externalZeroBased >= model.getFilteredExternalPartyList().size()) {
+                    throw new CommandException(MESSAGE_INVALID_EXTERNAL_PARTY_DISPLAYED_INDEX + "\n" + MESSAGE_USAGE);
+                }
+                ExternalParty external = model.getFilteredExternalPartyList().get(externalZeroBased);
+                event.addExternalParty(external);
+                return new CommandResult(String.format(MESSAGE_EXTERNAL_PARTY_ADDED_TO_EVENT, external.getName(),
+                        event.getEventName()));
+            }
+
+            throw new CommandException(MESSAGE_INVALID + "\n" + MESSAGE_USAGE);
+
+        } catch (IndexOutOfBoundsException e) {
+            throw new CommandException(MESSAGE_INVALID_INDEX_OUT_OF_RANGE + "\n" + MESSAGE_USAGE);
         }
 
-        throw new CommandException(MESSAGE_INVALID + "\n" + MESSAGE_USAGE);
     }
 
     @Override
