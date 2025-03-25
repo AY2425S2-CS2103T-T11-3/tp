@@ -69,6 +69,13 @@ public class StaffTest {
                 .withStaffDesignation(VALID_DESIGNATION_BOB)
                 .build();
         assertTrue(staff.isSamePerson(editedStaff));
+
+        // different phone and email, all other attributes same -> returns false
+        editedStaff = new StaffBuilder()
+                .withPhone(VALID_PHONE_BOB)
+                .withEmail(VALID_EMAIL_BOB)
+                .build();
+        assertFalse(staff.isSamePerson(editedStaff));
     }
 
     @Test
