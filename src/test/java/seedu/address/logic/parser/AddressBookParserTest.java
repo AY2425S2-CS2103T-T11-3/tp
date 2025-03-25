@@ -13,7 +13,7 @@ import java.util.Optional;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.AddExternalCommand;
+import seedu.address.logic.commands.AddExternalPartyCommand;
 import seedu.address.logic.commands.AddStaffCommand;
 import seedu.address.logic.commands.AddStudentCommand;
 import seedu.address.logic.commands.ClearCommand;
@@ -127,10 +127,10 @@ public class AddressBookParserTest {
     public void parseCommand_addExternal() throws Exception {
         ExternalParty externalParty = new ExternalPartyBuilder().build();
 
-        AddExternalCommand command = (AddExternalCommand) parser.parseCommand(
-                AddExternalCommand.COMMAND_WORD
+        AddExternalPartyCommand command = (AddExternalPartyCommand) parser.parseCommand(
+                AddExternalPartyCommand.COMMAND_WORD
                         + " name/Amy Bee phone/85355255 email/amy@gmail.com desc/External supplier for food.");
-        assertEquals(new AddExternalCommand(externalParty), command);
+        assertEquals(new AddExternalPartyCommand(externalParty), command);
     }
 
 

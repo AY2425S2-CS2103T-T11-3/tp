@@ -22,7 +22,7 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.AddExternalCommand;
+import seedu.address.logic.commands.AddExternalPartyCommand;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.ModelStub;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -192,7 +192,7 @@ public class LogicManagerTest {
         logic = new LogicManager(model, storage);
 
         // Triggers the saveAddressBook method by executing an add command
-        String addExternalCommand = AddExternalCommand.COMMAND_WORD + NAME_DESC_FATIMAH + PHONE_DESC_FATIMAH
+        String addExternalCommand = AddExternalPartyCommand.COMMAND_WORD + NAME_DESC_FATIMAH + PHONE_DESC_FATIMAH
                 + EMAIL_DESC_FATIMAH + DESCRIPTION_DESC_FATIMAH;
         ExternalParty expectedExternalParty = FATIMAH;
         ModelManager expectedModel = new ModelManager();
