@@ -21,7 +21,6 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.event.Event;
 import seedu.address.model.person.ExternalParty;
-import seedu.address.model.person.Person;
 import seedu.address.model.person.Staff;
 import seedu.address.model.person.Student;
 import seedu.address.storage.Storage;
@@ -37,7 +36,7 @@ public class LogicManager implements Logic {
 
     private final Logger logger = LogsCenter.getLogger(LogicManager.class);
 
-    private final ObjectProperty<ListType> currentListTypeProperty = new SimpleObjectProperty<>(ListType.PERSON);
+    private final ObjectProperty<ListType> currentListTypeProperty = new SimpleObjectProperty<>(ListType.STUDENT);
     private final Model model;
     private final Storage storage;
     private final AddressBookParser addressBookParser;
@@ -88,11 +87,6 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return model.getFilteredPersonList();
-    }
-
-    @Override
     public ObservableList<Event> getFilteredEventList() {
         return model.getFilteredEventList();
     }
@@ -136,7 +130,5 @@ public class LogicManager implements Logic {
     public Index getSelectedEventIndex() {
         return model.getSelectedEventIndex();
     }
-
-
 
 }

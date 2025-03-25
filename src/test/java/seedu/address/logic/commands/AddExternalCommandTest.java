@@ -15,7 +15,6 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.person.ExternalParty;
-import seedu.address.model.person.Person;
 import seedu.address.testutil.Assert;
 import seedu.address.testutil.ExternalPartyBuilder;
 
@@ -97,18 +96,18 @@ public class AddExternalCommandTest {
      * A Model stub that always accepts the external party being added.
      */
     private class ModelStubAcceptingExternalPartyAdded extends ModelStub {
-        final ArrayList<Person> personsAdded = new ArrayList<>();
+        final ArrayList<ExternalParty> externalPartyAdded = new ArrayList<>();
 
         @Override
         public boolean hasExternalParty(ExternalParty externalParty) {
             requireNonNull(externalParty);
-            return personsAdded.stream().anyMatch(externalParty::isSamePerson);
+            return externalPartyAdded.stream().anyMatch(externalParty::isSamePerson);
         }
 
         @Override
         public void addExternalParty(ExternalParty externalParty) {
             requireNonNull(externalParty);
-            personsAdded.add(externalParty);
+            externalPartyAdded.add(externalParty);
         }
 
         @Override

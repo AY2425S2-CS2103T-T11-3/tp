@@ -44,11 +44,11 @@
           </padding>
         </StackPane>
 
-        <VBox fx:id="personList" minHeight="0.0" minWidth="340" prefWidth="340" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
+        <VBox fx:id="studentList" minHeight="0.0" minWidth="340" prefWidth="340" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
           <padding>
             <Insets bottom="10" left="10" right="10" top="10" />
           </padding>
-          <StackPane fx:id="personListPanelPlaceholder" minHeight="0.0" VBox.vgrow="ALWAYS" />
+          <StackPane fx:id="studentListPanelPlaceholder" VBox.vgrow="ALWAYS" />
         </VBox>
 
         <VBox fx:id="staffList" minHeight="0.0" minWidth="340" prefWidth="340" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
@@ -63,12 +63,6 @@
             <Insets top="10" right="10" bottom="10" left="10" />
           </padding>
           <StackPane fx:id="externalPartyListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
-        </VBox>
-        <VBox fx:id="studentList" minHeight="0.0" minWidth="340" prefWidth="340" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
-          <padding>
-            <Insets bottom="10" left="10" right="10" top="10" />
-          </padding>
-          <StackPane fx:id="studentListPanelPlaceholder" VBox.vgrow="ALWAYS" />
         </VBox>
 
         <VBox fx:id="eventList" minHeight="0.0" minWidth="340" prefWidth="340" styleClass="pane-with-border" VBox.vgrow="ALWAYS">

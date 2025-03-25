@@ -1,0 +1,70 @@
+{
+  "staffs": [
+    {
+      "name": "Martin",
+      "phone": "90123456",
+      "email": "martin@example.com",
+      "address": "NUS",
+      "tags": ["prof"],
+      "emergency": "91234567",
+      "block": "A",
+      "level": "5",
+      "room": "5",
+      "staffDesignation": "2"
+    },
+    {
+      "name": "Haris",
+      "phone": "94854785",
+      "email": "huhuharis@example.com",
+      "address": "NUS",
+      "tags": ["huhu"],
+      "emergency": "84189412",
+      "block": "E",
+      "level": "4",
+      "room": "7",
+      "staffDesignation": "0"
+    }
+  ],
+  "students": [
+    {
+      "name": "Jamal",
+      "matric": "A1234567B",
+      "phone": "91234567",
+      "email": "jamal27@example.com",
+      "address": "NUS",
+      "tags": ["friend"],
+      "emergency": "90123456",
+      "block": "A",
+      "level": "5",
+      "room": "5",
+      "studentDesignation": "2"
+    },
+    {
+      "name": "Mike",
+      "matric": "A7654321Z",
+      "phone": "80123456",
+      "email": "mikeOx@example.com",
+      "address": "Belize",
+      "tags": ["criminal"],
+      "emergency": "82234567",
+      "block": "P",
+      "level": "6",
+      "room": "9",
+      "studentDesignation": "1"
+    }
+  ],
+  "externalParties": [
+    {
+      "name": "FATIMAH",
+      "phone": "91234567",
+      "email": "fatimah@example.com",
+      "description": "Sells rendang."
+    },
+    {
+      "name": "JESSICA",
+      "phone": "96781234",
+      "email": "jessica@example.com",
+      "description": "Drinks Vendor"
+    }
+  ]
+}

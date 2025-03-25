@@ -3,10 +3,13 @@ package seedu.address.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.HOON;
-import static seedu.address.testutil.TypicalPersons.IDA;
+import static seedu.address.testutil.TypicalExternalParties.FATIMAH;
+import static seedu.address.testutil.TypicalExternalParties.LAMAR;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalStaffs.HARIS;
+import static seedu.address.testutil.TypicalStaffs.WALTER;
+import static seedu.address.testutil.TypicalStudents.JAMAL;
+import static seedu.address.testutil.TypicalStudents.SAUL;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -72,14 +75,20 @@ public class JsonAddressBookStorageTest {
         assertEquals(original, new AddressBook(readBack));
 
         // Modify data, overwrite exiting file, and read back
-        original.addPerson(HOON);
-        original.removePerson(ALICE);
+        original.addStudent(SAUL);
+        original.removeStudent(JAMAL);
+        original.addStaff(WALTER);
+        original.removeStaff(HARIS);
+        original.addExternalParty(LAMAR);
+        original.removeExternalParty(FATIMAH);
         jsonAddressBookStorage.saveAddressBook(original, filePath);
         readBack = jsonAddressBookStorage.readAddressBook(filePath).get();
         assertEquals(original, new AddressBook(readBack));
 
         // Save and read without specifying file path
-        original.addPerson(IDA);
+        original.addStudent(JAMAL);
+        original.addStaff(HARIS);
+        original.addExternalParty(FATIMAH);
         jsonAddressBookStorage.saveAddressBook(original); // file path not specified
         readBack = jsonAddressBookStorage.readAddressBook().get(); // file path not specified
         assertEquals(original, new AddressBook(readBack));
