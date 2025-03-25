@@ -115,7 +115,7 @@ Adds an external party to the address book.
 Format: `add_ext name/NAME phone/PHONE email/EMAIL desc/DESCRIPTION`
 
 Examples:
-* `add_ext name/John Doe phone/98765432 email/johnd@example.com desc/External party for food. `
+* `add_ext name/John Doe phone/98765432 email/johnd@example.com desc/External party for food.`
 
 ### Listing all students : `list_stu`
 
@@ -244,7 +244,10 @@ Here is a comprehensive list for any constraints that we have specified above!
 
 Action     | Format, Examples
 -----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-**Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
+**Add Student**    | `add_stu name/NAME matric/MATRIC phone/PHONE email/EMAIL a/ADDRESS emergency/EMERGENCY CONTACT block/BLOCK level/LEVEL room/ROOM designation/DESIGNATION` <br><br> e.g., `add_stu name/John Doe matric/A0234567B phone/98765432 email/johnd@example.com a/311, Clementi Ave 2, #02-25 emergency/91234567 block/A level/5 room/3 designation/1`
+**Add Staff**    | `add_staff name/NAME phone/PHONE email/EMAIL a/ADDRESS emergency/EMERGENCY CONTACT block/BLOCK level/LEVEL room/ROOM designation/DESIGNATION` <br><br> e.g., `add_staff name/John Doe phone/98765432 email/johnd@example.com a/311, Clementi Ave 2, #02-25 emergency/91234567 block/A level/5 room/3 designation/1`
+**Add External Party**    | `add_ext name/NAME phone/PHONE email/EMAIL desc/DESCRIPTION` <br><br> e.g., `add_ext name/John Doe phone/98765432 email/johnd@example.com desc/External party for food.`
+**List Students**  | `list_stu`
 **Clear**  | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
