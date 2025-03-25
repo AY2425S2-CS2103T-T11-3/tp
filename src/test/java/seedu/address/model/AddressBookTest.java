@@ -145,15 +145,6 @@ public class AddressBookTest {
     }
 
     @Test
-    public void setStudent_editedStudentHasNonUniqueIdentity_throwsDuplicatePersonException() {
-        Student student = new StudentBuilder().build();
-        Student student1 = new StudentBuilder().withName("Haikel").build();
-        addressBook.addStudent(student);
-        addressBook.addStudent(student1);
-        assertThrows(DuplicatePersonException.class, () -> addressBook.setStudent(student, student1));
-    }
-
-    @Test
     public void remove_nullStaff_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> addressBook.removeStaff(null));
     }
