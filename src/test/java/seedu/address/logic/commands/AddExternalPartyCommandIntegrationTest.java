@@ -14,7 +14,7 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.person.ExternalParty;
 import seedu.address.testutil.ExternalPartyBuilder;
 
-public class AddExternalCommandIntegrationTest {
+public class AddExternalPartyCommandIntegrationTest {
     private Model model;
 
     @BeforeEach
@@ -29,15 +29,15 @@ public class AddExternalCommandIntegrationTest {
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.addExternalParty(validExternalParty);
 
-        assertCommandSuccess(new AddExternalCommand(validExternalParty), model,
-                String.format(AddExternalCommand.MESSAGE_SUCCESS, Messages.format(validExternalParty)),
+        assertCommandSuccess(new AddExternalPartyCommand(validExternalParty), model,
+                String.format(AddExternalPartyCommand.MESSAGE_SUCCESS, Messages.format(validExternalParty)),
                 expectedModel);
     }
 
     @Test
     public void execute_duplicateStudent_throwsCommandException() {
         ExternalParty externalPartyInList = model.getAddressBook().getExternalPartyList().get(0);
-        assertCommandFailure(new AddExternalCommand(externalPartyInList), model,
-                AddExternalCommand.MESSAGE_DUPLICATE_PARTY);
+        assertCommandFailure(new AddExternalPartyCommand(externalPartyInList), model,
+                AddExternalPartyCommand.MESSAGE_DUPLICATE_PARTY);
     }
 }

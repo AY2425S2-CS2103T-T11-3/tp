@@ -9,7 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 
 import java.util.stream.Stream;
 
-import seedu.address.logic.commands.AddExternalCommand;
+import seedu.address.logic.commands.AddExternalPartyCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Description;
 import seedu.address.model.person.Email;
@@ -18,24 +18,25 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 
 /**
- * Parses input arguments and creates a new {@code AddExternalCommand} object
+ * Parses input arguments and creates a new {@code AddExternalPartyCommand} object
  */
-public class AddExternalCommandParser implements Parser<AddExternalCommand> {
+public class AddExternalPartyCommandParser implements Parser<AddExternalPartyCommand> {
     /**
-     * Parses the given {@code String} of arguments in the context of the {@code AddExternalCommand}
-     * and returns an {@code AddExternalCommand} object for execution.
+     * Parses the given {@code String} of arguments in the context of the {@code AddExternalPartyCommand}
+     * and returns an {@code AddExternalPartyCommand} object for execution.
      *
      * @throws ParseException if the user input does not conform to the expected format.
      */
-    public AddExternalCommand parse(String args) throws ParseException {
+    public AddExternalPartyCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args,
                 PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_DESCRIPTION);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_DESCRIPTION)
                 || (!argMultimap.getPreamble().isEmpty()
-                && !argMultimap.getPreamble().equals(AddExternalCommand.COMMAND_WORD))) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddExternalCommand.MESSAGE_USAGE));
+                && !argMultimap.getPreamble().equals(AddExternalPartyCommand.COMMAND_WORD))) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    AddExternalPartyCommand.MESSAGE_USAGE));
         }
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_DESCRIPTION);
@@ -47,7 +48,7 @@ public class AddExternalCommandParser implements Parser<AddExternalCommand> {
 
         ExternalParty externalParty = new ExternalParty(name, phone, email, description);
 
-        return new AddExternalCommand(externalParty);
+        return new AddExternalPartyCommand(externalParty);
     }
 
     /**
