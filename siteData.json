@@ -107,7 +107,7 @@
       "src": "UserGuide.md",
       "title": "User Guide",
       "headings": {
-        "ab-3-user-guide": "AB-3 User Guide",
+        "resiconnect-user-guide": "ResiConnect User Guide",
         "quick-start": "Quick start",
         "features": "Features",
         "viewing-help-help": "Viewing help : help",
@@ -124,7 +124,7 @@
         "searching-for-staff-search-staff": "Searching for staff: search_staff",
         "searching-for-external-parties-search-ext": "Searching for external parties: search_ext",
         "adding-an-event-add-event": "Adding an event : add_event",
-        "listing-all-event-list-event": "Listing all event : list_event",
+        "listing-all-events-list-event": "Listing all events : list_event",
         "deleting-an-event-delete-event": "Deleting an event : delete_event",
         "view-an-event-view-event": "View an event : view_event",
         "searching-an-event-search-event": "Searching an event : search_event",
