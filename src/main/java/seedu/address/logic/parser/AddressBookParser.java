@@ -30,7 +30,9 @@ import seedu.address.logic.commands.SearchExternalPartyCommand;
 import seedu.address.logic.commands.SearchStaffCommand;
 import seedu.address.logic.commands.SearchStudentCommand;
 import seedu.address.logic.commands.event.AddEventCommand;
+import seedu.address.logic.commands.event.AddEventMemberCommand;
 import seedu.address.logic.commands.event.DeleteEventCommand;
+import seedu.address.logic.commands.event.DeleteEventMemberCommand;
 import seedu.address.logic.commands.event.ListEventCommand;
 import seedu.address.logic.commands.event.SearchEventCommand;
 import seedu.address.logic.commands.event.ViewEventCommand;
@@ -144,6 +146,12 @@ public class AddressBookParser {
 
         case ViewEventCommand.COMMAND_WORD:
             return new ViewEventCommandParser().parse(arguments);
+
+        case AddEventMemberCommand.COMMAND_WORD:
+            return new AddEventMemberCommandParser().parse(arguments);
+
+        case DeleteEventMemberCommand.COMMAND_WORD:
+            return new DeleteEventMemberCommandParser().parse(arguments);
 
         default:
             logger.finer("This user input caused a ParseException: " + userInput);

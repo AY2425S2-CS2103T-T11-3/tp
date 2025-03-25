@@ -12,6 +12,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 //import seedu.address.model.event.Event;
+import seedu.address.model.event.Event;
 import seedu.address.model.person.ExternalParty;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Staff;
@@ -34,17 +35,14 @@ class JsonSerializableAddressBook {
     private final List<JsonAdaptedStaff> staffs = new ArrayList<>();
     private final List<JsonAdaptedStudent> students = new ArrayList<>();
     private final List<JsonAdaptedExternalParty> externalParties = new ArrayList<>();
-    //    private final List<JsonAdaptedEvent> events = new ArrayList<>();      // DO NOT DELETE. FOR V1.3
+    private final List<JsonAdaptedEvent> events = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonSerializableAddressBook} with the given persons.
      */
     @JsonCreator
     public JsonSerializableAddressBook(@JsonProperty("persons") List<JsonAdaptedPerson> persons) {
-        //@JsonProperty("events") List<JsonAdaptedEvent> events) {
         this.persons.addAll(persons);
-        //        this.events.addAll(events);   // DO NOT DELETE. FOR V1.3
-
     }
 
     /**
@@ -58,7 +56,7 @@ class JsonSerializableAddressBook {
         students.addAll(source.getStudentList().stream().map(JsonAdaptedStudent::new).collect(Collectors.toList()));
         externalParties.addAll(source.getExternalPartyList().stream().map(JsonAdaptedExternalParty::new)
                 .collect(Collectors.toList()));
-        //        events.addAll(source.getEventList().stream().map(JsonAdaptedEvent::new).collect(Collectors.toList()));
+        events.addAll(source.getEventList().stream().map(JsonAdaptedEvent::new).collect(Collectors.toList()));
     }
 
     /**
@@ -97,16 +95,17 @@ class JsonSerializableAddressBook {
             if (addressBook.hasExternalParty(externalParty)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_EXTERNAL_PARTY);
             }
+            addressBook.addExternalParty(externalParty);
         }
 
-        //        // Convert events back into the AddressBook
-        //        for (JsonAdaptedEvent jsonAdaptedEvent : events) {
-        //            Event event = jsonAdaptedEvent.toModelType();
-        //            if (addressBook.hasEvent(event)) {
-        //                throw new IllegalValueException(MESSAGE_DUPLICATE_EVENT);
-        //            }
-        //            addressBook.addEvent(event);
-        //        }
+        // Convert events back into the AddressBook
+        for (JsonAdaptedEvent jsonAdaptedEvent : events) {
+            Event event = jsonAdaptedEvent.toModelType();
+            if (addressBook.hasEvent(event)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_EVENT);
+            }
+            addressBook.addEvent(event);
+        }
 
         return addressBook;
     }

@@ -25,7 +25,7 @@ public class AddExternalCommand extends Command {
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "
             + PREFIX_EMAIL + "EMAIL "
-            + PREFIX_DESCRIPTION + "DESCRIPTION "
+            + PREFIX_DESCRIPTION + "DESCRIPTION\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432 "
@@ -33,8 +33,8 @@ public class AddExternalCommand extends Command {
             + PREFIX_DESCRIPTION + "External party for food. ";
 
     public static final String MESSAGE_SUCCESS = "New external party added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PARTY =
-            "This external party already exists in ResiConnect";
+    public static final String MESSAGE_DUPLICATE_PARTY = "This external party already exists in ResiConnect. "
+            + "No two external parties can have the same email or phone.";
     public static final String MESSAGE_ARGUMENTS = "Name: %1$s, Email: %2$s, Phone: %3$s, Description: %4$s";
 
     private final ExternalParty toAdd;
@@ -50,7 +50,7 @@ public class AddExternalCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (model.hasPerson(toAdd)) {
+        if (model.hasExternalParty(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_PARTY);
         }
         model.addExternalParty(toAdd);

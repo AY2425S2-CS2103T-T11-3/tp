@@ -41,6 +41,8 @@ public class Messages {
     public static final String MESSAGE_INVALID_EVENT_DISPLAYED_INDEX = "The event index provided is invalid";
     public static final String MESSAGE_INVALID_STARTTIME_AFTER_ENDTIME =
                 "Invalid event time: Start time must be before end time.";
+    public static final String MESSAGE_MISSING_EVENT_MEMBER = "At least one member must be specified.";
+    public static final String MESSAGE_INVALID_INDEX_OUT_OF_RANGE = "The specified index is out of range.";
 
     /**
      * Returns an error message indicating the duplicate prefixes.
