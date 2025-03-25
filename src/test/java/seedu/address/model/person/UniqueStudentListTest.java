@@ -3,8 +3,7 @@ package seedu.address.model.person;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.*;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.List;
@@ -111,7 +110,8 @@ public class UniqueStudentListTest {
     @Test
     public void setStudent_editedStudentHasNonUniqueIdentity_throwsDuplicatePersonException() {
         Student student = new StudentBuilder().build();
-        Student student1 = new StudentBuilder().withName("Haikel").build();
+        Student student1 = new StudentBuilder().withMatric(VALID_MATRIC_BOB).withPhone(VALID_PHONE_BOB)
+                .withEmail(VALID_EMAIL_BOB).build();
         uniqueStudentList.add(student);
         uniqueStudentList.add(student1);
         assertThrows(DuplicatePersonException.class, () -> uniqueStudentList.setStudent(student, student1));
