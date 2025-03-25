@@ -32,9 +32,10 @@ public class DeleteEventMemberCommand extends Command {
             + "[" + PREFIX_EVENT_EXTERNAL + "EXTERNAL_INDEX]\n"
             + "Example: " + COMMAND_WORD + " 1 " + PREFIX_EVENT_STUDENT + "2";
 
-    public static final String MESSAGE_DELETE_SUCCESS = "Removed %s from event: %s";
+    public static final String MESSAGE_DELETE_STUDENT_SUCCESS = "Removed student %s from event: %s";
+    public static final String MESSAGE_DELETE_STAFF_SUCCESS = "Removed staff %s from event: %s";
+    public static final String MESSAGE_DELETE_EXTERNAL_PARTY_SUCCESS = "Removed external party %s from event: %s";
     public static final String MESSAGE_INVALID = "You must specify exactly one member type: stu/, staff/, or ext/.";
-    public static final String MESSAGE_NOT_FOUND = "Event or member not found.";
 
     private final Index eventIndex;
     private final Optional<Index> studentIndex;
@@ -80,7 +81,7 @@ public class DeleteEventMemberCommand extends Command {
             }
             Student studentToRemove = studentList.get(studentIndex.get().getZeroBased());
             eventToEdit.removeStudent(studentToRemove);
-            return new CommandResult(String.format(MESSAGE_DELETE_SUCCESS, studentToRemove.getName(),
+            return new CommandResult(String.format(MESSAGE_DELETE_STUDENT_SUCCESS, studentToRemove.getName(),
                     eventToEdit.getEventName()));
         }
 
@@ -92,7 +93,7 @@ public class DeleteEventMemberCommand extends Command {
             }
             Staff staffToRemove = staffList.get(staffIndex.get().getZeroBased());
             eventToEdit.removeStaff(staffToRemove);
-            return new CommandResult(String.format(MESSAGE_DELETE_SUCCESS, staffToRemove.getName(),
+            return new CommandResult(String.format(MESSAGE_DELETE_STAFF_SUCCESS, staffToRemove.getName(),
                     eventToEdit.getEventName()));
         }
 
@@ -105,7 +106,7 @@ public class DeleteEventMemberCommand extends Command {
             }
             ExternalParty externalToRemove = externalList.get(externalIndex.get().getZeroBased());
             eventToEdit.removeExternalParty(externalToRemove);
-            return new CommandResult(String.format(MESSAGE_DELETE_SUCCESS, externalToRemove.getName(),
+            return new CommandResult(String.format(MESSAGE_DELETE_EXTERNAL_PARTY_SUCCESS, externalToRemove.getName(),
                     eventToEdit.getEventName()));
         }
 

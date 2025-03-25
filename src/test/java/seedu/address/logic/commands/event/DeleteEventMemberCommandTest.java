@@ -53,7 +53,7 @@ public class DeleteEventMemberCommandTest {
 
         CommandResult result = command.execute(model);
 
-        assertEquals(String.format(DeleteEventMemberCommand.MESSAGE_DELETE_SUCCESS, student.getName().fullName,
+        assertEquals(String.format(DeleteEventMemberCommand.MESSAGE_DELETE_STUDENT_SUCCESS, student.getName().fullName,
                         sampleEvent.getEventName()),
                 result.getFeedbackToUser());
     }
@@ -73,7 +73,7 @@ public class DeleteEventMemberCommandTest {
 
         CommandResult result = command.execute(model);
 
-        assertEquals(String.format(DeleteEventMemberCommand.MESSAGE_DELETE_SUCCESS, staff.getName().fullName,
+        assertEquals(String.format(DeleteEventMemberCommand.MESSAGE_DELETE_STAFF_SUCCESS, staff.getName().fullName,
                         sampleEvent.getEventName()),
                 result.getFeedbackToUser());
     }
@@ -93,7 +93,7 @@ public class DeleteEventMemberCommandTest {
 
         CommandResult result = command.execute(model);
 
-        assertEquals(String.format(DeleteEventMemberCommand.MESSAGE_DELETE_SUCCESS, external.getName(),
+        assertEquals(String.format(DeleteEventMemberCommand.MESSAGE_DELETE_EXTERNAL_PARTY_SUCCESS, external.getName(),
                         sampleEvent.getEventName()),
                 result.getFeedbackToUser());
     }

@@ -60,15 +60,10 @@ public class DeleteEventMemberCommandParserTest {
     }
 
     @Test
-    public void parse_validMultipleMembers_success() throws Exception {
+    public void parse_invalidMultipleMembers_failure() throws Exception {
         String input = "1 " + PREFIX_EVENT_STUDENT + "2 " + PREFIX_EVENT_STAFF + "3";
-        DeleteEventMemberCommand expectedCommand = new DeleteEventMemberCommand(
-                Index.fromOneBased(1),
-                Optional.of(Index.fromOneBased(2)),
-                Optional.of(Index.fromOneBased(3)),
-                Optional.empty());
 
-        assertEquals(expectedCommand, parser.parse(input));
+        assertThrows(ParseException.class, () -> parser.parse(input));
     }
 
     @Test
