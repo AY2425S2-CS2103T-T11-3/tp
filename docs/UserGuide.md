@@ -146,11 +146,45 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
-### Clearing all entries : `clear`
+### Searching an event : `search_event`
 
-Clears all entries from the address book.
+Searches the specified event from ResiConnect.
 
-Format: `clear`
+Format: `search_event [name/EVENT_NAME] [from/START_TIME] [to/END_TIME]`
+
+* Searches the event with the specified keyword.
+* At least one of the optional fields must be provided.
+* The EVENT_NAME is case-insensitive, and partial words will be matched.
+* The START_TIME and END_TIME must be in the format `yyyy-MM-dd HH:mm`.
+
+Examples:
+* `search_event name/Dance from/2025-06-15 18:00` searches for the event with the name `Dance` starting from `2025-06-15 18:00`.
+
+### Adding a member into an event: `add_event_member`
+
+Adds a member into the specified event from ResiConnect.
+
+Format: `add_event_member EVENT_INDEX stu/STUDENT_INDEX OR staff/STAFF_INDEX OR ext/EXTERNAL_INDEX`
+
+* The EVENT_INDEX refers to the index number shown in the displayed event list.
+* The STUDENT_INDEX / STAFF_INDEX / EXTERNAL_INDEX refers to the index number shown in the displayed student / staff / external list.
+
+Examples:
+* `add_event_member 1 stu/ 1` adds the first student into the first event.
+* `add_event_member 2 staff/ 2` adds the second staff into the second event.
+
+### Deleting a member from an event: `delete_event_member`
+
+Deletes the specified member from the specified event from ResiConnect.
+
+Format: `delete_event_member EVENT_INDEX stu/STUDENT_INDEX OR staff/STAFF_INDEX OR ext/EXTERNAL_INDEX`
+
+* The EVENT_INDEX refers to the index number shown in the displayed event list.
+* The STUDENT_INDEX / STAFF_INDEX / EXTERNAL_INDEX refers to the index number shown in the displayed student / staff / external list.
+
+Examples:
+* `delete_event_member 1 stu/ 1` deletes the first student from the first event.
+* `delete_event_member 2 staff/ 2` deletes the second staff from the second event.
 
 ### Exiting the program : `exit`
 
@@ -162,20 +196,6 @@ Format: `exit`
 
 AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
-### Editing the data file
-
-AddressBook data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
-
-<box type="warning" seamless>
-
-**Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.  Hence, it is recommended to take a backup of the file before editing it.<br>
-Furthermore, certain edits can cause the AddressBook to behave in unexpected ways (e.g., if a value entered is outside the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
-</box>
-
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -203,4 +223,8 @@ Action     | Format, Examples
 **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List**   | `list`
+**Search Event** | `search_event [name/EVENT_NAME] [from/START_TIME] [to/END_TIME]`<br> e.g., `search_event name/Dance from/2025-06-15 18:00`
+**Add Event Member** | `add_event_member EVENT_INDEX stu/STUDENT_INDEX OR staff/STAFF_INDEX OR ext/EXTERNAL_INDEX`<br> e.g., `add_event_member 1 stu/ 1`
+**Delete Event Member** | `delete_event_member EVENT_INDEX stu/STUDENT_INDEX OR staff/STAFF_INDEX OR ext/EXTERNAL_INDEX`<br> e.g., `delete_event_member 1 stu/ 1`
 **Help**   | `help`
+**Exit**   | `exit`
