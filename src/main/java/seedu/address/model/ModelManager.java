@@ -16,7 +16,6 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.event.Event;
 import seedu.address.model.person.ExternalParty;
-import seedu.address.model.person.Person;
 import seedu.address.model.person.Staff;
 import seedu.address.model.person.Student;
 
@@ -26,11 +25,10 @@ import seedu.address.model.person.Student;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final ObjectProperty<ListType> currentListTypeProperty = new SimpleObjectProperty<>(ListType.PERSON);
+    private final ObjectProperty<ListType> currentListTypeProperty = new SimpleObjectProperty<>(ListType.STUDENT);
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<ExternalParty> filteredExternalParty;
-    private final FilteredList<Person> filteredPersons;
     private final FilteredList<Event> filteredEvents;
     private final FilteredList<Staff> filteredStaff;
     private final FilteredList<Student> filteredStudents;
@@ -48,7 +46,6 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredExternalParty = new FilteredList<>(this.addressBook.getExternalPartyList());
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         filteredEvents = new FilteredList<>(this.addressBook.getEventList());
         filteredStaff = new FilteredList<>(this.addressBook.getStaffList());
         filteredStudents = new FilteredList<>(this.addressBook.getStudentList());
@@ -106,12 +103,6 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasPerson(Person person) {
-        requireNonNull(person);
-        return addressBook.hasPerson(person);
-    }
-
-    @Override
     public boolean hasStaff(Staff staff) {
         requireNonNull(staff);
         return addressBook.hasStaff(staff);
@@ -127,24 +118,6 @@ public class ModelManager implements Model {
     public boolean hasStudent(Student student) {
         requireNonNull(student);
         return addressBook.hasStudent(student);
-    }
-
-    @Override
-    public void deletePerson(Person target) {
-        addressBook.removePerson(target);
-    }
-
-    @Override
-    public void addPerson(Person person) {
-        addressBook.addPerson(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-    }
-
-    @Override
-    public void setPerson(Person target, Person editedPerson) {
-        requireAllNonNull(target, editedPerson);
-
-        addressBook.setPerson(target, editedPerson);
     }
 
     @Override
@@ -198,24 +171,6 @@ public class ModelManager implements Model {
         addressBook.setStudent(target, editedStudent);
     }
 
-    //=========== Filtered Person List Accessors =============================================================
-
-    /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
-     * {@code versionedAddressBook}
-     */
-    @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return filteredPersons;
-    }
-
-    @Override
-    public void updateFilteredPersonList(Predicate<Person> predicate) {
-        requireNonNull(predicate);
-        filteredPersons.setPredicate(predicate);
-        setListType(ListType.PERSON);
-    }
-
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -230,7 +185,10 @@ public class ModelManager implements Model {
         ModelManager otherModelManager = (ModelManager) other;
         return addressBook.equals(otherModelManager.addressBook)
                 && userPrefs.equals(otherModelManager.userPrefs)
-                && filteredPersons.equals(otherModelManager.filteredPersons);
+                && filteredStudents.equals(otherModelManager.filteredStudents)
+                && filteredStaff.equals(otherModelManager.filteredStaff)
+                && filteredExternalParty.equals(otherModelManager.filteredExternalParty)
+                && filteredEvents.equals(otherModelManager.filteredEvents);
     }
 
 

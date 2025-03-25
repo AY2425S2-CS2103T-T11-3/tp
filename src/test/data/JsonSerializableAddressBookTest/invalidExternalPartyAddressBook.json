@@ -1,0 +1,61 @@
+{
+  "staffs" : [ {
+    "name" : "Charlotte Oliveiro",
+    "phone" : "93210283",
+    "email" : "charlotte@example.com",
+    "address" : "Blk 11 Ang Mo Kio Street 74, #11-04",
+    "tags" : [ "neighbours" ],
+    "emergency" : "88765432",
+    "block" : "E",
+    "level" : "1",
+    "room" : "1",
+    "staffDesignation" : "0"
+  }, {
+    "name" : "David Li",
+    "phone" : "91031282",
+    "email" : "lidavid@example.com",
+    "address" : "Blk 436 Serangoon Gardens Street 26, #16-43",
+    "tags" : [ "family" ],
+    "emergency" : "87654321",
+    "block" : "F",
+    "level" : "7",
+    "room" : "1",
+    "staffDesignation" : "2"
+  } ],
+  "students" : [ {
+    "name" : "Alex Yeoh",
+    "matric" : "A0123456A",
+    "phone" : "87438807",
+    "email" : "alexyeoh@example.com",
+    "address" : "Blk 30 Geylang Street 29, #06-40",
+    "tags" : [ "friends" ],
+    "emergency" : "98765432",
+    "block" : "A",
+    "level" : "10",
+    "room" : "5",
+    "studentDesignation" : "0"
+  }, {
+    "name" : "Bernice Yu",
+    "matric" : "A0123456B",
+    "phone" : "99272758",
+    "email" : "berniceyu@example.com",
+    "address" : "Blk 30 Lorong 3 Serangoon Gardens, #07-18",
+    "tags" : [ "colleagues", "friends" ],
+    "emergency" : "97654321",
+    "block" : "B",
+    "level" : "10",
+    "room" : "5",
+    "studentDesignation" : "0"
+  } ],
+  "externalParties" : [ {
+    "name" : "Irfan Ibrahim",
+    "phone" : "92",
+    "email" : "invalid@ex",
+    "description" : "Pizza Delivery"
+  }, {
+    "name" : "Roy Balakrishnan",
+    "phone" : "92624417",
+    "email" : "royb@example.com",
+    "description" : "Gym Maintenance Crew"
+  } ]
+}

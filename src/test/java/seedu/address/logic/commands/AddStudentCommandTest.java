@@ -14,7 +14,6 @@ import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.person.Person;
 import seedu.address.model.person.Student;
 import seedu.address.testutil.Assert;
 import seedu.address.testutil.StudentBuilder;
@@ -102,18 +101,18 @@ public class AddStudentCommandTest {
      * A Model stub that always accept the student being added.
      */
     private class ModelStubAcceptingStudentAdded extends ModelStub {
-        final ArrayList<Person> personsAdded = new ArrayList<>();
+        final ArrayList<Student> studentsAdded = new ArrayList<>();
 
         @Override
         public boolean hasStudent(Student student) {
             requireNonNull(student);
-            return personsAdded.stream().anyMatch(student::isSamePerson);
+            return studentsAdded.stream().anyMatch(student::isSamePerson);
         }
 
         @Override
         public void addStudent(Student student) {
             requireNonNull(student);
-            personsAdded.add(student);
+            studentsAdded.add(student);
         }
 
         @Override
