@@ -90,9 +90,9 @@ public class AddStaffCommandTest {
         }
 
         @Override
-        public boolean hasPerson(Person person) {
-            requireNonNull(person);
-            return this.staff.isSamePerson(person);
+        public boolean hasStaff(Staff staff) {
+            requireNonNull(staff);
+            return this.staff.isSamePerson(staff);
         }
 
     }
@@ -104,9 +104,9 @@ public class AddStaffCommandTest {
         final ArrayList<Person> personsAdded = new ArrayList<>();
 
         @Override
-        public boolean hasPerson(Person person) {
-            requireNonNull(person);
-            return personsAdded.stream().anyMatch(person::isSamePerson);
+        public boolean hasStaff(Staff staff) {
+            requireNonNull(staff);
+            return personsAdded.stream().anyMatch(staff::isSamePerson);
         }
 
         @Override

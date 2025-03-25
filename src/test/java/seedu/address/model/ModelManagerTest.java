@@ -179,7 +179,10 @@ public class ModelManagerTest {
     @Test
     public void setStaff_editedPersonHasNonUniqueIdentity_throwsDuplicatePersonException() {
         Staff staff = new StaffBuilder().build();
-        Staff staff1 = new StaffBuilder().withName("Haikel").build();
+        Staff staff1 = new StaffBuilder()
+                .withPhone("22222222")
+                .withEmail("bob@gmail.com")
+                .build();
         modelManager.addStaff(staff);
         modelManager.addStaff(staff1);
         assertThrows(DuplicatePersonException.class, () -> modelManager.setStaff(staff, staff1));
