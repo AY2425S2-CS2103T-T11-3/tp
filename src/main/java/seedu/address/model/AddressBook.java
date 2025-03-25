@@ -9,11 +9,9 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.event.Event;
 import seedu.address.model.event.UniqueEventList;
 import seedu.address.model.person.ExternalParty;
-import seedu.address.model.person.Person;
 import seedu.address.model.person.Staff;
 import seedu.address.model.person.Student;
 import seedu.address.model.person.UniqueExternalPartyList;
-import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.person.UniqueStaffList;
 import seedu.address.model.person.UniqueStudentList;
 
@@ -23,7 +21,6 @@ import seedu.address.model.person.UniqueStudentList;
  */
 public class AddressBook implements ReadOnlyAddressBook {
 
-    private final UniquePersonList persons;
     private final UniqueEventList events;
     private final UniqueStaffList staff;
     private final UniqueStudentList students;
@@ -38,7 +35,6 @@ public class AddressBook implements ReadOnlyAddressBook {
      *   among constructors.
      */
     {
-        persons = new UniquePersonList();
         events = new UniqueEventList();
         staff = new UniqueStaffList();
         externalParty = new UniqueExternalPartyList();
@@ -56,14 +52,6 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     //// list overwrite operations
-
-    /**
-     * Replaces the contents of the person list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
-     */
-    public void setPersons(List<Person> persons) {
-        this.persons.setPersons(persons);
-    }
 
     /**
      * Replaces the contents of the staff list with {@code staff}.
@@ -95,7 +83,6 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
 
-        setPersons(newData.getPersonList());
         setEvents(newData.getEventList());
         setStaffs(newData.getStaffList());
         setExternalParties(newData.getExternalPartyList());
@@ -103,14 +90,6 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     //// person-level operations
-
-    /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
-     */
-    public boolean hasPerson(Person person) {
-        requireNonNull(person);
-        return persons.contains(person);
-    }
 
     /**
      * Returns true if a staff with the same identity as {@code staff} exists in the address book.
@@ -137,14 +116,6 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Adds a person to the address book.
-     * The person must not already exist in the address book.
-     */
-    public void addPerson(Person p) {
-        persons.add(p);
-    }
-
-    /**
      * Adds a staff to the address book.
      * The staff must not already exist in the address book.
      */
@@ -166,17 +137,6 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void addStudent(Student s) {
         this.students.add(s);
-    }
-
-    /**
-     * Replaces the given person {@code target} in the list with {@code editedPerson}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
-     */
-    public void setPerson(Person target, Person editedPerson) {
-        requireNonNull(editedPerson);
-
-        persons.setPerson(target, editedPerson);
     }
 
     /**
@@ -210,15 +170,6 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireNonNull(editedStudent);
         this.students.setStudent(target, editedStudent);
     }
-
-    /**
-     * Removes {@code key} from this {@code AddressBook}.
-     * {@code key} must exist in the address book.
-     */
-    public void removePerson(Person key) {
-        persons.remove(key);
-    }
-
 
     //// Event level operations
     public void setEvents(List<Event> events) {
@@ -282,18 +233,6 @@ public class AddressBook implements ReadOnlyAddressBook {
     //// util methods
 
     @Override
-    public String toString() {
-        return new ToStringBuilder(this)
-                .add("persons", persons)
-                .toString();
-    }
-
-    @Override
-    public ObservableList<Person> getPersonList() {
-        return persons.asUnmodifiableObservableList();
-    }
-
-    @Override
     public ObservableList<Staff> getStaffList() {
         return this.staff.asUnmodifiableObservableList();
     }
@@ -321,8 +260,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
         AddressBook otherAddressBook = (AddressBook) other;
 
-        return persons.equals(otherAddressBook.persons)
-                && events.equals(otherAddressBook.events)
+        return events.equals(otherAddressBook.events)
                 && staff.equals(otherAddressBook.staff)
                 && students.equals(otherAddressBook.students)
                 && externalParty.equals(otherAddressBook.externalParty);
@@ -330,10 +268,13 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     @Override
-    public int hashCode() {
-        return persons.hashCode();
+    public String toString() {
+        return new ToStringBuilder(this)
+                .add("staff", staff)
+                .add("students", students)
+                .add("externalParty", externalParty)
+                .add("event", events)
+                .toString();
     }
-
-
 
 }

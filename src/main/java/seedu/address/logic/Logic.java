@@ -13,7 +13,6 @@ import seedu.address.model.ListType;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.event.Event;
 import seedu.address.model.person.ExternalParty;
-import seedu.address.model.person.Person;
 import seedu.address.model.person.Staff;
 import seedu.address.model.person.Student;
 
@@ -36,9 +35,6 @@ public interface Logic {
      * @see seedu.address.model.Model#getAddressBook()
      */
     ReadOnlyAddressBook getAddressBook();
-
-    /** Returns an unmodifiable view of the filtered list of persons */
-    ObservableList<Person> getFilteredPersonList();
 
     /** Returns an unmodifiable view of the filtered list of events */
     ObservableList<Event> getFilteredEventList();

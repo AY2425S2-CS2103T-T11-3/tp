@@ -2,6 +2,8 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.commons.util.ToStringBuilder;
@@ -14,6 +16,8 @@ import seedu.address.model.tag.Tag;
 public class Staff extends Person {
 
     //Data fields
+    private final Address address;
+    private final Set<Tag> tags = new HashSet<>();
     private final Phone emergency;
     private final Block block;
     private final Level level;
@@ -25,13 +29,27 @@ public class Staff extends Person {
      */
     public Staff(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Phone emergency,
                  Block block, Level level, Room room, StaffDesignation designation) {
-        super(name, phone, email, address, tags);
+        super(name, phone, email);
         requireAllNonNull(name, phone, email, address, tags, emergency, block, level, room, designation);
+        this.address = address;
+        this.tags.addAll(tags);
         this.emergency = emergency;
         this.block = block;
         this.level = level;
         this.room = room;
         this.designation = designation;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    /**
+     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public Set<Tag> getTags() {
+        return Collections.unmodifiableSet(tags);
     }
 
     public Phone getEmergency() {
@@ -60,8 +78,8 @@ public class Staff extends Person {
                 .add("name", super.getName())
                 .add("phone", super.getPhone())
                 .add("email", super.getEmail())
-                .add("address", super.getAddress())
-                .add("tags", super.getTags())
+                .add("address", this.getAddress())
+                .add("tags", this.getTags())
                 .add("emergency", this.emergency)
                 .add("block", this.block)
                 .add("level", this.level)

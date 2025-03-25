@@ -3,16 +3,14 @@ package seedu.address.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.ALICE;
+import static seedu.address.testutil.TypicalExternalParties.FATIMAH;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalStaffs.HARIS;
+import static seedu.address.testutil.TypicalStudents.JAMAL;
 
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
@@ -26,7 +24,6 @@ import seedu.address.model.person.Student;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
 import seedu.address.testutil.ExternalPartyBuilder;
-import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.StaffBuilder;
 import seedu.address.testutil.StudentBuilder;
 
@@ -36,7 +33,9 @@ public class AddressBookTest {
 
     @Test
     public void constructor() {
-        assertEquals(Collections.emptyList(), addressBook.getPersonList());
+        assertEquals(Collections.emptyList(), addressBook.getStaffList());
+        assertEquals(Collections.emptyList(), addressBook.getStudentList());
+        assertEquals(Collections.emptyList(), addressBook.getExternalPartyList());
     }
 
     @Test
@@ -52,30 +51,33 @@ public class AddressBookTest {
     }
 
     @Test
-    public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
-        // Two persons with the same identity fields
-        Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
-                .build();
-        List<Person> newPersons = Arrays.asList(ALICE, editedAlice);
-        AddressBookStub newData = new AddressBookStub(newPersons);
-
-        assertThrows(DuplicatePersonException.class, () -> addressBook.resetData(newData));
+    public void hasStaff_nullStaff_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> addressBook.hasStaff(null));
     }
 
     @Test
-    public void hasPerson_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.hasPerson(null));
+    public void hasStudent_nullStudent_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> addressBook.hasStudent(null));
     }
 
     @Test
-    public void hasPerson_personNotInAddressBook_returnsFalse() {
-        assertFalse(addressBook.hasPerson(ALICE));
+    public void hasExternalParty_nullExternalParty_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> addressBook.hasExternalParty(null));
     }
 
     @Test
-    public void hasPerson_personInAddressBook_returnsTrue() {
-        addressBook.addPerson(ALICE);
-        assertTrue(addressBook.hasPerson(ALICE));
+    public void hasStaff_staffNotInAddressBook_returnsFalse() {
+        assertFalse(addressBook.hasStaff(HARIS));
+    }
+
+    @Test
+    public void hasStudent_studentNotInAddressBook_returnsFalse() {
+        assertFalse(addressBook.hasStudent(JAMAL));
+    }
+
+    @Test
+    public void hasExternalParty_externalPartyNotInAddressBook_returnsFalse() {
+        assertFalse(addressBook.hasExternalParty(FATIMAH));
     }
 
     @Test
@@ -146,15 +148,6 @@ public class AddressBookTest {
     }
 
     @Test
-    public void setStudent_editedStudentHasNonUniqueIdentity_throwsDuplicatePersonException() {
-        Student student = new StudentBuilder().build();
-        Student student1 = new StudentBuilder().withName("Haikel").build();
-        addressBook.addStudent(student);
-        addressBook.addStudent(student1);
-        assertThrows(DuplicatePersonException.class, () -> addressBook.setStudent(student, student1));
-    }
-
-    @Test
     public void remove_nullStaff_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> addressBook.removeStaff(null));
     }
@@ -175,22 +168,31 @@ public class AddressBookTest {
     }
 
     @Test
-    public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
-        addressBook.addPerson(ALICE);
-        Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
-                .build();
-        assertTrue(addressBook.hasPerson(editedAlice));
+    public void getStaffList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> addressBook.getStaffList().remove(0));
     }
 
     @Test
-    public void getPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> addressBook.getPersonList().remove(0));
+    public void getStudentList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> addressBook.getStudentList().remove(0));
     }
 
     @Test
-    public void toStringMethod() {
-        String expected = AddressBook.class.getCanonicalName() + "{persons=" + addressBook.getPersonList() + "}";
-        assertEquals(expected, addressBook.toString());
+    public void getExternalPartyList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> addressBook.getExternalPartyList().remove(0));
+    }
+
+    @Test
+    public void toString_isCorrect() {
+        AddressBook newData = getTypicalAddressBook();
+        String expected = AddressBook.class.getCanonicalName()
+                + "{staff=" + newData.getStaffList() + ", "
+                + "students=" + newData.getStudentList() + ", "
+                + "externalParty=" + newData.getExternalPartyList() + ", "
+                + "event=" + newData.getEventList() + "}";
+        System.out.println(expected);
+        System.out.println(newData);
+        assertEquals(expected, newData.toString());
     }
 
     /**
@@ -205,11 +207,6 @@ public class AddressBookTest {
 
         AddressBookStub(Collection<Person> persons) {
             this.persons.setAll(persons);
-        }
-
-        @Override
-        public ObservableList<Person> getPersonList() {
-            return persons;
         }
 
         @Override
