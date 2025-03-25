@@ -2,6 +2,7 @@ package seedu.address.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalExternalParties.FATIMAH;
@@ -177,6 +178,19 @@ public class AddressBookTest {
     @Test
     public void getExternalPartyList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> addressBook.getExternalPartyList().remove(0));
+    }
+
+    @Test
+    public void toString_isCorrect() {
+        AddressBook newData = getTypicalAddressBook();
+        String expected = AddressBook.class.getCanonicalName()
+                + "{staff=" + newData.getStaffList() + ", "
+                + "students=" + newData.getStudentList() + ", "
+                + "externalParty=" + newData.getExternalPartyList() + ", "
+                + "event=" + newData.getEventList() + "}";
+        System.out.println(expected);
+        System.out.println(newData);
+        assertEquals(expected, newData.toString());
     }
 
     /**

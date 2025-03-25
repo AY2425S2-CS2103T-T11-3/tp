@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.event.Event;
 import seedu.address.model.event.UniqueEventList;
 import seedu.address.model.person.ExternalParty;
@@ -264,6 +265,16 @@ public class AddressBook implements ReadOnlyAddressBook {
                 && students.equals(otherAddressBook.students)
                 && externalParty.equals(otherAddressBook.externalParty);
 
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .add("staff", staff)
+                .add("students", students)
+                .add("externalParty", externalParty)
+                .add("event", events)
+                .toString();
     }
 
 }
