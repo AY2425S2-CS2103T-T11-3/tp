@@ -152,6 +152,66 @@ Clears all entries from the address book.
 
 Format: `clear`
 
+
+
+
+
+
+
+### Listing all event : `list_event`
+
+Shows a list of all events in the address book.
+
+Format: `list_event`
+
+
+### Adding an event : `add_event`
+
+Add an event to the address book.
+
+Format: `add_event name/EVENT_NAME from/START_TIME to/END_TIME`
+
+* START_TIME and END_TIME need to follow format: YYYY-MM-DD HH:MM
+
+Examples:
+* `add_event name/ Dance Club Rehearsal from/ 2025-06-15 18:00 to/ 2025-06-15 21:00`
+* `add_event name/ Basketball Club Training from/ 2025-06-16 18:00 to/ 2025-06-16 21:00`
+
+
+### Deleting an event : `delete_event`
+
+Deletes the specified event from the address book.
+
+Format: `delete_event INDEX`
+
+* Deletes the event at the specified `INDEX`.
+* The index refers to the index number shown in the displayed event list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `list_event` followed by `delete_event 2` deletes the 2nd event in the address book.
+
+
+### View an event : `view_event`
+
+Views the details of the specified event from the address book, including the associated student list, 
+staff list, and external party list.
+
+Format: `view_event INDEX`
+
+* View the details of the event at the specified `INDEX`.
+* The index refers to the index number shown in the displayed event list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `list_event` followed by `view_event 2` views the details of the 2nd event (including its associated students, 
+staff, and external parties) in the address book.
+
+
+
+
+
+
 ### Exiting the program : `exit`
 
 Exits the program.
@@ -203,4 +263,8 @@ Action     | Format, Examples
 **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List**   | `list`
+**List events**   | `list_event`
+**Add an event**    | `add_event name/EVENT_NAME from/START_TIME to/END_TIME` <br> e.g., `add_event name/ Dance Club Rehearsal from/ 2025-06-15 18:00 to/ 2025-06-15 21:00`
+**Delete an event**    | `delete_event INDEX` <br> e.g., `delete_event 2`
+**View an event**    | `view_event INDEX` <br> e.g., `view_event 2`
 **Help**   | `help`
