@@ -5,6 +5,8 @@ import static seedu.address.logic.Messages.MESSAGE_INVALID_EXTERNAL_PARTY_DISPLA
 import static seedu.address.logic.Messages.MESSAGE_INVALID_STAFF_DISPLAYED_INDEX;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX;
 import static seedu.address.logic.Messages.MESSAGE_MISSING_EVENT_MEMBER;
+import static seedu.address.logic.commands.event.AddEventMemberCommand.MESSAGE_INVALID;
+import static seedu.address.logic.commands.event.AddEventMemberCommand.MESSAGE_USAGE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_EXTERNAL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_STAFF;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_STUDENT;
@@ -35,7 +37,7 @@ public class AddEventMemberCommandParser implements Parser<AddEventMemberCommand
             eventIndex = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException e) {
             throw new ParseException(MESSAGE_INVALID_EVENT_DISPLAYED_INDEX + "\n"
-                    + AddEventMemberCommand.MESSAGE_USAGE, e);
+                    + MESSAGE_USAGE, e);
         }
 
         try {
@@ -44,7 +46,7 @@ public class AddEventMemberCommandParser implements Parser<AddEventMemberCommand
             }
         } catch (ParseException e) {
             throw new ParseException(MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX + "\n"
-                    + AddEventMemberCommand.MESSAGE_USAGE, e);
+                    + MESSAGE_USAGE, e);
         }
 
         try {
@@ -53,7 +55,7 @@ public class AddEventMemberCommandParser implements Parser<AddEventMemberCommand
             }
         } catch (ParseException e) {
             throw new ParseException(MESSAGE_INVALID_STAFF_DISPLAYED_INDEX + "\n"
-                    + AddEventMemberCommand.MESSAGE_USAGE, e);
+                    + MESSAGE_USAGE, e);
         }
 
         try {
@@ -62,12 +64,20 @@ public class AddEventMemberCommandParser implements Parser<AddEventMemberCommand
             }
         } catch (ParseException e) {
             throw new ParseException(MESSAGE_INVALID_EXTERNAL_PARTY_DISPLAYED_INDEX + "\n"
-                    + AddEventMemberCommand.MESSAGE_USAGE, e);
+                    + MESSAGE_USAGE, e);
         }
 
         // Ensure at least one member is specified
         if (studentIndex.isEmpty() && staffIndex.isEmpty() && externalIndex.isEmpty()) {
-            throw new ParseException(MESSAGE_MISSING_EVENT_MEMBER + "\n" + AddEventMemberCommand.MESSAGE_USAGE);
+            throw new ParseException(MESSAGE_MISSING_EVENT_MEMBER + "\n" + MESSAGE_USAGE);
+        }
+
+        // Ensure only one type of member is provided
+        long count = studentIndex.isPresent() ? 1 : 0;
+        count += staffIndex.isPresent() ? 1 : 0;
+        count += externalIndex.isPresent() ? 1 : 0;
+        if (count != 1) {
+            throw new ParseException(MESSAGE_INVALID + "\n" + MESSAGE_USAGE);
         }
 
         return new AddEventMemberCommand(eventIndex, studentIndex, staffIndex, externalIndex);
