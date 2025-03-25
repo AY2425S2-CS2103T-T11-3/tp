@@ -34,7 +34,9 @@ public class AddEventMemberCommand extends Command {
             + PREFIX_EVENT_STAFF + "<Staff Index> OR " + PREFIX_EVENT_EXTERNAL + "<External Index>\n"
             + "Example: " + COMMAND_WORD + " 1 " + PREFIX_EVENT_STUDENT + "3";
 
-    public static final String MESSAGE_SUCCESS = "Added student %s to event: %s";
+    public static final String MESSAGE_STUDENT_ADDED_TO_EVENT = "Added student %s to event: %s";
+    public static final String MESSAGE_STAFF_ADDED_TO_EVENT = "Added staff %s to event: %s";
+    public static final String MESSAGE_EXTERNAL_PARTY_ADDED_TO_EVENT = "Added external party %s to event: %s";
     public static final String MESSAGE_INVALID = "You must specify exactly one member type: stu/, staff/, or ext/.";
 
     private final Index eventIndex;
@@ -85,7 +87,8 @@ public class AddEventMemberCommand extends Command {
             }
             Student student = model.getFilteredStudentList().get(studentIndex.get().getZeroBased());
             event.addStudent(student);
-            return new CommandResult(String.format(MESSAGE_SUCCESS, student.getName().fullName, event.getEventName()));
+            return new CommandResult(String.format(MESSAGE_STUDENT_ADDED_TO_EVENT, student.getName().fullName,
+                    event.getEventName()));
         }
 
         // Add Staff
@@ -95,7 +98,8 @@ public class AddEventMemberCommand extends Command {
             }
             Staff staff = model.getFilteredStaffList().get(staffIndex.get().getZeroBased());
             event.addStaff(staff);
-            return new CommandResult(String.format(MESSAGE_SUCCESS, staff.getName().fullName, event.getEventName()));
+            return new CommandResult(String.format(MESSAGE_STAFF_ADDED_TO_EVENT, staff.getName().fullName,
+                    event.getEventName()));
         }
 
         // Add External Member
@@ -105,7 +109,8 @@ public class AddEventMemberCommand extends Command {
             }
             ExternalParty external = model.getFilteredExternalPartyList().get(externalIndex.get().getZeroBased());
             event.addExternalParty(external);
-            return new CommandResult(String.format(MESSAGE_SUCCESS, external.getName(), event.getEventName()));
+            return new CommandResult(String.format(MESSAGE_EXTERNAL_PARTY_ADDED_TO_EVENT, external.getName(),
+                    event.getEventName()));
         }
 
         throw new CommandException(MESSAGE_INVALID + "\n" + MESSAGE_USAGE);
