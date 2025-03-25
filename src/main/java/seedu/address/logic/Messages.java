@@ -41,6 +41,11 @@ public class Messages {
     public static final String MESSAGE_INVALID_EVENT_DISPLAYED_INDEX = "The event index provided is invalid";
     public static final String MESSAGE_INVALID_STARTTIME_AFTER_ENDTIME =
                 "Invalid event time: Start time must be before end time.";
+    public static final String MESSAGE_ADD_EVENT_MEMBER_SUCCESS = "Successfully added member(s) to event: %1$s";
+    public static final String MESSAGE_ADD_EVENT_MEMBER_FAIL = "Failed to add member(s) to event: %1$s";
+    public static final String MESSAGE_DUPLICATE_EVENT_MEMBER = "This person is already in the event.";
+    public static final String MESSAGE_EVENT_MEMBER_NOT_FOUND = "Member not found in event.";
+    public static final String MESSAGE_MISSING_EVENT_MEMBER = "At least one member must be specified.";
 
     /**
      * Returns an error message indicating the duplicate prefixes.
