@@ -1,0 +1,50 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+skinparam classAttributeFontColor White
+skinparam classAttributeIconSize 0
+show attributes
+
+Package Person as ModelPackage <<Rectangle>>{
+Class "{abstract}\nPerson" as Person {
+- name: Name
+- phone: Phone
+- email: Email
+- address: Address
+- tags: Set<Tag>
+}
+
+Class Student {
+- matric: Matric
+- emergency: Phone
+- block: Block
+- level: Level
+- room: Room
+- studentDesignation: StudentDesignation
+}
+
+Class Staff {
+- emergency: Phone
+- block: Block
+- level: Level
+- room: Room
+- staffDesignation: StaffDesignation
+}
+
+Class ExternalParty {
+- description: Description
+}
+
+Student .up.|> Person
+Staff .up.|> Person
+ExternalParty .up.|> Person
+
+Student -right[hidden]- Staff
+Staff -right[hidden]- ExternalParty
+
+
+}
+
+@enduml
