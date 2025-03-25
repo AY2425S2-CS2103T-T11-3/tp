@@ -66,6 +66,14 @@ public class DeleteEventMemberCommandParser implements Parser<DeleteEventMemberC
             throw new ParseException(MESSAGE_MISSING_EVENT_MEMBER + "\n" + MESSAGE_USAGE);
         }
 
+        // Ensure exactly one type of member is specified
+        long count = studentIndex.isPresent() ? 1 : 0;
+        count += staffIndex.isPresent() ? 1 : 0;
+        count += externalIndex.isPresent() ? 1 : 0;
+        if (count != 1) {
+            throw new ParseException(DeleteEventMemberCommand.MESSAGE_INVALID + "\n" + MESSAGE_USAGE);
+        }
+
         return new DeleteEventMemberCommand(eventIndex, studentIndex, staffIndex, externalIndex);
     }
 }

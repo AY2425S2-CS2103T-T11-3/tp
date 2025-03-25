@@ -71,7 +71,6 @@ public class AddEventMemberCommand extends Command {
 
 
         List<Event> lastShownEventList = model.getFilteredEventList();
-        List<Student> lastShownStudentList = model.getFilteredStudentList();
 
         if (eventIndex.getZeroBased() >= lastShownEventList.size()) {
             throw new CommandException(MESSAGE_INVALID_EVENT_DISPLAYED_INDEX + "\n" + MESSAGE_USAGE);
