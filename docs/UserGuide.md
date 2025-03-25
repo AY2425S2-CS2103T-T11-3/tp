@@ -152,19 +152,6 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
-### Deleting an external party : `delete_ext`
-
-Deletes an external party identified using it's displayed index from the address book.
-
-Format: `delete_ext INDEX`
-
-* Deletes the external party at the specified `INDEX`.
-* The index refers to the index number shown in the displayed external party list.
-* The index **must be a positive integer** 1, 2, 3, …​
-
-Examples:
-* `list_ext` followed by `delete_ext 2` deletes the 2nd external party in the external party list.
-
 ### Searching for students: `search_stu`
 
 Searches for all students whose attributes match the specified keywords (case-insensitive) and displays them as a list
@@ -235,11 +222,26 @@ Format: `delete_staff INDEX`
 
 * Deletes the staff at the specified `INDEX`.
 * The index refers to the index number shown in the displayed staff list.
-* * The index **must be a positive integer** 1, 2, 3, …​
+* The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
 * `list_staff` followed by `delete 2` deletes the 2nd staff in the address book.
 * `search_staff Betsy` followed by `delete 1` deletes the 1st staff in the results of the `search_staff` command.
+
+### Deleting an external party : `delete_ext`
+
+Deletes an external party identified using it's displayed index from the address book.
+
+Format: `delete_ext INDEX`
+
+* Deletes the external party at the specified `INDEX`.
+* The index refers to the index number shown in the displayed external party list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `list_ext` followed by `delete_ext 2` deletes the 2nd external party in the external party list.
+* `search_ext Betsy` followed by `delete 1` deletes the 1st external party in the results of the `search_ext` command.
+
 
 ### Adding an event : `add_event`
 
