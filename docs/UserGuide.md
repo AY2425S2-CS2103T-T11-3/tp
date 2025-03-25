@@ -49,8 +49,10 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 **Notes about the command format:**<br>
 
+* For additional information about the constraints of each parameter. Please refer to the Constraints section, further below.
+
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+  e.g. in `add_stu n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
@@ -69,7 +71,7 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+Shows a message explaining how to access the help page.
 
 ![help message](images/helpMessage.png)
 
@@ -197,9 +199,30 @@ If your changes to the data file makes its format invalid, AddressBook will disc
 Furthermore, certain edits can cause the AddressBook to behave in unexpected ways (e.g., if a value entered is outside the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </box>
 
-### Archiving data files `[coming in v2.0]`
+## Constraints for the Features
 
-_Details coming soon ..._
+Here is a comprehensive list for any constraints that we have specified above!
+* Address `a/`: Addresses can take any values, and it should not be blank.
+* Block `block/`: Block should only be 1 alphabet or 1 number from 1 to 9, and it should not be blank.
+* Description `desc/`: Description can take any values, and it should not be blank.
+* Email `email/`: Emails should be of the format local-part@domain and adhere to the following constraints:
+  1. The local-part should only contain alphanumeric characters and these special characters, excluding the parentheses, (" + SPECIAL_CHARACTERS + "). The local-part may not start or end with any special characters.
+  2. This is followed by a '@' and then a domain name. The domain name is made up of domain labels separated by periods. The domain name must:
+     - end with a domain label at least 2 characters long.
+     - have each domain label start and end with alphanumeric characters.
+     - have each domain label consist of alphanumeric characters, separated only by hyphens, if any.
+* Emergency `emergency/`: Emergency phone numbers should only contain numbers, and it should be at least 3 digits long.
+* Event Start Time `from/`: Event start time must be in the format 'yyyy-MM-dd HH:mm' and must be a valid datetime. It should also come before the Event End Time.
+* Event End Time `to/`: Event end time must be in the format 'yyyy-MM-dd HH:mm' and must be a valid datetime. It should also come after the Event Start Time.
+* Event Name `name/`: Event names should only contain alphanumeric characters and spaces, and it should not be blank.
+* Level `/level`: Levels should only be positive integers, and it should not be blank.
+* Matric `/matric`: Matric numbers should start with 'A', followed by 7 numeric digits, and end with a letter.
+* Name `name/`: Names should only contain alphanumeric characters and spaces, and it should not be blank.
+* Phone `phone/`: Phone numbers should only contain numbers, and it should be at least 3 digits long.
+* Room `room/`: Rooms should only be positive integers, and it should not be blank.
+* StaffDesignation `designation/`: Designation should only be an integer from 0 to 2, and it should not be blank. 0 to 2 represent Support Staff, Block IC and Residence Master respectively.
+* StudentDesignation `designation/`: Designation should only be an integer from 0 to 2, and it should not be blank. 0 to 2 represent Resident, Block Head and JCRC Member respectively.
+* Tags `t/`: Tags should be alphanumeric.
 
 --------------------------------------------------------------------------------------------------------------------
 
