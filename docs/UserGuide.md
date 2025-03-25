@@ -127,13 +127,13 @@ Format: `delete_ext INDEX`
 Examples:
 * `list_ext` followed by `delete_ext 2` deletes the 2nd person in the external party list.
 
-### Searching for students by attributes: `search_stu`
+### Searching for students: `search_stu`
 
 Searches for all students whose attributes match the specified keywords (case-insensitive) and displays them as a list
 with index numbers.
 
-Format: `search_stu name/NAME matric/MATRIC phone/PHONE email/EMAIL a/ADDRESS emergency/EMERGENCY block/BLOCK 
-level/LEVEL room/ROOM designation/DESIGNATION`
+Format: `search_stu [name/NAME] [matric/MATRIC] [phone/PHONE] [email/EMAIL] [a/ADDRESS] [emergency/EMERGENCY] 
+[block/BLOCK] [level/LEVEL] [room/ROOM] [designation/DESIGNATION]`
 
 * At least one of the parameters must be provided in the search.
 * The search is case-insensitive. e.g `alice` will match `Alice`.
@@ -143,13 +143,13 @@ Examples:
 * `search_stu name/Alice` returns a list of students that are named `Alice`.
 * `search_stu name/Bob block/A` returns a list of students that are both named `Bob` and reside in block `A`.
 
-### Searching for staff by attributes: `search_staff`
+### Searching for staff: `search_staff`
 
 Searches for all staff whose attributes match the specified keywords (case-insensitive) and displays them as a list
 with index numbers.
 
-Format: `search_staff name/NAME phone/PHONE email/EMAIL a/ADDRESS emergency/EMERGENCY block/BLOCK
-level/LEVEL room/ROOM designation/DESIGNATION`
+Format: `search_staff [name/NAME] [phone/PHONE] [email/EMAIL] [a/ADDRESS] [emergency/EMERGENCY] [block/BLOCK]
+[level/LEVEL] [room/ROOM] [designation/DESIGNATION]`
 
 * At least one of the parameters must be provided in the search.
 * The search is case-insensitive. e.g `alice` will match `Alice`.
@@ -159,12 +159,12 @@ Examples:
 * `search_staff name/Alice` returns a list of staff that are named `Alice`.
 * `search_staff name/Bob block/A` returns a list of staff that are both named `Bob` and reside in block `A`.
 
-### Searching for external parties by attributes: `search_ext`
+### Searching for external parties: `search_ext`
 
 Searches for all external parties whose attributes match the specified keywords (case-insensitive) and displays them 
 as a list with index numbers.
 
-Format: `search_ext name/NAME phone/PHONE email/EMAIL description/DESCRIPTION`
+Format: `search_ext [name/NAME] [phone/PHONE] [email/EMAIL] [description/DESCRIPTION]`
 
 * At least one of the parameters must be provided in the search.
 * The search is case-insensitive. e.g `alice` will match `Alice`.
