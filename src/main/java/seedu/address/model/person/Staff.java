@@ -69,4 +69,19 @@ public class Staff extends Person {
                 .add("designation", this.designation)
                 .toString();
     }
+
+    @Override
+    public boolean isSamePerson(Person otherPerson) {
+        if (otherPerson == this) {
+            return true;
+        }
+
+        if (!(otherPerson instanceof Staff)) {
+            return false;
+        }
+
+        Staff other = (Staff) otherPerson;
+        return other.getPhone().equals(getPhone())
+                || other.getEmail().equals(getEmail());
+    }
 }
