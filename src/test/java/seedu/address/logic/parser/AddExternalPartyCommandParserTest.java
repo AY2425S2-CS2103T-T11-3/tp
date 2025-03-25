@@ -14,15 +14,15 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSucces
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.AddExternalCommand;
+import seedu.address.logic.commands.AddExternalPartyCommand;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.ExternalParty;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.testutil.ExternalPartyBuilder;
 
-public class AddExternalCommandParserTest {
-    private AddExternalCommandParser parser = new AddExternalCommandParser();
+public class AddExternalPartyCommandParserTest {
+    private AddExternalPartyCommandParser parser = new AddExternalPartyCommandParser();
 
     @Test
     public void parse_allFieldsPresent_success() {
@@ -30,7 +30,7 @@ public class AddExternalCommandParserTest {
 
         assertParseSuccess(parser,
                 "add_ext name/Amy Bee phone/85355255 email/amy@gmail.com desc/External supplier for food.",
-                new AddExternalCommand(expectedExternalParty));
+                new AddExternalPartyCommand(expectedExternalParty));
     }
 
     @Test

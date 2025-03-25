@@ -16,7 +16,7 @@ import seedu.address.model.person.ExternalParty;
 /**
  * Represents a command that adds an external party to the address book.
  */
-public class AddExternalCommand extends Command {
+public class AddExternalPartyCommand extends Command {
     public static final String COMMAND_WORD = "add_ext";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
@@ -42,7 +42,7 @@ public class AddExternalCommand extends Command {
     /**
      * Creates an AddExternalCommand to add the specified {@code External Party}.
      */
-    public AddExternalCommand(ExternalParty externalParty) {
+    public AddExternalPartyCommand(ExternalParty externalParty) {
         requireAllNonNull(externalParty);
         toAdd = externalParty;
     }
@@ -65,12 +65,12 @@ public class AddExternalCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof AddExternalCommand)) {
+        if (!(other instanceof AddExternalPartyCommand)) {
             return false;
         }
 
         // state check
-        AddExternalCommand otherAddCommand = (AddExternalCommand) other;
+        AddExternalPartyCommand otherAddCommand = (AddExternalPartyCommand) other;
         return toAdd.equals(otherAddCommand.toAdd);
     }
 

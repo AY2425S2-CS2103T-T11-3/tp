@@ -21,11 +21,11 @@ import seedu.address.testutil.ExternalPartyBuilder;
 /**
  * Contains integration tests (interaction with the Model) and unit tests for AddExternalCommand.
  */
-public class AddExternalCommandTest {
+public class AddExternalPartyCommandTest {
 
     @Test
     public void constructor_nullExternalParty_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddExternalCommand(null));
+        assertThrows(NullPointerException.class, () -> new AddExternalPartyCommand(null));
     }
 
     @Test
@@ -33,35 +33,35 @@ public class AddExternalCommandTest {
         ModelStubAcceptingExternalPartyAdded modelStub = new ModelStubAcceptingExternalPartyAdded();
         ExternalParty externalParty = new ExternalPartyBuilder().build();
 
-        CommandResult commandResult = new AddExternalCommand(
+        CommandResult commandResult = new AddExternalPartyCommand(
                 externalParty).execute(modelStub);
 
-        assertEquals(String.format(AddExternalCommand.MESSAGE_SUCCESS, Messages.format(externalParty)),
+        assertEquals(String.format(AddExternalPartyCommand.MESSAGE_SUCCESS, Messages.format(externalParty)),
                 commandResult.getFeedbackToUser());
     }
 
     @Test
     public void execute_duplicateExternalParty() throws CommandException {
         ExternalParty externalParty = new ExternalPartyBuilder().build();
-        AddExternalCommand command = new AddExternalCommand(externalParty);
+        AddExternalPartyCommand command = new AddExternalPartyCommand(externalParty);
         ModelStubWithExternalParty modelStub = new ModelStubWithExternalParty(externalParty);
 
         Assert.assertThrows(CommandException.class,
-                AddExternalCommand.MESSAGE_DUPLICATE_PARTY, () -> command.execute(modelStub));
+                AddExternalPartyCommand.MESSAGE_DUPLICATE_PARTY, () -> command.execute(modelStub));
     }
 
     @Test
     public void equals() {
         ExternalParty alice = new ExternalPartyBuilder().withName("Alice").build();
         ExternalParty bob = new ExternalPartyBuilder().withName("Bob").build();
-        AddExternalCommand addAliceCommand = new AddExternalCommand(alice);
-        AddExternalCommand addBobCommand = new AddExternalCommand(bob);
+        AddExternalPartyCommand addAliceCommand = new AddExternalPartyCommand(alice);
+        AddExternalPartyCommand addBobCommand = new AddExternalPartyCommand(bob);
 
         // same object -> returns true
         assertTrue(addAliceCommand.equals(addAliceCommand));
 
         // same values -> returns true
-        AddExternalCommand addAliceCommandCopy = new AddExternalCommand(alice);
+        AddExternalPartyCommand addAliceCommandCopy = new AddExternalPartyCommand(alice);
         assertTrue(addAliceCommand.equals(addAliceCommandCopy));
 
         // different types -> returns false
