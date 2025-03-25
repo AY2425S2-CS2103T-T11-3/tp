@@ -91,11 +91,17 @@ Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
 
-### Listing all persons : `list`
+### Listing all staff : `list_staff`
 
-Shows a list of all persons in the address book.
+Shows a list of all staffs in the address book.
 
-Format: `list`
+Format: `list_staff`
+
+### Listing all external parties : `list_ext`
+
+Shows a list of all external parties in the address book.
+
+Format: `list_ext`
 
 ### Editing a person : `edit`
 
@@ -132,19 +138,33 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### Deleting a person : `delete`
+### Deleting a student : `delete_stu`
 
-Deletes the specified person from the address book.
+Deletes the specified student from the address book.
 
-Format: `delete INDEX`
+Format: `delete_stu INDEX`
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
+* Deletes the student at the specified `INDEX`.
+* The index refers to the index number shown in the displayed student list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `list_stu` followed by `delete 2` deletes the 2nd student in the address book.
+* `search_stu Betsy` followed by `delete 1` deletes the 1st student in the results of the `search_stu` command.
+
+### Deleting a staff : `delete_staff`
+
+Deletes the specified staff from the address book.
+
+Format: `delete_staff INDEX`
+
+* Deletes the staff at the specified `INDEX`.
+* The index refers to the index number shown in the displayed staff list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `list_staff` followed by `delete 2` deletes the 2nd staff in the address book.
+* `search_staff Betsy` followed by `delete 1` deletes the 1st staff in the results of the `search_staff` command.
 
 ### Clearing all entries : `clear`
 
