@@ -31,7 +31,7 @@ public class ExternalPartyTest {
                 .build();
         assertTrue(externalParty.isSamePerson(editedExternalParty));
 
-        // same email, all other attributes same -> returns true
+        // same email, all other attributes different -> returns true
         editedExternalParty = new ExternalPartyBuilder()
                 .withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB)
@@ -39,7 +39,7 @@ public class ExternalPartyTest {
                 .build();
         assertTrue(externalParty.isSamePerson(editedExternalParty));
 
-        // same phone and email, all other attributes same -> returns true
+        // same phone and email, all other attributes different -> returns true
         editedExternalParty = new ExternalPartyBuilder()
                 .withName(VALID_NAME_BOB)
                 .withDescription(VALID_DESCRIPTION_BOB)

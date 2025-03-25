@@ -89,9 +89,9 @@ public class AddStaffCommandTest {
         }
 
         @Override
-        public boolean hasStaff(Staff person) {
-            requireNonNull(person);
-            return this.staff.equals(person);
+        public boolean hasStaff(Staff staff) {
+            requireNonNull(staff);
+            return this.staff.isSamePerson(staff);
         }
 
     }

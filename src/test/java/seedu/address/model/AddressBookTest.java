@@ -120,7 +120,10 @@ public class AddressBookTest {
     @Test
     public void setStaff_editedPersonHasNonUniqueIdentity_throwsDuplicatePersonException() {
         Staff staff = new StaffBuilder().build();
-        Staff staff1 = new StaffBuilder().withName("Haikel").build();
+        Staff staff1 = new StaffBuilder()
+                .withPhone("22222222")
+                .withEmail("bob@gmail.com")
+                .build();
         addressBook.addStaff(staff);
         addressBook.addStaff(staff1);
         assertThrows(DuplicatePersonException.class, () -> addressBook.setStaff(staff, staff1));
