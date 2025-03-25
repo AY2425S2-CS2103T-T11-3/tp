@@ -164,7 +164,7 @@ Examples:
 Searches for all external parties whose attributes match the specified keywords (case-insensitive) and displays them 
 as a list with index numbers.
 
-Format: `search_ext [name/NAME] [phone/PHONE] [email/EMAIL] [description/DESCRIPTION]`
+Format: `search_ext [name/NAME] [phone/PHONE] [email/EMAIL] [desc/DESCRIPTION]`
 
 * At least one of the parameters must be provided in the search.
 * The search is case-insensitive. e.g `alice` will match `Alice`.
