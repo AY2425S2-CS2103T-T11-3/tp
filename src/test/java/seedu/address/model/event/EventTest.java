@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
+
 import seedu.address.model.person.Staff;
 import seedu.address.testutil.TypicalStaffs;
 
@@ -126,21 +127,5 @@ public class EventTest {
         event.addStaff(staff);
         assertTrue(event.isStaffInEvent(staff));
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 }
