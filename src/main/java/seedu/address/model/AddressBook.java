@@ -212,7 +212,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void removeStaff(Staff key) {
         this.staff.remove(key);
-        this.events.removeFromAllEvents(key);
+        this.events.removeStaffFromAllEvents(key);
     }
 
     /**
@@ -229,6 +229,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void removeStudent(Student key) {
         this.students.remove(key);
+        this.events.removeStudentFromAllEvents(key);
     }
 
     //// util methods

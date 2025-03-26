@@ -156,6 +156,13 @@ public class Event {
         return staffs.contains(staff);
     }
 
+    /**
+     * Returns true if the {@code student} is part in this event's student list.
+     */
+    public boolean isStudentInEvent(Student student) {
+        return students.contains(student);
+    }
+
 
     @Override
     public int hashCode() {

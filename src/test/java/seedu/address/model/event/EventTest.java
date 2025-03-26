@@ -8,7 +8,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.person.Staff;
+import seedu.address.model.person.Student;
 import seedu.address.testutil.TypicalStaffs;
+import seedu.address.testutil.TypicalStudents;
 
 public class EventTest {
 
@@ -126,6 +128,16 @@ public class EventTest {
         assertFalse(event.isStaffInEvent(staff));
         event.addStaff(staff);
         assertTrue(event.isStaffInEvent(staff));
+    }
+
+    @Test
+    public void isStudentInEvent_correct() {
+        Event event = new Event(new EventName("Concert"), new EventStartTime("2025-07-01 18:00"),
+                new EventEndTime("2025-07-01 22:00"));
+        Student student = TypicalStudents.SAUL;
+        assertFalse(event.isStudentInEvent(student));
+        event.addStudent(student);
+        assertTrue(event.isStudentInEvent(student));
     }
 
 }
