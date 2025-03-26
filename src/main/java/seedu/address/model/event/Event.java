@@ -156,6 +156,12 @@ public class Event {
         return staffs.contains(staff);
     }
 
+    /**
+     * Returns true if the {@code externalParty} is part in this event's external party list.
+     */
+    public boolean isExternalPartyInEvent(ExternalParty externalParty) {
+        return externalParties.contains(externalParty);
+    }
 
     @Override
     public int hashCode() {
