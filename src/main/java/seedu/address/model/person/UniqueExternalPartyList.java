@@ -122,7 +122,22 @@ public class UniqueExternalPartyList implements Iterable<ExternalParty> {
         }
 
         UniqueExternalPartyList otherUniqueExternalPartyList = (UniqueExternalPartyList) other;
-        return internalList.equals(otherUniqueExternalPartyList.internalList);
+
+        // Check if both lists have the same size
+        if (this.internalList.size() != otherUniqueExternalPartyList.internalList.size()) {
+            return false; // If they have different sizes, they are not equal
+        }
+
+        // Check if each ExternalParty in the first list is the same as the corresponding ExternalParty
+        // in the second list
+        for (int i = 0; i < this.internalList.size(); i++) {
+            if (!this.internalList.get(i).isSamePerson(otherUniqueExternalPartyList.internalList.get(i))) {
+                return false; // If any staff does not match, return false
+            }
+        }
+
+        // If all checks pass, return true (the lists have the same contents)
+        return true;
     }
 
     @Override
