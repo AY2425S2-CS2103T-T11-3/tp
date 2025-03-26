@@ -10,6 +10,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.event.exceptions.DuplicateEventException;
 import seedu.address.model.event.exceptions.EventNotFoundException;
+import seedu.address.model.person.Staff;
 
 /**
  * A list that maintains unique events and does not allow duplicates.
@@ -72,6 +73,19 @@ public class UniqueEventList implements Iterable<Event> {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
             throw new EventNotFoundException();
+        }
+    }
+
+    /**
+     * Removes the staff from all events stored in this UniqueEventList. Call for this function should only
+     * originate from a DeleteStaffCommand.
+     *
+     */
+    public void removeFromAllEvents(Staff staff) {
+        for (Event e : internalList) {
+            if (e.isStaffInEvent(staff)) {
+                e.removeStaff(staff);
+            }
         }
     }
 
