@@ -19,6 +19,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_EVENT_STUDENT = new Prefix("stu/");
     public static final Prefix PREFIX_EVENT_STAFF = new Prefix("staff/");
     public static final Prefix PREFIX_EVENT_EXTERNAL = new Prefix("ext/");
+    public static final Prefix PREFIX_EVENT_MEMTYPE = new Prefix("memtype/");
 
     public static final Prefix PREFIX_DESCRIPTION = new Prefix("desc/");
     public static final Prefix PREFIX_MATRIC = new Prefix("matric/");
