@@ -51,7 +51,8 @@ public class AddStaffCommand extends Command {
             + "respectively.";
 
     public static final String MESSAGE_SUCCESS = "New staff added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This staff already exists in ResiConnect";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This staff already exists in ResiConnect. "
+            + "No two staffs can have the same email or phone.";
 
     private final Staff toAdd;
 
@@ -67,7 +68,7 @@ public class AddStaffCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (model.hasPerson(toAdd)) {
+        if (model.hasStaff(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 

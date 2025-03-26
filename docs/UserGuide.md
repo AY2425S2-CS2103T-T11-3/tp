@@ -4,9 +4,11 @@
   pageNav: 3
 ---
 
-# AB-3 User Guide
+# ResiConnect User Guide
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a  Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+ResiConnect is a **desktop contact management app for tracking students, staff, external parties and events in the various halls and residential colleges in NUS.** 
+It is optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). 
+If you can type fast, ResiConnect can get your contact management tasks done faster than traditional GUI apps.
 
 <!-- * Table of Contents -->
 <page-nav-print />
@@ -29,13 +31,14 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * `list` : Lists all contacts.
+   * `list_staff` : Lists all staff in the address book.
 
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+   * `add_stu name/John Doe matric/A0234567B phone/98765432 email/johnd@example.com a/311, Clementi Ave 2, #02-25 
+   emergency/91234567 block/A level/5 room/3 designation/1` : Adds a student named `John Doe` to the address book.
 
-   * `delete 3` : Deletes the 3rd contact shown in the current list.
+   * `delete_ext 3` : Deletes the 3rd external party shown in the current external party list.
 
-   * `clear` : Deletes all contacts.
+   * `view_event 2` : Views the 2nd event in the address book, associated with its respective lists.
 
    * `exit` : Exits the app.
 
@@ -49,19 +52,19 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 **Notes about the command format:**<br>
 
+* For additional information about the constraints of each parameter. Please refer to the Constraints section, further below.
+
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+  e.g. in `add_stu name/NAME`, `NAME` is a parameter which can be used as `add name/John Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
-
-* Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+  e.g `name/NAME [designation/DESIGNATION]` can be used as `name/John Doe designation/1` or as `name/John Doe`.
 
 * Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+  e.g. if the command specifies `name/NAME phone/PHONE_NUMBER`, `phone/PHONE_NUMBER name/NAME` is also acceptable.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
+* Extraneous parameters for commands that do not take in parameters (such as `help`, `list_stu` and `exit`) will be 
+ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
@@ -69,88 +72,239 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+Shows a message explaining how to access the help page.
 
 ![help message](images/helpMessage.png)
 
 Format: `help`
 
+### Adding a student: `add_stu`
 
-### Adding a person: `add`
+Adds a student to the address book.
 
-Adds a person to the address book.
-
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `add_stu name/NAME matric/MATRIC phone/PHONE email/EMAIL a/ADDRESS emergency/EMERGENCY CONTACT block/BLOCK level/LEVEL room/ROOM [designation/DESIGNATION]`
 
 <box type="tip" seamless>
 
-**Tip:** A person can have any number of tags (including 0)
+**Tip:** You can omit the designation field, and ResiConnect will put the lowest position available as the default. To specify it, place an integer from 0 to 2, representing {“Resident”, “Block Head”, “JCRC Member”} respectively.
 </box>
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add_stu name/John Doe matric/A0234567B phone/98765432 email/johnd@example.com a/311, Clementi Ave 2, #02-25 emergency/91234567 block/A level/5 room/3 designation/1`
 
-### Listing all persons : `list`
+### Adding a staff: `add_staff`
 
-Shows a list of all persons in the address book.
+Adds a staff to the address book.
 
-Format: `list`
+Format: `add_staff name/NAME phone/PHONE email/EMAIL a/ADDRESS emergency/EMERGENCY CONTACT block/BLOCK level/LEVEL room/ROOM [designation/DESIGNATION]`
 
-### Editing a person : `edit`
+<box type="tip" seamless>
 
-Edits an existing person in the address book.
-
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
-
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
+**Tip:** You can omit the designation field, and ResiConnect will put the lowest position available as the default. To specify it, place an integer from 0 to 2, representing {“Support Staff”, “Block IC”, “Residence Master”} respectively.
+</box>
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+* `add_staff name/John Doe phone/98765432 email/johnd@example.com a/311, Clementi Ave 2, #02-25 emergency/91234567 block/A level/5 room/3 designation/1`
 
-### Locating persons by name: `find`
+### Adding an external party: `add_ext`
 
-Finds persons whose names contain any of the given keywords.
+Adds an external party to the address book.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
-
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+Format: `add_ext name/NAME phone/PHONE email/EMAIL desc/DESCRIPTION`
 
 Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+* `add_ext name/John Doe phone/98765432 email/johnd@example.com desc/External party for food.`
 
-### Deleting a person : `delete`
+### Listing all students : `list_stu`
 
-Deletes the specified person from the address book.
+Shows a list of all students in the address book.
 
-Format: `delete INDEX`
+Format: `list_stu`
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
+### Listing all staff : `list_staff`
+
+Shows a list of all staffs in the address book.
+
+Format: `list_staff`
+
+### Listing all external parties : `list_ext`
+
+Shows a list of all external parties in the address book.
+
+Format: `list_ext`
+
+### Deleting a student : `delete_stu`
+
+Deletes the specified student from the address book.
+
+Format: `delete_stu INDEX`
+
+* Deletes the student at the specified `INDEX`.
+* The index refers to the index number shown in the displayed student list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `list_stu` followed by `delete 2` deletes the 2nd student in the student list.
 
-### Clearing all entries : `clear`
+### Deleting a staff : `delete_staff`
 
-Clears all entries from the address book.
+Deletes the specified staff from the address book.
 
-Format: `clear`
+Format: `delete_staff INDEX`
+
+* Deletes the staff at the specified `INDEX`.
+* The index refers to the index number shown in the displayed staff list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `list_staff` followed by `delete 2` deletes the 2nd staff in the staff list.
+
+### Deleting an external party : `delete_ext`
+
+Deletes the specified external party from the address book.
+
+Format: `delete_ext INDEX`
+
+* Deletes the external party at the specified `INDEX`.
+* The index refers to the index number shown in the displayed external party list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `list_ext` followed by `delete_ext 2` deletes the 2nd external party in the external party list.
+
+### Searching for students: `search_stu`
+
+Searches for all students whose attributes match the specified keywords (case-insensitive) and displays them as a list
+with index numbers.
+
+Format: `search_stu [name/NAME] [matric/MATRIC] [phone/PHONE] [email/EMAIL] [a/ADDRESS] [emergency/EMERGENCY] 
+[block/BLOCK] [level/LEVEL] [room/ROOM] [designation/DESIGNATION]`
+
+* At least one of the parameters must be provided in the search.
+* The search is case-insensitive. e.g `alice` will match `Alice`.
+* Only full words will be matched e.g. `Alic` will not match `Alice`.
+
+Examples:
+* `search_stu name/Alice` returns a list of students that are named `Alice`.
+* `search_stu name/Bob block/A` returns a list of students that are both named `Bob` and reside in block `A`.
+
+### Searching for staff: `search_staff`
+
+Searches for all staff whose attributes match the specified keywords (case-insensitive) and displays them as a list
+with index numbers.
+
+Format: `search_staff [name/NAME] [phone/PHONE] [email/EMAIL] [a/ADDRESS] [emergency/EMERGENCY] [block/BLOCK]
+[level/LEVEL] [room/ROOM] [designation/DESIGNATION]`
+
+* At least one of the parameters must be provided in the search.
+* The search is case-insensitive. e.g `alice` will match `Alice`.
+* Only full words will be matched e.g. `Alic` will not match `Alice`.
+
+Examples:
+* `search_staff name/Alice` returns a list of staff that are named `Alice`.
+* `search_staff name/Bob block/A` returns a list of staff that are both named `Bob` and reside in block `A`.
+
+### Searching for external parties: `search_ext`
+
+Searches for all external parties whose attributes match the specified keywords (case-insensitive) and displays them 
+as a list with index numbers.
+
+Format: `search_ext [name/NAME] [phone/PHONE] [email/EMAIL] [desc/DESCRIPTION]`
+
+* At least one of the parameters must be provided in the search.
+* The search is case-insensitive. e.g `alice` will match `Alice`.
+* Only full words will be matched e.g. `Alic` will not match `Alice`.
+
+Examples:
+* `search_ext name/Alice` returns a list of staff that are named `Alice`.
+* `search_ext name/Bob description/Food Vendor` returns a list of external parties that are both named `Bob` and 
+work as `Food Vendor`.
+
+### Adding an event : `add_event`
+
+Adds an event to the address book.
+
+Format: `add_event name/EVENT_NAME from/START_TIME to/END_TIME`
+
+* START_TIME and END_TIME need to follow format: YYYY-MM-DD HH:MM
+
+Examples:
+* `add_event name/Dance Club Rehearsal from/2025-06-15 18:00 to/2025-06-15 21:00`
+* `add_event name/Basketball Club Training from/2025-06-16 18:00 to/2025-06-16 21:00`
+
+### Listing all events : `list_event`
+
+Shows a list of all events in the address book.
+
+Format: `list_event`
+
+### Deleting an event : `delete_event`
+
+Deletes the specified event from the address book.
+
+Format: `delete_event INDEX`
+
+* Deletes the event at the specified `INDEX`.
+* The index refers to the index number shown in the displayed event list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `list_event` followed by `delete_event 2` deletes the 2nd event in the address book.
+
+### View an event : `view_event`
+
+Views the details of the specified event from the address book, including the associated student list, 
+staff list, and external party list.
+
+Format: `view_event INDEX`
+
+* View the details of the event at the specified `INDEX`.
+* The index refers to the index number shown in the displayed event list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `list_event` followed by `view_event 2` views the details of the 2nd event (including its associated students, 
+staff, and external parties) in the address book.
+
+### Searching an event : `search_event`
+
+Searches the specified event from ResiConnect.
+
+Format: `search_event [name/EVENT_NAME] [from/START_TIME] [to/END_TIME]`
+
+* Searches the event with the specified keyword.
+* At least one of the optional fields must be provided.
+* The EVENT_NAME is case-insensitive, and partial words will be matched.
+* The START_TIME and END_TIME must be in the format `yyyy-MM-dd HH:mm`.
+
+Examples:
+* `search_event name/Dance from/2025-06-15 18:00` searches for the event with the name `Dance` starting from `2025-06-15 18:00`.
+
+### Adding a member into an event: `add_event_member`
+
+Adds a member into the specified event from ResiConnect.
+
+Format: `add_event_member EVENT_INDEX stu/STUDENT_INDEX OR staff/STAFF_INDEX OR ext/EXTERNAL_INDEX`
+
+* The EVENT_INDEX refers to the index number shown in the displayed event list.
+* The STUDENT_INDEX / STAFF_INDEX / EXTERNAL_INDEX refers to the index number shown in the displayed student / staff / external list.
+
+Examples:
+* `add_event_member 1 stu/1` adds the first student into the first event.
+* `add_event_member 2 staff/2` adds the second staff into the second event.
+
+### Deleting a member from an event: `delete_event_member`
+
+Deletes the specified member from the specified event from ResiConnect.
+
+Format: `delete_event_member EVENT_INDEX stu/STUDENT_INDEX OR staff/STAFF_INDEX OR ext/EXTERNAL_INDEX`
+
+* The EVENT_INDEX refers to the index number shown in the displayed event list.
+* The STUDENT_INDEX / STAFF_INDEX / EXTERNAL_INDEX refers to the index number shown in the displayed student / staff / external list.
+
+Examples:
+* `delete_event_member 1 stu/1` deletes the first student from the first event.
+* `delete_event_member 2 staff/2` deletes the second staff from the second event.
 
 ### Exiting the program : `exit`
 
@@ -173,9 +327,29 @@ If your changes to the data file makes its format invalid, AddressBook will disc
 Furthermore, certain edits can cause the AddressBook to behave in unexpected ways (e.g., if a value entered is outside the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </box>
 
-### Archiving data files `[coming in v2.0]`
+## Constraints for the Features
 
-_Details coming soon ..._
+Here is a comprehensive list for any constraints that we have specified above!
+* Address `a/`: Addresses can take any values, and it should not be blank.
+* Block `block/`: Block should only be 1 alphabet or 1 number from 1 to 9, and it should not be blank.
+* Description `desc/`: Description can take any values, and it should not be blank.
+* Email `email/`: Emails should be of the format local-part@domain and adhere to the following constraints:
+  1. The local-part should only contain alphanumeric characters and these special characters, excluding the parentheses, (" + SPECIAL_CHARACTERS + "). The local-part may not start or end with any special characters.
+  2. This is followed by a '@' and then a domain name. The domain name is made up of domain labels separated by periods. The domain name must:
+     - end with a domain label at least 2 characters long.
+     - have each domain label start and end with alphanumeric characters.
+     - have each domain label consist of alphanumeric characters, separated only by hyphens, if any.
+* Emergency `emergency/`: Emergency phone numbers should only contain numbers, and it should be at least 3 digits long.
+* Event Start Time `from/`: Event start time must be in the format 'yyyy-MM-dd HH:mm' and must be a valid datetime. It should also come before the Event End Time.
+* Event End Time `to/`: Event end time must be in the format 'yyyy-MM-dd HH:mm' and must be a valid datetime. It should also come after the Event Start Time.
+* Event Name `name/`: Event names should only contain alphanumeric characters and spaces, and it should not be blank.
+* Level `level/`: Levels should only be positive integers, and it should not be blank.
+* Matric `matric/`: Matric numbers should start with 'A', followed by 7 numeric digits, and end with a letter.
+* Name `name/`: Names should only contain alphanumeric characters and spaces, and it should not be blank.
+* Phone `phone/`: Phone numbers should only contain numbers, and it should be at least 3 digits long.
+* Room `room/`: Rooms should only be positive integers, and it should not be blank.
+* StaffDesignation `designation/`: Designation should only be an integer from 0 to 2, and it should not be blank. 0 to 2 represent Support Staff, Block IC and Residence Master respectively.
+* StudentDesignation `designation/`: Designation should only be an integer from 0 to 2, and it should not be blank. 0 to 2 represent Resident, Block Head and JCRC Member respectively.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -197,10 +371,24 @@ _Details coming soon ..._
 
 Action     | Format, Examples
 -----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-**Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear**  | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List**   | `list`
+**Add Student**    | `add_stu name/NAME matric/MATRIC phone/PHONE email/EMAIL a/ADDRESS emergency/EMERGENCY CONTACT block/BLOCK level/LEVEL room/ROOM designation/DESIGNATION` <br><br> e.g., `add_stu name/John Doe matric/A0234567B phone/98765432 email/johnd@example.com a/311, Clementi Ave 2, #02-25 emergency/91234567 block/A level/5 room/3 designation/1`
+**Add Staff**    | `add_staff name/NAME phone/PHONE email/EMAIL a/ADDRESS emergency/EMERGENCY CONTACT block/BLOCK level/LEVEL room/ROOM designation/DESIGNATION` <br><br> e.g., `add_staff name/John Doe phone/98765432 email/johnd@example.com a/311, Clementi Ave 2, #02-25 emergency/91234567 block/A level/5 room/3 designation/1`
+**Add External Party**    | `add_ext name/NAME phone/PHONE email/EMAIL desc/DESCRIPTION` <br><br> e.g., `add_ext name/John Doe phone/98765432 email/johnd@example.com desc/External party for food.`
+**List Students**  | `list_stu`
+**List Staff**   | `list_staff`
+**List External Parties**   | `list_ext`
+**Delete Student** | `delete_stu INDEX`<br> e.g., `delete_stu 3` 
+**Delete Staff** | `delete_staff INDEX` <br> e.g., `delete_staff 3`
+**Delete External Party** | `delete_ext INDEX` <br> e.g., `delete_ext 3`
+**Search Student** | `search_stu [name/NAME] [matric/MATRIC] [phone/PHONE] [email/EMAIL] [a/ADDRESS] [emergency/EMERGENCY][block/BLOCK] [level/LEVEL] [room/ROOM] [designation/DESIGNATION]`<br> e.g., `search_stu name/Alice matric/A0234567B` 
+**Search Staff** | `search_staff [name/NAME] [phone/PHONE] [email/EMAIL] [a/ADDRESS] [emergency/EMERGENCY][block/BLOCK] [level/LEVEL] [room/ROOM] [designation/DESIGNATION]` <br> e.g., `search_staff name/Alice phone/98765432`
+**Search External Party** | `search_ext [name/NAME] [phone/PHONE] [email/EMAIL] [desc/DESCRIPTION]` <br> e.g., `search_ext name/Alice desc/Food Vendor`
+**Add Event**    | `add_event name/EVENT_NAME from/START_TIME to/END_TIME` <br> e.g., `add_event name/ Dance Club Rehearsal from/ 2025-06-15 18:00 to/ 2025-06-15 21:00`
+**List Events**   | `list_event`
+**Delete Event**    | `delete_event INDEX` <br> e.g., `delete_event 2`
+**View Event**    | `view_event INDEX` <br> e.g., `view_event 2`
+**Search Event** | `search_event [name/EVENT_NAME] [from/START_TIME] [to/END_TIME]`<br> e.g., `search_event name/Dance from/2025-06-15 18:00`
+**Add Event Member** | `add_event_member EVENT_INDEX stu/STUDENT_INDEX OR staff/STAFF_INDEX OR ext/EXTERNAL_INDEX`<br> e.g., `add_event_member 1 stu/1`
+**Delete Event Member** | `delete_event_member EVENT_INDEX stu/STUDENT_INDEX OR staff/STAFF_INDEX OR ext/EXTERNAL_INDEX`<br> e.g., `delete_event_member 1 stu/1`
 **Help**   | `help`
+**Exit**   | `exit`

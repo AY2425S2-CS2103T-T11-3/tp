@@ -107,7 +107,10 @@ public class UniqueExternalPartyListTest {
     @Test
     public void setExternalParty_editedPersonHasNonUniqueIdentity_throwsDuplicatePersonException() {
         ExternalParty externalParty = new ExternalPartyBuilder().build();
-        ExternalParty externalParty1 = new ExternalPartyBuilder().withName("Haikel").build();
+        ExternalParty externalParty1 = new ExternalPartyBuilder()
+                .withPhone("22222222")
+                .withEmail("bob@gmail.com")
+                .build();
         uniqueExternalPartyList.add(externalParty);
         uniqueExternalPartyList.add(externalParty1);
         assertThrows(DuplicatePersonException.class, ()

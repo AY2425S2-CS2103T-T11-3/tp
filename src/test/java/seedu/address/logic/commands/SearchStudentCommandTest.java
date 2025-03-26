@@ -3,7 +3,7 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalStudents.getStudentOnlyAddressBook;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -23,8 +23,8 @@ import seedu.address.model.person.StudentMatchesAttributesPredicate;
  * Contains integration tests (interaction with the Model) for {@code SearchStudentCommand}.
  */
 public class SearchStudentCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getStudentOnlyAddressBook(), new UserPrefs());
+    private Model expectedModel = new ModelManager(getStudentOnlyAddressBook(), new UserPrefs());
 
     @Test
     public void equals() {

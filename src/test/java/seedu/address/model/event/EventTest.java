@@ -14,6 +14,8 @@ import seedu.address.testutil.ExternalPartyBuilder;
 import seedu.address.testutil.StaffBuilder;
 import seedu.address.testutil.StudentBuilder;
 import seedu.address.testutil.TypicalEvents;
+import seedu.address.testutil.TypicalStaffs;
+
 
 public class EventTest {
 
@@ -250,20 +252,14 @@ public class EventTest {
         assertEquals(event1.hashCode(), event2.hashCode());
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    @Test
+    public void isStaffInEvent_correct() {
+        Event event = new Event(new EventName("Concert"), new EventStartTime("2025-07-01 18:00"),
+                new EventEndTime("2025-07-01 22:00"));
+        Staff staff = TypicalStaffs.HARIS;
+        assertFalse(event.isStaffInEvent(staff));
+        event.addStaff(staff);
+        assertTrue(event.isStaffInEvent(staff));
+    }
 
 }

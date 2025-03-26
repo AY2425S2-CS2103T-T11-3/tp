@@ -32,7 +32,6 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private PersonListPanel personListPanel;
     private EventListPanel eventListPanel;
     private EventDetailPanel eventDetailPanel;
     private StaffListPanel staffListPanel;
@@ -47,9 +46,6 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private MenuItem helpMenuItem;
-
-    @FXML
-    private StackPane personListPanelPlaceholder;
 
     @FXML
     private StackPane staffListPanelPlaceholder;
@@ -99,12 +95,10 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     private void updateListView(ListType type) {
-        personListPanel = null;
         eventListPanel = null;
         eventDetailPanel = null;
         staffListPanel = null;
         studentListPanel = null;
-        personListPanelPlaceholder.getChildren().clear();
         staffListPanelPlaceholder.getChildren().clear();
         externalPartyListPanelPlaceholder.getChildren().clear();
         studentListPanelPlaceholder.getChildren().clear();
@@ -112,11 +106,6 @@ public class MainWindow extends UiPart<Stage> {
         eventDetailPanelPlaceholder.getChildren().clear();
 
         switch (type) {
-
-        case PERSON:
-            personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-            personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
-            break;
 
         case STAFF:
             staffListPanel = new StaffListPanel(logic.getFilteredStaffList());
@@ -190,8 +179,8 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        studentListPanel = new StudentListPanel(logic.getFilteredStudentList());
+        studentListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -241,10 +230,6 @@ public class MainWindow extends UiPart<Stage> {
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
         primaryStage.hide();
-    }
-
-    public PersonListPanel getPersonListPanel() {
-        return personListPanel;
     }
 
     /**

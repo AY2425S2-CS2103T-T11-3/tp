@@ -7,28 +7,21 @@ import static seedu.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
-import java.util.Arrays;
-import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.AddExternalCommand;
+import seedu.address.logic.commands.AddExternalPartyCommand;
 import seedu.address.logic.commands.AddStaffCommand;
 import seedu.address.logic.commands.AddStudentCommand;
 import seedu.address.logic.commands.ClearCommand;
-import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.DeleteExternalPartyCommand;
 import seedu.address.logic.commands.DeleteStaffCommand;
 import seedu.address.logic.commands.DeleteStudentCommand;
-import seedu.address.logic.commands.EditCommand;
-import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.ListExternalPartyCommand;
 import seedu.address.logic.commands.ListStaffCommand;
 import seedu.address.logic.commands.ListStudentCommand;
@@ -36,20 +29,17 @@ import seedu.address.logic.commands.SearchExternalPartyCommand;
 import seedu.address.logic.commands.SearchStaffCommand;
 import seedu.address.logic.commands.SearchStudentCommand;
 import seedu.address.logic.commands.event.AddEventCommand;
+import seedu.address.logic.commands.event.AddEventMemberCommand;
 import seedu.address.logic.commands.event.DeleteEventCommand;
+import seedu.address.logic.commands.event.DeleteEventMemberCommand;
 import seedu.address.logic.commands.event.ViewEventCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.event.Event;
 import seedu.address.model.person.ExternalParty;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
-import seedu.address.model.person.Person;
 import seedu.address.model.person.Staff;
 import seedu.address.model.person.Student;
-import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.EventBuilder;
 import seedu.address.testutil.ExternalPartyBuilder;
-import seedu.address.testutil.PersonBuilder;
-import seedu.address.testutil.PersonUtil;
 import seedu.address.testutil.StaffBuilder;
 import seedu.address.testutil.StudentBuilder;
 
@@ -134,20 +124,13 @@ public class AddressBookParserTest {
     }
 
     @Test
-    public void parseCommand_add() throws Exception {
-        Person person = new PersonBuilder().build();
-        AddCommand command = (AddCommand) parser.parseCommand(PersonUtil.getAddCommand(person));
-        assertEquals(new AddCommand(person), command);
-    }
-
-    @Test
     public void parseCommand_addExternal() throws Exception {
         ExternalParty externalParty = new ExternalPartyBuilder().build();
 
-        AddExternalCommand command = (AddExternalCommand) parser.parseCommand(
-                AddExternalCommand.COMMAND_WORD
+        AddExternalPartyCommand command = (AddExternalPartyCommand) parser.parseCommand(
+                AddExternalPartyCommand.COMMAND_WORD
                         + " name/Amy Bee phone/85355255 email/amy@gmail.com desc/External supplier for food.");
-        assertEquals(new AddExternalCommand(externalParty), command);
+        assertEquals(new AddExternalPartyCommand(externalParty), command);
     }
 
 
@@ -155,13 +138,6 @@ public class AddressBookParserTest {
     public void parseCommand_clear() throws Exception {
         assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD) instanceof ClearCommand);
         assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD + " 3") instanceof ClearCommand);
-    }
-
-    @Test
-    public void parseCommand_delete() throws Exception {
-        DeleteCommand command = (DeleteCommand) parser.parseCommand(
-                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
-        assertEquals(new DeleteCommand(INDEX_FIRST_PERSON), command);
     }
 
     @Test
@@ -186,38 +162,15 @@ public class AddressBookParserTest {
     }
 
     @Test
-    public void parseCommand_edit() throws Exception {
-        Person person = new PersonBuilder().build();
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(person).build();
-        EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
-        assertEquals(new EditCommand(INDEX_FIRST_PERSON, descriptor), command);
-    }
-
-    @Test
     public void parseCommand_exit() throws Exception {
         assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD) instanceof ExitCommand);
         assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD + " 3") instanceof ExitCommand);
     }
 
     @Test
-    public void parseCommand_find() throws Exception {
-        List<String> keywords = Arrays.asList("foo", "bar", "baz");
-        FindCommand command = (FindCommand) parser.parseCommand(
-                FindCommand.COMMAND_WORD + " " + String.join(" ", keywords));
-        assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
-    }
-
-    @Test
     public void parseCommand_help() throws Exception {
         assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD) instanceof HelpCommand);
         assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD + " 3") instanceof HelpCommand);
-    }
-
-    @Test
-    public void parseCommand_list() throws Exception {
-        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
-        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " 3") instanceof ListCommand);
     }
 
     @Test
@@ -274,8 +227,104 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_viewEvent() throws Exception {
-        ViewEventCommand command = (ViewEventCommand) parser.parseCommand("view_event 1");
+        ViewEventCommand command = (ViewEventCommand) parser.parseCommand(ViewEventCommand.COMMAND_WORD + " 1");
         assertEquals(new ViewEventCommand(Index.fromOneBased(1)), command);
+    }
+
+    @Test
+    public void parseCommand_addEventMember_student() throws Exception {
+        // Test adding a student to an event
+        Index eventIndex = Index.fromOneBased(1);
+        Index studentIndex = Index.fromOneBased(2);
+        AddEventMemberCommand expectedCommand = new AddEventMemberCommand(
+                eventIndex, Optional.of(studentIndex), Optional.empty(), Optional.empty());
+
+        String userInput = AddEventMemberCommand.COMMAND_WORD + " "
+                + eventIndex.getOneBased() + " "
+                + CliSyntax.PREFIX_EVENT_STUDENT + studentIndex.getOneBased();
+
+        AddEventMemberCommand command = (AddEventMemberCommand) parser.parseCommand(userInput);
+        assertEquals(expectedCommand, command);
+    }
+
+    @Test
+    public void parseCommand_addEventMember_staff() throws Exception {
+        // Test adding a staff to an event
+        Index eventIndex = Index.fromOneBased(1);
+        Index staffIndex = Index.fromOneBased(3);
+        AddEventMemberCommand expectedCommand = new AddEventMemberCommand(
+                eventIndex, Optional.empty(), Optional.of(staffIndex), Optional.empty());
+
+        String userInput = AddEventMemberCommand.COMMAND_WORD + " "
+                + eventIndex.getOneBased() + " "
+                + CliSyntax.PREFIX_EVENT_STAFF + staffIndex.getOneBased();
+
+        AddEventMemberCommand command = (AddEventMemberCommand) parser.parseCommand(userInput);
+        assertEquals(expectedCommand, command);
+    }
+
+    @Test
+    public void parseCommand_addEventMember_external() throws Exception {
+        // Test adding an external party to an event
+        Index eventIndex = Index.fromOneBased(1);
+        Index externalIndex = Index.fromOneBased(4);
+        AddEventMemberCommand expectedCommand = new AddEventMemberCommand(
+                eventIndex, Optional.empty(), Optional.empty(), Optional.of(externalIndex));
+
+        String userInput = AddEventMemberCommand.COMMAND_WORD + " "
+                + eventIndex.getOneBased() + " "
+                + CliSyntax.PREFIX_EVENT_EXTERNAL + externalIndex.getOneBased();
+
+        AddEventMemberCommand command = (AddEventMemberCommand) parser.parseCommand(userInput);
+        assertEquals(expectedCommand, command);
+    }
+
+    @Test
+    public void parseCommand_deleteEventMember_student() throws Exception {
+        // Test deleting a student from an event
+        Index eventIndex = Index.fromOneBased(1);
+        Index studentIndex = Index.fromOneBased(2);
+        DeleteEventMemberCommand expectedCommand = new DeleteEventMemberCommand(
+                eventIndex, Optional.of(studentIndex), Optional.empty(), Optional.empty());
+
+        String userInput = DeleteEventMemberCommand.COMMAND_WORD + " "
+                + eventIndex.getOneBased() + " "
+                + CliSyntax.PREFIX_EVENT_STUDENT + studentIndex.getOneBased();
+
+        DeleteEventMemberCommand command = (DeleteEventMemberCommand) parser.parseCommand(userInput);
+        assertEquals(expectedCommand, command);
+    }
+
+    @Test
+    public void parseCommand_deleteEventMember_staff() throws Exception {
+        // Test deleting a staff from an event
+        Index eventIndex = Index.fromOneBased(1);
+        Index staffIndex = Index.fromOneBased(3);
+        DeleteEventMemberCommand expectedCommand = new DeleteEventMemberCommand(
+                eventIndex, Optional.empty(), Optional.of(staffIndex), Optional.empty());
+
+        String userInput = DeleteEventMemberCommand.COMMAND_WORD + " "
+                + eventIndex.getOneBased() + " "
+                + CliSyntax.PREFIX_EVENT_STAFF + staffIndex.getOneBased();
+
+        DeleteEventMemberCommand command = (DeleteEventMemberCommand) parser.parseCommand(userInput);
+        assertEquals(expectedCommand, command);
+    }
+
+    @Test
+    public void parseCommand_deleteEventMember_external() throws Exception {
+        // Test deleting an external party from an event
+        Index eventIndex = Index.fromOneBased(1);
+        Index externalIndex = Index.fromOneBased(4);
+        DeleteEventMemberCommand expectedCommand = new DeleteEventMemberCommand(
+                eventIndex, Optional.empty(), Optional.empty(), Optional.of(externalIndex));
+
+        String userInput = DeleteEventMemberCommand.COMMAND_WORD + " "
+                + eventIndex.getOneBased() + " "
+                + CliSyntax.PREFIX_EVENT_EXTERNAL + externalIndex.getOneBased();
+
+        DeleteEventMemberCommand command = (DeleteEventMemberCommand) parser.parseCommand(userInput);
+        assertEquals(expectedCommand, command);
     }
 
 

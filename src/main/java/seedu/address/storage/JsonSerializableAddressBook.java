@@ -11,9 +11,8 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
-//import seedu.address.model.event.Event;
+import seedu.address.model.event.Event;
 import seedu.address.model.person.ExternalParty;
-import seedu.address.model.person.Person;
 import seedu.address.model.person.Staff;
 import seedu.address.model.person.Student;
 
@@ -30,21 +29,22 @@ class JsonSerializableAddressBook {
             "External parties list contains duplicate external party(ies).";
     public static final String MESSAGE_DUPLICATE_EVENT = "Events list contains duplicate event(s).";
 
-    private final List<JsonAdaptedPerson> persons = new ArrayList<>();
     private final List<JsonAdaptedStaff> staffs = new ArrayList<>();
     private final List<JsonAdaptedStudent> students = new ArrayList<>();
     private final List<JsonAdaptedExternalParty> externalParties = new ArrayList<>();
-    //    private final List<JsonAdaptedEvent> events = new ArrayList<>();      // DO NOT DELETE. FOR V1.3
+    private final List<JsonAdaptedEvent> events = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonSerializableAddressBook} with the given persons.
      */
     @JsonCreator
-    public JsonSerializableAddressBook(@JsonProperty("persons") List<JsonAdaptedPerson> persons) {
-        //@JsonProperty("events") List<JsonAdaptedEvent> events) {
-        this.persons.addAll(persons);
-        //        this.events.addAll(events);   // DO NOT DELETE. FOR V1.3
-
+    public JsonSerializableAddressBook(@JsonProperty("staffs") List<JsonAdaptedStaff> staffs,
+                                       @JsonProperty("students") List<JsonAdaptedStudent> students,
+                                       @JsonProperty("externalParties")
+                                           List<JsonAdaptedExternalParty> externalParties) {
+        this.staffs.addAll(staffs);
+        this.students.addAll(students);
+        this.externalParties.addAll(externalParties);
     }
 
     /**
@@ -53,12 +53,11 @@ class JsonSerializableAddressBook {
      * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
      */
     public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
-        persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
         staffs.addAll(source.getStaffList().stream().map(JsonAdaptedStaff::new).collect(Collectors.toList()));
         students.addAll(source.getStudentList().stream().map(JsonAdaptedStudent::new).collect(Collectors.toList()));
         externalParties.addAll(source.getExternalPartyList().stream().map(JsonAdaptedExternalParty::new)
                 .collect(Collectors.toList()));
-        //        events.addAll(source.getEventList().stream().map(JsonAdaptedEvent::new).collect(Collectors.toList()));
+        events.addAll(source.getEventList().stream().map(JsonAdaptedEvent::new).collect(Collectors.toList()));
     }
 
     /**
@@ -68,13 +67,6 @@ class JsonSerializableAddressBook {
      */
     public AddressBook toModelType() throws IllegalValueException {
         AddressBook addressBook = new AddressBook();
-        for (JsonAdaptedPerson jsonAdaptedPerson : persons) {
-            Person person = jsonAdaptedPerson.toModelType();
-            if (addressBook.hasPerson(person)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
-            }
-            addressBook.addPerson(person);
-        }
 
         for (JsonAdaptedStaff jsonAdaptedStaff : staffs) {
             Staff staff = jsonAdaptedStaff.toModelType();
@@ -97,16 +89,17 @@ class JsonSerializableAddressBook {
             if (addressBook.hasExternalParty(externalParty)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_EXTERNAL_PARTY);
             }
+            addressBook.addExternalParty(externalParty);
         }
 
-        //        // Convert events back into the AddressBook
-        //        for (JsonAdaptedEvent jsonAdaptedEvent : events) {
-        //            Event event = jsonAdaptedEvent.toModelType();
-        //            if (addressBook.hasEvent(event)) {
-        //                throw new IllegalValueException(MESSAGE_DUPLICATE_EVENT);
-        //            }
-        //            addressBook.addEvent(event);
-        //        }
+        // Convert events back into the AddressBook
+        for (JsonAdaptedEvent jsonAdaptedEvent : events) {
+            Event event = jsonAdaptedEvent.toModelType();
+            if (addressBook.hasEvent(event)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_EVENT);
+            }
+            addressBook.addEvent(event);
+        }
 
         return addressBook;
     }

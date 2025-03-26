@@ -109,7 +109,10 @@ public class UniqueStaffListTest {
     @Test
     public void setStaff_editedPersonHasNonUniqueIdentity_throwsDuplicatePersonException() {
         Staff staff = new StaffBuilder().build();
-        Staff staff1 = new StaffBuilder().withName("Haikel").build();
+        Staff staff1 = new StaffBuilder()
+                .withPhone("22222222")
+                .withEmail("bob@gmail.com")
+                .build();
         uniqueStaffList.add(staff);
         uniqueStaffList.add(staff1);
         assertThrows(DuplicatePersonException.class, () -> uniqueStaffList.setStaff(staff, staff1));
