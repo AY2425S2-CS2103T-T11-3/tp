@@ -50,7 +50,7 @@ public class Event {
 
 
     /**
-     * Returns true if both events have the same name.
+     * Returns true if both events have the same name, start_time, and end_time.
      */
     public boolean isSameEvent(Event otherEvent) {
         if (otherEvent == this) {
@@ -58,7 +58,9 @@ public class Event {
         }
 
         return otherEvent != null
-                && otherEvent.getEventName().equals(getEventName());
+                && eventName.equals(otherEvent.eventName)
+                && eventStartTime.equals(otherEvent.eventStartTime)
+                && eventEndTime.equals(otherEvent.eventEndTime);
     }
 
     /**
@@ -80,7 +82,10 @@ public class Event {
 
         return eventName.equals(otherEvent.eventName)
                 && eventStartTime.equals(otherEvent.eventStartTime)
-                && eventEndTime.equals(otherEvent.eventEndTime);
+                && eventEndTime.equals(otherEvent.eventEndTime)
+                && students.equals(otherEvent.students)
+                && staffs.equals(otherEvent.staffs)
+                && externalParties.equals(otherEvent.externalParties);
     }
 
     /**
