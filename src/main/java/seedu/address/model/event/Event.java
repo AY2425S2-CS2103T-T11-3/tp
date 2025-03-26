@@ -149,7 +149,12 @@ public class Event {
     }
 
 
-
+    /**
+     * Returns true if the {@code staff} is part in this event's staff list.
+     */
+    public boolean isStaffInEvent(Staff staff) {
+        return staffs.contains(staff);
+    }
 
 
     @Override

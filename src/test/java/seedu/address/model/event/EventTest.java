@@ -1,9 +1,14 @@
 package seedu.address.model.event;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
+
+import seedu.address.model.person.Staff;
+import seedu.address.testutil.TypicalStaffs;
 
 public class EventTest {
 
@@ -113,20 +118,14 @@ public class EventTest {
         assertEquals(event1.hashCode(), event2.hashCode());
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    @Test
+    public void isStaffInEvent_correct() {
+        Event event = new Event(new EventName("Concert"), new EventStartTime("2025-07-01 18:00"),
+                new EventEndTime("2025-07-01 22:00"));
+        Staff staff = TypicalStaffs.HARIS;
+        assertFalse(event.isStaffInEvent(staff));
+        event.addStaff(staff);
+        assertTrue(event.isStaffInEvent(staff));
+    }
 
 }
