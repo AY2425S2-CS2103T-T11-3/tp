@@ -13,7 +13,6 @@ import seedu.address.model.event.EventEndTime;
 import seedu.address.model.event.EventMatchesPredicate;
 import seedu.address.model.event.EventStartTime;
 
-
 /**
  * Parses input arguments and creates a new SearchEventCommand object.
  */
