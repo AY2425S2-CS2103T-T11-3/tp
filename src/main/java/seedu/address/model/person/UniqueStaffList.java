@@ -121,7 +121,24 @@ public class UniqueStaffList implements Iterable<Staff> {
         }
 
         UniqueStaffList otherUniqueStaffList = (UniqueStaffList) other;
-        return internalList.equals(otherUniqueStaffList.internalList);
+
+        // Check if both lists have the same size
+        if (this.internalList.size() != otherUniqueStaffList.internalList.size()) {
+            return false; // If they have different sizes, they are not equal
+        }
+
+        // Check if each staff in the first list is the same as the corresponding staff in the second list
+        for (int i = 0; i < this.internalList.size(); i++) {
+
+            Staff staff = this.internalList.get(i);
+            Staff otherStaff = otherUniqueStaffList.internalList.get(i);
+            if (!staff.isSamePerson(otherStaff)) {
+                return false; // If any staff does not match, return false
+            }
+        }
+
+        // If all checks pass, return true (the lists have the same contents)
+        return true;
     }
 
     @Override

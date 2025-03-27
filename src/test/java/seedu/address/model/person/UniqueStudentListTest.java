@@ -160,4 +160,45 @@ public class UniqueStudentListTest {
     public void toStringMethod() {
         assertEquals(uniqueStudentList.asUnmodifiableObservableList().toString(), uniqueStudentList.toString());
     }
+
+    @Test
+    public void equals_sameStudents_returnsTrue() {
+        // Create two UniqueStudentList objects
+        UniqueStudentList list1 = new UniqueStudentList();
+        UniqueStudentList list2 = new UniqueStudentList();
+
+        // Create two students with the same data
+        Student student1 = new StudentBuilder().withName("John").withMatric("A1234567B").build();
+        Student student2 = new StudentBuilder().withName("John").withMatric("A1234567B").build();
+
+        // Add the same students to both lists
+        list1.add(student1);
+        list2.add(student2);
+
+        // Check if both lists are considered equal
+        assertTrue(list1.equals(list2)); // Both lists have the same student
+    }
+
+
+    @Test
+    public void equals_differentStudents_returnsFalse() {
+        // Create two UniqueStudentList objects
+        UniqueStudentList list1 = new UniqueStudentList();
+        UniqueStudentList list2 = new UniqueStudentList();
+
+        // Create two students with different data
+        Student student1 = new StudentBuilder().withName("John").withMatric("A1234567B")
+                .withEmail("john@dummy.com.sg").withPhone("91234567").build();
+        Student student2 = new StudentBuilder().withName("Alice").withMatric("A7654321C")
+                .withEmail("alice@dummy.com.sg").withPhone("81234567").build();
+
+        // Add different students to the lists
+        list1.add(student1);
+        list2.add(student2);
+
+        // Check if both lists are considered unequal
+        assertFalse(list1.equals(list2)); // The students are different
+    }
+
+
 }

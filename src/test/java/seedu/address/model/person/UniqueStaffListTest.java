@@ -157,4 +157,44 @@ public class UniqueStaffListTest {
     public void toStringMethod() {
         assertEquals(uniqueStaffList.asUnmodifiableObservableList().toString(), uniqueStaffList.toString());
     }
+
+    @Test
+    public void equals_sameStaff_returnsTrue() {
+        // Create two UniqueStaffList objects
+        UniqueStaffList list1 = new UniqueStaffList();
+        UniqueStaffList list2 = new UniqueStaffList();
+
+        // Create two staff members with the same data
+        Staff staff1 = new StaffBuilder().withName("Martin").withPhone("90123456").build();
+        Staff staff2 = new StaffBuilder().withName("Martin").withPhone("90123456").build();
+
+        // Add the same staff members to both lists
+        list1.add(staff1);
+        list2.add(staff2);
+
+        // Check if both lists are considered equal
+        assertTrue(list1.equals(list2)); // Both lists have the same staff
+    }
+
+    @Test
+    public void equals_differentStaff_returnsFalse() {
+        // Create two UniqueStaffList objects
+        UniqueStaffList list1 = new UniqueStaffList();
+        UniqueStaffList list2 = new UniqueStaffList();
+
+        // Create two staff members with different data
+        Staff staff1 = new StaffBuilder().withName("Martin").withPhone("90123456").withEmail("martin@dummy.com.sg")
+                .build();
+        Staff staff2 = new StaffBuilder().withName("Alice").withPhone("90234567").withEmail("alice@dummy.com.sg")
+                .build();
+
+        // Add different staff members to the lists
+        list1.add(staff1);
+        list2.add(staff2);
+
+        // Check if both lists are considered unequal
+        assertFalse(list1.equals(list2)); // The staff members are different
+    }
+
+
 }
