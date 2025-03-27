@@ -14,10 +14,10 @@ box Model MODEL_COLOR_T1
 participant "m:Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("delete 1")
+[-> LogicManager : execute("1 memtype/stu name/John Doe")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand("delete 1")
+LogicManager -> AddressBookParser : parseCommand("1 memtype/stu name/John Doe")
 activate AddressBookParser
 
 create SearchEventMemberCommandParser
@@ -27,7 +27,7 @@ activate SearchEventMemberCommandParser
 SearchEventMemberCommandParser --> AddressBookParser
 deactivate SearchEventMemberCommandParser
 
-AddressBookParser -> SearchEventMemberCommandParser : parse("1")
+AddressBookParser -> SearchEventMemberCommandParser : parse("1 memtype/stu name/John Doe")
 activate SearchEventMemberCommandParser
 
 create SearchEventMemberCommand
@@ -37,19 +37,25 @@ activate SearchEventMemberCommand
 SearchEventMemberCommand --> SearchEventMemberCommandParser :
 deactivate SearchEventMemberCommand
 
-SearchEventMemberCommandParser --> AddressBookParser : d
+SearchEventMemberCommandParser --> AddressBookParser : s
 deactivate SearchEventMemberCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
 SearchEventMemberCommandParser -[hidden]-> AddressBookParser
 destroy SearchEventMemberCommandParser
 
-AddressBookParser --> LogicManager : d
+AddressBookParser --> LogicManager : s
 deactivate AddressBookParser
 
-LogicManager -> SearchEventMemberCommand : execute(m)
+LogicManager -> SearchEventMemberCommand : execute(s)
 activate SearchEventMemberCommand
 
-SearchEventMemberCommand -> Model : deletePerson(1)
+SearchEventMemberCommand -> Model : getFilteredEventList()
+activate Model
+
+Model --> SearchEventMemberCommand
+deactivate Model
+
+SearchEventMemberCommand --> Model : setSelectedEventDetail(updatedEvent, targetIndex)
 activate Model
 
 Model --> SearchEventMemberCommand
