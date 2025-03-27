@@ -141,7 +141,7 @@ public class EventTest {
         event.addStudent(student);
         assertTrue(event.isStudentInEvent(student));
     }
-      
+
     @Test
     public void isExternalPartyInEvent_correct() {
         Event event = new Event(new EventName("Concert"), new EventStartTime("2025-07-01 18:00"),

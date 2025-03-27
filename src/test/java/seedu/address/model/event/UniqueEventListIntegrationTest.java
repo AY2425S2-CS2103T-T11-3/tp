@@ -45,7 +45,7 @@ public class UniqueEventListIntegrationTest {
         assertFalse(event.isStudentInEvent(JAMAL));
     }
 
-    @Test  
+    @Test
     public void removeExternalPartyFromAllEvents_correct() {
         Event event = DANCE_EVENT;
 
