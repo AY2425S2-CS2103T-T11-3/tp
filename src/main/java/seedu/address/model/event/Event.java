@@ -150,14 +150,14 @@ public class Event {
 
 
     /**
-     * Returns true if the {@code staff} is part in this event's staff list.
+     * Returns true if the {@code staff} is participating in this event's staff list.
      */
     public boolean isStaffInEvent(Staff staff) {
         return staffs.contains(staff);
     }
 
     /**
-     * Returns true if the {@code student} is part in this event's student list.
+     * Returns true if the {@code student} is participating in this event's student list.
      */
     public boolean isStudentInEvent(Student student) {
         return students.contains(student);
