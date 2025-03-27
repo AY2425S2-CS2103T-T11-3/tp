@@ -12,11 +12,11 @@ Class "{abstract}\nPerson" as Person {
 - name: Name
 - phone: Phone
 - email: Email
-- address: Address
 - tags: Set<Tag>
 }
 
 Class Student {
+- address: Address
 - matric: Matric
 - emergency: Phone
 - block: Block
@@ -26,6 +26,7 @@ Class Student {
 }
 
 Class Staff {
+- address: Address
 - emergency: Phone
 - block: Block
 - level: Level
