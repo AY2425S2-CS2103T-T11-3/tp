@@ -15,20 +15,23 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROOM;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.logic.commands.*;
+import seedu.address.logic.Messages;
+import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.Prefix;
 import seedu.address.model.Model;
 import seedu.address.model.event.Event;
 import seedu.address.model.event.EventMemberPredicate;
-import seedu.address.model.person.*;
-
-import java.util.List;
-import java.util.function.Predicate;
-import java.util.stream.Collectors;
+import seedu.address.model.person.UniqueExternalPartyList;
+import seedu.address.model.person.UniqueStaffList;
+import seedu.address.model.person.UniqueStudentList;
 
 /**
  * Searches for a member in an event and lists the matching members under the event.
@@ -101,49 +104,44 @@ public class SearchEventMemberCommand extends Command {
 
         Event eventToSearch = lastShownList.get(targetIndex.getZeroBased());
         String memberType = predicate.getMemberType();
-        List<String> keywords = predicate.getKeywords();
-        ObservableList<Student> students = FXCollections.observableArrayList();
-        ObservableList<Staff> staffs = FXCollections.observableArrayList();
-        ObservableList<ExternalParty> externalParties = FXCollections.observableArrayList();
+        Map<Prefix, String> searchCriteria = predicate.getSearchCriteria();
+        UniqueStudentList students = new UniqueStudentList();
+        UniqueStaffList staffs = new UniqueStaffList();
+        UniqueExternalPartyList externalParties = new UniqueExternalPartyList();
 
         switch (memberType) {
         case "stu":
-            StudentMatchesAttributesPredicate studentPredicate = new StudentMatchesAttributesPredicate(keywords);
-            students.setAll(eventToSearch.getParticipants().stream()
-                    .filter(person -> person instanceof Student)
-                    .map(person -> (Student) person)
-                    .filter(studentPredicate)
+            students.setStudents(eventToSearch.getStudents().stream()
+                    .filter(new EventMemberPredicate(memberType, searchCriteria))
                     .collect(Collectors.toList()));
             break;
         case "staff":
-            StaffMatchesAttributesPredicate staffPredicate = new StaffMatchesAttributesPredicate(keywords);
-            staffs.setAll(eventToSearch.getParticipants().stream()
-                    .filter(person -> person instanceof Staff)
-                    .map(person -> (Staff) person)
-                    .filter(staffPredicate)
+            staffs.setStaffs(eventToSearch.getStaff().stream()
+                    .filter(new EventMemberPredicate(memberType, searchCriteria))
                     .collect(Collectors.toList()));
             break;
         case "ext":
-            ExternalPartyMatchesAttributesPredicate externalPartyPredicate = new ExternalPartyMatchesAttributesPredicate(keywords);
-            externalParties.setAll(eventToSearch.getParticipants().stream()
-                    .filter(person -> person instanceof ExternalParty)
-                    .map(person -> (ExternalParty) person)
-                    .filter(externalPartyPredicate)
+            externalParties.setExternalParties(eventToSearch.getExternalParties().stream()
+                    .filter(new EventMemberPredicate(memberType, searchCriteria))
                     .collect(Collectors.toList()));
             break;
         default:
-            throw new CommandException("Invalid member type specified.");
-    }
+            throw new CommandException(Messages.MESSAGE_INVALID_EVENT_MEMBER_TYPE);
+        }
 
-    if (students.isEmpty() && staffs.isEmpty() && externalParties.isEmpty()) {
-        return new CommandResult(MESSAGE_NO_MATCH);
-    }
+        if (students.asUnmodifiableObservableList().isEmpty() && staffs.asUnmodifiableObservableList().isEmpty()
+                && externalParties.asUnmodifiableObservableList().isEmpty()) {
+            return new CommandResult(MESSAGE_NO_MATCH);
+        }
 
-    // Update the eventDetailPanel in the UI with the searched person listed in the sublist
-    EventDetailPanel eventDetailPanel = new EventDetailPanel(eventToSearch, targetIndex);
-    eventDetailPanel.updateMemberLists(students, staffs, externalParties);
+        // Create a new Event with all the matching members, and update the model to display it.
+        Event updatedEvent = new Event(eventToSearch.getEventName(), eventToSearch.getEventStartTime(),
+                eventToSearch.getEventEndTime(), students, staffs, externalParties);
 
-    return new CommandResult(String.format(MESSAGE_SUCCESS, students.size() + staffs.size() + externalParties.size()));
+        model.setSelectedEventDetail(updatedEvent, targetIndex);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, students.asUnmodifiableObservableList().size()
+                + staffs.asUnmodifiableObservableList().size()
+                + externalParties.asUnmodifiableObservableList().size()));
     }
 
     @Override

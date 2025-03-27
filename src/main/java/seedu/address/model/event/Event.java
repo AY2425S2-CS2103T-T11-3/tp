@@ -35,6 +35,18 @@ public class Event {
         this.staffs = new UniqueStaffList();
         this.externalParties = new UniqueExternalPartyList();
     }
+    /**
+     * Constructs an {@code Event} with the given details and list of students, staff and external parties.
+     */
+    public Event(EventName eventName, EventStartTime eventStartTime, EventEndTime eventEndTime,
+                 UniqueStudentList students, UniqueStaffList staffs, UniqueExternalPartyList externalParties) {
+        this.eventName = eventName;
+        this.eventStartTime = eventStartTime;
+        this.eventEndTime = eventEndTime;
+        this.students = students;
+        this.staffs = staffs;
+        this.externalParties = externalParties;
+    }
 
     public EventName getEventName() {
         return eventName;
@@ -147,17 +159,6 @@ public class Event {
     public ObservableList<ExternalParty> getExternalParties() {
         return externalParties.asUnmodifiableObservableList();
     }
-
-    public UniqueStudentList getUniqueStudentList() {
-        return students;
-    }
-    public UniqueStaffList getUniqueStaffList() {
-        return staffs;
-    }
-    public UniqueExternalPartyList getUniqueExternalPartyList() {
-        return externalParties;
-    }
-
 
     @Override
     public int hashCode() {

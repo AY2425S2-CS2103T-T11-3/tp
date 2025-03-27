@@ -1,17 +1,31 @@
 package seedu.address.logic.parser;
 
-import static seedu.address.logic.Messages.*;
-import static seedu.address.logic.parser.CliSyntax.*;
+import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.Messages.MESSAGE_INVALID_EVENT_MEMBER_TYPE;
+import static seedu.address.logic.Messages.MESSAGE_INVALID_SEARCHING_CRITERIA;
+import static seedu.address.logic.Messages.MESSAGE_MISSING_EVENT_MEMBER_TYPE;
+import static seedu.address.logic.Messages.MESSAGE_MISSING_SEARCHING_CRITERIA;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_BLOCK;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESIGNATION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMERGENCY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_MEMTYPE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LEVEL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MATRIC;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ROOM;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.event.SearchEventMemberCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.event.EventMemberPredicate;
-
-import java.util.HashMap;
-import java.util.Map;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 /**
  * Parses input arguments and creates a new SearchEventMemberCommand object
@@ -55,7 +69,9 @@ public class SearchEventMemberCommandParser implements Parser<SearchEventMemberC
         Map<Prefix, String> searchCriteria = new HashMap<>();
         argMultimap.getPrefixValueMap().forEach((prefix, values) -> {
             if (prefix != null && !values.isEmpty() && !prefix.equals(PREFIX_EVENT_MEMTYPE)) {
-                searchCriteria.put(prefix, values);
+                if (!prefix.toString().equals("")) {
+                    searchCriteria.put(prefix, values);
+                }
             }
         });
 

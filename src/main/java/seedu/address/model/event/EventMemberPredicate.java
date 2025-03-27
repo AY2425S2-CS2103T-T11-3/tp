@@ -1,17 +1,17 @@
 package seedu.address.model.event;
 
-import seedu.address.logic.parser.Prefix;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Student;
-import seedu.address.model.person.Staff;
-import seedu.address.model.person.ExternalParty;
-import seedu.address.model.person.StudentMatchesAttributesPredicate;
-import seedu.address.model.person.StaffMatchesAttributesPredicate;
-import seedu.address.model.person.ExternalPartyMatchesAttributesPredicate;
-
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Predicate;
+
+import seedu.address.logic.parser.Prefix;
+import seedu.address.model.person.ExternalParty;
+import seedu.address.model.person.ExternalPartyMatchesAttributesPredicate;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.Staff;
+import seedu.address.model.person.StaffMatchesAttributesPredicate;
+import seedu.address.model.person.Student;
+import seedu.address.model.person.StudentMatchesAttributesPredicate;
 
 /**
  * Tests that a {@code Event}'s {@code Person} contains the member matching the searching criteria.
@@ -62,6 +62,9 @@ public class EventMemberPredicate implements Predicate<Person> {
     }
     public String getMemberType() {
         return memberType;
+    }
+    public Map<Prefix, String> getSearchCriteria() {
+        return searchCriteria;
     }
 
     @Override
