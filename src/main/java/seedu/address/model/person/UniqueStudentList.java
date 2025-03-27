@@ -129,7 +129,9 @@ public class UniqueStudentList implements Iterable<Student> {
 
         // Check if each student in the first list is the same as the corresponding student in the second list
         for (int i = 0; i < this.internalList.size(); i++) {
-            if (!this.internalList.get(i).equals(otherUniqueStudentList.internalList.get(i))) {
+            Student student = this.internalList.get(i);
+            Student otherStudent = otherUniqueStudentList.internalList.get(i);
+            if (!student.equals(otherStudent)) {
                 return false; // If any student does not match, return false
             }
         }

@@ -129,7 +129,10 @@ public class UniqueStaffList implements Iterable<Staff> {
 
         // Check if each staff in the first list is the same as the corresponding staff in the second list
         for (int i = 0; i < this.internalList.size(); i++) {
-            if (!this.internalList.get(i).equals(otherUniqueStaffList.internalList.get(i))) {
+
+            Staff staff = this.internalList.get(i);
+            Staff otherStaff = otherUniqueStaffList.internalList.get(i);
+            if (!staff.equals(otherStaff)) {
                 return false; // If any staff does not match, return false
             }
         }

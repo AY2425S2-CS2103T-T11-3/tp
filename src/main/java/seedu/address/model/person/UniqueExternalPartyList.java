@@ -131,7 +131,9 @@ public class UniqueExternalPartyList implements Iterable<ExternalParty> {
         // Check if each ExternalParty in the first list is the same as the corresponding ExternalParty
         // in the second list
         for (int i = 0; i < this.internalList.size(); i++) {
-            if (!this.internalList.get(i).equals(otherUniqueExternalPartyList.internalList.get(i))) {
+            ExternalParty externalParty = this.internalList.get(i);
+            ExternalParty otherExternalParty = otherUniqueExternalPartyList.internalList.get(i);
+            if (!externalParty.equals(otherExternalParty)) {
                 return false; // If any staff does not match, return false
             }
         }
