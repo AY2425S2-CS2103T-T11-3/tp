@@ -60,7 +60,6 @@ public class Event {
         return eventEndTime;
     }
 
-
     /**
      * Returns true if both events have the same name.
      */
@@ -116,7 +115,6 @@ public class Event {
         students.remove(student);
     }
 
-
     /**
      * Adds a staff member to the event.
      * Ensures no duplicate staff members are added.
@@ -160,12 +158,32 @@ public class Event {
         return externalParties.asUnmodifiableObservableList();
     }
 
+    /**
+     * Returns true if the {@code staff} is participating in this event's staff list.
+     */
+    public boolean isStaffInEvent(Staff staff) {
+        return staffs.contains(staff);
+    }
+
+    /**
+     * Returns true if the {@code student} is participating in this event's student list.
+     */
+    public boolean isStudentInEvent(Student student) {
+        return students.contains(student);
+    }
+
+    /**
+     * Returns true if the {@code externalParty} is participating in this event's external party list.
+     */
+    public boolean isExternalPartyInEvent(ExternalParty externalParty) {
+        return externalParties.contains(externalParty);
+    }
+
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
         return Objects.hash(eventName, eventStartTime, eventEndTime);
     }
-
 
     @Override
     public String toString() {

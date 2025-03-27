@@ -1,9 +1,18 @@
 package seedu.address.model.event;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
+
+import seedu.address.model.person.ExternalParty;
+import seedu.address.model.person.Staff;
+import seedu.address.model.person.Student;
+import seedu.address.testutil.TypicalExternalParties;
+import seedu.address.testutil.TypicalStaffs;
+import seedu.address.testutil.TypicalStudents;
 
 public class EventTest {
 
@@ -113,20 +122,34 @@ public class EventTest {
         assertEquals(event1.hashCode(), event2.hashCode());
     }
 
+    @Test
+    public void isStaffInEvent_correct() {
+        Event event = new Event(new EventName("Concert"), new EventStartTime("2025-07-01 18:00"),
+                new EventEndTime("2025-07-01 22:00"));
+        Staff staff = TypicalStaffs.HARIS;
+        assertFalse(event.isStaffInEvent(staff));
+        event.addStaff(staff);
+        assertTrue(event.isStaffInEvent(staff));
+    }
 
+    @Test
+    public void isStudentInEvent_correct() {
+        Event event = new Event(new EventName("Concert"), new EventStartTime("2025-07-01 18:00"),
+                new EventEndTime("2025-07-01 22:00"));
+        Student student = TypicalStudents.SAUL;
+        assertFalse(event.isStudentInEvent(student));
+        event.addStudent(student);
+        assertTrue(event.isStudentInEvent(student));
+    }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+    @Test
+    public void isExternalPartyInEvent_correct() {
+        Event event = new Event(new EventName("Concert"), new EventStartTime("2025-07-01 18:00"),
+                new EventEndTime("2025-07-01 22:00"));
+        ExternalParty externalParty = TypicalExternalParties.JESSICA;
+        assertFalse(event.isExternalPartyInEvent(externalParty));
+        event.addExternalParty(externalParty);
+        assertTrue(event.isExternalPartyInEvent(externalParty));
+    }
 
 }
