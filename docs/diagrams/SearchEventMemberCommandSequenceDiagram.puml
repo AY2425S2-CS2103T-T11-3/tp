@@ -1,0 +1,70 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":SearchEventMemberCommandParser" as SearchEventMemberCommandParser LOGIC_COLOR
+participant "s:SearchEventMemberCommand" as SearchEventMemberCommand LOGIC_COLOR
+participant "r:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant "m:Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("delete 1")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("delete 1")
+activate AddressBookParser
+
+create SearchEventMemberCommandParser
+AddressBookParser -> SearchEventMemberCommandParser
+activate SearchEventMemberCommandParser
+
+SearchEventMemberCommandParser --> AddressBookParser
+deactivate SearchEventMemberCommandParser
+
+AddressBookParser -> SearchEventMemberCommandParser : parse("1")
+activate SearchEventMemberCommandParser
+
+create SearchEventMemberCommand
+SearchEventMemberCommandParser -> SearchEventMemberCommand
+activate SearchEventMemberCommand
+
+SearchEventMemberCommand --> SearchEventMemberCommandParser :
+deactivate SearchEventMemberCommand
+
+SearchEventMemberCommandParser --> AddressBookParser : d
+deactivate SearchEventMemberCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+SearchEventMemberCommandParser -[hidden]-> AddressBookParser
+destroy SearchEventMemberCommandParser
+
+AddressBookParser --> LogicManager : d
+deactivate AddressBookParser
+
+LogicManager -> SearchEventMemberCommand : execute(m)
+activate SearchEventMemberCommand
+
+SearchEventMemberCommand -> Model : deletePerson(1)
+activate Model
+
+Model --> SearchEventMemberCommand
+deactivate Model
+
+create CommandResult
+SearchEventMemberCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> SearchEventMemberCommand
+deactivate CommandResult
+
+SearchEventMemberCommand --> LogicManager : r
+deactivate SearchEventMemberCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
