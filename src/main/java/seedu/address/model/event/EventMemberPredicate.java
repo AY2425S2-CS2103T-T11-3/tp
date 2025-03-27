@@ -76,8 +76,8 @@ public class EventMemberPredicate implements Predicate<Person> {
             return false;
         }
         EventMemberPredicate otherPredicate = (EventMemberPredicate) other;
-        return Objects.equals(memberType, otherPredicate.memberType)
-                && Objects.equals(searchCriteria, otherPredicate.searchCriteria);
+        return memberType.equals(otherPredicate.memberType)
+                && searchCriteria.equals(otherPredicate.searchCriteria);
     }
 
     @Override

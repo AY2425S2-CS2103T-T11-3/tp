@@ -97,7 +97,7 @@ public class SearchEventMemberCommandParser implements Parser<SearchEventMemberC
                 PREFIX_EMERGENCY, PREFIX_BLOCK, PREFIX_LEVEL, PREFIX_ROOM, PREFIX_DESIGNATION)) {
             throw new ParseException(
                     String.format(MESSAGE_MISSING_SEARCHING_CRITERIA, SearchEventMemberCommand.MESSAGE_USAGE));
-        } else if (isAnyPrefixPresent(argMultimap, PREFIX_MATRIC)) {
+        } else if (isAnyPrefixPresent(argMultimap, PREFIX_MATRIC, PREFIX_DESCRIPTION)) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_SEARCHING_CRITERIA, SearchEventMemberCommand.MESSAGE_USAGE));
         }

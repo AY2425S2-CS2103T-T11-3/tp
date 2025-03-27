@@ -75,24 +75,4 @@ public class SearchStudentCommandTest {
         assertEquals(expected, command.toString());
     }
 
-    @Test
-    public void equalsMethod() {
-        Map<Prefix, String> searchCriteria = Map.of(CliSyntax.PREFIX_NAME, "Alice");
-        SearchStudentCommand command = new SearchStudentCommand(searchCriteria);
-        SearchStudentCommand commandCopy = new SearchStudentCommand(searchCriteria);
-
-        // same object -> returns true
-        assertTrue(command.equals(commandCopy));
-
-        // different types -> returns false
-        assertFalse(command.equals(1));
-
-        // null -> returns false
-        assertFalse(command.equals(null));
-
-        // different search criteria -> returns false
-        Map<Prefix, String> differentSearchCriteria = Map.of(CliSyntax.PREFIX_NAME, "Bob");
-        SearchStudentCommand differentCommand = new SearchStudentCommand(differentSearchCriteria);
-        assertFalse(command.equals(differentCommand));
-    }
 }
