@@ -7,8 +7,10 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.person.ExternalParty;
 import seedu.address.model.person.Staff;
 import seedu.address.model.person.Student;
+import seedu.address.testutil.TypicalExternalParties;
 import seedu.address.testutil.TypicalStaffs;
 import seedu.address.testutil.TypicalStudents;
 
@@ -138,6 +140,16 @@ public class EventTest {
         assertFalse(event.isStudentInEvent(student));
         event.addStudent(student);
         assertTrue(event.isStudentInEvent(student));
+    }
+      
+    @Test
+    public void isExternalPartyInEvent_correct() {
+        Event event = new Event(new EventName("Concert"), new EventStartTime("2025-07-01 18:00"),
+                new EventEndTime("2025-07-01 22:00"));
+        ExternalParty externalParty = TypicalExternalParties.JESSICA;
+        assertFalse(event.isExternalPartyInEvent(externalParty));
+        event.addExternalParty(externalParty);
+        assertTrue(event.isExternalPartyInEvent(externalParty));
     }
 
 }

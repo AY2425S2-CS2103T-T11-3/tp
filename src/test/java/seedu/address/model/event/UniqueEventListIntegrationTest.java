@@ -3,6 +3,7 @@ package seedu.address.model.event;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.TypicalEvents.DANCE_EVENT;
+import static seedu.address.testutil.TypicalExternalParties.JESSICA;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalStaffs.HARIS;
 import static seedu.address.testutil.TypicalStudents.JAMAL;
@@ -42,5 +43,17 @@ public class UniqueEventListIntegrationTest {
         addressBook.removeStudent(JAMAL);
 
         assertFalse(event.isStudentInEvent(JAMAL));
+    }
+
+    @Test  
+    public void removeExternalPartyFromAllEvents_correct() {
+        Event event = DANCE_EVENT;
+
+        assertTrue(addressBook.hasExternalParty(JESSICA));
+        event.addExternalParty(JESSICA);
+        addressBook.addEvent(event);
+        addressBook.removeExternalParty(JESSICA);
+
+        assertFalse(event.isExternalPartyInEvent(JESSICA));
     }
 }

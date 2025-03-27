@@ -10,6 +10,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.event.exceptions.DuplicateEventException;
 import seedu.address.model.event.exceptions.EventNotFoundException;
+import seedu.address.model.person.ExternalParty;
 import seedu.address.model.person.Staff;
 import seedu.address.model.person.Student;
 
@@ -99,6 +100,19 @@ public class UniqueEventList implements Iterable<Event> {
         for (Event e : internalList) {
             if (e.isStudentInEvent(student)) {
                 e.removeStudent(student);
+            }
+        }
+    }
+  
+     /**
+     * Removes the external party from all events stored in this UniqueEventList. Call for this function should only
+     * originate from a DeleteExternalPartyCommand.
+     *
+     */
+    public void removeExternalPartyFromAllEvents(ExternalParty externalParty) {
+        for (Event e : internalList) {
+            if (e.isExternalPartyInEvent(externalParty)) {
+                e.removeExternalParty(externalParty);
             }
         }
     }

@@ -221,6 +221,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void removeExternalParty(ExternalParty key) {
         this.externalParty.remove(key);
+        this.events.removeExternalPartyFromAllEvents(key);
     }
 
     /**
