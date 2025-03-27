@@ -12,7 +12,6 @@ end box
 
 box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
-participant ":AddressBook" as AddressBook MODEL_COLOR
 end box
 
 [-> LogicManager : execute("delete_stu 1")
@@ -58,12 +57,6 @@ deactivate Model
 
 DeleteStudentCommand -> Model : deleteStudent(studentToDelete)
 activate Model
-
-Model -> AddressBook : removeStudent(target)
-activate AddressBook
-
-AddressBook --> Model
-deactivate AddressBook
 
 Model --> DeleteStudentCommand
 deactivate Model
