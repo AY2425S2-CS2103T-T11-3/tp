@@ -12,6 +12,7 @@ import seedu.address.model.event.exceptions.DuplicateEventException;
 import seedu.address.model.event.exceptions.EventNotFoundException;
 import seedu.address.model.person.ExternalParty;
 import seedu.address.model.person.Staff;
+import seedu.address.model.person.Student;
 
 /**
  * A list that maintains unique events and does not allow duplicates.
@@ -86,6 +87,19 @@ public class UniqueEventList implements Iterable<Event> {
         for (Event e : internalList) {
             if (e.isStaffInEvent(staff)) {
                 e.removeStaff(staff);
+            }
+        }
+    }
+
+    /**
+     * Removes the student from all events stored in this UniqueEventList. Call for this function should only
+     * originate from a DeleteStudentCommand.
+     *
+     */
+    public void removeStudentFromAllEvents(Student student) {
+        for (Event e : internalList) {
+            if (e.isStudentInEvent(student)) {
+                e.removeStudent(student);
             }
         }
     }

@@ -230,6 +230,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void removeStudent(Student key) {
         this.students.remove(key);
+        this.events.removeStudentFromAllEvents(key);
     }
 
     //// util methods
