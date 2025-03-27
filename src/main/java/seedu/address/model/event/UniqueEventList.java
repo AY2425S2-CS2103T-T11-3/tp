@@ -103,8 +103,8 @@ public class UniqueEventList implements Iterable<Event> {
             }
         }
     }
-  
-     /**
+
+    /**
      * Removes the external party from all events stored in this UniqueEventList. Call for this function should only
      * originate from a DeleteExternalPartyCommand.
      *

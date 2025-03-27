@@ -159,8 +159,8 @@ public class Event {
     public boolean isStudentInEvent(Student student) {
         return students.contains(student);
     }
-  
-     /**
+
+    /**
      * Returns true if the {@code externalParty} is participating in this event's external party list.
      */
     public boolean isExternalPartyInEvent(ExternalParty externalParty) {
