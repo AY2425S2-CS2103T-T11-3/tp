@@ -40,7 +40,6 @@ public class SearchEventCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-
         if (model.getEventList().isEmpty()) {
             throw new CommandException(NO_EVENT_EXIST);
         }
