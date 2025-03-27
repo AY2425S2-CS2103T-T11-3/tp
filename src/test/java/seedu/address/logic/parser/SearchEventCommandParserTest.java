@@ -63,5 +63,48 @@ public class SearchEventCommandParserTest {
         SearchEventCommand expectedCommand = new SearchEventCommand(predicate);
         assertEquals(expectedCommand, parser.parse(userInput));
     }
+
+    @Test
+    public void parse_invalidStartTime_failure() {
+        String userInput = " "
+                + PREFIX_EVENT_NAME + "Dance "
+                + PREFIX_EVENT_START_TIME + "2025-02-15 18:0 "
+                + PREFIX_EVENT_END_TIME + "2025-02-15 21:00";
+        assertParseFailure(parser, userInput, EventStartTime.MESSAGE_CONSTRAINTS);
+    }
+
+    @Test
+    public void parse_invalidEndTime_failure() {
+        String userInput = " "
+                + PREFIX_EVENT_NAME + "Dance "
+                + PREFIX_EVENT_START_TIME + "2025-02-15 18:00 "
+                + PREFIX_EVENT_END_TIME + "2025-02-15 21:0";
+        assertParseFailure(parser, userInput, EventEndTime.MESSAGE_CONSTRAINTS);
+    }
+
+    @Test
+    public void parse_emptyParamsEventName_failure() {
+        String userInput = " "
+                + PREFIX_EVENT_NAME + " "
+                + PREFIX_EVENT_START_TIME + "2025-02-15 18:00 "
+                + PREFIX_EVENT_END_TIME + "2025-02-15 21:00";
+        assertParseFailure(parser, userInput, SearchEventCommandParser.EMPTY_FIELD_AFTER_PREFIX);
+    }
+
+    @Test
+    public void parse_emptyParamsEventStartTime_failure() {
+        String userInput = " "
+                + PREFIX_EVENT_NAME + "Dance "
+                + PREFIX_EVENT_START_TIME + " "
+                + PREFIX_EVENT_END_TIME + "2025-02-15 21:00";
+        assertParseFailure(parser, userInput, SearchEventCommandParser.EMPTY_FIELD_AFTER_PREFIX);
+    }
+
+    @Test
+    public void parse_emptyParamsEventEndTime_failure() {
+        String userInput = " "
+                + PREFIX_EVENT_END_TIME + " ";
+        assertParseFailure(parser, userInput, SearchEventCommandParser.EMPTY_FIELD_AFTER_PREFIX);
+    }
 }
 
