@@ -187,8 +187,10 @@ public class UniqueStudentListTest {
         UniqueStudentList list2 = new UniqueStudentList();
 
         // Create two students with different data
-        Student student1 = new StudentBuilder().withName("John").withMatric("A1234567B").build();
-        Student student2 = new StudentBuilder().withName("Alice").withMatric("A7654321C").build();
+        Student student1 = new StudentBuilder().withName("John").withMatric("A1234567B")
+                .withEmail("john@dummy.com.sg").withPhone("91234567").build();
+        Student student2 = new StudentBuilder().withName("Alice").withMatric("A7654321C")
+                .withEmail("alice@dummy.com.sg").withPhone("81234567").build();
 
         // Add different students to the lists
         list1.add(student1);

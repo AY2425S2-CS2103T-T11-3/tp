@@ -183,8 +183,10 @@ public class UniqueStaffListTest {
         UniqueStaffList list2 = new UniqueStaffList();
 
         // Create two staff members with different data
-        Staff staff1 = new StaffBuilder().withName("Martin").withPhone("90123456").build();
-        Staff staff2 = new StaffBuilder().withName("Alice").withPhone("90234567").build();
+        Staff staff1 = new StaffBuilder().withName("Martin").withPhone("90123456").withEmail("martin@dummy.com.sg")
+                .build();
+        Staff staff2 = new StaffBuilder().withName("Alice").withPhone("90234567").withEmail("alice@dummy.com.sg")
+                .build();
 
         // Add different staff members to the lists
         list1.add(staff1);

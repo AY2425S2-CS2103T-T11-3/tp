@@ -14,7 +14,6 @@ import seedu.address.testutil.ExternalPartyBuilder;
 import seedu.address.testutil.StaffBuilder;
 import seedu.address.testutil.StudentBuilder;
 import seedu.address.testutil.TypicalEvents;
-import seedu.address.model.person.Student;
 import seedu.address.testutil.TypicalExternalParties;
 import seedu.address.testutil.TypicalStaffs;
 import seedu.address.testutil.TypicalStudents;

@@ -186,8 +186,10 @@ public class UniqueExternalPartyListTest {
         UniqueExternalPartyList list2 = new UniqueExternalPartyList();
 
         // Create two external parties with different data
-        ExternalParty externalParty1 = new ExternalPartyBuilder().withName("Haikel").withPhone("91234567").build();
-        ExternalParty externalParty2 = new ExternalPartyBuilder().withName("Fatimah").withPhone("92345678").build();
+        ExternalParty externalParty1 = new ExternalPartyBuilder().withName("Haikel").withPhone("91234567")
+                .withEmail("haikel@dummy.com.sg").build();
+        ExternalParty externalParty2 = new ExternalPartyBuilder().withName("Fatimah").withPhone("92345678")
+                .withEmail("fatimah@dummy.com.sg").build();
 
         // Add different external parties to the lists
         list1.add(externalParty1);

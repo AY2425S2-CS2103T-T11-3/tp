@@ -132,7 +132,7 @@ public class UniqueStaffList implements Iterable<Staff> {
 
             Staff staff = this.internalList.get(i);
             Staff otherStaff = otherUniqueStaffList.internalList.get(i);
-            if (!staff.equals(otherStaff)) {
+            if (!staff.isSamePerson(otherStaff)) {
                 return false; // If any staff does not match, return false
             }
         }
