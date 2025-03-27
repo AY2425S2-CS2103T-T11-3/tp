@@ -74,4 +74,5 @@ public class SearchStudentCommandTest {
                 .toString();
         assertEquals(expected, command.toString());
     }
+
 }

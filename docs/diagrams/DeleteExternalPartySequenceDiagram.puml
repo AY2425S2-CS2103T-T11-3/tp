@@ -1,0 +1,76 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":DeleteExternalPartyCommandParser" as DeleteExternalPartyCommandParser LOGIC_COLOR
+participant "d:DeleteExternalPartyCommand" as DeleteExternalPartyCommand LOGIC_COLOR
+participant "r:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("delete_ext 1")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("delete_ext 1")
+activate AddressBookParser
+
+create DeleteExternalPartyCommandParser
+AddressBookParser -> DeleteExternalPartyCommandParser
+activate DeleteExternalPartyCommandParser
+
+DeleteExternalPartyCommandParser --> AddressBookParser
+deactivate DeleteExternalPartyCommandParser
+
+AddressBookParser -> DeleteExternalPartyCommandParser : parse("1")
+activate DeleteExternalPartyCommandParser
+
+create DeleteExternalPartyCommand
+DeleteExternalPartyCommandParser -> DeleteExternalPartyCommand
+activate DeleteExternalPartyCommand
+
+DeleteExternalPartyCommand --> DeleteExternalPartyCommandParser :
+deactivate DeleteExternalPartyCommand
+
+DeleteExternalPartyCommandParser --> AddressBookParser : d
+deactivate DeleteExternalPartyCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+DeleteExternalPartyCommandParser -[hidden]-> AddressBookParser
+destroy DeleteExternalPartyCommandParser
+
+AddressBookParser --> LogicManager : d
+deactivate AddressBookParser
+
+LogicManager -> DeleteExternalPartyCommand : execute(m)
+activate DeleteExternalPartyCommand
+
+DeleteExternalPartyCommand -> Model : getFilteredExternalPartyList()
+activate Model
+
+Model --> DeleteExternalPartyCommand
+deactivate Model
+
+DeleteExternalPartyCommand -> Model : deleteExternalParty(externalPartyToDelete)
+activate Model
+
+Model --> DeleteExternalPartyCommand
+deactivate Model
+
+create CommandResult
+DeleteExternalPartyCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> DeleteExternalPartyCommand
+deactivate CommandResult
+
+DeleteExternalPartyCommand --> LogicManager : r
+deactivate DeleteExternalPartyCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
