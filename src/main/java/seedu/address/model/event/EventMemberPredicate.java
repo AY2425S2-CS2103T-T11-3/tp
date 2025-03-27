@@ -60,6 +60,9 @@ public class EventMemberPredicate implements Predicate<Person> {
         }
         return false;
     }
+    public String getMemberType() {
+        return memberType;
+    }
 
     @Override
     public boolean equals(Object other) {

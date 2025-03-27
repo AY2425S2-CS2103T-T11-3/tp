@@ -148,8 +148,15 @@ public class Event {
         return externalParties.asUnmodifiableObservableList();
     }
 
-
-
+    public UniqueStudentList getUniqueStudentList() {
+        return students;
+    }
+    public UniqueStaffList getUniqueStaffList() {
+        return staffs;
+    }
+    public UniqueExternalPartyList getUniqueExternalPartyList() {
+        return externalParties;
+    }
 
 
     @Override

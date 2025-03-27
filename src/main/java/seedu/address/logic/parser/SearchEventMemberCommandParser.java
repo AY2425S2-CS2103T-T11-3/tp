@@ -3,6 +3,7 @@ package seedu.address.logic.parser;
 import static seedu.address.logic.Messages.*;
 import static seedu.address.logic.parser.CliSyntax.*;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.event.SearchEventMemberCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.event.EventMemberPredicate;
@@ -21,7 +22,13 @@ public class SearchEventMemberCommandParser implements Parser<SearchEventMemberC
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_EVENT_MEMTYPE, PREFIX_NAME,
                 PREFIX_MATRIC, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_EMERGENCY, PREFIX_BLOCK,
                 PREFIX_LEVEL, PREFIX_ROOM, PREFIX_DESIGNATION, PREFIX_DESCRIPTION);
-
+        Index index;
+        try {
+            index = ParserUtil.parseIndex(argMultimap.getPreamble());
+        } catch (ParseException pe) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    SearchEventMemberCommand.MESSAGE_USAGE), pe);
+        }
         if (!argMultimap.getValue(PREFIX_EVENT_MEMTYPE).isPresent()) {
             throw new ParseException(String.format(MESSAGE_MISSING_EVENT_MEMBER_TYPE,
                     SearchEventMemberCommand.MESSAGE_USAGE));
@@ -55,7 +62,7 @@ public class SearchEventMemberCommandParser implements Parser<SearchEventMemberC
         // Create EventMemberPredicate with member type and search criteria
         EventMemberPredicate predicate = new EventMemberPredicate(memberType, searchCriteria);
 
-        return new SearchEventMemberCommand(predicate);
+        return new SearchEventMemberCommand(index, predicate);
     }
 
     private void validateStudentCriteria(ArgumentMultimap argMultimap) throws ParseException {
