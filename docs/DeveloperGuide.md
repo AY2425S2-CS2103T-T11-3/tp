@@ -124,13 +124,13 @@ How the parsing works:
 The `Model` component,
 
 * stores the address book data i.e., all `Staff`, `Student`, `ExternalParty` and `Event` objects (which are contained in respective `UniqueStaffList`, `UniqueStudentList`, `UniqueExternalPartyList` and `UniqueEventList` objects).
-* stores the currently 'selected' `Staff`, `Student`, `ExternalParty` or `Event` objects (e.g., results of a search query) as a separate _filtered_ lists which is exposed to outsiders as unmodifiable `ObservableList<Staff>`, `ObservableList<Student>`, `ObservableList<ExternalParty>`, or `ObservableList<Event>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the currently 'selected' `Staff`, `Student`, `ExternalParty` or `Event` objects (e.g., results of a search query) as separate _filtered_ lists which is exposed to outsiders as unmodifiable `ObservableList<Staff>`, `ObservableList<Student>`, `ObservableList<ExternalParty>`, or `ObservableList<Event>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
 <box type="info" seamless>
 
-**Note:** An more in-depth model of the `Person` class, and its subclasses `Staff`, `Student`, and `ExternalParty`, is given below.
+**Note:** A more in-depth model of the `Person` class, and its subclasses `Staff`, `Student`, and `ExternalParty`, is given below.
 
 <puml src="diagrams/PersonDiagram.puml" width="450" />
 
