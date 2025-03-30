@@ -1,0 +1,71 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":AddExternalPartyCommandParser" as AddExternalPartyCommandParser LOGIC_COLOR
+participant "c:AddExternalPartyCommand" as AddExternalPartyCommand LOGIC_COLOR
+participant "r:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant "m:Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("add_ext ...")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("add_ext ...")
+activate AddressBookParser
+
+create AddExternalPartyCommandParser
+AddressBookParser -> AddExternalPartyCommandParser
+activate AddExternalPartyCommandParser
+
+AddExternalPartyCommandParser --> AddressBookParser
+deactivate AddExternalPartyCommandParser
+
+AddressBookParser -> AddExternalPartyCommandParser : parse("...")
+activate AddExternalPartyCommandParser
+
+create AddExternalPartyCommand
+AddExternalPartyCommandParser -> AddExternalPartyCommand
+activate AddExternalPartyCommand
+
+AddExternalPartyCommand --> AddExternalPartyCommandParser :
+deactivate AddExternalPartyCommand
+
+AddExternalPartyCommandParser --> AddressBookParser : AddExternalPartyCommand
+deactivate AddExternalPartyCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+AddExternalPartyCommandParser -[hidden]-> AddressBookParser
+destroy AddExternalPartyCommandParser
+
+AddressBookParser --> LogicManager : AddExternalPartyCommand
+deactivate AddressBookParser
+
+LogicManager -> AddExternalPartyCommand : execute(m)
+activate AddExternalPartyCommand
+
+AddExternalPartyCommand -> Model : hasExternalParty(toAdd)
+activate Model
+
+    Model -> Model : addExternalParty(toAdd)
+    Model --> AddExternalPartyCommand
+    deactivate Model
+
+create CommandResult
+AddExternalPartyCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> AddExternalPartyCommand
+deactivate CommandResult
+
+AddExternalPartyCommand --> LogicManager : r
+deactivate AddExternalPartyCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
