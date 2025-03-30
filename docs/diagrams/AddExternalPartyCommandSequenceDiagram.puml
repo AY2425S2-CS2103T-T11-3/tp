@@ -56,16 +56,6 @@ activate Model
     Model --> AddExternalPartyCommand
     deactivate Model
 
-'alt if exists
-'    Model -> AddExternalPartyCommand : throw CommandException("This external party already exists")
-'    deactivate Model
-'else
-'    Model -> Model : addExternalParty(toAdd)
-'    activate Model
-'    Model --> AddExternalPartyCommand
-'    deactivate Model
-'end
-
 create CommandResult
 AddExternalPartyCommand -> CommandResult
 activate CommandResult
