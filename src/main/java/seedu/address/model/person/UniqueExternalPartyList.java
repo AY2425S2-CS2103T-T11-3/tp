@@ -158,7 +158,7 @@ public class UniqueExternalPartyList implements Iterable<ExternalParty> {
     private boolean externalPartyAreUnique(List<ExternalParty> externalParty) {
         for (int i = 0; i < externalParty.size() - 1; i++) {
             for (int j = i + 1; j < externalParty.size(); j++) {
-                if (externalParty.get(i).equals(externalParty.get(j))) {
+                if (externalParty.get(i).isSamePerson(externalParty.get(j))) {
                     return false;
                 }
             }
