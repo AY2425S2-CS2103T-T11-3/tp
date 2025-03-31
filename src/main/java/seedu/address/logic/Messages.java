@@ -50,6 +50,13 @@ public class Messages {
     public static final String MESSAGE_INVALID_SEARCHING_CRITERIA = "Invalid searching criteria provided.";
     public static final String MESSAGE_INVALID_EVENT_MEMBER_TYPE =
             "Invalid member type provided. Member type must be stu/, staff/, or ext/.";
+    public static final String MESSAGE_DUPLICATE_STUDENT_IN_EVENT =
+            "This student has already been added to this event.";
+    public static final String MESSAGE_DUPLICATE_STAFF_IN_EVENT =
+            "This staff has already been added to this event.";
+    public static final String MESSAGE_DUPLICATE_EXTERNAL_PARTY_IN_EVENT =
+            "This external party has already been added to this event.";
+
     /**
      * Returns an error message indicating the duplicate prefixes.
      */
