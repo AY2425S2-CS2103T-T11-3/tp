@@ -50,6 +50,9 @@ public class Messages {
     public static final String MESSAGE_INVALID_SEARCHING_CRITERIA = "Invalid searching criteria provided.";
     public static final String MESSAGE_INVALID_EVENT_MEMBER_TYPE =
             "Invalid member type provided. Member type must be stu/, staff/, or ext/.";
+    public static final String MESSAGE_DUPLICATE_PHONE_OR_EMAIL = "A staff, student or external party in ResiConnect "
+            + "already has this contact's phone or email address.";
+
     /**
      * Returns an error message indicating the duplicate prefixes.
      */
