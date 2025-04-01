@@ -29,6 +29,14 @@ public class UniqueStudentList implements Iterable<Student> {
             FXCollections.unmodifiableObservableList(internalList);
 
     /**
+     * Returns true if any of the students have this phone or this email.
+     */
+    public boolean hasPersonWithPhoneAndEmail(Phone phone, Email email) {
+        requireAllNonNull(phone, email);
+        return internalList.stream().anyMatch(student -> student.hasPersonWithPhoneAndEmail(phone, email));
+    }
+
+    /**
      * Returns true if the list contains an equivalent student as the given argument.
      */
     public boolean contains(Student toCheck) {

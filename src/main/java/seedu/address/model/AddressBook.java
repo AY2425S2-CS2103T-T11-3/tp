@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.List;
 
@@ -8,7 +9,9 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.event.Event;
 import seedu.address.model.event.UniqueEventList;
+import seedu.address.model.person.Email;
 import seedu.address.model.person.ExternalParty;
+import seedu.address.model.person.Phone;
 import seedu.address.model.person.Staff;
 import seedu.address.model.person.Student;
 import seedu.address.model.person.UniqueExternalPartyList;
@@ -22,9 +25,9 @@ import seedu.address.model.person.UniqueStudentList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniqueEventList events;
+
     private final UniqueStaffList staff;
     private final UniqueStudentList students;
-
     private final UniqueExternalPartyList externalParty;
 
     /*
@@ -90,6 +93,16 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     //// person-level operations
+
+    /**
+     * Returns true if any of the staff, students or external parties have this phone or this email.
+     */
+    boolean hasPersonWithPhoneAndEmail(Phone phone, Email email) {
+        requireAllNonNull(phone, email);
+        return staff.hasPersonWithPhoneAndEmail(phone, email)
+                || students.hasPersonWithPhoneAndEmail(phone, email)
+                || externalParty.hasPersonWithPhoneAndEmail(phone, email);
+    }
 
     /**
      * Returns true if a staff with the same identity as {@code staff} exists in the address book.

@@ -29,6 +29,14 @@ public class UniqueStaffList implements Iterable<Staff> {
             FXCollections.unmodifiableObservableList(internalList);
 
     /**
+     * Returns true if any of the staff have this phone or this email.
+     */
+    public boolean hasPersonWithPhoneAndEmail(Phone phone, Email email) {
+        requireAllNonNull(phone, email);
+        return internalList.stream().anyMatch(staff -> staff.hasPersonWithPhoneAndEmail(phone, email));
+    }
+
+    /**
      * Returns true if the list contains an equivalent staff as the given argument.
      */
     public boolean contains(Staff toCheck) {
