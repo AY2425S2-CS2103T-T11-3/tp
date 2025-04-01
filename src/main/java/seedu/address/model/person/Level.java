@@ -9,7 +9,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Level {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Levels should only be positive integers, and it should not be blank";
+            "Levels should only be positive integers up to 99, and it should not be blank";
 
     public static final String VALIDATION_REGEX = "^(?:[1-9]|[1-9][0-9])$";
 
