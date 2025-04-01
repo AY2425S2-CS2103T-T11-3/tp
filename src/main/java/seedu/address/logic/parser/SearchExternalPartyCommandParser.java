@@ -2,10 +2,7 @@ package seedu.address.logic.parser;
 
 import static seedu.address.logic.Messages.MESSAGE_EMPTY_FIELD_AFTER_PREFIX;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.*;
 
 import java.util.Map;
 import java.util.Optional;
@@ -36,7 +33,10 @@ public class SearchExternalPartyCommandParser implements Parser<SearchExternalPa
         }
 
         // Check for empty values after a prefix
-        for (Prefix prefix : new Prefix[]{PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_DESCRIPTION}) {
+        Prefix[] prefixes = {
+                PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_DESCRIPTION
+        };
+        for (Prefix prefix : prefixes) {
             Optional<String> value = argMultimap.getValue(prefix);
             if (value.isPresent() && value.get().trim().isEmpty()) {
                 throw new ParseException(MESSAGE_EMPTY_FIELD_AFTER_PREFIX);

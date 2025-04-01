@@ -44,8 +44,11 @@ public class SearchStudentCommandParser implements Parser<SearchStudentCommand> 
         }
 
         // Check for empty values after a prefix
-        for (Prefix prefix : new Prefix[]{PREFIX_NAME, PREFIX_MATRIC, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
-                PREFIX_EMERGENCY, PREFIX_BLOCK, PREFIX_LEVEL, PREFIX_ROOM, PREFIX_DESIGNATION}) {
+        Prefix[] prefixes = {
+                PREFIX_NAME, PREFIX_MATRIC, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_EMERGENCY, PREFIX_BLOCK,
+                PREFIX_LEVEL, PREFIX_ROOM, PREFIX_DESIGNATION
+        };
+        for (Prefix prefix : prefixes) {
             Optional<String> value = argMultimap.getValue(prefix);
             if (value.isPresent() && value.get().trim().isEmpty()) {
                 throw new ParseException(MESSAGE_EMPTY_FIELD_AFTER_PREFIX);
