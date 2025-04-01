@@ -31,7 +31,7 @@ public class UniqueExternalPartyList implements Iterable<ExternalParty> {
     /**
      * Returns true if any of the external parties have this phone or this email.
      */
-    public boolean hasPersonWithPhoneAndEmail(Phone phone, Email email) {
+    public boolean hasPersonWithPhoneOrEmail(Phone phone, Email email) {
         requireAllNonNull(phone, email);
         return internalList.stream().anyMatch(externalParty -> externalParty.hasPersonWithPhoneOrEmail(phone, email));
     }

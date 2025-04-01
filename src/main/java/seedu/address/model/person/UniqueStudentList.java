@@ -31,7 +31,7 @@ public class UniqueStudentList implements Iterable<Student> {
     /**
      * Returns true if any of the students have this phone or this email.
      */
-    public boolean hasPersonWithPhoneAndEmail(Phone phone, Email email) {
+    public boolean hasPersonWithPhoneOrEmail(Phone phone, Email email) {
         requireAllNonNull(phone, email);
         return internalList.stream().anyMatch(student -> student.hasPersonWithPhoneOrEmail(phone, email));
     }
