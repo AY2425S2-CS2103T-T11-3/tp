@@ -14,6 +14,8 @@ import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Phone;
 import seedu.address.model.person.Staff;
 import seedu.address.testutil.Assert;
 import seedu.address.testutil.StaffBuilder;
@@ -101,6 +103,11 @@ public class AddStaffCommandTest {
      */
     private class ModelStubAcceptingStaffAdded extends ModelStub {
         final ArrayList<Staff> staffsAdded = new ArrayList<>();
+
+        @Override
+        public boolean hasPersonWithPhoneAndEmail(Phone phone, Email email) {
+            return false;
+        }
 
         @Override
         public boolean hasStaff(Staff staff) {
