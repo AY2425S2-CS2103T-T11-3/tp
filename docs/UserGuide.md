@@ -14,6 +14,14 @@ If you can type fast, ResiConnect can get your contact management tasks done fas
 <page-nav-print />
 
 --------------------------------------------------------------------------------------------------------------------
+# Table of Contents
+1. Quick Start
+2. Features
+3. Constraints for the Features
+4. FAQ
+5. Known Issues
+6. Command Summary
+--------------------------------------------------------------------------------------------------------------------
 
 ## Quick start
 
