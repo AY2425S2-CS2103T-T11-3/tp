@@ -24,7 +24,7 @@ import seedu.address.model.person.Student;
 public class AddStudentCommand extends Command {
     public static final String COMMAND_WORD = "add_stu";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a student to ResiConnect"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a student to ResiConnect.\n"
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_MATRIC + "MATRIC "
