@@ -55,7 +55,7 @@ public class AddStudentCommand extends Command {
             + "from 0 to 2, representing {“Resident”, “Block Head”, “JCRC Member”} "
             + "respectively.\n"
             + "Note that " + PREFIX_TAG + " "
-            + "is also an optional parameter.";
+            + "is also an optional parameter and can be used multiple times.";
 
     public static final String MESSAGE_SUCCESS = "New student added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This student already exists in ResiConnect. No two "
