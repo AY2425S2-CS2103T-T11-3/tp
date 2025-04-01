@@ -17,7 +17,7 @@ end box
 [-> LogicManager : execute("1 memtype/stu name/John Doe")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand("1 memtype/stu name/John Doe")
+LogicManager -> AddressBookParser : parseCommand("search_event_member 1 memtype/stu name/John Doe")
 activate AddressBookParser
 
 create SearchEventMemberCommandParser
@@ -27,7 +27,7 @@ activate SearchEventMemberCommandParser
 SearchEventMemberCommandParser --> AddressBookParser
 deactivate SearchEventMemberCommandParser
 
-AddressBookParser -> SearchEventMemberCommandParser : parse("1 memtype/stu name/John Doe")
+AddressBookParser -> SearchEventMemberCommandParser : parse("search_event_member 1 memtype/stu name/John Doe")
 activate SearchEventMemberCommandParser
 
 create SearchEventMemberCommand
