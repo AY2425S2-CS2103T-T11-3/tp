@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.logic.Messages.MESSAGE_DUPLICATE_PHONE_OR_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -52,7 +53,10 @@ public class AddExternalPartyCommand extends Command {
 
         if (model.hasExternalParty(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_PARTY);
+        } else if (model.hasPersonWithPhoneAndEmail(toAdd.getPhone(), toAdd.getEmail())) {
+            throw new CommandException(MESSAGE_DUPLICATE_PHONE_OR_EMAIL);
         }
+
         model.addExternalParty(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(toAdd)));
     }
