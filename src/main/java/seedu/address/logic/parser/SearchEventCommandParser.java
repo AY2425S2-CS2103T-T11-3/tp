@@ -1,7 +1,7 @@
 package seedu.address.logic.parser;
 
-import static seedu.address.logic.Messages.MESSAGE_EMPTY_FIELD_AFTER_PREFIX;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.Messages.MESSAGE_MISSING_FIELD_AFTER_PREFIX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_END_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_START_TIME;
@@ -34,14 +34,14 @@ public class SearchEventCommandParser implements Parser<SearchEventCommand> {
         Optional<String> startTimeStr = argMultimap.getValue(PREFIX_EVENT_START_TIME);
         Optional<String> endTimeStr = argMultimap.getValue(PREFIX_EVENT_END_TIME);
         if (eventName.isPresent() && eventName.get().trim().isEmpty()) {
-            throw new ParseException(MESSAGE_EMPTY_FIELD_AFTER_PREFIX);
+            throw new ParseException(MESSAGE_MISSING_FIELD_AFTER_PREFIX);
         }
 
         EventStartTime startTime = null;
         EventEndTime endTime = null;
         if (startTimeStr.isPresent()) {
             if (startTimeStr.get().trim().isEmpty()) {
-                throw new ParseException(MESSAGE_EMPTY_FIELD_AFTER_PREFIX);
+                throw new ParseException(MESSAGE_MISSING_FIELD_AFTER_PREFIX);
             } else if (!EventStartTime.isValidStartTime(startTimeStr.get())) {
                 throw new ParseException(EventStartTime.MESSAGE_CONSTRAINTS);
             }
@@ -50,7 +50,7 @@ public class SearchEventCommandParser implements Parser<SearchEventCommand> {
 
         if (endTimeStr.isPresent()) {
             if (endTimeStr.get().trim().isEmpty()) {
-                throw new ParseException(MESSAGE_EMPTY_FIELD_AFTER_PREFIX);
+                throw new ParseException(MESSAGE_MISSING_FIELD_AFTER_PREFIX);
             } else if (!EventEndTime.isValidEndTime(endTimeStr.get())) {
                 throw new ParseException(EventEndTime.MESSAGE_CONSTRAINTS);
             }

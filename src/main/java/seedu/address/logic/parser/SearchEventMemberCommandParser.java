@@ -1,10 +1,10 @@
 package seedu.address.logic.parser;
 
-import static seedu.address.logic.Messages.MESSAGE_EMPTY_FIELD_AFTER_PREFIX;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_EVENT_MEMBER_TYPE;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_SEARCHING_CRITERIA;
 import static seedu.address.logic.Messages.MESSAGE_MISSING_EVENT_MEMBER_TYPE;
+import static seedu.address.logic.Messages.MESSAGE_MISSING_FIELD_AFTER_PREFIX;
 import static seedu.address.logic.Messages.MESSAGE_MISSING_SEARCHING_CRITERIA;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_BLOCK;
@@ -58,7 +58,7 @@ public class SearchEventMemberCommandParser implements Parser<SearchEventMemberC
         for (Prefix prefix : prefixes) {
             Optional<String> value = argMultimap.getValue(prefix);
             if (value.isPresent() && value.get().trim().isEmpty()) {
-                throw new ParseException(MESSAGE_EMPTY_FIELD_AFTER_PREFIX);
+                throw new ParseException(MESSAGE_MISSING_FIELD_AFTER_PREFIX);
             }
         }
 

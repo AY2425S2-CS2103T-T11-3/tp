@@ -1,8 +1,8 @@
 package seedu.address.logic.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.address.logic.Messages.MESSAGE_EMPTY_FIELD_AFTER_PREFIX;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.Messages.MESSAGE_MISSING_FIELD_AFTER_PREFIX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_END_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_START_TIME;
@@ -89,7 +89,7 @@ public class SearchEventCommandParserTest {
                 + PREFIX_EVENT_NAME + " "
                 + PREFIX_EVENT_START_TIME + "2025-02-15 18:00 "
                 + PREFIX_EVENT_END_TIME + "2025-02-15 21:00";
-        assertParseFailure(parser, userInput, MESSAGE_EMPTY_FIELD_AFTER_PREFIX);
+        assertParseFailure(parser, userInput, MESSAGE_MISSING_FIELD_AFTER_PREFIX);
     }
 
     @Test
@@ -98,14 +98,14 @@ public class SearchEventCommandParserTest {
                 + PREFIX_EVENT_NAME + "Dance "
                 + PREFIX_EVENT_START_TIME + " "
                 + PREFIX_EVENT_END_TIME + "2025-02-15 21:00";
-        assertParseFailure(parser, userInput, MESSAGE_EMPTY_FIELD_AFTER_PREFIX);
+        assertParseFailure(parser, userInput, MESSAGE_MISSING_FIELD_AFTER_PREFIX);
     }
 
     @Test
     public void parse_emptyParamsEventEndTime_failure() {
         String userInput = " "
                 + PREFIX_EVENT_END_TIME + " ";
-        assertParseFailure(parser, userInput, MESSAGE_EMPTY_FIELD_AFTER_PREFIX);
+        assertParseFailure(parser, userInput, MESSAGE_MISSING_FIELD_AFTER_PREFIX);
     }
 }
 

@@ -1,7 +1,7 @@
 package seedu.address.logic.parser;
 
-import static seedu.address.logic.Messages.MESSAGE_EMPTY_FIELD_AFTER_PREFIX;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.Messages.MESSAGE_MISSING_FIELD_AFTER_PREFIX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -42,7 +42,7 @@ public class SearchExternalPartyCommandParser implements Parser<SearchExternalPa
         for (Prefix prefix : prefixes) {
             Optional<String> value = argMultimap.getValue(prefix);
             if (value.isPresent() && value.get().trim().isEmpty()) {
-                throw new ParseException(MESSAGE_EMPTY_FIELD_AFTER_PREFIX);
+                throw new ParseException(MESSAGE_MISSING_FIELD_AFTER_PREFIX);
             }
         }
 
