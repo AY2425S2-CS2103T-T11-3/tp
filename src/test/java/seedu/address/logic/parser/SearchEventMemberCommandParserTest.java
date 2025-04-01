@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_SEARCHING_CRITERIA;
+import static seedu.address.logic.Messages.MESSAGE_MISSING_FIELD_AFTER_PREFIX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
@@ -58,6 +59,11 @@ public class SearchEventMemberCommandParserTest {
     public void parse_emptyArgs_throwsParseException() {
         assertParseFailure(parser, "", String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
                 SearchEventMemberCommand.MESSAGE_USAGE));
+    }
+
+    @Test
+    public void parse_missingArgs_throwsParseException() {
+        assertParseFailure(parser, " " + PREFIX_NAME, MESSAGE_MISSING_FIELD_AFTER_PREFIX);
     }
 
     @Test
