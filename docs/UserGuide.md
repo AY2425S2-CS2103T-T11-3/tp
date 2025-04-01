@@ -14,13 +14,9 @@ If you can type fast, ResiConnect can get your contact management tasks done fas
 <page-nav-print />
 
 --------------------------------------------------------------------------------------------------------------------
-# Table of Contents
-1. Quick Start
-2. Features
-3. Constraints for the Features
-4. FAQ
-5. Known Issues
-6. Command Summary
+## Target Audience
+ResiConnect is targeted at Residence Fellows that are able to type quickly.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Quick start
@@ -76,6 +72,14 @@ ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
+</box>
+
+<box type="info" seamless>
+
+**Additional notes about the commands:**<br>
+
+* If there are any errors in the commands that you have written, the text bar's font colour will turn red (from white).
+![img.png](img.png)
 </box>
 
 ### Viewing help : `help`
