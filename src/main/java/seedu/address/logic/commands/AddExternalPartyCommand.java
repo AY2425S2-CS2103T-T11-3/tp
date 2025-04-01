@@ -20,7 +20,7 @@ public class AddExternalPartyCommand extends Command {
     public static final String COMMAND_WORD = "add_ext";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Adds an external party to the address book. "
+            + ": Adds an external party to ResiConnect.\n"
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "

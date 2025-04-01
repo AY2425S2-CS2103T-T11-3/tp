@@ -25,7 +25,7 @@ public class AddStaffCommand extends Command {
 
     public static final String COMMAND_WORD = "add_staff";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a staff to ResiConnect"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a staff to ResiConnect.\n"
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "

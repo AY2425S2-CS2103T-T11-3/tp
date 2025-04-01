@@ -82,7 +82,7 @@ Format: `help`
 
 Adds a student to the address book.
 
-Format: `add_stu name/NAME matric/MATRIC phone/PHONE email/EMAIL a/ADDRESS emergency/EMERGENCY CONTACT block/BLOCK level/LEVEL room/ROOM [designation/DESIGNATION]`
+Format: `add_stu name/NAME matric/MATRIC phone/PHONE email/EMAIL a/ADDRESS [t/TAG] emergency/EMERGENCY CONTACT block/BLOCK level/LEVEL room/ROOM [designation/DESIGNATION]`
 
 <box type="tip" seamless>
 
@@ -90,7 +90,7 @@ Format: `add_stu name/NAME matric/MATRIC phone/PHONE email/EMAIL a/ADDRESS emerg
 </box>
 
 Examples:
-* `add_stu name/John Doe matric/A0234567B phone/98765432 email/johnd@example.com a/311, Clementi Ave 2, #02-25 emergency/91234567 block/A level/5 room/3 designation/1`
+* `add_stu name/John Doe matric/A0234567B phone/98765432 email/johnd@example.com a/311, Clementi Ave 2, #02-25 t/friend emergency/91234567 block/A level/5 room/3 designation/1`
 
 ### Adding a staff: `add_staff`
 
@@ -306,6 +306,11 @@ Examples:
 * `delete_event_member 1 stu/1` deletes the first student from the first event.
 * `delete_event_member 2 staff/2` deletes the second staff from the second event.
 
+### Clearing all entries : `clear`
+Clears **all** data from the address book, including students, staff, external parties, and events.
+
+Format: `clear`
+
 ### Exiting the program : `exit`
 
 Exits the program.
@@ -372,7 +377,7 @@ Here is a comprehensive list for any constraints that we have specified above!
 
 Action     | Format, Examples
 -----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-**Add Student**    | `add_stu name/NAME matric/MATRIC phone/PHONE email/EMAIL a/ADDRESS emergency/EMERGENCY CONTACT block/BLOCK level/LEVEL room/ROOM designation/DESIGNATION` <br><br> e.g., `add_stu name/John Doe matric/A0234567B phone/98765432 email/johnd@example.com a/311, Clementi Ave 2, #02-25 emergency/91234567 block/A level/5 room/3 designation/1`
+**Add Student**    | `add_stu name/NAME matric/MATRIC phone/PHONE email/EMAIL a/ADDRESS [t/TAG] emergency/EMERGENCY CONTACT block/BLOCK level/LEVEL room/ROOM designation/DESIGNATION` <br><br> e.g., `add_stu name/John Doe matric/A0234567B phone/98765432 email/johnd@example.com a/311, Clementi Ave 2, #02-25 emergency/91234567 block/A level/5 room/3 designation/1`
 **Add Staff**    | `add_staff name/NAME phone/PHONE email/EMAIL a/ADDRESS [t/TAG] emergency/EMERGENCY CONTACT block/BLOCK level/LEVEL room/ROOM designation/DESIGNATION` <br><br> e.g., `add_staff name/John Doe phone/98765432 email/johnd@example.com a/311, Clementi Ave 2, #02-25 emergency/91234567 block/A level/5 room/3 designation/1`
 **Add External Party**    | `add_ext name/NAME phone/PHONE email/EMAIL desc/DESCRIPTION` <br><br> e.g., `add_ext name/John Doe phone/98765432 email/johnd@example.com desc/External party for food.`
 **List Students**  | `list_stu`
@@ -392,4 +397,5 @@ Action     | Format, Examples
 **Add Event Member** | `add_event_member EVENT_INDEX stu/STUDENT_INDEX OR staff/STAFF_INDEX OR ext/EXTERNAL_INDEX`<br> e.g., `add_event_member 1 stu/1`
 **Delete Event Member** | `delete_event_member EVENT_INDEX stu/STUDENT_INDEX OR staff/STAFF_INDEX OR ext/EXTERNAL_INDEX`<br> e.g., `delete_event_member 1 stu/1`
 **Help**   | `help`
+**Clear**  | `clear`
 **Exit**   | `exit`
