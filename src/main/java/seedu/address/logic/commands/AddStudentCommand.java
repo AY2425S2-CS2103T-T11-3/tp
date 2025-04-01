@@ -11,6 +11,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_MATRIC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROOM;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
@@ -31,6 +32,7 @@ public class AddStudentCommand extends Command {
             + PREFIX_PHONE + "PHONE "
             + PREFIX_EMAIL + "EMAIL "
             + PREFIX_ADDRESS + "ADDRESS "
+            + PREFIX_TAG + "TAG "
             + PREFIX_EMERGENCY + "EMERGENCY CONTACT "
             + PREFIX_BLOCK + "BLOCK "
             + PREFIX_LEVEL + "LEVEL "
@@ -42,6 +44,7 @@ public class AddStudentCommand extends Command {
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
+            + PREFIX_TAG + "friend"
             + PREFIX_EMERGENCY + "91234567 "
             + PREFIX_BLOCK + "A "
             + PREFIX_LEVEL + "5 "
@@ -50,7 +53,9 @@ public class AddStudentCommand extends Command {
             + "Note that " + PREFIX_DESIGNATION + " "
             + "is an optional parameter. To use it, place an integer "
             + "from 0 to 2, representing {“Resident”, “Block Head”, “JCRC Member”} "
-            + "respectively.";
+            + "respectively.\n"
+            + "Note that " + PREFIX_TAG + " "
+            + "is also an optional parameter.";
 
     public static final String MESSAGE_SUCCESS = "New student added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This student already exists in ResiConnect. No two "
