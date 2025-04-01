@@ -306,6 +306,11 @@ Examples:
 * `delete_event_member 1 stu/1` deletes the first student from the first event.
 * `delete_event_member 2 staff/2` deletes the second staff from the second event.
 
+### Clearing all entries : `clear`
+Clears **all** data from the address book, including students, staff, external parties, and events.
+
+Format: `clear`
+
 ### Exiting the program : `exit`
 
 Exits the program.
@@ -391,4 +396,5 @@ Action     | Format, Examples
 **Add Event Member** | `add_event_member EVENT_INDEX stu/STUDENT_INDEX OR staff/STAFF_INDEX OR ext/EXTERNAL_INDEX`<br> e.g., `add_event_member 1 stu/1`
 **Delete Event Member** | `delete_event_member EVENT_INDEX stu/STUDENT_INDEX OR staff/STAFF_INDEX OR ext/EXTERNAL_INDEX`<br> e.g., `delete_event_member 1 stu/1`
 **Help**   | `help`
+**Clear**  | `clear`
 **Exit**   | `exit`
