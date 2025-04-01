@@ -52,8 +52,8 @@ public class SearchEventMemberCommandParser implements Parser<SearchEventMemberC
 
         // Check for empty values after a prefix
         Prefix[] prefixes = {
-                PREFIX_NAME, PREFIX_MATRIC, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_EMERGENCY, PREFIX_BLOCK,
-                PREFIX_LEVEL, PREFIX_ROOM, PREFIX_DESIGNATION, PREFIX_DESCRIPTION
+            PREFIX_NAME, PREFIX_MATRIC, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_EMERGENCY, PREFIX_BLOCK,
+            PREFIX_LEVEL, PREFIX_ROOM, PREFIX_DESIGNATION, PREFIX_DESCRIPTION
         };
         for (Prefix prefix : prefixes) {
             Optional<String> value = argMultimap.getValue(prefix);
