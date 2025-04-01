@@ -100,8 +100,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasPersonWithPhoneAndEmail(Phone phone, Email email) {
-        return this.addressBook.hasPersonWithPhoneAndEmail(phone, email);
+    public boolean hasPersonWithPhoneOrEmail(Phone phone, Email email) {
+        return this.addressBook.hasPersonWithPhoneOrEmail(phone, email);
     }
 
     @Override

@@ -97,7 +97,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     /**
      * Returns true if any of the staff, students or external parties have this phone or this email.
      */
-    boolean hasPersonWithPhoneAndEmail(Phone phone, Email email) {
+    boolean hasPersonWithPhoneOrEmail(Phone phone, Email email) {
         requireAllNonNull(phone, email);
         return staff.hasPersonWithPhoneAndEmail(phone, email)
                 || students.hasPersonWithPhoneAndEmail(phone, email)

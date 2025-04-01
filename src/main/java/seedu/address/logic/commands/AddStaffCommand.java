@@ -71,7 +71,7 @@ public class AddStaffCommand extends Command {
 
         if (model.hasStaff(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
-        } else if (model.hasPersonWithPhoneAndEmail(toAdd.getPhone(), toAdd.getEmail())) {
+        } else if (model.hasPersonWithPhoneOrEmail(toAdd.getPhone(), toAdd.getEmail())) {
             throw new CommandException(MESSAGE_DUPLICATE_PHONE_OR_EMAIL);
         }
 

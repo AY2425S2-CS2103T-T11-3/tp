@@ -63,7 +63,7 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public boolean hasPersonWithPhoneAndEmail(Phone phone, Email email) {
+    public boolean hasPersonWithPhoneOrEmail(Phone phone, Email email) {
         throw new AssertionError("This method should not be called.");
     }
 

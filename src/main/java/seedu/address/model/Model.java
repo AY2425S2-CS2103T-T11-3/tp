@@ -66,7 +66,7 @@ public interface Model {
     /**
      * Returns true if any of the staff, students or external parties have this phone or this email.
      */
-    boolean hasPersonWithPhoneAndEmail(Phone phone, Email email);
+    boolean hasPersonWithPhoneOrEmail(Phone phone, Email email);
 
     /**
      * Returns true if a staff with the same identity as {@code staff} exists in the address book.

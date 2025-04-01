@@ -53,7 +53,7 @@ public class AddExternalPartyCommand extends Command {
 
         if (model.hasExternalParty(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_PARTY);
-        } else if (model.hasPersonWithPhoneAndEmail(toAdd.getPhone(), toAdd.getEmail())) {
+        } else if (model.hasPersonWithPhoneOrEmail(toAdd.getPhone(), toAdd.getEmail())) {
             throw new CommandException(MESSAGE_DUPLICATE_PHONE_OR_EMAIL);
         }
 

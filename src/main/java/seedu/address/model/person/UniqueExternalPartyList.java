@@ -29,11 +29,11 @@ public class UniqueExternalPartyList implements Iterable<ExternalParty> {
             FXCollections.unmodifiableObservableList(internalList);
 
     /**
-     * Returns true if any of the students have this phone or this email.
+     * Returns true if any of the external parties have this phone or this email.
      */
     public boolean hasPersonWithPhoneAndEmail(Phone phone, Email email) {
         requireAllNonNull(phone, email);
-        return internalList.stream().anyMatch(externalParty -> externalParty.hasPersonWithPhoneAndEmail(phone, email));
+        return internalList.stream().anyMatch(externalParty -> externalParty.hasPersonWithPhoneOrEmail(phone, email));
     }
 
     /**

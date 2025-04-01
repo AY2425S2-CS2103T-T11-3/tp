@@ -101,7 +101,7 @@ public class AddExternalPartyCommandTest {
         final ArrayList<ExternalParty> externalPartyAdded = new ArrayList<>();
 
         @Override
-        public boolean hasPersonWithPhoneAndEmail(Phone phone, Email email) {
+        public boolean hasPersonWithPhoneOrEmail(Phone phone, Email email) {
             return false;
         }
 

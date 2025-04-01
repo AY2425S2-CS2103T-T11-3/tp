@@ -55,7 +55,7 @@ public abstract class Person {
     /**
      * Returns true if this person has this phone or this email.
      */
-    public boolean hasPersonWithPhoneAndEmail(Phone phone, Email email) {
+    public boolean hasPersonWithPhoneOrEmail(Phone phone, Email email) {
         return this.getPhone().equals(phone) || this.getEmail().equals(email);
     }
 

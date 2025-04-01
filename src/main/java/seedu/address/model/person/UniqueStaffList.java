@@ -33,7 +33,7 @@ public class UniqueStaffList implements Iterable<Staff> {
      */
     public boolean hasPersonWithPhoneAndEmail(Phone phone, Email email) {
         requireAllNonNull(phone, email);
-        return internalList.stream().anyMatch(staff -> staff.hasPersonWithPhoneAndEmail(phone, email));
+        return internalList.stream().anyMatch(staff -> staff.hasPersonWithPhoneOrEmail(phone, email));
     }
 
     /**
