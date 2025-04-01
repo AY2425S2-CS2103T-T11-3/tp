@@ -9,6 +9,9 @@ import static seedu.address.logic.Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_IND
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_EXTERNAL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_STAFF;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_STUDENT;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_EXTERNALPARTIES;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STAFF;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 
 import java.util.List;
 import java.util.Optional;
@@ -87,36 +90,42 @@ public class AddEventMemberCommand extends Command {
 
             // Add Student
             if (studentIndex.isPresent()) {
+                model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
                 int studentZeroBased = studentIndex.get().getZeroBased();
                 if (studentZeroBased < 0 || studentZeroBased >= model.getFilteredStudentList().size()) {
                     throw new CommandException(MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX + "\n" + MESSAGE_USAGE);
                 }
                 Student student = model.getFilteredStudentList().get(studentZeroBased);
                 event.addStudent(student);
+                model.setSelectedEventDetail(event, eventIndex); //showing view event
                 return new CommandResult(String.format(MESSAGE_STUDENT_ADDED_TO_EVENT, student.getName().fullName,
                         event.getEventName()));
             }
 
             // Add Staff
             if (staffIndex.isPresent()) {
+                model.updateFilteredStaffList(PREDICATE_SHOW_ALL_STAFF);
                 int staffZeroBased = staffIndex.get().getZeroBased();
                 if (staffZeroBased < 0 || staffZeroBased >= model.getFilteredStaffList().size()) {
                     throw new CommandException(MESSAGE_INVALID_STAFF_DISPLAYED_INDEX + "\n" + MESSAGE_USAGE);
                 }
                 Staff staff = model.getFilteredStaffList().get(staffZeroBased);
                 event.addStaff(staff);
+                model.setSelectedEventDetail(event, eventIndex); //showing view event
                 return new CommandResult(String.format(MESSAGE_STAFF_ADDED_TO_EVENT, staff.getName().fullName,
                         event.getEventName()));
             }
 
             // Add External Member
             if (externalIndex.isPresent()) {
+                model.updateFilteredExternalPartyList(PREDICATE_SHOW_ALL_EXTERNALPARTIES);
                 int externalZeroBased = externalIndex.get().getZeroBased();
                 if (externalZeroBased < 0 || externalZeroBased >= model.getFilteredExternalPartyList().size()) {
                     throw new CommandException(MESSAGE_INVALID_EXTERNAL_PARTY_DISPLAYED_INDEX + "\n" + MESSAGE_USAGE);
                 }
                 ExternalParty external = model.getFilteredExternalPartyList().get(externalZeroBased);
                 event.addExternalParty(external);
+                model.setSelectedEventDetail(event, eventIndex); //showing view event
                 return new CommandResult(String.format(MESSAGE_EXTERNAL_PARTY_ADDED_TO_EVENT, external.getName(),
                         event.getEventName()));
             }

@@ -85,6 +85,7 @@ public class DeleteEventMemberCommand extends Command {
                 }
                 Student studentToRemove = studentList.get(studentIndex.get().getZeroBased());
                 eventToEdit.removeStudent(studentToRemove);
+                model.setSelectedEventDetail(eventToEdit, eventIndex); //showing view event
                 return new CommandResult(String.format(MESSAGE_DELETE_STUDENT_SUCCESS, studentToRemove.getName(),
                         eventToEdit.getEventName()));
             }
@@ -98,6 +99,7 @@ public class DeleteEventMemberCommand extends Command {
                 }
                 Staff staffToRemove = staffList.get(staffIndex.get().getZeroBased());
                 eventToEdit.removeStaff(staffToRemove);
+                model.setSelectedEventDetail(eventToEdit, eventIndex); //showing view event
                 return new CommandResult(String.format(MESSAGE_DELETE_STAFF_SUCCESS, staffToRemove.getName(),
                         eventToEdit.getEventName()));
             }
@@ -112,6 +114,7 @@ public class DeleteEventMemberCommand extends Command {
                 }
                 ExternalParty externalToRemove = externalList.get(externalIndex.get().getZeroBased());
                 eventToEdit.removeExternalParty(externalToRemove);
+                model.setSelectedEventDetail(eventToEdit, eventIndex); //showing view event
                 return new CommandResult(String.format(MESSAGE_DELETE_EXTERNAL_PARTY_SUCCESS,
                         externalToRemove.getName(), eventToEdit.getEventName()));
             }
