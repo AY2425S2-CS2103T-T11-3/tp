@@ -44,7 +44,7 @@ public class AddStudentCommand extends Command {
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
-            + PREFIX_TAG + "friend"
+            + PREFIX_TAG + "friend "
             + PREFIX_EMERGENCY + "91234567 "
             + PREFIX_BLOCK + "A "
             + PREFIX_LEVEL + "5 "
