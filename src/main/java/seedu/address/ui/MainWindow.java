@@ -48,25 +48,13 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane staffListPanelPlaceholder;
-
-    @FXML
-    private StackPane externalPartyListPanelPlaceholder;
-
-    @FXML
-    private StackPane studentListPanelPlaceholder;
-
-    @FXML
-    private StackPane eventListPanelPlaceholder;
-
-    @FXML
     private StackPane resultDisplayPlaceholder;
 
     @FXML
     private StackPane statusbarPlaceholder;
 
     @FXML
-    private StackPane eventDetailPanelPlaceholder;
+    private StackPane mainListPanelPlaceholder;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -95,41 +83,28 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     private void updateListView(ListType type) {
-        eventListPanel = null;
-        eventDetailPanel = null;
-        staffListPanel = null;
-        studentListPanel = null;
-        staffListPanelPlaceholder.getChildren().clear();
-        externalPartyListPanelPlaceholder.getChildren().clear();
-        studentListPanelPlaceholder.getChildren().clear();
-        eventListPanelPlaceholder.getChildren().clear();
-        eventDetailPanelPlaceholder.getChildren().clear();
+        mainListPanelPlaceholder.getChildren().clear();
 
         switch (type) {
-
         case STAFF:
             staffListPanel = new StaffListPanel(logic.getFilteredStaffList());
-            staffListPanelPlaceholder.getChildren().add(staffListPanel.getRoot());
+            mainListPanelPlaceholder.getChildren().add(staffListPanel.getRoot());
             break;
-
         case EXTERNAL:
             externalPartyListPanel = new ExternalPartyListPanel(logic.getFilteredExternalPartyList());
-            externalPartyListPanelPlaceholder.getChildren().add(externalPartyListPanel.getRoot());
+            mainListPanelPlaceholder.getChildren().add(externalPartyListPanel.getRoot());
             break;
-
         case STUDENT:
             studentListPanel = new StudentListPanel(logic.getFilteredStudentList());
-            studentListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
+            mainListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
             break;
-
         case EVENT:
             eventListPanel = new EventListPanel(logic.getFilteredEventList());
-            eventListPanelPlaceholder.getChildren().add(eventListPanel.getRoot());
+            mainListPanelPlaceholder.getChildren().add(eventListPanel.getRoot());
             break;
-
         case EVENTDETAIL:
             eventDetailPanel = new EventDetailPanel(logic.getSelectedEventDetail(), logic.getSelectedEventIndex());
-            eventDetailPanelPlaceholder.getChildren().add(eventDetailPanel.getRoot());
+            mainListPanelPlaceholder.getChildren().add(eventDetailPanel.getRoot());
             break;
 
         default:
@@ -179,8 +154,7 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        studentListPanel = new StudentListPanel(logic.getFilteredStudentList());
-        studentListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
+        updateListView(ListType.STUDENT); // Display student list by default when app starts
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
