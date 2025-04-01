@@ -14,10 +14,10 @@ box Model MODEL_COLOR_T1
 participant "m:Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("name/Dance from/2025-06-15 18:00")
+[-> LogicManager : execute("search_event name/Dance from/2025-06-15 18:00")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand("name/Dance from/2025-06-15 18:00")
+LogicManager -> AddressBookParser : parseCommand("search_event name/Dance from/2025-06-15 18:00")
 activate AddressBookParser
 
 create SearchEventCommandParser
