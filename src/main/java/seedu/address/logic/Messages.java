@@ -44,12 +44,13 @@ public class Messages {
     public static final String MESSAGE_MISSING_EVENT_MEMBER = "At least one member must be specified.";
     public static final String MESSAGE_INVALID_INDEX_OUT_OF_RANGE = "The specified index is out of range.";
     public static final String MESSAGE_MISSING_EVENT_MEMBER_TYPE =
-            "You must specify exactly one member type: stu/, staff/, or ext/.";
+            "You must specify exactly one member type: stu, staff, or ext.";
+    public static final String MESSAGE_EMPTY_FIELD_AFTER_PREFIX = "Field after prefix cannot be empty.";
     public static final String MESSAGE_MISSING_SEARCHING_CRITERIA =
             "At least one searching criteria must be provided.";
     public static final String MESSAGE_INVALID_SEARCHING_CRITERIA = "Invalid searching criteria provided.";
     public static final String MESSAGE_INVALID_EVENT_MEMBER_TYPE =
-            "Invalid member type provided. Member type must be stu/, staff/, or ext/.";
+            "Invalid member type provided. Member type must be stu, staff, or ext.";
     public static final String MESSAGE_DUPLICATE_PHONE_OR_EMAIL = "A staff, student or external party in ResiConnect "
             + "already has this contact's phone or email address.";
 

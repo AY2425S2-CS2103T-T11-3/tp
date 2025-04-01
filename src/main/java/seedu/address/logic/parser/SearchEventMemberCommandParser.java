@@ -1,5 +1,6 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.logic.Messages.MESSAGE_EMPTY_FIELD_AFTER_PREFIX;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_EVENT_MEMBER_TYPE;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_SEARCHING_CRITERIA;
@@ -20,6 +21,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ROOM;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
@@ -46,6 +48,15 @@ public class SearchEventMemberCommandParser implements Parser<SearchEventMemberC
         if (!argMultimap.getValue(PREFIX_EVENT_MEMTYPE).isPresent()) {
             throw new ParseException(String.format(MESSAGE_MISSING_EVENT_MEMBER_TYPE,
                     SearchEventMemberCommand.MESSAGE_USAGE));
+        }
+
+        // Check for empty values after a prefix
+        for (Prefix prefix : new Prefix[]{PREFIX_NAME, PREFIX_MATRIC, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
+                PREFIX_EMERGENCY, PREFIX_BLOCK, PREFIX_LEVEL, PREFIX_ROOM, PREFIX_DESIGNATION, PREFIX_DESCRIPTION}) {
+            Optional<String> value = argMultimap.getValue(prefix);
+            if (value.isPresent() && value.get().trim().isEmpty()) {
+                throw new ParseException(MESSAGE_EMPTY_FIELD_AFTER_PREFIX);
+            }
         }
 
         String memberType = argMultimap.getValue(PREFIX_EVENT_MEMTYPE).get();
