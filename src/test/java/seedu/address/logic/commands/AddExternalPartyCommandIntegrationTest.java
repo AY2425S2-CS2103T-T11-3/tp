@@ -52,7 +52,8 @@ public class AddExternalPartyCommandIntegrationTest {
 
         model.addStaff(new StaffBuilder().withEmail("hey@example.com").build());
 
-        AddExternalPartyCommand command = new AddExternalPartyCommand(new ExternalPartyBuilder().withEmail("hey@example.com").build());
+        AddExternalPartyCommand command = new AddExternalPartyCommand(
+                new ExternalPartyBuilder().withEmail("hey@example.com").build());
         Assert.assertThrows(CommandException.class,
                 Messages.MESSAGE_DUPLICATE_PHONE_OR_EMAIL, () -> command.execute(model));
     }
@@ -63,7 +64,8 @@ public class AddExternalPartyCommandIntegrationTest {
 
         model.addStaff(new StaffBuilder().withPhone("9999").build());
 
-        AddExternalPartyCommand command = new AddExternalPartyCommand(new ExternalPartyBuilder().withPhone("9999").build());
+        AddExternalPartyCommand command = new AddExternalPartyCommand(
+                new ExternalPartyBuilder().withPhone("9999").build());
         Assert.assertThrows(CommandException.class,
                 Messages.MESSAGE_DUPLICATE_PHONE_OR_EMAIL, () -> command.execute(model));
     }
@@ -74,7 +76,8 @@ public class AddExternalPartyCommandIntegrationTest {
 
         model.addStudent(new StudentBuilder().withEmail("hey@example.com").build());
 
-        AddExternalPartyCommand command = new AddExternalPartyCommand(new ExternalPartyBuilder().withEmail("hey@example.com").build());
+        AddExternalPartyCommand command = new AddExternalPartyCommand(
+                new ExternalPartyBuilder().withEmail("hey@example.com").build());
         Assert.assertThrows(CommandException.class,
                 Messages.MESSAGE_DUPLICATE_PHONE_OR_EMAIL, () -> command.execute(model));
     }
@@ -85,7 +88,8 @@ public class AddExternalPartyCommandIntegrationTest {
 
         model.addStudent(new StudentBuilder().withPhone("9999").build());
 
-        AddExternalPartyCommand command = new AddExternalPartyCommand(new ExternalPartyBuilder().withPhone("9999").build());
+        AddExternalPartyCommand command = new AddExternalPartyCommand(
+                new ExternalPartyBuilder().withPhone("9999").build());
         Assert.assertThrows(CommandException.class,
                 Messages.MESSAGE_DUPLICATE_PHONE_OR_EMAIL, () -> command.execute(model));
     }
