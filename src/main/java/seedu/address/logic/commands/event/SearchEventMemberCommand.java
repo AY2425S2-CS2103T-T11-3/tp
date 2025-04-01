@@ -74,8 +74,8 @@ public class SearchEventMemberCommand extends Command {
             + PREFIX_DESCRIPTION + "DESCRIPTION\n"
             + "Example: " + COMMAND_WORD + " memtype/ext email/johnd@example.com";
 
-    public static final String MESSAGE_SUCCESS = "Matching members found in event: %1$s";
-    public static final String MESSAGE_NO_MATCH = "No matching members found in the specified event.";
+    public static final String MESSAGE_SUCCESS = "Found %1$d matching members in the event with the given attributes.";
+    public static final String MESSAGE_NO_MATCH = "Found no matching members in the event with the given attributes.";
     public static final String NO_EVENT_EXIST = "No events exist by now.";
 
     private final EventMemberPredicate predicate;
