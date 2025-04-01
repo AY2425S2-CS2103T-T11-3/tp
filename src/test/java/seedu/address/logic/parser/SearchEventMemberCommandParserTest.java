@@ -63,7 +63,7 @@ public class SearchEventMemberCommandParserTest {
 
     @Test
     public void parse_missingArgs_throwsParseException() {
-        assertParseFailure(parser, " " + PREFIX_NAME, MESSAGE_MISSING_FIELD_AFTER_PREFIX);
+        assertParseFailure(parser, "1 memtype/stu " + PREFIX_NAME, MESSAGE_MISSING_FIELD_AFTER_PREFIX);
     }
 
     @Test
