@@ -17,8 +17,9 @@ public class SearchEventCommand extends Command {
     public static final String COMMAND_WORD = "search_event";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Searches for events by name, start time, and/or end time.\n"
-            + "Parameters: [name/EVENT_NAME] [from/START_TIME] [to/END_TIME]\n"
+            + ": Searches for events by name, start time, or end time.\n"
+            + "Parameters: name/EVENT_NAME from/START_TIME to/END_TIME\n"
+            + "At least one of the parameters must be provided.\n"
             + "Example: " + COMMAND_WORD + " name/Dance from/2025-06-15 18:00";
 
     public static final String MESSAGE_SUCCESS = "Matching events found: %1$d";
