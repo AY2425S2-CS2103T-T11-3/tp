@@ -25,9 +25,9 @@ public class EventMatchesPredicate implements Predicate<Event> {
 
     @Override
     public boolean test(Event event) {
-        return (eventName == null || event.getEventName().toString().toLowerCase().contains(eventName.toLowerCase()))
-                && (startTime == null || event.getEventStartTime().equals(startTime))
-                && (endTime == null || event.getEventEndTime().equals(endTime));
+        return event.getEventName().fullEventName.equalsIgnoreCase(eventName)
+                || event.getEventStartTime().equals(startTime)
+                || event.getEventEndTime().equals(endTime);
     }
 
     @Override
