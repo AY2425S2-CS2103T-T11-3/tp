@@ -12,7 +12,9 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.event.Event;
+import seedu.address.model.person.Email;
 import seedu.address.model.person.ExternalParty;
+import seedu.address.model.person.Phone;
 import seedu.address.model.person.Staff;
 import seedu.address.model.person.Student;
 
@@ -57,6 +59,11 @@ public class ModelStub implements Model {
 
     @Override
     public ReadOnlyAddressBook getAddressBook() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public boolean hasPersonWithPhoneOrEmail(Phone phone, Email email) {
         throw new AssertionError("This method should not be called.");
     }
 

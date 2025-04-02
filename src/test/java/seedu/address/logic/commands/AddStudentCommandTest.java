@@ -14,6 +14,8 @@ import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Phone;
 import seedu.address.model.person.Student;
 import seedu.address.testutil.Assert;
 import seedu.address.testutil.StudentBuilder;
@@ -102,6 +104,11 @@ public class AddStudentCommandTest {
      */
     private class ModelStubAcceptingStudentAdded extends ModelStub {
         final ArrayList<Student> studentsAdded = new ArrayList<>();
+
+        @Override
+        public boolean hasPersonWithPhoneOrEmail(Phone phone, Email email) {
+            return false;
+        }
 
         @Override
         public boolean hasStudent(Student student) {

@@ -14,7 +14,9 @@ import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.person.Email;
 import seedu.address.model.person.ExternalParty;
+import seedu.address.model.person.Phone;
 import seedu.address.testutil.Assert;
 import seedu.address.testutil.ExternalPartyBuilder;
 
@@ -97,6 +99,11 @@ public class AddExternalPartyCommandTest {
      */
     private class ModelStubAcceptingExternalPartyAdded extends ModelStub {
         final ArrayList<ExternalParty> externalPartyAdded = new ArrayList<>();
+
+        @Override
+        public boolean hasPersonWithPhoneOrEmail(Phone phone, Email email) {
+            return false;
+        }
 
         @Override
         public boolean hasExternalParty(ExternalParty externalParty) {

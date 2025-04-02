@@ -57,7 +57,7 @@ public class SearchStaffCommand extends Command {
             return new CommandResult(String.format(MESSAGE_NO_STAFF_FOUND, predicate));
         } else {
             return new CommandResult(
-                    String.format(MESSAGE_STAFF_LISTED_OVERVIEW, filteredListSize));
+                    String.format(MESSAGE_STAFF_LISTED_OVERVIEW, filteredListSize, predicate));
         }
     }
 

@@ -1,6 +1,9 @@
 package seedu.address.logic.commands.event;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.Messages.MESSAGE_DUPLICATE_EXTERNAL_PARTY_IN_EVENT;
+import static seedu.address.logic.Messages.MESSAGE_DUPLICATE_STAFF_IN_EVENT;
+import static seedu.address.logic.Messages.MESSAGE_DUPLICATE_STUDENT_IN_EVENT;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_EVENT_DISPLAYED_INDEX;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_EXTERNAL_PARTY_DISPLAYED_INDEX;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_INDEX_OUT_OF_RANGE;
@@ -22,6 +25,7 @@ import seedu.address.model.event.Event;
 import seedu.address.model.person.ExternalParty;
 import seedu.address.model.person.Staff;
 import seedu.address.model.person.Student;
+import seedu.address.model.person.exceptions.DuplicatePersonException;
 
 /**
  * Adds a member (Student, Staff, or External Party) to an event.
@@ -93,9 +97,15 @@ public class AddEventMemberCommand extends Command {
                 if (studentZeroBased < 0 || studentZeroBased >= model.getAllStudentList().size()) {
                     throw new CommandException(MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX + "\n" + MESSAGE_USAGE);
                 }
+
                 Student student = model.getAllStudentList().get(studentZeroBased);
-                event.addStudent(student);
+                try {
+                    event.addStudent(student);
+                } catch (DuplicatePersonException e) {
+                    throw new CommandException(MESSAGE_DUPLICATE_STUDENT_IN_EVENT + "\n" + MESSAGE_USAGE);
+                }
                 model.setSelectedEventDetail(event, eventIndex); //showing view event
+
                 return new CommandResult(String.format(MESSAGE_STUDENT_ADDED_TO_EVENT, student.getName().fullName,
                         event.getEventName()));
             }
@@ -106,9 +116,15 @@ public class AddEventMemberCommand extends Command {
                 if (staffZeroBased < 0 || staffZeroBased >= model.getAllStaffList().size()) {
                     throw new CommandException(MESSAGE_INVALID_STAFF_DISPLAYED_INDEX + "\n" + MESSAGE_USAGE);
                 }
+
                 Staff staff = model.getAllStaffList().get(staffZeroBased);
-                event.addStaff(staff);
+                try {
+                    event.addStaff(staff);
+                } catch (DuplicatePersonException e) {
+                    throw new CommandException(MESSAGE_DUPLICATE_STAFF_IN_EVENT + "\n" + MESSAGE_USAGE);
+                }
                 model.setSelectedEventDetail(event, eventIndex); //showing view event
+
                 return new CommandResult(String.format(MESSAGE_STAFF_ADDED_TO_EVENT, staff.getName().fullName,
                         event.getEventName()));
             }
@@ -119,9 +135,15 @@ public class AddEventMemberCommand extends Command {
                 if (externalZeroBased < 0 || externalZeroBased >= model.getAllExternalPartiesList().size()) {
                     throw new CommandException(MESSAGE_INVALID_EXTERNAL_PARTY_DISPLAYED_INDEX + "\n" + MESSAGE_USAGE);
                 }
+
                 ExternalParty external = model.getAllExternalPartiesList().get(externalZeroBased);
-                event.addExternalParty(external);
+                try {
+                    event.addExternalParty(external);
+                } catch (DuplicatePersonException e) {
+                    throw new CommandException(MESSAGE_DUPLICATE_EXTERNAL_PARTY_IN_EVENT + "\n" + MESSAGE_USAGE);
+                }
                 model.setSelectedEventDetail(event, eventIndex); //showing view event
+
                 return new CommandResult(String.format(MESSAGE_EXTERNAL_PARTY_ADDED_TO_EVENT, external.getName(),
                         event.getEventName()));
             }

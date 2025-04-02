@@ -9,7 +9,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Room {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Rooms should only be positive integers, and it should not be blank";
+            "Rooms should only be positive integers up to 99, and it should not be blank";
 
     public static final String VALIDATION_REGEX = "^(?:[1-9]|[1-9][0-9])$";
 

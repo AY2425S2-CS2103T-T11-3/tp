@@ -27,15 +27,15 @@ public class Messages {
     public static final String MESSAGE_NO_STAFF_FOUND =
             "Found no matching staff with the attributes: %1$s";
     public static final String MESSAGE_STAFF_LISTED_OVERVIEW =
-            "Matching staff found in this list: %1$d staff members listed.";
+            "Found %d matching staff members listed with the attributes: %s";
     public static final String MESSAGE_NO_STUDENT_FOUND =
             "Found no matching students with the attributes: %1$s";
     public static final String MESSAGE_STUDENT_LISTED_OVERVIEW =
-            "Matching students found in this list: %1$d students listed.";
+            "Found %d matching students listed with the attributes: %s";
     public static final String MESSAGE_NO_EXTERNAL_PARTY_FOUND =
             "Found no matching external parties with the attributes: %1$s";
     public static final String MESSAGE_EXTERNAL_PARTY_LISTED_OVERVIEW =
-            "Matching external parties found in this list: %1$d external parties listed.";
+            "Found %d matching external parties listed with the attributes: %s";
     public static final String MESSAGE_DUPLICATE_FIELDS =
                 "Multiple values specified for the following single-valued field(s): ";
     public static final String MESSAGE_INVALID_EVENT_DISPLAYED_INDEX = "The event index provided is invalid";
@@ -50,6 +50,15 @@ public class Messages {
     public static final String MESSAGE_INVALID_SEARCHING_CRITERIA = "Invalid searching criteria provided.";
     public static final String MESSAGE_INVALID_EVENT_MEMBER_TYPE =
             "Invalid member type provided. Member type must be stu/, staff/, or ext/.";
+    public static final String MESSAGE_DUPLICATE_STUDENT_IN_EVENT =
+            "This student has already been added to this event.";
+    public static final String MESSAGE_DUPLICATE_STAFF_IN_EVENT =
+            "This staff has already been added to this event.";
+    public static final String MESSAGE_DUPLICATE_EXTERNAL_PARTY_IN_EVENT =
+            "This external party has already been added to this event.";
+    public static final String MESSAGE_DUPLICATE_PHONE_OR_EMAIL = "A staff, student or external party in ResiConnect "
+            + "already has this contact's phone or email address.";
+
     /**
      * Returns an error message indicating the duplicate prefixes.
      */

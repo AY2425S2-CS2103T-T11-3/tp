@@ -8,7 +8,9 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.event.Event;
+import seedu.address.model.person.Email;
 import seedu.address.model.person.ExternalParty;
+import seedu.address.model.person.Phone;
 import seedu.address.model.person.Staff;
 import seedu.address.model.person.Student;
 
@@ -60,6 +62,11 @@ public interface Model {
 
     /** Returns the AddressBook */
     ReadOnlyAddressBook getAddressBook();
+
+    /**
+     * Returns true if any of the staff, students or external parties have this phone or this email.
+     */
+    boolean hasPersonWithPhoneOrEmail(Phone phone, Email email);
 
     /**
      * Returns true if a staff with the same identity as {@code staff} exists in the address book.
