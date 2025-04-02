@@ -14,6 +14,10 @@ If you can type fast, ResiConnect can get your contact management tasks done fas
 <page-nav-print />
 
 --------------------------------------------------------------------------------------------------------------------
+## Target Audience
+ResiConnect is targeted at Residence Fellows that are able to type quickly.
+
+--------------------------------------------------------------------------------------------------------------------
 
 ## Quick start
 
@@ -70,6 +74,14 @@ ignored.<br>
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 </box>
 
+<box type="info" seamless>
+
+**Additional notes about the commands:**<br>
+
+* If there are any errors in the commands that you have written, the text bar's font colour will turn red (from white).
+![img.png](img.png)
+</box>
+
 ### Viewing help : `help`
 
 Shows a message explaining how to access the help page.
@@ -82,7 +94,7 @@ Format: `help`
 
 Adds a student to the address book.
 
-Format: `add_stu name/NAME matric/MATRIC phone/PHONE email/EMAIL a/ADDRESS emergency/EMERGENCY CONTACT block/BLOCK level/LEVEL room/ROOM [designation/DESIGNATION]`
+Format: `add_stu name/NAME matric/MATRIC phone/PHONE email/EMAIL a/ADDRESS [t/TAG] emergency/EMERGENCY CONTACT block/BLOCK level/LEVEL room/ROOM [designation/DESIGNATION]`
 
 <box type="tip" seamless>
 
@@ -90,13 +102,13 @@ Format: `add_stu name/NAME matric/MATRIC phone/PHONE email/EMAIL a/ADDRESS emerg
 </box>
 
 Examples:
-* `add_stu name/John Doe matric/A0234567B phone/98765432 email/johnd@example.com a/311, Clementi Ave 2, #02-25 emergency/91234567 block/A level/5 room/3 designation/1`
+* `add_stu name/John Doe matric/A0234567B phone/98765432 email/johnd@example.com a/311, Clementi Ave 2, #02-25 t/friend emergency/91234567 block/A level/5 room/3 designation/1`
 
 ### Adding a staff: `add_staff`
 
 Adds a staff to the address book.
 
-Format: `add_staff name/NAME phone/PHONE email/EMAIL a/ADDRESS emergency/EMERGENCY CONTACT block/BLOCK level/LEVEL room/ROOM [designation/DESIGNATION]`
+Format: `add_staff name/NAME phone/PHONE email/EMAIL a/ADDRESS [t/TAG] emergency/EMERGENCY CONTACT block/BLOCK level/LEVEL room/ROOM [designation/DESIGNATION]`
 
 <box type="tip" seamless>
 
@@ -104,7 +116,7 @@ Format: `add_staff name/NAME phone/PHONE email/EMAIL a/ADDRESS emergency/EMERGEN
 </box>
 
 Examples:
-* `add_staff name/John Doe phone/98765432 email/johnd@example.com a/311, Clementi Ave 2, #02-25 emergency/91234567 block/A level/5 room/3 designation/1`
+* `add_staff name/John Doe phone/98765432 email/johnd@example.com a/311, Clementi Ave 2, #02-25 t/neighbour emergency/91234567 block/A level/5 room/3 designation/1`
 
 ### Adding an external party: `add_ext`
 
@@ -251,7 +263,7 @@ Format: `delete_event INDEX`
 Examples:
 * `list_event` followed by `delete_event 2` deletes the 2nd event in the address book.
 
-### View an event : `view_event`
+### Viewing an event : `view_event`
 
 Views the details of the specified event from the address book, including the associated student list, 
 staff list, and external party list.
@@ -306,6 +318,11 @@ Examples:
 * `delete_event_member 1 stu/1` deletes the first student from the first event.
 * `delete_event_member 2 staff/2` deletes the second staff from the second event.
 
+### Clearing all entries : `clear`
+Clears **all** data from the address book, including students, staff, external parties, and events.
+
+Format: `clear`
+
 ### Exiting the program : `exit`
 
 Exits the program.
@@ -350,13 +367,14 @@ Here is a comprehensive list for any constraints that we have specified above!
 * Room `room/`: Rooms should only be positive integers, and it should not be blank.
 * StaffDesignation `designation/`: Designation should only be an integer from 0 to 2, and it should not be blank. 0 to 2 represent Support Staff, Block IC and Residence Master respectively.
 * StudentDesignation `designation/`: Designation should only be an integer from 0 to 2, and it should not be blank. 0 to 2 represent Resident, Block Head and JCRC Member respectively.
+* Tag `t/`: Tags should be alphanumeric.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Install the app in your other computer. Next, on this computer, navigate to ResiConnect's home folder, and from there, navigate to the data folder. Copy over the addressbook.json file from this folder, to the same folder on your other computer. If you do not know how to transfer the file, you start writing an email addressed to yourself, and attach the addressbook.json file on this computer. Send the email, then go to your other computer and download it from there. 
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -371,8 +389,8 @@ Here is a comprehensive list for any constraints that we have specified above!
 
 Action     | Format, Examples
 -----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-**Add Student**    | `add_stu name/NAME matric/MATRIC phone/PHONE email/EMAIL a/ADDRESS emergency/EMERGENCY CONTACT block/BLOCK level/LEVEL room/ROOM designation/DESIGNATION` <br><br> e.g., `add_stu name/John Doe matric/A0234567B phone/98765432 email/johnd@example.com a/311, Clementi Ave 2, #02-25 emergency/91234567 block/A level/5 room/3 designation/1`
-**Add Staff**    | `add_staff name/NAME phone/PHONE email/EMAIL a/ADDRESS emergency/EMERGENCY CONTACT block/BLOCK level/LEVEL room/ROOM designation/DESIGNATION` <br><br> e.g., `add_staff name/John Doe phone/98765432 email/johnd@example.com a/311, Clementi Ave 2, #02-25 emergency/91234567 block/A level/5 room/3 designation/1`
+**Add Student**    | `add_stu name/NAME matric/MATRIC phone/PHONE email/EMAIL a/ADDRESS [t/TAG] emergency/EMERGENCY CONTACT block/BLOCK level/LEVEL room/ROOM designation/DESIGNATION` <br><br> e.g., `add_stu name/John Doe matric/A0234567B phone/98765432 email/johnd@example.com a/311, Clementi Ave 2, #02-25 emergency/91234567 block/A level/5 room/3 designation/1`
+**Add Staff**    | `add_staff name/NAME phone/PHONE email/EMAIL a/ADDRESS [t/TAG] emergency/EMERGENCY CONTACT block/BLOCK level/LEVEL room/ROOM designation/DESIGNATION` <br><br> e.g., `add_staff name/John Doe phone/98765432 email/johnd@example.com a/311, Clementi Ave 2, #02-25 emergency/91234567 block/A level/5 room/3 designation/1`
 **Add External Party**    | `add_ext name/NAME phone/PHONE email/EMAIL desc/DESCRIPTION` <br><br> e.g., `add_ext name/John Doe phone/98765432 email/johnd@example.com desc/External party for food.`
 **List Students**  | `list_stu`
 **List Staff**   | `list_staff`
@@ -391,4 +409,5 @@ Action     | Format, Examples
 **Add Event Member** | `add_event_member EVENT_INDEX stu/STUDENT_INDEX OR staff/STAFF_INDEX OR ext/EXTERNAL_INDEX`<br> e.g., `add_event_member 1 stu/1`
 **Delete Event Member** | `delete_event_member EVENT_INDEX stu/STUDENT_INDEX OR staff/STAFF_INDEX OR ext/EXTERNAL_INDEX`<br> e.g., `delete_event_member 1 stu/1`
 **Help**   | `help`
+**Clear**  | `clear`
 **Exit**   | `exit`

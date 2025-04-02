@@ -53,6 +53,13 @@ public abstract class Person {
     }
 
     /**
+     * Returns true if this person has this phone or this email.
+     */
+    public boolean hasPersonWithPhoneOrEmail(Phone phone, Email email) {
+        return this.getPhone().equals(phone) || this.getEmail().equals(email);
+    }
+
+    /**
      * Returns true if both persons have the same identity and data fields.
      * This defines a stronger notion of equality between two persons.
      */

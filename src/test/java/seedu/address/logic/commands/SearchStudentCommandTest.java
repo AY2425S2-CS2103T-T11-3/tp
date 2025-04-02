@@ -66,6 +66,17 @@ public class SearchStudentCommandTest {
     }
 
     @Test
+    public void execute_matchingStudent_returnsStudentFoundMessage() {
+        Map<Prefix, String> searchCriteria = new HashMap<>();
+        searchCriteria.put(CliSyntax.PREFIX_NAME, "Jamal");
+        SearchStudentCommand command = new SearchStudentCommand(searchCriteria);
+        CommandResult result = command.execute(model);
+
+        assertEquals(String.format(Messages.MESSAGE_STUDENT_LISTED_OVERVIEW, 1,
+                new StudentMatchesAttributesPredicate(searchCriteria)), result.getFeedbackToUser());
+    }
+
+    @Test
     public void toStringMethod() {
         Map<Prefix, String> searchCriteria = Map.of(CliSyntax.PREFIX_NAME, "Alice");
         SearchStudentCommand command = new SearchStudentCommand(searchCriteria);

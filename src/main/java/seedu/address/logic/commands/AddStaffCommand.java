@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.Messages.MESSAGE_DUPLICATE_PHONE_OR_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_BLOCK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESIGNATION;
@@ -10,6 +11,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_LEVEL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROOM;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
@@ -24,12 +26,13 @@ public class AddStaffCommand extends Command {
 
     public static final String COMMAND_WORD = "add_staff";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a staff to ResiConnect"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a staff to ResiConnect.\n"
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "
             + PREFIX_EMAIL + "EMAIL "
             + PREFIX_ADDRESS + "ADDRESS "
+            + PREFIX_TAG + "TAG "
             + PREFIX_EMERGENCY + "EMERGENCY CONTACT "
             + PREFIX_BLOCK + "BLOCK "
             + PREFIX_LEVEL + "LEVEL "
@@ -40,6 +43,7 @@ public class AddStaffCommand extends Command {
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
+            + PREFIX_TAG + "friend "
             + PREFIX_EMERGENCY + "91234567 "
             + PREFIX_BLOCK + "A "
             + PREFIX_LEVEL + "5 "
@@ -48,7 +52,10 @@ public class AddStaffCommand extends Command {
             + "Note that " + PREFIX_DESIGNATION + " "
             + "is an optional parameter. To use it, place an integer "
             + "from 0 to 2, representing {“Support Staff”, “Block IC”, “Residence Master”} "
-            + "respectively.";
+            + "respectively.\n"
+            + "Note that " + PREFIX_TAG + " "
+            + "is also an optional parameter and can be used multiple times.";
+
 
     public static final String MESSAGE_SUCCESS = "New staff added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This staff already exists in ResiConnect. "
@@ -70,6 +77,8 @@ public class AddStaffCommand extends Command {
 
         if (model.hasStaff(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+        } else if (model.hasPersonWithPhoneOrEmail(toAdd.getPhone(), toAdd.getEmail())) {
+            throw new CommandException(MESSAGE_DUPLICATE_PHONE_OR_EMAIL);
         }
 
         model.addStaff(toAdd);

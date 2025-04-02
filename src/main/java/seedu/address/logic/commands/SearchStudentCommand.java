@@ -59,7 +59,7 @@ public class SearchStudentCommand extends Command {
             return new CommandResult(String.format(MESSAGE_NO_STUDENT_FOUND, predicate));
         } else {
             return new CommandResult(
-                    String.format(MESSAGE_STUDENT_LISTED_OVERVIEW, filteredListSize));
+                    String.format(MESSAGE_STUDENT_LISTED_OVERVIEW, filteredListSize, predicate));
         }
     }
 

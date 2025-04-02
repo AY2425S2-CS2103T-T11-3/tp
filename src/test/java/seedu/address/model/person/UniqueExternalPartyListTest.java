@@ -160,4 +160,44 @@ public class UniqueExternalPartyListTest {
         assertEquals(uniqueExternalPartyList.asUnmodifiableObservableList().toString(),
                 uniqueExternalPartyList.toString());
     }
+
+    @Test
+    public void equals_sameExternalParty_returnsTrue() {
+        // Create two UniqueExternalPartyList objects
+        UniqueExternalPartyList list1 = new UniqueExternalPartyList();
+        UniqueExternalPartyList list2 = new UniqueExternalPartyList();
+
+        // Create two external parties with the same data
+        ExternalParty externalParty1 = new ExternalPartyBuilder().withName("Haikel").withPhone("91234567").build();
+        ExternalParty externalParty2 = new ExternalPartyBuilder().withName("Haikel").withPhone("91234567").build();
+
+        // Add the same external parties to both lists
+        list1.add(externalParty1);
+        list2.add(externalParty2);
+
+        // Check if both lists are considered equal
+        assertTrue(list1.equals(list2)); // Both lists have the same external party
+    }
+
+    @Test
+    public void equals_differentExternalParty_returnsFalse() {
+        // Create two UniqueExternalPartyList objects
+        UniqueExternalPartyList list1 = new UniqueExternalPartyList();
+        UniqueExternalPartyList list2 = new UniqueExternalPartyList();
+
+        // Create two external parties with different data
+        ExternalParty externalParty1 = new ExternalPartyBuilder().withName("Haikel").withPhone("91234567")
+                .withEmail("haikel@dummy.com.sg").build();
+        ExternalParty externalParty2 = new ExternalPartyBuilder().withName("Fatimah").withPhone("92345678")
+                .withEmail("fatimah@dummy.com.sg").build();
+
+        // Add different external parties to the lists
+        list1.add(externalParty1);
+        list2.add(externalParty2);
+
+        // Check if both lists are considered unequal
+        assertFalse(list1.equals(list2)); // The external parties are different
+    }
+
+
 }
