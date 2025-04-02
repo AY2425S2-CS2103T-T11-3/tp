@@ -177,7 +177,7 @@ Examples:
 Searches for all students whose attributes match the specified keywords (case-insensitive) and displays them as a list
 with index numbers.
 
-Format: `search_stu [name/NAME] [matric/MATRIC] [phone/PHONE] [email/EMAIL] [a/ADDRESS] [emergency/EMERGENCY] 
+Format: `search_stu [name/NAME] [matric/MATRIC] [phone/PHONE] [email/EMAIL] [a/ADDRESS] [t/TAG] [emergency/EMERGENCY] 
 [block/BLOCK] [level/LEVEL] [room/ROOM] [designation/DESIGNATION]`
 
 * At least one of the parameters must be provided in the search.
@@ -193,7 +193,7 @@ Examples:
 Searches for all staff whose attributes match the specified keywords (case-insensitive) and displays them as a list
 with index numbers.
 
-Format: `search_staff [name/NAME] [phone/PHONE] [email/EMAIL] [a/ADDRESS] [emergency/EMERGENCY] [block/BLOCK]
+Format: `search_staff [name/NAME] [phone/PHONE] [email/EMAIL] [a/ADDRESS] [t/TAG] [emergency/EMERGENCY] [block/BLOCK]
 [level/LEVEL] [room/ROOM] [designation/DESIGNATION]`
 
 * At least one of the parameters must be provided in the search.
@@ -386,8 +386,8 @@ Action     | Format, Examples
 **Delete Student** | `delete_stu INDEX`<br> e.g., `delete_stu 3` 
 **Delete Staff** | `delete_staff INDEX` <br> e.g., `delete_staff 3`
 **Delete External Party** | `delete_ext INDEX` <br> e.g., `delete_ext 3`
-**Search Student** | `search_stu [name/NAME] [matric/MATRIC] [phone/PHONE] [email/EMAIL] [a/ADDRESS] [emergency/EMERGENCY][block/BLOCK] [level/LEVEL] [room/ROOM] [designation/DESIGNATION]`<br> e.g., `search_stu name/Alice matric/A0234567B` 
-**Search Staff** | `search_staff [name/NAME] [phone/PHONE] [email/EMAIL] [a/ADDRESS] [emergency/EMERGENCY][block/BLOCK] [level/LEVEL] [room/ROOM] [designation/DESIGNATION]` <br> e.g., `search_staff name/Alice phone/98765432`
+**Search Student** | `search_stu [name/NAME] [matric/MATRIC] [phone/PHONE] [email/EMAIL] [a/ADDRESS] [t/TAG] [emergency/EMERGENCY][block/BLOCK] [level/LEVEL] [room/ROOM] [designation/DESIGNATION]`<br> e.g., `search_stu name/Alice matric/A0234567B` 
+**Search Staff** | `search_staff [name/NAME] [phone/PHONE] [email/EMAIL] [a/ADDRESS] [t/TAG] [emergency/EMERGENCY][block/BLOCK] [level/LEVEL] [room/ROOM] [designation/DESIGNATION]` <br> e.g., `search_staff name/Alice phone/98765432`
 **Search External Party** | `search_ext [name/NAME] [phone/PHONE] [email/EMAIL] [desc/DESCRIPTION]` <br> e.g., `search_ext name/Alice desc/Food Vendor`
 **Add Event**    | `add_event name/EVENT_NAME from/START_TIME to/END_TIME` <br> e.g., `add_event name/ Dance Club Rehearsal from/ 2025-06-15 18:00 to/ 2025-06-15 21:00`
 **List Events**   | `list_event`
