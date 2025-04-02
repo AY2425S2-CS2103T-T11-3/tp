@@ -137,6 +137,8 @@ Format: `add_stu name/NAME matric/MATRIC phone/PHONE email/EMAIL a/ADDRESS [t/TA
 Examples:
 * `add_stu name/John Doe matric/A0234567B phone/98765432 email/johnd@example.com a/311, Clementi Ave 2, #02-25 t/friend emergency/91234567 block/A level/5 room/3 designation/1`
 
+![Adding student success message](images/add_stuSuccess.png)
+
 ### Adding a staff: `add_staff`
 
 Adds a staff to the address book.
