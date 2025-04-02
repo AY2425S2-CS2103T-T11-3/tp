@@ -55,7 +55,7 @@ public class SearchEventMemberCommand extends Command {
             + PREFIX_LEVEL + "LEVEL "
             + PREFIX_ROOM + "ROOM "
             + PREFIX_DESIGNATION + "DESIGNATION\n"
-            + "Example: " + COMMAND_WORD + " memtype/stu name/John Doe\n"
+            + "Example: " + COMMAND_WORD + "1 memtype/stu name/John Doe\n"
             + "Case 2: staff\n"
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "
@@ -66,13 +66,13 @@ public class SearchEventMemberCommand extends Command {
             + PREFIX_LEVEL + "LEVEL "
             + PREFIX_ROOM + "ROOM "
             + PREFIX_DESIGNATION + "DESIGNATION\n"
-            + "Example: " + COMMAND_WORD + " memtype/staff phone/91234567\n"
+            + "Example: " + COMMAND_WORD + "1 memtype/staff phone/91234567\n"
             + "Case 3: ext\n"
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "
             + PREFIX_EMAIL + "EMAIL "
             + PREFIX_DESCRIPTION + "DESCRIPTION\n"
-            + "Example: " + COMMAND_WORD + " memtype/ext email/johnd@example.com";
+            + "Example: " + COMMAND_WORD + "1 memtype/ext email/johnd@example.com";
 
     public static final String MESSAGE_SUCCESS = "Matching members found in event: %1$s";
     public static final String MESSAGE_NO_MATCH = "No matching members found in the specified event.";
