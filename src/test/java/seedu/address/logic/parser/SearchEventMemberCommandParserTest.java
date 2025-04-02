@@ -4,6 +4,7 @@ import static seedu.address.logic.Messages.MESSAGE_INVALID_SEARCHING_CRITERIA;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static seedu.address.logic.parser.SearchEventCommandParser.EMPTY_FIELD_AFTER_PREFIX;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -94,5 +95,10 @@ public class SearchEventMemberCommandParserTest {
     public void parse_missingCriteriaExt_throwsParseException() {
         assertParseFailure(parser, "1 memtype/ext", String.format(Messages.MESSAGE_MISSING_SEARCHING_CRITERIA,
                 SearchEventMemberCommand.MESSAGE_USAGE));
+    }
+
+    @Test
+    public void parse_missingFieldAfterPrefix_throwsParseException() {
+        assertParseFailure(parser, "1 memtype/stu name/", String.format(EMPTY_FIELD_AFTER_PREFIX));
     }
 }

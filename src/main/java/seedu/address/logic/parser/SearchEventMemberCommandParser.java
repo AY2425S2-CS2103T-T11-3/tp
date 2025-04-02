@@ -17,6 +17,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_MATRIC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROOM;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.SearchEventCommandParser.EMPTY_FIELD_AFTER_PREFIX;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -35,7 +37,7 @@ public class SearchEventMemberCommandParser implements Parser<SearchEventMemberC
     public SearchEventMemberCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_EVENT_MEMTYPE, PREFIX_NAME,
                 PREFIX_MATRIC, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_EMERGENCY, PREFIX_BLOCK,
-                PREFIX_LEVEL, PREFIX_ROOM, PREFIX_DESIGNATION, PREFIX_DESCRIPTION);
+                PREFIX_LEVEL, PREFIX_ROOM, PREFIX_DESIGNATION, PREFIX_DESCRIPTION, PREFIX_TAG);
         Index index;
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
@@ -65,6 +67,8 @@ public class SearchEventMemberCommandParser implements Parser<SearchEventMemberC
             validateExternalPartyCriteria(argMultimap);
         }
 
+        checkForEmptyFields(argMultimap);
+
         // Create search criteria map excluding EVENT_MEMTYPE
         Map<Prefix, String> searchCriteria = new HashMap<>();
         argMultimap.getPrefixValueMap().forEach((prefix, values) -> {
@@ -83,7 +87,7 @@ public class SearchEventMemberCommandParser implements Parser<SearchEventMemberC
 
     private void validateStudentCriteria(ArgumentMultimap argMultimap) throws ParseException {
         if (!isAnyPrefixPresent(argMultimap, PREFIX_NAME, PREFIX_MATRIC, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
-                PREFIX_EMERGENCY, PREFIX_BLOCK, PREFIX_LEVEL, PREFIX_ROOM, PREFIX_DESIGNATION)) {
+                PREFIX_EMERGENCY, PREFIX_BLOCK, PREFIX_LEVEL, PREFIX_ROOM, PREFIX_DESIGNATION, PREFIX_TAG)) {
             throw new ParseException(
                     String.format(MESSAGE_MISSING_SEARCHING_CRITERIA, SearchEventMemberCommand.MESSAGE_USAGE));
         } else if (isAnyPrefixPresent(argMultimap, PREFIX_DESCRIPTION)) {
@@ -94,7 +98,7 @@ public class SearchEventMemberCommandParser implements Parser<SearchEventMemberC
 
     private void validateStaffCriteria(ArgumentMultimap argMultimap) throws ParseException {
         if (!isAnyPrefixPresent(argMultimap, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
-                PREFIX_EMERGENCY, PREFIX_BLOCK, PREFIX_LEVEL, PREFIX_ROOM, PREFIX_DESIGNATION)) {
+                PREFIX_EMERGENCY, PREFIX_BLOCK, PREFIX_LEVEL, PREFIX_ROOM, PREFIX_DESIGNATION, PREFIX_TAG)) {
             throw new ParseException(
                     String.format(MESSAGE_MISSING_SEARCHING_CRITERIA, SearchEventMemberCommand.MESSAGE_USAGE));
         } else if (isAnyPrefixPresent(argMultimap, PREFIX_MATRIC, PREFIX_DESCRIPTION)) {
@@ -116,5 +120,13 @@ public class SearchEventMemberCommandParser implements Parser<SearchEventMemberC
 
     private static boolean isAnyPrefixPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).anyMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
+    }
+
+    private void checkForEmptyFields(ArgumentMultimap argMultimap) throws ParseException {
+        for (Prefix prefix : argMultimap.getPrefixValueMap().keySet()) {
+            if (argMultimap.getValue(prefix).isPresent() && argMultimap.getValue(prefix).get().isEmpty()) {
+                throw new ParseException(EMPTY_FIELD_AFTER_PREFIX);
+            }
+        }
     }
 }
