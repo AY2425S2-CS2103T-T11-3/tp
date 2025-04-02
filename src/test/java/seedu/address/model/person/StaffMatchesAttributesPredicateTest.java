@@ -115,4 +115,12 @@ public class StaffMatchesAttributesPredicateTest {
         StaffMatchesAttributesPredicate predicate = new StaffMatchesAttributesPredicate(criteria);
         assertTrue(predicate.test(new StaffBuilder().withStaffDesignation("1").build()));
     }
+
+    @Test
+    public void test_designationNonNumeric_returnsFalse() {
+        Map<Prefix, String> criteria = new HashMap<>();
+        criteria.put(PREFIX_DESIGNATION, "abc");
+        StaffMatchesAttributesPredicate predicate = new StaffMatchesAttributesPredicate(criteria);
+        assertFalse(predicate.test(new StaffBuilder().withStaffDesignation("1").build()));
+    }
 }

@@ -116,4 +116,12 @@ public class StudentMatchesAttributesPredicateTest {
         StudentMatchesAttributesPredicate predicate = new StudentMatchesAttributesPredicate(criteria);
         assertTrue(predicate.test(new StudentBuilder().withDesignation("1").build()));
     }
+
+    @Test
+    public void test_designationNonNumeric_returnsFalse() {
+        Map<Prefix, String> criteria = new HashMap<>();
+        criteria.put(PREFIX_DESIGNATION, "abc");
+        StudentMatchesAttributesPredicate predicate = new StudentMatchesAttributesPredicate(criteria);
+        assertFalse(predicate.test(new StudentBuilder().withDesignation("1").build()));
+    }
 }
