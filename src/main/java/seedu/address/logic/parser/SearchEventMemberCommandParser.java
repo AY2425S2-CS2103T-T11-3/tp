@@ -18,6 +18,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_MATRIC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROOM;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -36,7 +37,7 @@ public class SearchEventMemberCommandParser implements Parser<SearchEventMemberC
     @Override
     public SearchEventMemberCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_EVENT_MEMTYPE, PREFIX_NAME,
-                PREFIX_MATRIC, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_EMERGENCY, PREFIX_BLOCK,
+                PREFIX_MATRIC, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG, PREFIX_EMERGENCY, PREFIX_BLOCK,
                 PREFIX_LEVEL, PREFIX_ROOM, PREFIX_DESIGNATION, PREFIX_DESCRIPTION);
         Index index;
         try {
@@ -52,8 +53,8 @@ public class SearchEventMemberCommandParser implements Parser<SearchEventMemberC
 
         // Check for empty values after a prefix
         Prefix[] prefixes = {
-            PREFIX_NAME, PREFIX_MATRIC, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_EMERGENCY, PREFIX_BLOCK,
-            PREFIX_LEVEL, PREFIX_ROOM, PREFIX_DESIGNATION, PREFIX_DESCRIPTION
+            PREFIX_NAME, PREFIX_MATRIC, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG, PREFIX_EMERGENCY,
+            PREFIX_BLOCK, PREFIX_LEVEL, PREFIX_ROOM, PREFIX_DESIGNATION, PREFIX_DESCRIPTION
         };
         for (Prefix prefix : prefixes) {
             Optional<String> value = argMultimap.getValue(prefix);
@@ -97,7 +98,7 @@ public class SearchEventMemberCommandParser implements Parser<SearchEventMemberC
 
     private void validateStudentCriteria(ArgumentMultimap argMultimap) throws ParseException {
         if (!isAnyPrefixPresent(argMultimap, PREFIX_NAME, PREFIX_MATRIC, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
-                PREFIX_EMERGENCY, PREFIX_BLOCK, PREFIX_LEVEL, PREFIX_ROOM, PREFIX_DESIGNATION)) {
+                PREFIX_TAG, PREFIX_EMERGENCY, PREFIX_BLOCK, PREFIX_LEVEL, PREFIX_ROOM, PREFIX_DESIGNATION)) {
             throw new ParseException(
                     String.format(MESSAGE_MISSING_SEARCHING_CRITERIA, SearchEventMemberCommand.MESSAGE_USAGE));
         } else if (isAnyPrefixPresent(argMultimap, PREFIX_DESCRIPTION)) {
@@ -107,7 +108,7 @@ public class SearchEventMemberCommandParser implements Parser<SearchEventMemberC
     }
 
     private void validateStaffCriteria(ArgumentMultimap argMultimap) throws ParseException {
-        if (!isAnyPrefixPresent(argMultimap, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
+        if (!isAnyPrefixPresent(argMultimap, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG,
                 PREFIX_EMERGENCY, PREFIX_BLOCK, PREFIX_LEVEL, PREFIX_ROOM, PREFIX_DESIGNATION)) {
             throw new ParseException(
                     String.format(MESSAGE_MISSING_SEARCHING_CRITERIA, SearchEventMemberCommand.MESSAGE_USAGE));
@@ -121,7 +122,7 @@ public class SearchEventMemberCommandParser implements Parser<SearchEventMemberC
         if (!isAnyPrefixPresent(argMultimap, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_DESCRIPTION)) {
             throw new ParseException(
                     String.format(MESSAGE_MISSING_SEARCHING_CRITERIA, SearchEventMemberCommand.MESSAGE_USAGE));
-        } else if (isAnyPrefixPresent(argMultimap, PREFIX_MATRIC, PREFIX_ADDRESS, PREFIX_EMERGENCY,
+        } else if (isAnyPrefixPresent(argMultimap, PREFIX_MATRIC, PREFIX_ADDRESS, PREFIX_TAG, PREFIX_EMERGENCY,
                 PREFIX_BLOCK, PREFIX_LEVEL, PREFIX_ROOM, PREFIX_DESIGNATION)) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_SEARCHING_CRITERIA, SearchEventMemberCommand.MESSAGE_USAGE));

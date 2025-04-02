@@ -11,6 +11,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_LEVEL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROOM;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Map;
 import java.util.Optional;
@@ -33,11 +34,11 @@ public class SearchStaffCommandParser implements Parser<SearchStaffCommand> {
      */
     public SearchStaffCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(
-                args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
+                args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG,
                 PREFIX_EMERGENCY, PREFIX_BLOCK, PREFIX_LEVEL, PREFIX_ROOM, PREFIX_DESIGNATION);
 
         // Check if at least one prefix is provided
-        if (!isAnyPrefixPresent(argMultimap, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
+        if (!isAnyPrefixPresent(argMultimap, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG,
                 PREFIX_EMERGENCY, PREFIX_BLOCK, PREFIX_LEVEL, PREFIX_ROOM, PREFIX_DESIGNATION)) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, SearchStaffCommand.MESSAGE_USAGE));
@@ -45,8 +46,8 @@ public class SearchStaffCommandParser implements Parser<SearchStaffCommand> {
 
         // Check for empty values after a prefix
         Prefix[] prefixes = {
-            PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_EMERGENCY, PREFIX_BLOCK, PREFIX_LEVEL,
-            PREFIX_ROOM, PREFIX_DESIGNATION
+            PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG, PREFIX_EMERGENCY, PREFIX_BLOCK,
+            PREFIX_LEVEL, PREFIX_ROOM, PREFIX_DESIGNATION
         };
         for (Prefix prefix : prefixes) {
             Optional<String> value = argMultimap.getValue(prefix);
