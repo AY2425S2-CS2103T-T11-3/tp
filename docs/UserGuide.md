@@ -11,9 +11,44 @@ colleges in NUS to track students, staff, external parties and events.**
 It is optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). 
 If you can type fast, ResiConnect can get your contact management tasks done faster than traditional GUI apps.
 
-<!-- * Table of Contents -->
-<page-nav-print />
+--------------------------------------------------------------------------------------------------------------------
 
+## Table of Contents
+1. [Quick Start](#quick-start)
+
+1. [Features](#features)
+   1. [Viewing Help](#viewing-help--help)
+   1. [Adding a Student](#adding-a-student-add_stu)
+   1. [Adding a Staff](#adding-a-staff-add_staff)
+   1. [Adding an External Party](#adding-an-external-party-add_ext)
+   1. [Listing all Students](#listing-all-students--list_stu)
+   1. [Listing all Staff](#listing-all-staff--list_staff)
+   1. [Listing all External Parties](#listing-all-external-parties--list_ext)
+   1. [Deleting a Student](#deleting-a-student--delete_stu)
+   1. [Deleting a Staff](#deleting-a-staff--delete_staff)
+   1. [Deleting an External Party](#deleting-an-external-party--delete_ext)
+   1. [Searching for Students](#searching-for-students-search_stu)
+   1. [Searching for Staff](#searching-for-staff-search_staff)
+   1. [Searching for External Parties](#searching-for-external-parties-search_ext)
+   1. [Adding an Event](#adding-an-event--add_event)
+   1. [Listing an Event](#listing-all-events--list_event)
+   1. [Deleting an Event](#deleting-an-event--delete_event)
+   1. [Viewing an Event](#viewing-an-event--view_event)
+   1. [Searching an Event](#searching-an-event--search_event)
+   1. [Adding a Member into an Event](#adding-a-member-into-an-event-add_event_member)
+   1. [Deleting a Member from an Event](#deleting-a-member-from-an-event-delete_event_member)
+   1. [Clearing all Entries](#clearing-all-entries--clear)
+   1. [Exiting the Program](#exiting-the-program--exit)
+   1. [Saving the Data](#saving-the-data)
+   1. [Editing the Data File](#editing-the-data-file)
+
+1. [Constraints for the Features](#constraints-for-the-features)
+
+1. [FAQ](#faq)
+
+1. [Known Issues](#known-issues)
+
+1. [Command Summary](#command-summary)
 
 --------------------------------------------------------------------------------------------------------------------
 
