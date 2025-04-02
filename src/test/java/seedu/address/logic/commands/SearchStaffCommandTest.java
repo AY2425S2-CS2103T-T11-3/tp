@@ -66,6 +66,17 @@ public class SearchStaffCommandTest {
     }
 
     @Test
+    public void execute_matchingStaff_returnsStaffFoundMessage() {
+        Map<Prefix, String> searchCriteria = new HashMap<>();
+        searchCriteria.put(CliSyntax.PREFIX_NAME, "Martin");
+        SearchStaffCommand command = new SearchStaffCommand(searchCriteria);
+        CommandResult result = command.execute(model);
+
+        assertEquals(String.format(Messages.MESSAGE_STAFF_LISTED_OVERVIEW, 1,
+                new StaffMatchesAttributesPredicate(searchCriteria)), result.getFeedbackToUser());
+    }
+
+    @Test
     public void toStringMethod() {
         Map<Prefix, String> searchCriteria = Map.of(CliSyntax.PREFIX_NAME, "Alice");
         SearchStaffCommand command = new SearchStaffCommand(searchCriteria);
