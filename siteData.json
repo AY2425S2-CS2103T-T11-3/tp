@@ -108,6 +108,7 @@
       "title": "User Guide",
       "headings": {
         "resiconnect-user-guide": "ResiConnect User Guide",
+        "target-audience": "Target Audience",
         "quick-start": "Quick start",
         "features": "Features",
         "viewing-help-help": "Viewing help : help",
@@ -126,7 +127,7 @@
         "adding-an-event-add-event": "Adding an event : add_event",
         "listing-all-events-list-event": "Listing all events : list_event",
         "deleting-an-event-delete-event": "Deleting an event : delete_event",
-        "view-an-event-view-event": "View an event : view_event",
+        "viewing-an-event-view-event": "Viewing an event : view_event",
         "searching-an-event-search-event": "Searching an event : search_event",
         "adding-a-member-into-an-event-add-event-member": "Adding a member into an event: add_event_member",
         "deleting-a-member-from-an-event-delete-event-member": "Deleting a member from an event: delete_event_member",
