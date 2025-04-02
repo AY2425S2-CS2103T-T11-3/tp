@@ -14,9 +14,6 @@ If you can type fast, ResiConnect can get your contact management tasks done fas
 <!-- * Table of Contents -->
 <page-nav-print />
 
---------------------------------------------------------------------------------------------------------------------
-## Target Audience
-ResiConnect is targeted at Residence Fellows that are able to type quickly.
 
 --------------------------------------------------------------------------------------------------------------------
 
