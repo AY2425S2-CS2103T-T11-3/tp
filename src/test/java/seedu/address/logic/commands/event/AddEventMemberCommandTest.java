@@ -2,6 +2,9 @@ package seedu.address.logic.commands.event;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static seedu.address.logic.Messages.MESSAGE_DUPLICATE_EXTERNAL_PARTY_IN_EVENT;
+import static seedu.address.logic.Messages.MESSAGE_DUPLICATE_STAFF_IN_EVENT;
+import static seedu.address.logic.Messages.MESSAGE_DUPLICATE_STUDENT_IN_EVENT;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_EVENT_DISPLAYED_INDEX;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_EXTERNAL_PARTY_DISPLAYED_INDEX;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_STAFF_DISPLAYED_INDEX;
@@ -171,4 +174,57 @@ public class AddEventMemberCommandTest {
         CommandException thrown = assertThrows(CommandException.class, () -> command.execute(model));
         assertEquals(AddEventMemberCommand.MESSAGE_INVALID + "\n" + MESSAGE_USAGE, thrown.getMessage());
     }
+
+    @Test
+    public void execute_addDuplicateStudent_throwsCommandException() throws Exception {
+        Student student = TypicalStudents.JAMAL;
+        model.addStudent(student);
+
+        // First time: add student to event successfully
+        sampleEvent.addStudent(student);
+
+        // Now attempt to add the same student again via the command
+        AddEventMemberCommand command = new AddEventMemberCommand(
+                Index.fromOneBased(1),
+                Optional.of(Index.fromOneBased(1)),
+                Optional.empty(),
+                Optional.empty());
+
+        // Expect CommandException due to duplicate
+        CommandException thrown = assertThrows(CommandException.class, () -> command.execute(model));
+        assertEquals(MESSAGE_DUPLICATE_STUDENT_IN_EVENT + "\n" + MESSAGE_USAGE, thrown.getMessage());
+    }
+
+    @Test
+    public void execute_addDuplicateStaff_throwsCommandException() throws Exception {
+        Staff staff = TypicalStaffs.MARTIN;
+        model.addStaff(staff);
+        sampleEvent.addStaff(staff); // Pre-add to cause duplicate
+
+        AddEventMemberCommand command = new AddEventMemberCommand(
+                Index.fromOneBased(1),
+                Optional.empty(),
+                Optional.of(Index.fromOneBased(1)),
+                Optional.empty());
+
+        CommandException thrown = assertThrows(CommandException.class, () -> command.execute(model));
+        assertEquals(MESSAGE_DUPLICATE_STAFF_IN_EVENT + "\n" + MESSAGE_USAGE, thrown.getMessage());
+    }
+
+    @Test
+    public void execute_addDuplicateExternalParty_throwsCommandException() throws Exception {
+        ExternalParty external = TypicalExternalParties.FATIMAH;
+        model.addExternalParty(external);
+        sampleEvent.addExternalParty(external); // Pre-add to cause duplicate
+
+        AddEventMemberCommand command = new AddEventMemberCommand(
+                Index.fromOneBased(1),
+                Optional.empty(),
+                Optional.empty(),
+                Optional.of(Index.fromOneBased(1)));
+
+        CommandException thrown = assertThrows(CommandException.class, () -> command.execute(model));
+        assertEquals(MESSAGE_DUPLICATE_EXTERNAL_PARTY_IN_EVENT + "\n" + MESSAGE_USAGE, thrown.getMessage());
+    }
+
 }
