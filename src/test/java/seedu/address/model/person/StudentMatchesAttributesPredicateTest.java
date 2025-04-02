@@ -86,6 +86,14 @@ public class StudentMatchesAttributesPredicateTest {
     }
 
     @Test
+    public void test_roomNonNumeric_returnsFalse() {
+        Map<Prefix, String> criteria = new HashMap<>();
+        criteria.put(PREFIX_ROOM, "abc");
+        StudentMatchesAttributesPredicate predicate = new StudentMatchesAttributesPredicate(criteria);
+        assertFalse(predicate.test(new StudentBuilder().withRoom("10").build()));
+    }
+
+    @Test
     public void test_designationIndexOutOfBounds_returnsFalse() {
         Map<Prefix, String> criteria = new HashMap<>();
         criteria.put(PREFIX_DESIGNATION, "3");
