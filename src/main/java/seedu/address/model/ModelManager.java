@@ -216,6 +216,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public ObservableList<Event> getAllEventList() {
+        return this.addressBook.getEventList();
+    }
+
+    @Override
     public void updateFilteredEventList(Predicate<Event> predicate) {
         requireNonNull(predicate);
         filteredEvents.setPredicate(predicate);
@@ -234,6 +239,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public ObservableList<Staff> getAllStaffList() {
+        return this.addressBook.getStaffList();
+    }
+
+    @Override
     public void updateFilteredStaffList(Predicate<Staff> predicate) {
         requireNonNull(predicate);
         filteredStaff.setPredicate(predicate);
@@ -247,6 +257,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public ObservableList<ExternalParty> getAllExternalPartiesList() {
+        return this.addressBook.getExternalPartyList();
+    }
+
+    @Override
     public void updateFilteredExternalPartyList(Predicate<ExternalParty> predicate) {
         requireNonNull(predicate);
         filteredExternalParty.setPredicate(predicate);
@@ -257,6 +272,11 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<Student> getFilteredStudentList() {
         return filteredStudents;
+    }
+
+    @Override
+    public ObservableList<Student> getAllStudentList() {
+        return this.addressBook.getStudentList();
     }
 
     @Override

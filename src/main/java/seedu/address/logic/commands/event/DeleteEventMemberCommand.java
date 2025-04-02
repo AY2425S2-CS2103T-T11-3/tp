@@ -60,7 +60,7 @@ public class DeleteEventMemberCommand extends Command {
         requireNonNull(model);
 
         try {
-            List<Event> lastShownEventList = model.getFilteredEventList();
+            List<Event> lastShownEventList = model.getAllEventList(); // getting full event list
 
             if (eventIndex.getZeroBased() >= lastShownEventList.size()) {
                 throw new CommandException(Messages.MESSAGE_INVALID_EVENT_DISPLAYED_INDEX + "\n" + MESSAGE_USAGE);

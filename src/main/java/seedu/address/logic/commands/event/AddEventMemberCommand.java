@@ -90,12 +90,11 @@ public class AddEventMemberCommand extends Command {
 
             // Add Student
             if (studentIndex.isPresent()) {
-                model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
                 int studentZeroBased = studentIndex.get().getZeroBased();
-                if (studentZeroBased < 0 || studentZeroBased >= model.getFilteredStudentList().size()) {
+                if (studentZeroBased < 0 || studentZeroBased >= model.getAllStudentList().size()) {
                     throw new CommandException(MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX + "\n" + MESSAGE_USAGE);
                 }
-                Student student = model.getFilteredStudentList().get(studentZeroBased);
+                Student student = model.getAllStudentList().get(studentZeroBased);
                 event.addStudent(student);
                 model.setSelectedEventDetail(event, eventIndex); //showing view event
                 return new CommandResult(String.format(MESSAGE_STUDENT_ADDED_TO_EVENT, student.getName().fullName,
@@ -104,12 +103,11 @@ public class AddEventMemberCommand extends Command {
 
             // Add Staff
             if (staffIndex.isPresent()) {
-                model.updateFilteredStaffList(PREDICATE_SHOW_ALL_STAFF);
                 int staffZeroBased = staffIndex.get().getZeroBased();
-                if (staffZeroBased < 0 || staffZeroBased >= model.getFilteredStaffList().size()) {
+                if (staffZeroBased < 0 || staffZeroBased >= model.getAllStaffList().size()) {
                     throw new CommandException(MESSAGE_INVALID_STAFF_DISPLAYED_INDEX + "\n" + MESSAGE_USAGE);
                 }
-                Staff staff = model.getFilteredStaffList().get(staffZeroBased);
+                Staff staff = model.getAllStaffList().get(staffZeroBased);
                 event.addStaff(staff);
                 model.setSelectedEventDetail(event, eventIndex); //showing view event
                 return new CommandResult(String.format(MESSAGE_STAFF_ADDED_TO_EVENT, staff.getName().fullName,
@@ -118,12 +116,11 @@ public class AddEventMemberCommand extends Command {
 
             // Add External Member
             if (externalIndex.isPresent()) {
-                model.updateFilteredExternalPartyList(PREDICATE_SHOW_ALL_EXTERNALPARTIES);
                 int externalZeroBased = externalIndex.get().getZeroBased();
-                if (externalZeroBased < 0 || externalZeroBased >= model.getFilteredExternalPartyList().size()) {
+                if (externalZeroBased < 0 || externalZeroBased >= model.getAllExternalPartiesList().size()) {
                     throw new CommandException(MESSAGE_INVALID_EXTERNAL_PARTY_DISPLAYED_INDEX + "\n" + MESSAGE_USAGE);
                 }
-                ExternalParty external = model.getFilteredExternalPartyList().get(externalZeroBased);
+                ExternalParty external = model.getAllExternalPartiesList().get(externalZeroBased);
                 event.addExternalParty(external);
                 model.setSelectedEventDetail(event, eventIndex); //showing view event
                 return new CommandResult(String.format(MESSAGE_EXTERNAL_PARTY_ADDED_TO_EVENT, external.getName(),

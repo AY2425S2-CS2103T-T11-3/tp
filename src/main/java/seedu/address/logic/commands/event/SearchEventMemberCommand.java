@@ -92,7 +92,7 @@ public class SearchEventMemberCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Event> lastShownList = model.getFilteredEventList();
+        List<Event> lastShownList = model.getAllEventList(); // getting full event list
 
         if (lastShownList.isEmpty()) {
             throw new CommandException(NO_EVENT_EXIST);
