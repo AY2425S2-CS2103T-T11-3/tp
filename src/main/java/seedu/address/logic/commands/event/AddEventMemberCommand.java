@@ -9,9 +9,6 @@ import static seedu.address.logic.Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_IND
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_EXTERNAL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_STAFF;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_STUDENT;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_EXTERNALPARTIES;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STAFF;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 
 import java.util.List;
 import java.util.Optional;

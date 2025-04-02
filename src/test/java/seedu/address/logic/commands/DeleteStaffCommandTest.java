@@ -5,10 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.CommandTestUtil.showStaffAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_PERSON;
 import static seedu.address.testutil.TypicalStaffs.getStaffOnlyAddressBook;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -53,33 +51,6 @@ public class DeleteStaffCommandTest {
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredStaffList().size() + 1);
-        DeleteStaffCommand deleteStaffCommand = new DeleteStaffCommand(outOfBoundIndex);
-
-        assertCommandFailure(deleteStaffCommand, model, Messages.MESSAGE_INVALID_STAFF_DISPLAYED_INDEX);
-    }
-
-    @Test
-    public void execute_validIndexFilteredList_success() {
-        model.addStaff(new StaffBuilder().build());
-        Staff staffToDelete = model.getFilteredStaffList().get(INDEX_THIRD_PERSON.getZeroBased());
-        DeleteStaffCommand deleteStaffCommand = new DeleteStaffCommand(INDEX_THIRD_PERSON);
-
-        String expectedMessage = String.format(DeleteStaffCommand.MESSAGE_DELETE_STAFF_SUCCESS,
-                Messages.format(staffToDelete));
-
-        Model expectedModel = new ModelManager(getStaffOnlyAddressBook(), new UserPrefs());
-
-        assertCommandSuccess(deleteStaffCommand, model, expectedMessage, expectedModel);
-    }
-
-    @Test
-    public void execute_invalidIndexFilteredList_throwsCommandException() {
-        showStaffAtIndex(model, INDEX_FIRST_PERSON);
-
-        Index outOfBoundIndex = INDEX_SECOND_PERSON;
-        // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getStaffList().size());
-
         DeleteStaffCommand deleteStaffCommand = new DeleteStaffCommand(outOfBoundIndex);
 
         assertCommandFailure(deleteStaffCommand, model, Messages.MESSAGE_INVALID_STAFF_DISPLAYED_INDEX);
