@@ -31,8 +31,10 @@ public class AddEventMemberCommand extends Command {
     public static final String COMMAND_WORD = "add_event_member";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a student to an event.\n"
-            + "Parameters: <Event Index> " + PREFIX_EVENT_STUDENT + "<Student Index> OR "
-            + PREFIX_EVENT_STAFF + "<Staff Index> OR " + PREFIX_EVENT_EXTERNAL + "<External Index>\n"
+            + "Parameters: EVENT_INDEX "
+            + PREFIX_EVENT_STUDENT + "STUDENT_INDEX OR "
+            + PREFIX_EVENT_STAFF + "STAFF_INDEX OR "
+            + PREFIX_EVENT_EXTERNAL + "EXTERNAL_PARTY_INDEX\n"
             + "Example: " + COMMAND_WORD + " 1 " + PREFIX_EVENT_STUDENT + "3";
 
     public static final String MESSAGE_STUDENT_ADDED_TO_EVENT = "Added student %s to event: %s";
