@@ -278,13 +278,12 @@ Examples:
 * `list_event` followed by `view_event 2` views the details of the 2nd event (including its associated students, 
 staff, and external parties) in the address book.
 
-### Searching an event : `search_event`
+### Searching for events : `search_event`
 
-Searches the specified event from ResiConnect.
+Searches for all events which match the specified keywords from ResiConnect.
 
 Format: `search_event [name/EVENT_NAME] [from/START_TIME] [to/END_TIME]`
 
-* Searches for all events which match the specified keywords.
 * At least one of the optional fields must be provided.
 * The EVENT_NAME is case-insensitive, and only full words will be matched.
 * The START_TIME and END_TIME must be in the format `yyyy-MM-dd HH:mm`.
@@ -293,7 +292,7 @@ Examples:
 Examples:
 * `search_event name/Dance from/2025-06-15 18:00` searches for all events with the name `Dance` starting from `2025-06-15 18:00`.
 
-### Searching an event member: `search_event_member`
+### Searching for event members: `search_event_member`
 
 Searches for all members from the specified event which match the specified keywords.
 
