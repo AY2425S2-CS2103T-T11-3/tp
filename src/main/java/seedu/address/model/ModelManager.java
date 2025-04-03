@@ -216,7 +216,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public ObservableList<Event> getAllEventList() {
+    public ObservableList<Event> getFullEventList() {
         return this.addressBook.getEventList();
     }
 
@@ -239,7 +239,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public ObservableList<Staff> getAllStaffList() {
+    public ObservableList<Staff> getFullStaffList() {
         return this.addressBook.getStaffList();
     }
 
@@ -257,7 +257,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public ObservableList<ExternalParty> getAllExternalPartiesList() {
+    public ObservableList<ExternalParty> getFullExternalPartiesList() {
         return this.addressBook.getExternalPartyList();
     }
 
@@ -275,7 +275,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public ObservableList<Student> getAllStudentList() {
+    public ObservableList<Student> getFullStudentList() {
         return this.addressBook.getStudentList();
     }
 

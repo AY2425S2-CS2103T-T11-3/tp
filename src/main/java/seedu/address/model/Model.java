@@ -149,7 +149,7 @@ public interface Model {
     ObservableList<Event> getFilteredEventList();
 
     /** Returns an unmodifiable view of the full event list */
-    ObservableList<Event> getAllEventList();
+    ObservableList<Event> getFullEventList();
 
     /** Updates the filter for displaying events. */
     void updateFilteredEventList(Predicate<Event> predicate);
@@ -161,7 +161,7 @@ public interface Model {
     ObservableList<Staff> getFilteredStaffList();
 
     /** Returns an unmodifiable view of the full staff list */
-    ObservableList<Staff> getAllStaffList();
+    ObservableList<Staff> getFullStaffList();
 
     /**
      * Updates the filter of the filtered staff list to filter by the given {@code predicate}.
@@ -173,7 +173,7 @@ public interface Model {
     ObservableList<ExternalParty> getFilteredExternalPartyList();
 
     /** Returns an unmodifiable view of the full external party list */
-    ObservableList<ExternalParty> getAllExternalPartiesList();
+    ObservableList<ExternalParty> getFullExternalPartiesList();
 
     /**
      * Updates the filter of the filtered external party list to filter by the given {@code predicate}.
@@ -185,7 +185,7 @@ public interface Model {
     ObservableList<Student> getFilteredStudentList();
 
     /** Returns an unmodifiable view of the full student list */
-    ObservableList<Student> getAllStudentList();
+    ObservableList<Student> getFullStudentList();
 
     /**
      * Updates the filter of the filtered student list to filter by the given {@code predicate}.

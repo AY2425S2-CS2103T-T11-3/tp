@@ -121,7 +121,7 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public ObservableList<Staff> getAllStaffList() {
+    public ObservableList<Staff> getFullStaffList() {
         throw new AssertionError("This method should not be called.");
     }
 
@@ -151,7 +151,7 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public ObservableList<ExternalParty> getAllExternalPartiesList() {
+    public ObservableList<ExternalParty> getFullExternalPartiesList() {
         throw new AssertionError("This method should not be called.");
     }
 
@@ -202,7 +202,7 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public ObservableList<Student> getAllStudentList() {
+    public ObservableList<Student> getFullStudentList() {
         throw new AssertionError("This method should not be called.");
     }
 
@@ -227,7 +227,7 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public ObservableList<Event> getAllEventList() {
+    public ObservableList<Event> getFullEventList() {
         throw new AssertionError("This method should not be called.");
     }
 }

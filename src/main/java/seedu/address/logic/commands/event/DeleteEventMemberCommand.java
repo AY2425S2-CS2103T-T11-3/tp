@@ -30,7 +30,7 @@ public class DeleteEventMemberCommand extends Command {
             + "Parameters: EVENT_INDEX "
             + PREFIX_EVENT_STUDENT + "STUDENT_INDEX OR "
             + PREFIX_EVENT_STAFF + "STAFF_INDEX OR "
-            + PREFIX_EVENT_EXTERNAL + "EXTERNAL_INDEX\n"
+            + PREFIX_EVENT_EXTERNAL + "EXTERNAL_PARTY_INDEX\n"
             + "Example: " + COMMAND_WORD + " 1 " + PREFIX_EVENT_STUDENT + "2";
 
     public static final String MESSAGE_DELETE_STUDENT_SUCCESS = "Removed student %s from event: %s";
@@ -60,7 +60,7 @@ public class DeleteEventMemberCommand extends Command {
         requireNonNull(model);
 
         try {
-            List<Event> lastShownEventList = model.getAllEventList(); // getting full event list
+            List<Event> lastShownEventList = model.getFullEventList(); // getting full event list
 
             if (eventIndex.getZeroBased() >= lastShownEventList.size()) {
                 throw new CommandException(Messages.MESSAGE_INVALID_EVENT_DISPLAYED_INDEX + "\n" + MESSAGE_USAGE);

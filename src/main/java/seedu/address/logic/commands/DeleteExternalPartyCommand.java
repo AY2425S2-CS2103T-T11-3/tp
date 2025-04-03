@@ -34,7 +34,7 @@ public class DeleteExternalPartyCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<ExternalParty> lastShownList = model.getAllExternalPartiesList(); // getting full external party list
+        List<ExternalParty> lastShownList = model.getFullExternalPartiesList(); // getting full external party list
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(MESSAGE_INVALID_EXTERNAL_PARTY_DISPLAYED_INDEX);

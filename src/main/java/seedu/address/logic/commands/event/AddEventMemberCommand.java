@@ -90,10 +90,10 @@ public class AddEventMemberCommand extends Command {
             // Add Student
             if (studentIndex.isPresent()) {
                 int studentZeroBased = studentIndex.get().getZeroBased();
-                if (studentZeroBased < 0 || studentZeroBased >= model.getAllStudentList().size()) {
+                if (studentZeroBased < 0 || studentZeroBased >= model.getFullStudentList().size()) {
                     throw new CommandException(MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX + "\n" + MESSAGE_USAGE);
                 }
-                Student student = model.getAllStudentList().get(studentZeroBased);
+                Student student = model.getFullStudentList().get(studentZeroBased);
                 event.addStudent(student);
                 model.setSelectedEventDetail(event, eventIndex); //showing view event
                 return new CommandResult(String.format(MESSAGE_STUDENT_ADDED_TO_EVENT, student.getName().fullName,
@@ -103,10 +103,10 @@ public class AddEventMemberCommand extends Command {
             // Add Staff
             if (staffIndex.isPresent()) {
                 int staffZeroBased = staffIndex.get().getZeroBased();
-                if (staffZeroBased < 0 || staffZeroBased >= model.getAllStaffList().size()) {
+                if (staffZeroBased < 0 || staffZeroBased >= model.getFullStaffList().size()) {
                     throw new CommandException(MESSAGE_INVALID_STAFF_DISPLAYED_INDEX + "\n" + MESSAGE_USAGE);
                 }
-                Staff staff = model.getAllStaffList().get(staffZeroBased);
+                Staff staff = model.getFullStaffList().get(staffZeroBased);
                 event.addStaff(staff);
                 model.setSelectedEventDetail(event, eventIndex); //showing view event
                 return new CommandResult(String.format(MESSAGE_STAFF_ADDED_TO_EVENT, staff.getName().fullName,
@@ -116,10 +116,10 @@ public class AddEventMemberCommand extends Command {
             // Add External Member
             if (externalIndex.isPresent()) {
                 int externalZeroBased = externalIndex.get().getZeroBased();
-                if (externalZeroBased < 0 || externalZeroBased >= model.getAllExternalPartiesList().size()) {
+                if (externalZeroBased < 0 || externalZeroBased >= model.getFullExternalPartiesList().size()) {
                     throw new CommandException(MESSAGE_INVALID_EXTERNAL_PARTY_DISPLAYED_INDEX + "\n" + MESSAGE_USAGE);
                 }
-                ExternalParty external = model.getAllExternalPartiesList().get(externalZeroBased);
+                ExternalParty external = model.getFullExternalPartiesList().get(externalZeroBased);
                 event.addExternalParty(external);
                 model.setSelectedEventDetail(event, eventIndex); //showing view event
                 return new CommandResult(String.format(MESSAGE_EXTERNAL_PARTY_ADDED_TO_EVENT, external.getName(),
