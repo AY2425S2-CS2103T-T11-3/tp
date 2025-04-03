@@ -6,16 +6,49 @@
 
 # ResiConnect User Guide
 
-ResiConnect is a **desktop contact management app for tracking students, staff, external parties and events in the various halls and residential colleges in NUS.** 
+ResiConnect is a **desktop contact management app for Resident Fellows and students in the various halls and residential 
+colleges in NUS to track students, staff, external parties and events.** 
 It is optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). 
 If you can type fast, ResiConnect can get your contact management tasks done faster than traditional GUI apps.
 
-<!-- * Table of Contents -->
-<page-nav-print />
-
 --------------------------------------------------------------------------------------------------------------------
-## Target Audience
-ResiConnect is targeted at Residence Fellows that are able to type quickly.
+
+## Table of Contents
+1. [Quick Start](#quick-start)
+
+1. [Features](#features)
+   1. [Viewing Help](#viewing-help--help)
+   1. [Adding a Student](#adding-a-student-add_stu)
+   1. [Adding a Staff](#adding-a-staff-add_staff)
+   1. [Adding an External Party](#adding-an-external-party-add_ext)
+   1. [Listing all Students](#listing-all-students--list_stu)
+   1. [Listing all Staff](#listing-all-staff--list_staff)
+   1. [Listing all External Parties](#listing-all-external-parties--list_ext)
+   1. [Deleting a Student](#deleting-a-student--delete_stu)
+   1. [Deleting a Staff](#deleting-a-staff--delete_staff)
+   1. [Deleting an External Party](#deleting-an-external-party--delete_ext)
+   1. [Searching for Students](#searching-for-students-search_stu)
+   1. [Searching for Staff](#searching-for-staff-search_staff)
+   1. [Searching for External Parties](#searching-for-external-parties-search_ext)
+   1. [Adding an Event](#adding-an-event--add_event)
+   1. [Listing an Event](#listing-all-events--list_event)
+   1. [Deleting an Event](#deleting-an-event--delete_event)
+   1. [Viewing an Event](#viewing-an-event--view_event)
+   1. [Searching an Event](#searching-an-event--search_event)
+   1. [Adding a Member into an Event](#adding-a-member-into-an-event-add_event_member)
+   1. [Deleting a Member from an Event](#deleting-a-member-from-an-event-delete_event_member)
+   1. [Clearing all Entries](#clearing-all-entries--clear)
+   1. [Exiting the Program](#exiting-the-program--exit)
+   1. [Saving the Data](#saving-the-data)
+   1. [Editing the Data File](#editing-the-data-file)
+
+1. [Constraints for the Features](#constraints-for-the-features)
+
+1. [FAQ](#faq)
+
+1. [Known Issues](#known-issues)
+
+1. [Command Summary](#command-summary)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -24,11 +57,11 @@ ResiConnect is targeted at Residence Fellows that are able to type quickly.
 1. Ensure you have Java `17` or above installed in your Computer.<br>
    **Mac users:** Ensure you have the precise JDK version prescribed [here](https://se-education.org/guides/tutorials/javaInstallationMac.html).
 
-1. Download the latest `.jar` file from [here](https://github.com/se-edu/addressbook-level3/releases).
+1. Download the latest `.jar` file from [here](https://github.com/AY2425S2-CS2103T-T11-3/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+1. Copy the file to the folder you want to use as the _home folder_ for your ResiConnect.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar` command to run the application.<br>
+1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar ResiConnect1.5.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
@@ -103,6 +136,8 @@ Format: `add_stu name/NAME matric/MATRIC phone/PHONE email/EMAIL a/ADDRESS [t/TA
 
 Examples:
 * `add_stu name/John Doe matric/A0234567B phone/98765432 email/johnd@example.com a/311, Clementi Ave 2, #02-25 t/friend emergency/91234567 block/A level/5 room/3 designation/1`
+
+![Adding student success message](images/add_stuSuccess.png)
 
 ### Adding a staff: `add_staff`
 
