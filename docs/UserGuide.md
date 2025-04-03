@@ -168,9 +168,12 @@ Shows a list of all students in the address book.
 
 Format: `list_stu`
 
+![listing student success message](images/list_stuSuccess.png)
+
 ### Listing all staff : `list_staff`
 
 Shows a list of all staffs in the address book.
+
 
 Format: `list_staff`
 
@@ -192,6 +195,8 @@ Format: `delete_stu INDEX`
 
 Examples:
 * `list_stu` followed by `delete_stu 2` deletes the 2nd student in the student list.
+
+![delete student success message](images/delete_stuSuccess.png)
 
 ### Deleting a staff : `delete_staff`
 
@@ -234,6 +239,9 @@ Format: `search_stu [name/NAME] [matric/MATRIC] [phone/PHONE] [email/EMAIL] [a/A
 Examples:
 * `search_stu name/Alice` returns a list of students that are named `Alice`.
 * `search_stu name/Bob block/A` returns a list of students that are both named `Bob` and reside in block `A`.
+
+![searching student success message](images/search_stuSuccess.png)
+
 
 ### Searching for staff: `search_staff`
 
@@ -313,6 +321,8 @@ Examples:
 * `list_event` followed by `view_event 2` views the details of the 2nd event (including its associated students, 
 staff, and external parties) in the address book.
 
+![viewing event success message](images/view_eventSuccess.png)
+
 ### Searching for events : `search_event`
 
 Searches for all events which match the specified keywords from ResiConnect.
@@ -323,7 +333,6 @@ Format: `search_event [name/EVENT_NAME] [from/START_TIME] [to/END_TIME]`
 * The EVENT_NAME is case-insensitive, and only full words will be matched.
 * The START_TIME and END_TIME must be in the format `yyyy-MM-dd HH:mm`.
 
-Examples:
 Examples:
 * `search_event name/Dance from/2025-06-15 18:00` searches for all events with the name `Dance` starting from `2025-06-15 18:00`.
 
@@ -340,6 +349,9 @@ Examples:
 * `add_event_member 1 stu/1` adds the first student into the first event.
 * `add_event_member 2 staff/2` adds the second staff into the second event.
 
+![adding member into event success message](images/add_event_memberSuccess.png)
+
+
 ### Deleting a member from an event: `delete_event_member`
 
 Deletes the specified member from the specified event from ResiConnect.
@@ -352,6 +364,8 @@ Format: `delete_event_member EVENT_INDEX stu/STUDENT_INDEX OR staff/STAFF_INDEX 
 Examples:
 * `delete_event_member 1 stu/1` deletes the first student from the first event.
 * `delete_event_member 2 staff/2` deletes the second staff from the second event.
+
+![deleting member in event success message](images/delete_event_memberSuccess.png)
 
 ### Searching for event members: `search_event_member`
 
