@@ -9,6 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_LEVEL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROOM;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Map;
 import java.util.function.Predicate;
@@ -40,6 +41,9 @@ public class StaffMatchesAttributesPredicate implements Predicate<Staff> {
                         return staff.getEmail().value.equalsIgnoreCase(value);
                     } else if (prefix.equals(PREFIX_ADDRESS)) {
                         return staff.getAddress().value.equalsIgnoreCase(value);
+                    } else if (prefix.equals(PREFIX_TAG)) {
+                        return staff.getTags().stream()
+                                .anyMatch(tag -> tag.tagName.equalsIgnoreCase(value));
                     } else if (prefix.equals(PREFIX_EMERGENCY)) {
                         return staff.getEmergency().value.equalsIgnoreCase(value);
                     } else if (prefix.equals(PREFIX_BLOCK)) {
@@ -59,7 +63,17 @@ public class StaffMatchesAttributesPredicate implements Predicate<Staff> {
                             return false;
                         }
                     } else if (prefix.equals(PREFIX_DESIGNATION)) {
-                        return staff.getStaffDesignation().toString().equalsIgnoreCase(value);
+                        try {
+                            int designationIndex = Integer.parseInt(value);
+                            if (designationIndex < 0 || designationIndex >= StaffDesignation.Role.values().length) {
+                                return false;
+                            }
+                            StaffDesignation.Role role = StaffDesignation.Role.values()[designationIndex];
+                            boolean matches = staff.getStaffDesignation().value == role;
+                            return matches;
+                        } catch (NumberFormatException e) {
+                            return false;
+                        }
                     } else {
                         return false;
                     }

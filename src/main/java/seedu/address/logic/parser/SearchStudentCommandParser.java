@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.Messages.MESSAGE_MISSING_FIELD_AFTER_PREFIX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_BLOCK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESIGNATION;
@@ -11,8 +12,10 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_MATRIC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROOM;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -31,14 +34,26 @@ public class SearchStudentCommandParser implements Parser<SearchStudentCommand> 
      */
     public SearchStudentCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(
-                args, PREFIX_NAME, PREFIX_MATRIC, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
+                args, PREFIX_NAME, PREFIX_MATRIC, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG,
                 PREFIX_EMERGENCY, PREFIX_BLOCK, PREFIX_LEVEL, PREFIX_ROOM, PREFIX_DESIGNATION);
 
         // Check if at least one prefix is provided
         if (!isAnyPrefixPresent(argMultimap, PREFIX_NAME, PREFIX_MATRIC, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
-                PREFIX_EMERGENCY, PREFIX_BLOCK, PREFIX_LEVEL, PREFIX_ROOM, PREFIX_DESIGNATION)) {
+                PREFIX_TAG, PREFIX_EMERGENCY, PREFIX_BLOCK, PREFIX_LEVEL, PREFIX_ROOM, PREFIX_DESIGNATION)) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, SearchStudentCommand.MESSAGE_USAGE));
+        }
+
+        // Check for empty values after a prefix
+        Prefix[] prefixes = {
+            PREFIX_NAME, PREFIX_MATRIC, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG, PREFIX_EMERGENCY,
+            PREFIX_BLOCK, PREFIX_LEVEL, PREFIX_ROOM, PREFIX_DESIGNATION
+        };
+        for (Prefix prefix : prefixes) {
+            Optional<String> value = argMultimap.getValue(prefix);
+            if (value.isPresent() && value.get().trim().isEmpty()) {
+                throw new ParseException(MESSAGE_MISSING_FIELD_AFTER_PREFIX);
+            }
         }
 
         // Create a map of prefixes to their corresponding values

@@ -22,8 +22,8 @@ public class SearchEventCommand extends Command {
             + "At least one of the parameters must be provided.\n"
             + "Example: " + COMMAND_WORD + " name/Dance from/2025-06-15 18:00";
 
-    public static final String MESSAGE_SUCCESS = "Matching events found: %1$d";
-    public static final String MESSAGE_NO_MATCH = "No matching events found.";
+    public static final String MESSAGE_SUCCESS = "Found %1$d matching events listed with the given attributes.";
+    public static final String MESSAGE_NO_MATCH = "Found no matching events with the given attributes.";
     public static final String NO_EVENT_EXIST = "No events exist by now.";
 
     private final EventMatchesPredicate predicate;
