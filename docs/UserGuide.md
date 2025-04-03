@@ -272,17 +272,18 @@ Searches the specified event from ResiConnect.
 
 Format: `search_event [name/EVENT_NAME] [from/START_TIME] [to/END_TIME]`
 
-* Searches the event with the specified keyword.
+* Searches for all events which match the specified keywords.
 * At least one of the optional fields must be provided.
 * The EVENT_NAME is case-insensitive, and only full words will be matched.
 * The START_TIME and END_TIME must be in the format `yyyy-MM-dd HH:mm`.
 
 Examples:
-* `search_event name/Dance from/2025-06-15 18:00` searches for the event with the name `Dance` starting from `2025-06-15 18:00`.
+Examples:
+* `search_event name/Dance from/2025-06-15 18:00` searches for all events with the name `Dance` starting from `2025-06-15 18:00`.
 
 ### Searching an event member: `search_event_member`
 
-Searches the specified member from the specified event from ResiConnect.
+Searches for all members from the specified event which match the specified keywords.
 
 Format: `search_event_member EVENT_INDEX [stu/STUDENT_INDEX] OR [staff/STAFF_INDEX] OR [ext/EXTERNAL_INDEX]`
 
@@ -291,8 +292,8 @@ Format: `search_event_member EVENT_INDEX [stu/STUDENT_INDEX] OR [staff/STAFF_IND
 * The STUDENT_INDEX / STAFF_INDEX / EXTERNAL_INDEX refers to the index number of the target member shown in the displayed student / staff / external list.
 
 Examples:
-* `search_event_member 1 memtype/stu name/John Doe` searches for a student named John Doe in the first event.
-* `search_event_member 2 memtype/staff block/A` searches for a staff residing in block A in the second event.
+* `search_event_member 1 memtype/stu name/John Doe` searches for all students named John Doe in the first event.
+* `search_event_member 2 memtype/staff block/A` searches for all staffs residing in block A in the second event.
 
 ### Adding a member into an event: `add_event_member`
 

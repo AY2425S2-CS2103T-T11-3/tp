@@ -67,8 +67,6 @@ public class SearchEventMemberCommandParser implements Parser<SearchEventMemberC
             validateExternalPartyCriteria(argMultimap);
         }
 
-        checkForEmptyFields(argMultimap);
-
         // Create search criteria map excluding EVENT_MEMTYPE
         Map<Prefix, String> searchCriteria = new HashMap<>();
         argMultimap.getPrefixValueMap().forEach((prefix, values) -> {
@@ -120,13 +118,5 @@ public class SearchEventMemberCommandParser implements Parser<SearchEventMemberC
 
     private static boolean isAnyPrefixPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).anyMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
-    }
-
-    private void checkForEmptyFields(ArgumentMultimap argMultimap) throws ParseException {
-        for (Prefix prefix : argMultimap.getPrefixValueMap().keySet()) {
-            if (argMultimap.getValue(prefix).isPresent() && argMultimap.getValue(prefix).get().isEmpty()) {
-                throw new ParseException(EMPTY_FIELD_AFTER_PREFIX);
-            }
-        }
     }
 }
