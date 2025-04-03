@@ -426,7 +426,7 @@ Action     | Format, Examples
 **Delete Event**    | `delete_event INDEX` <br> e.g., `delete_event 2`
 **View Event**    | `view_event INDEX` <br> e.g., `view_event 2`
 **Search Event** | `search_event [name/EVENT_NAME] [from/START_TIME] [to/END_TIME]`<br> e.g., `search_event name/Dance from/2025-06-15 18:00`
-**Add Event Member** | `add_event_member EVENT_INDEX stu/STUDENT_INDEX OR staf Eventf/STAFF_INDEX OR ext/EXTERNAL_INDEX`<br> e.g., `add_event_member 1 stu/1`
+**Add Event Member** | `add_event_member EVENT_INDEX stu/STUDENT_INDEX OR staff/STAFF_INDEX OR ext/EXTERNAL_INDEX`<br> e.g., `add_event_member 1 stu/1`
 **Delete Event Member** | `delete_event_member EVENT_INDEX stu/STUDENT_INDEX OR staff/STAFF_INDEX OR ext/EXTERNAL_INDEX`<br> e.g., `delete_event_member 1 stu/1`
 **Search Event Member** | Case 1 - Searches for students: `search_event_member EVENT_INDEX memtype/stu [name/NAME] [matric/MATRIC] [phone/PHONE] [email/EMAIL] [a/ADDRESS] [t/TAG] [emergency/EMERGENCY] [block/BLOCK] [level/LEVEL] [room/ROOM] [designation/DESIGNATION]`<br> e.g., `search_event_member 1 memtype/stu name/John Doe` <br><br> Case 2 - Searches for staff: `search_event_member EVENT_INDEX memtype/staff [name/NAME] [phone/PHONE] [email/EMAIL] [a/ADDRESS] [t/TAG] [emergency/EMERGENCY] [block/BLOCK] [level/LEVEL] [room/ROOM] [designation/DESIGNATION]`<br> e.g., `search_event_member 2 memtype/staff block/A` <br><br> Case 3 - Searches for external parties: `search_event_member EVENT_INDEX memtype/ext [name/NAME] [phone/PHONE] [email/EMAIL] [desc/DESCRIPTION]`<br> e.g., `search_event_member 2 memtype/ext name/Alice`
 **Help**   | `help`
