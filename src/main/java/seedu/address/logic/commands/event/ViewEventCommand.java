@@ -34,7 +34,7 @@ public class ViewEventCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Event> lastShownList = model.getFilteredEventList();
+        List<Event> lastShownList = model.getFullEventList(); // getting full event list
 
         if (eventIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(String.format(MESSAGE_INVALID_INDEX, eventIndex.getOneBased()));

@@ -35,8 +35,10 @@ public class AddEventMemberCommand extends Command {
     public static final String COMMAND_WORD = "add_event_member";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a student to an event.\n"
-            + "Parameters: <Event Index> " + PREFIX_EVENT_STUDENT + "<Student Index> OR "
-            + PREFIX_EVENT_STAFF + "<Staff Index> OR " + PREFIX_EVENT_EXTERNAL + "<External Index>\n"
+            + "Parameters: EVENT_INDEX "
+            + PREFIX_EVENT_STUDENT + "STUDENT_INDEX OR "
+            + PREFIX_EVENT_STAFF + "STAFF_INDEX OR "
+            + PREFIX_EVENT_EXTERNAL + "EXTERNAL_PARTY_INDEX\n"
             + "Example: " + COMMAND_WORD + " 1 " + PREFIX_EVENT_STUDENT + "3";
 
     public static final String MESSAGE_STUDENT_ADDED_TO_EVENT = "Added student %s to event: %s";
@@ -92,15 +94,18 @@ public class AddEventMemberCommand extends Command {
             // Add Student
             if (studentIndex.isPresent()) {
                 int studentZeroBased = studentIndex.get().getZeroBased();
-                if (studentZeroBased < 0 || studentZeroBased >= model.getFilteredStudentList().size()) {
+                if (studentZeroBased < 0 || studentZeroBased >= model.getFullStudentList().size()) {
                     throw new CommandException(MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX + "\n" + MESSAGE_USAGE);
                 }
-                Student student = model.getFilteredStudentList().get(studentZeroBased);
+
+                Student student = model.getFullStudentList().get(studentZeroBased);
                 try {
                     event.addStudent(student);
                 } catch (DuplicatePersonException e) {
                     throw new CommandException(MESSAGE_DUPLICATE_STUDENT_IN_EVENT + "\n" + MESSAGE_USAGE);
                 }
+                model.setSelectedEventDetail(event, eventIndex); //showing view event
+
                 return new CommandResult(String.format(MESSAGE_STUDENT_ADDED_TO_EVENT, student.getName().fullName,
                         event.getEventName()));
             }
@@ -108,15 +113,18 @@ public class AddEventMemberCommand extends Command {
             // Add Staff
             if (staffIndex.isPresent()) {
                 int staffZeroBased = staffIndex.get().getZeroBased();
-                if (staffZeroBased < 0 || staffZeroBased >= model.getFilteredStaffList().size()) {
+                if (staffZeroBased < 0 || staffZeroBased >= model.getFullStaffList().size()) {
                     throw new CommandException(MESSAGE_INVALID_STAFF_DISPLAYED_INDEX + "\n" + MESSAGE_USAGE);
                 }
-                Staff staff = model.getFilteredStaffList().get(staffZeroBased);
+
+                Staff staff = model.getFullStaffList().get(staffZeroBased);
                 try {
                     event.addStaff(staff);
                 } catch (DuplicatePersonException e) {
                     throw new CommandException(MESSAGE_DUPLICATE_STAFF_IN_EVENT + "\n" + MESSAGE_USAGE);
                 }
+
+                model.setSelectedEventDetail(event, eventIndex); //showing view event
 
                 return new CommandResult(String.format(MESSAGE_STAFF_ADDED_TO_EVENT, staff.getName().fullName,
                         event.getEventName()));
@@ -125,15 +133,19 @@ public class AddEventMemberCommand extends Command {
             // Add External Member
             if (externalIndex.isPresent()) {
                 int externalZeroBased = externalIndex.get().getZeroBased();
-                if (externalZeroBased < 0 || externalZeroBased >= model.getFilteredExternalPartyList().size()) {
+                if (externalZeroBased < 0 || externalZeroBased >= model.getFullExternalPartiesList().size()) {
                     throw new CommandException(MESSAGE_INVALID_EXTERNAL_PARTY_DISPLAYED_INDEX + "\n" + MESSAGE_USAGE);
                 }
-                ExternalParty external = model.getFilteredExternalPartyList().get(externalZeroBased);
+
+                ExternalParty external = model.getFullExternalPartiesList().get(externalZeroBased);
                 try {
                     event.addExternalParty(external);
                 } catch (DuplicatePersonException e) {
                     throw new CommandException(MESSAGE_DUPLICATE_EXTERNAL_PARTY_IN_EVENT + "\n" + MESSAGE_USAGE);
                 }
+
+                model.setSelectedEventDetail(event, eventIndex); //showing view event
+
                 return new CommandResult(String.format(MESSAGE_EXTERNAL_PARTY_ADDED_TO_EVENT, external.getName(),
                         event.getEventName()));
             }

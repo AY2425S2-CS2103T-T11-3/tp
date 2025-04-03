@@ -27,10 +27,10 @@ public class DeleteEventMemberCommand extends Command {
     public static final String COMMAND_WORD = "delete_event_member";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Removes a member from an event.\n"
-            + "Parameters: EVENT_INDEX (must be a positive integer) "
-            + "[" + PREFIX_EVENT_STUDENT + "STUDENT_INDEX] OR "
-            + "[" + PREFIX_EVENT_STAFF + "STAFF_INDEX] OR "
-            + "[" + PREFIX_EVENT_EXTERNAL + "EXTERNAL_INDEX]\n"
+            + "Parameters: EVENT_INDEX "
+            + PREFIX_EVENT_STUDENT + "STUDENT_INDEX OR "
+            + PREFIX_EVENT_STAFF + "STAFF_INDEX OR "
+            + PREFIX_EVENT_EXTERNAL + "EXTERNAL_PARTY_INDEX\n"
             + "Example: " + COMMAND_WORD + " 1 " + PREFIX_EVENT_STUDENT + "2";
 
     public static final String MESSAGE_DELETE_STUDENT_SUCCESS = "Removed student %s from event: %s";
@@ -60,7 +60,7 @@ public class DeleteEventMemberCommand extends Command {
         requireNonNull(model);
 
         try {
-            List<Event> lastShownEventList = model.getFilteredEventList();
+            List<Event> lastShownEventList = model.getFullEventList(); // getting full event list
 
             if (eventIndex.getZeroBased() >= lastShownEventList.size()) {
                 throw new CommandException(Messages.MESSAGE_INVALID_EVENT_DISPLAYED_INDEX + "\n" + MESSAGE_USAGE);
@@ -85,6 +85,7 @@ public class DeleteEventMemberCommand extends Command {
                 }
                 Student studentToRemove = studentList.get(studentIndex.get().getZeroBased());
                 eventToEdit.removeStudent(studentToRemove);
+                model.setSelectedEventDetail(eventToEdit, eventIndex); //showing view event
                 return new CommandResult(String.format(MESSAGE_DELETE_STUDENT_SUCCESS, studentToRemove.getName(),
                         eventToEdit.getEventName()));
             }
@@ -98,6 +99,7 @@ public class DeleteEventMemberCommand extends Command {
                 }
                 Staff staffToRemove = staffList.get(staffIndex.get().getZeroBased());
                 eventToEdit.removeStaff(staffToRemove);
+                model.setSelectedEventDetail(eventToEdit, eventIndex); //showing view event
                 return new CommandResult(String.format(MESSAGE_DELETE_STAFF_SUCCESS, staffToRemove.getName(),
                         eventToEdit.getEventName()));
             }
@@ -112,6 +114,7 @@ public class DeleteEventMemberCommand extends Command {
                 }
                 ExternalParty externalToRemove = externalList.get(externalIndex.get().getZeroBased());
                 eventToEdit.removeExternalParty(externalToRemove);
+                model.setSelectedEventDetail(eventToEdit, eventIndex); //showing view event
                 return new CommandResult(String.format(MESSAGE_DELETE_EXTERNAL_PARTY_SUCCESS,
                         externalToRemove.getName(), eventToEdit.getEventName()));
             }
