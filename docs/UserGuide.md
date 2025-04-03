@@ -191,7 +191,7 @@ Format: `delete_stu INDEX`
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list_stu` followed by `delete 2` deletes the 2nd student in the student list.
+* `list_stu` followed by `delete_stu 2` deletes the 2nd student in the student list.
 
 ### Deleting a staff : `delete_staff`
 
@@ -204,7 +204,7 @@ Format: `delete_staff INDEX`
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list_staff` followed by `delete 2` deletes the 2nd staff in the staff list.
+* `list_staff` followed by `delete_staff 2` deletes the 2nd staff in the staff list.
 
 ### Deleting an external party : `delete_ext`
 
