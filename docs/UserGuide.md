@@ -14,6 +14,10 @@ If you can type fast, ResiConnect can get your contact management tasks done fas
 <page-nav-print />
 
 --------------------------------------------------------------------------------------------------------------------
+## Target Audience
+ResiConnect is targeted at Residence Fellows that are able to type quickly.
+
+--------------------------------------------------------------------------------------------------------------------
 
 ## Quick start
 
@@ -68,6 +72,14 @@ ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
+</box>
+
+<box type="info" seamless>
+
+**Additional notes about the commands:**<br>
+
+* If there are any errors in the commands that you have written, the text bar's font colour will turn red (from white).
+![img.png](img.png)
 </box>
 
 ### Viewing help : `help`
@@ -251,7 +263,7 @@ Format: `delete_event INDEX`
 Examples:
 * `list_event` followed by `delete_event 2` deletes the 2nd event in the address book.
 
-### View an event : `view_event`
+### Viewing an event : `view_event`
 
 Views the details of the specified event from the address book, including the associated student list, 
 staff list, and external party list.
@@ -362,7 +374,7 @@ Here is a comprehensive list for any constraints that we have specified above!
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Install the app in your other computer. Next, on this computer, navigate to ResiConnect's home folder, and from there, navigate to the data folder. Copy over the addressbook.json file from this folder, to the same folder on your other computer. If you do not know how to transfer the file, you start writing an email addressed to yourself, and attach the addressbook.json file on this computer. Send the email, then go to your other computer and download it from there. 
 
 --------------------------------------------------------------------------------------------------------------------
 

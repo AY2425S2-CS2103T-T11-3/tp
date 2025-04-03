@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.Messages.MESSAGE_DUPLICATE_PHONE_OR_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_BLOCK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESIGNATION;
@@ -77,6 +78,8 @@ public class AddStudentCommand extends Command {
 
         if (model.hasStudent(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+        } else if (model.hasPersonWithPhoneOrEmail(toAdd.getPhone(), toAdd.getEmail())) {
+            throw new CommandException(MESSAGE_DUPLICATE_PHONE_OR_EMAIL);
         }
 
         model.addStudent(toAdd);

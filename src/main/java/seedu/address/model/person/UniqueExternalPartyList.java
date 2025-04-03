@@ -29,6 +29,14 @@ public class UniqueExternalPartyList implements Iterable<ExternalParty> {
             FXCollections.unmodifiableObservableList(internalList);
 
     /**
+     * Returns true if any of the external parties have this phone or this email.
+     */
+    public boolean hasPersonWithPhoneOrEmail(Phone phone, Email email) {
+        requireAllNonNull(phone, email);
+        return internalList.stream().anyMatch(externalParty -> externalParty.hasPersonWithPhoneOrEmail(phone, email));
+    }
+
+    /**
      * Returns true if the list contains an equivalent external party as the given argument.
      */
     public boolean contains(ExternalParty toCheck) {

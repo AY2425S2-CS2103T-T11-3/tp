@@ -48,7 +48,7 @@ public class SearchExternalPartyCommand extends Command {
             return new CommandResult(String.format(MESSAGE_NO_EXTERNAL_PARTY_FOUND, predicate));
         } else {
             return new CommandResult(
-                    String.format(MESSAGE_EXTERNAL_PARTY_LISTED_OVERVIEW, filteredListSize));
+                    String.format(MESSAGE_EXTERNAL_PARTY_LISTED_OVERVIEW, filteredListSize, predicate));
         }
     }
 

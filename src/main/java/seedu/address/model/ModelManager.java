@@ -15,7 +15,9 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.event.Event;
+import seedu.address.model.person.Email;
 import seedu.address.model.person.ExternalParty;
+import seedu.address.model.person.Phone;
 import seedu.address.model.person.Staff;
 import seedu.address.model.person.Student;
 
@@ -95,6 +97,11 @@ public class ModelManager implements Model {
     @Override
     public void setAddressBook(ReadOnlyAddressBook addressBook) {
         this.addressBook.resetData(addressBook);
+    }
+
+    @Override
+    public boolean hasPersonWithPhoneOrEmail(Phone phone, Email email) {
+        return this.addressBook.hasPersonWithPhoneOrEmail(phone, email);
     }
 
     @Override
