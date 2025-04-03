@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.Messages.MESSAGE_MISSING_FIELD_AFTER_PREFIX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -36,6 +37,11 @@ public class SearchExternalPartyCommandParserTest {
     public void parse_invalidArgs_throwsParseException() {
         assertParseFailure(parser, "Alice Bob", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 SearchExternalPartyCommand.MESSAGE_USAGE));
+    }
+
+    @Test
+    public void parse_missingArgs_throwsParseException() {
+        assertParseFailure(parser, " " + PREFIX_NAME, MESSAGE_MISSING_FIELD_AFTER_PREFIX);
     }
 
     @Test

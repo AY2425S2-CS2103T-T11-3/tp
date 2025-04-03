@@ -10,6 +10,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_MATRIC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROOM;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Map;
 import java.util.function.Predicate;
@@ -43,6 +44,9 @@ public class StudentMatchesAttributesPredicate implements Predicate<Student> {
                         return student.getEmail().value.equalsIgnoreCase(value);
                     } else if (prefix.equals(PREFIX_ADDRESS)) {
                         return student.getAddress().value.equalsIgnoreCase(value);
+                    } else if (prefix.equals(PREFIX_TAG)) {
+                        return student.getTags().stream()
+                                .anyMatch(tag -> tag.tagName.equalsIgnoreCase(value));
                     } else if (prefix.equals(PREFIX_EMERGENCY)) {
                         return student.getEmergency().value.equalsIgnoreCase(value);
                     } else if (prefix.equals(PREFIX_BLOCK)) {
@@ -62,7 +66,17 @@ public class StudentMatchesAttributesPredicate implements Predicate<Student> {
                             return false;
                         }
                     } else if (prefix.equals(PREFIX_DESIGNATION)) {
-                        return student.getStudentDesignation().toString().equalsIgnoreCase(value);
+                        try {
+                            int designationIndex = Integer.parseInt(value);
+                            if (designationIndex < 0 || designationIndex >= StudentDesignation.Role.values().length) {
+                                return false;
+                            }
+                            StudentDesignation.Role role = StudentDesignation.Role.values()[designationIndex];
+                            boolean matches = student.getStudentDesignation().value == role;
+                            return matches;
+                        } catch (NumberFormatException e) {
+                            return false;
+                        }
                     } else {
                         return false;
                     }

@@ -12,6 +12,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_LEVEL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROOM;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Map;
 
@@ -34,6 +35,7 @@ public class SearchStaffCommand extends Command {
             + PREFIX_PHONE + "PHONE "
             + PREFIX_EMAIL + "EMAIL "
             + PREFIX_ADDRESS + "ADDRESS "
+            + PREFIX_TAG + "TAG "
             + PREFIX_EMERGENCY + "EMERGENCY CONTACT "
             + PREFIX_BLOCK + "BLOCK "
             + PREFIX_LEVEL + "LEVEL "
@@ -57,7 +59,7 @@ public class SearchStaffCommand extends Command {
             return new CommandResult(String.format(MESSAGE_NO_STAFF_FOUND, predicate));
         } else {
             return new CommandResult(
-                    String.format(MESSAGE_STAFF_LISTED_OVERVIEW, filteredListSize));
+                    String.format(MESSAGE_STAFF_LISTED_OVERVIEW, filteredListSize, predicate));
         }
     }
 

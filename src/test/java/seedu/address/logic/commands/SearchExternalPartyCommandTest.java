@@ -67,6 +67,17 @@ public class SearchExternalPartyCommandTest {
     }
 
     @Test
+    public void execute_matchingExternalParty_returnsExternalPartyFoundMessage() {
+        Map<Prefix, String> searchCriteria = new HashMap<>();
+        searchCriteria.put(CliSyntax.PREFIX_NAME, "Jessica");
+        SearchExternalPartyCommand command = new SearchExternalPartyCommand(searchCriteria);
+        CommandResult result = command.execute(model);
+
+        assertEquals(String.format(Messages.MESSAGE_EXTERNAL_PARTY_LISTED_OVERVIEW, 1,
+                new ExternalPartyMatchesAttributesPredicate(searchCriteria)), result.getFeedbackToUser());
+    }
+
+    @Test
     public void toStringMethod() {
         Map<Prefix, String> searchCriteria = Map.of(CliSyntax.PREFIX_NAME, "Alice");
         SearchExternalPartyCommand command = new SearchExternalPartyCommand(searchCriteria);

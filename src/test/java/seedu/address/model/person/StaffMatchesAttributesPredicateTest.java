@@ -2,10 +2,12 @@ package seedu.address.model.person;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESIGNATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LEVEL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROOM;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -72,5 +74,53 @@ public class StaffMatchesAttributesPredicateTest {
         criteria.put(PREFIX_ROOM, "1");
         StaffMatchesAttributesPredicate predicate = new StaffMatchesAttributesPredicate(criteria);
         assertFalse(predicate.test(new StaffBuilder().withRoom("2").build()));
+    }
+
+    @Test
+    public void test_tagValid_returnsTrue() {
+        Map<Prefix, String> criteria = new HashMap<>();
+        criteria.put(PREFIX_TAG, "friend");
+        StaffMatchesAttributesPredicate predicate = new StaffMatchesAttributesPredicate(criteria);
+        assertTrue(predicate.test(new StaffBuilder().withTags("friend").build()));
+    }
+
+    @Test
+    public void test_roomNonNumeric_returnsFalse() {
+        Map<Prefix, String> criteria = new HashMap<>();
+        criteria.put(PREFIX_ROOM, "abc");
+        StaffMatchesAttributesPredicate predicate = new StaffMatchesAttributesPredicate(criteria);
+        assertFalse(predicate.test(new StaffBuilder().withRoom("10").build()));
+    }
+
+    @Test
+    public void test_designationIndexOutOfBounds_returnsFalse() {
+        Map<Prefix, String> criteria = new HashMap<>();
+        criteria.put(PREFIX_DESIGNATION, "3");
+        StaffMatchesAttributesPredicate predicate = new StaffMatchesAttributesPredicate(criteria);
+        assertFalse(predicate.test(new StaffBuilder().withStaffDesignation("2").build()));
+    }
+
+    @Test
+    public void test_designationIncorrectIndex_returnsFalse() {
+        Map<Prefix, String> criteria = new HashMap<>();
+        criteria.put(PREFIX_DESIGNATION, "0");
+        StaffMatchesAttributesPredicate predicate = new StaffMatchesAttributesPredicate(criteria);
+        assertFalse(predicate.test(new StaffBuilder().withStaffDesignation("2").build()));
+    }
+
+    @Test
+    public void test_designationValidIndex_returnsTrue() {
+        Map<Prefix, String> criteria = new HashMap<>();
+        criteria.put(PREFIX_DESIGNATION, "1");
+        StaffMatchesAttributesPredicate predicate = new StaffMatchesAttributesPredicate(criteria);
+        assertTrue(predicate.test(new StaffBuilder().withStaffDesignation("1").build()));
+    }
+
+    @Test
+    public void test_designationNonNumeric_returnsFalse() {
+        Map<Prefix, String> criteria = new HashMap<>();
+        criteria.put(PREFIX_DESIGNATION, "abc");
+        StaffMatchesAttributesPredicate predicate = new StaffMatchesAttributesPredicate(criteria);
+        assertFalse(predicate.test(new StaffBuilder().withStaffDesignation("1").build()));
     }
 }

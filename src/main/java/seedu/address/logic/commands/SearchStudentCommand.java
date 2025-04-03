@@ -13,6 +13,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_MATRIC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROOM;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Map;
 
@@ -36,6 +37,7 @@ public class SearchStudentCommand extends Command {
             + PREFIX_PHONE + "PHONE "
             + PREFIX_EMAIL + "EMAIL "
             + PREFIX_ADDRESS + "ADDRESS "
+            + PREFIX_TAG + "TAG "
             + PREFIX_EMERGENCY + "EMERGENCY CONTACT "
             + PREFIX_BLOCK + "BLOCK "
             + PREFIX_LEVEL + "LEVEL "
@@ -59,7 +61,7 @@ public class SearchStudentCommand extends Command {
             return new CommandResult(String.format(MESSAGE_NO_STUDENT_FOUND, predicate));
         } else {
             return new CommandResult(
-                    String.format(MESSAGE_STUDENT_LISTED_OVERVIEW, filteredListSize));
+                    String.format(MESSAGE_STUDENT_LISTED_OVERVIEW, filteredListSize, predicate));
         }
     }
 
