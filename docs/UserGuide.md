@@ -113,6 +113,8 @@ ignored.<br>
 
 * If there are any errors in the commands that you have written, the text bar's font colour will turn red (from white).
 ![img.png](img.png)
+
+* For any commands that makes reference to the index of a list, it is done with respect to the full, unfiltered lists given by list_stu for students, list_staff for staff, list_ext for external parties, and list_event for events.
 </box>
 
 ### Viewing help : `help`
@@ -190,7 +192,7 @@ Deletes the specified student from the address book.
 Format: `delete_stu INDEX`
 
 * Deletes the student at the specified `INDEX`.
-* The index refers to the index number shown in the displayed student list.
+* The index refers to the index number shown in the unfiltered student list, given by the `list_stu` command.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
@@ -205,7 +207,7 @@ Deletes the specified staff from the address book.
 Format: `delete_staff INDEX`
 
 * Deletes the staff at the specified `INDEX`.
-* The index refers to the index number shown in the displayed staff list.
+* The index refers to the index number shown in the unfiltered staff list, given by the `list_staff` command.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
@@ -218,7 +220,7 @@ Deletes the specified external party from the address book.
 Format: `delete_ext INDEX`
 
 * Deletes the external party at the specified `INDEX`.
-* The index refers to the index number shown in the displayed external party list.
+* The index refers to the index number shown in the unfiltered external party list, given by the `list_ext` command.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
@@ -295,12 +297,13 @@ Format: `list_event`
 
 ### Deleting an event : `delete_event`
 
-Deletes the specified event from the address book.
+* Deletes the specified event from the address book.
+* The index refers to the index number shown in the unfiltered event list, given by the `list_event` command. 
 
 Format: `delete_event INDEX`
 
 * Deletes the event at the specified `INDEX`.
-* The index refers to the index number shown in the displayed event list.
+* The index refers to the index number shown in the unfiltered event list, given by the `list_event` command.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
@@ -342,7 +345,7 @@ Adds a member into the specified event from ResiConnect.
 
 Format: `add_event_member EVENT_INDEX stu/STUDENT_INDEX OR staff/STAFF_INDEX OR ext/EXTERNAL_INDEX`
 
-* The EVENT_INDEX refers to the index number shown in the displayed event list.
+* The EVENT_INDEX refers to the index number shown in the unfiltered event list, given by the `list_event` command.
 * The STUDENT_INDEX / STAFF_INDEX / EXTERNAL_INDEX refers to the index number shown in the displayed student / staff / external list.
 
 Examples:
@@ -358,7 +361,7 @@ Deletes the specified member from the specified event from ResiConnect.
 
 Format: `delete_event_member EVENT_INDEX stu/STUDENT_INDEX OR staff/STAFF_INDEX OR ext/EXTERNAL_INDEX`
 
-* The EVENT_INDEX refers to the index number shown in the displayed event list.
+* The EVENT_INDEX refers to the index number shown in the unfiltered event list, given by the `list_event` command.
 * The STUDENT_INDEX / STAFF_INDEX / EXTERNAL_INDEX refers to the index number shown in the displayed student / staff / external list.
 
 Examples:
@@ -380,7 +383,7 @@ Case 2 - Searches for staff: `search_event_member EVENT_INDEX memtype/staff [nam
 Case 3 - Searches for external parties: `search_event_member EVENT_INDEX memtype/ext [name/NAME] [phone/PHONE] [email/EMAIL] [desc/DESCRIPTION]`
 
 * At least one of the optional fields must be provided.
-* The EVENT_INDEX refers to the index number of the target event shown in the displayed event list.
+* The EVENT_INDEX refers to the index number shown in the unfiltered event list, given by the `list_event` command.
 * The parameters used for searching is case-insensitive, and only full words will be matched.
 
 Examples:
