@@ -332,7 +332,7 @@ Case 3 - Searches for external parties: `search_event_member EVENT_INDEX memtype
 
 * At least one of the optional fields must be provided.
 * The EVENT_INDEX refers to the index number of the target event shown in the displayed event list.
-* The STUDENT_INDEX / STAFF_INDEX / EXTERNAL_INDEX refers to the index number of the target member shown in the displayed student / staff / external list.
+* The parameters used for searching is case-insensitive, and only full words will be matched.
 
 Examples:
 * `search_event_member 1 memtype/stu name/John Doe` searches for all students named John Doe in the first event.
