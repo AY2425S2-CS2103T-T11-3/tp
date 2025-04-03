@@ -58,4 +58,30 @@ public class EventMatchesPredicateTest {
                 new EventStartTime("2025-02-15 18:00"), new EventEndTime("2025-02-15 21:00"));
         assertTrue(predicate1.equals(predicate2));
     }
+
+    @Test
+    public void test_sameEventEndTime_returnsTrue() {
+        Event event1 = new Event(new EventName("D"), new EventStartTime("2025-02-15 18:00"),
+                new EventEndTime("2025-02-15 21:00"));
+        EventMatchesPredicate predicate = new EventMatchesPredicate("Dance", null,
+                new EventEndTime("2025-02-15 21:00"));
+        assertTrue(predicate.test(event1));
+    }
+
+    @Test
+    public void test_sameEventStartTime_returnsTrue() {
+        Event event1 = new Event(new EventName("D"), new EventStartTime("2025-02-15 18:00"),
+                new EventEndTime("2025-02-15 21:00"));
+        EventMatchesPredicate predicate = new EventMatchesPredicate("Dance",
+                new EventStartTime("2025-02-15 18:00"), null);
+        assertTrue(predicate.test(event1));
+    }
+
+    @Test
+    public void test_sameEventName_returnsTrue() {
+        Event event1 = new Event(new EventName("Dance"), new EventStartTime("2025-02-15 18:00"),
+                new EventEndTime("2025-02-15 21:00"));
+        EventMatchesPredicate predicate = new EventMatchesPredicate("Dance", null, null);
+        assertTrue(predicate.test(event1));
+    }
 }
