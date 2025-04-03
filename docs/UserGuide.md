@@ -313,19 +313,19 @@ Examples:
 * `list_event` followed by `view_event 2` views the details of the 2nd event (including its associated students, 
 staff, and external parties) in the address book.
 
-### Searching an event : `search_event`
+### Searching for events : `search_event`
 
-Searches the specified event from ResiConnect.
+Searches for all events which match the specified keywords from ResiConnect.
 
 Format: `search_event [name/EVENT_NAME] [from/START_TIME] [to/END_TIME]`
 
-* Searches the event with the specified keyword.
 * At least one of the optional fields must be provided.
-* The EVENT_NAME is case-insensitive, and partial words will be matched.
+* The EVENT_NAME is case-insensitive, and only full words will be matched.
 * The START_TIME and END_TIME must be in the format `yyyy-MM-dd HH:mm`.
 
 Examples:
-* `search_event name/Dance from/2025-06-15 18:00` searches for the event with the name `Dance` starting from `2025-06-15 18:00`.
+Examples:
+* `search_event name/Dance from/2025-06-15 18:00` searches for all events with the name `Dance` starting from `2025-06-15 18:00`.
 
 ### Adding a member into an event: `add_event_member`
 
@@ -352,6 +352,26 @@ Format: `delete_event_member EVENT_INDEX stu/STUDENT_INDEX OR staff/STAFF_INDEX 
 Examples:
 * `delete_event_member 1 stu/1` deletes the first student from the first event.
 * `delete_event_member 2 staff/2` deletes the second staff from the second event.
+
+### Searching for event members: `search_event_member`
+
+Searches for all members from the specified event which match the specified keywords.
+
+Format:
+
+Case 1 - Searches for students: `search_event_member EVENT_INDEX memtype/stu [name/NAME] [matric/MATRIC] [phone/PHONE] [email/EMAIL] [a/ADDRESS] [t/TAG] [emergency/EMERGENCY] [block/BLOCK] [level/LEVEL] [room/ROOM] [designation/DESIGNATION]`
+
+Case 2 - Searches for staff: `search_event_member EVENT_INDEX memtype/staff [name/NAME] [phone/PHONE] [email/EMAIL] [a/ADDRESS] [t/TAG] [emergency/EMERGENCY] [block/BLOCK] [level/LEVEL] [room/ROOM] [designation/DESIGNATION]`
+
+Case 3 - Searches for external parties: `search_event_member EVENT_INDEX memtype/ext [name/NAME] [phone/PHONE] [email/EMAIL] [desc/DESCRIPTION]`
+
+* At least one of the optional fields must be provided.
+* The EVENT_INDEX refers to the index number of the target event shown in the displayed event list.
+* The parameters used for searching is case-insensitive, and only full words will be matched.
+
+Examples:
+* `search_event_member 1 memtype/stu name/John Doe` searches for all students named John Doe in the first event.
+* `search_event_member 2 memtype/staff block/A` searches for all staffs residing in block A in the second event.
 
 ### Clearing all entries : `clear`
 Clears **all** data from the address book, including students, staff, external parties, and events.
@@ -443,6 +463,7 @@ Action     | Format, Examples
 **Search Event** | `search_event [name/EVENT_NAME] [from/START_TIME] [to/END_TIME]`<br> e.g., `search_event name/Dance from/2025-06-15 18:00`
 **Add Event Member** | `add_event_member EVENT_INDEX stu/STUDENT_INDEX OR staff/STAFF_INDEX OR ext/EXTERNAL_INDEX`<br> e.g., `add_event_member 1 stu/1`
 **Delete Event Member** | `delete_event_member EVENT_INDEX stu/STUDENT_INDEX OR staff/STAFF_INDEX OR ext/EXTERNAL_INDEX`<br> e.g., `delete_event_member 1 stu/1`
+**Search Event Member** | Case 1 - Searches for students: `search_event_member EVENT_INDEX memtype/stu [name/NAME] [matric/MATRIC] [phone/PHONE] [email/EMAIL] [a/ADDRESS] [t/TAG] [emergency/EMERGENCY] [block/BLOCK] [level/LEVEL] [room/ROOM] [designation/DESIGNATION]`<br> e.g., `search_event_member 1 memtype/stu name/John Doe` <br><br> Case 2 - Searches for staff: `search_event_member EVENT_INDEX memtype/staff [name/NAME] [phone/PHONE] [email/EMAIL] [a/ADDRESS] [t/TAG] [emergency/EMERGENCY] [block/BLOCK] [level/LEVEL] [room/ROOM] [designation/DESIGNATION]`<br> e.g., `search_event_member 2 memtype/staff block/A` <br><br> Case 3 - Searches for external parties: `search_event_member EVENT_INDEX memtype/ext [name/NAME] [phone/PHONE] [email/EMAIL] [desc/DESCRIPTION]`<br> e.g., `search_event_member 2 memtype/ext name/Alice`
 **Help**   | `help`
 **Clear**  | `clear`
 **Exit**   | `exit`

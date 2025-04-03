@@ -23,28 +23,10 @@ public class SearchEventCommandTest {
     private Model emptyModel = new ModelManager(getEmptyAddressBook(), new UserPrefs());
 
     @Test
-    public void execute_zeroKeywords_allEventsFound() throws CommandException {
-        String expectedMessage = String.format(SearchEventCommand.MESSAGE_SUCCESS, 2);
-        EventMatchesPredicate predicate = new EventMatchesPredicate(null, null, null);
-        SearchEventCommand command = new SearchEventCommand(predicate);
-        CommandResult result = command.execute(model);
-        assertEquals(expectedMessage, result.getFeedbackToUser());
-    }
-
-    @Test
     public void execute_nameKeyword_oneEventFound() throws CommandException {
         String expectedMessage = String.format(SearchEventCommand.MESSAGE_SUCCESS, 1);
         EventMatchesPredicate predicate = new EventMatchesPredicate(DANCE_EVENT.getEventName().fullEventName,
                 null, null);
-        SearchEventCommand command = new SearchEventCommand(predicate);
-        CommandResult result = command.execute(model);
-        assertEquals(expectedMessage, result.getFeedbackToUser());
-    }
-
-    @Test
-    public void execute_nameKeyword_multipleEventsFound() throws CommandException {
-        String expectedMessage = String.format(SearchEventCommand.MESSAGE_SUCCESS, 2);
-        EventMatchesPredicate predicate = new EventMatchesPredicate("e", null, null);
         SearchEventCommand command = new SearchEventCommand(predicate);
         CommandResult result = command.execute(model);
         assertEquals(expectedMessage, result.getFeedbackToUser());

@@ -103,4 +103,9 @@ public class SearchEventMemberCommandParserTest {
         assertParseFailure(parser, "1 memtype/ext", String.format(Messages.MESSAGE_MISSING_SEARCHING_CRITERIA,
                 SearchEventMemberCommand.MESSAGE_USAGE));
     }
+
+    @Test
+    public void parse_missingFieldAfterPrefix_throwsParseException() {
+        assertParseFailure(parser, "1 memtype/stu name/", String.format(MESSAGE_MISSING_FIELD_AFTER_PREFIX));
+    }
 }

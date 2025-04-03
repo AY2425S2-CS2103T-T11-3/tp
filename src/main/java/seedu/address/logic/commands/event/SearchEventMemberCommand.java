@@ -14,6 +14,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_MATRIC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROOM;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.List;
 import java.util.Map;
@@ -42,9 +43,11 @@ public class SearchEventMemberCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Searches for a member in an event and lists the matching members under the event.\n"
-            + "Parameters: <EVENT_INDEX>"
-            + PREFIX_EVENT_MEMTYPE + "<MEMBER_TYPE (one of stu, staff and ext)>\n"
+            + "Parameters: (For each case, EVENT_INDEX and " + PREFIX_EVENT_MEMTYPE + " is compulsory,"
+            + " at least one of the other parameters must be provided)\n"
             + "Case 1: stu\n"
+            + "EVENT_INDEX "
+            + PREFIX_EVENT_MEMTYPE + "MEMBER_TYPE(stu/staff/ext) "
             + PREFIX_NAME + "NAME "
             + PREFIX_MATRIC + "MATRIC "
             + PREFIX_PHONE + "PHONE "
@@ -54,9 +57,12 @@ public class SearchEventMemberCommand extends Command {
             + PREFIX_BLOCK + "BLOCK "
             + PREFIX_LEVEL + "LEVEL "
             + PREFIX_ROOM + "ROOM "
-            + PREFIX_DESIGNATION + "DESIGNATION\n"
-            + "Example: " + COMMAND_WORD + " memtype/stu name/John Doe\n"
+            + PREFIX_DESIGNATION + "DESIGNATION"
+            + PREFIX_TAG + "TAG\n"
+            + "Example: " + COMMAND_WORD + "1 memtype/stu name/John Doe\n"
             + "Case 2: staff\n"
+            + "EVENT_INDEX "
+            + PREFIX_EVENT_MEMTYPE + "MEMBER_TYPE(stu/staff/ext) "
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "
             + PREFIX_EMAIL + "EMAIL "
@@ -65,14 +71,17 @@ public class SearchEventMemberCommand extends Command {
             + PREFIX_BLOCK + "BLOCK "
             + PREFIX_LEVEL + "LEVEL "
             + PREFIX_ROOM + "ROOM "
-            + PREFIX_DESIGNATION + "DESIGNATION\n"
-            + "Example: " + COMMAND_WORD + " memtype/staff phone/91234567\n"
+            + PREFIX_DESIGNATION + "DESIGNATION"
+            + PREFIX_TAG + "TAG\n"
+            + "Example: " + COMMAND_WORD + "1 memtype/staff phone/91234567\n"
             + "Case 3: ext\n"
+            + "EVENT_INDEX "
+            + PREFIX_EVENT_MEMTYPE + "MEMBER_TYPE(stu/staff/ext) "
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "
             + PREFIX_EMAIL + "EMAIL "
             + PREFIX_DESCRIPTION + "DESCRIPTION\n"
-            + "Example: " + COMMAND_WORD + " memtype/ext email/johnd@example.com";
+            + "Example: " + COMMAND_WORD + "1 memtype/ext email/johnd@example.com";
 
     public static final String MESSAGE_SUCCESS = "Found %1$d matching members in the event with the given attributes.";
     public static final String MESSAGE_NO_MATCH = "Found no matching members in the event with the given attributes.";
