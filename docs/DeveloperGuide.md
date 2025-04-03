@@ -460,7 +460,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Glossary
 
-* **RA**: Resident Asisstants
+* **RA**: Resident Assistants
 * **RF**: Resident Fellows
 * **Resident**: Members residing in the residence
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
