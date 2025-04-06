@@ -431,7 +431,7 @@ Here is a comprehensive list for any constraints that we have specified above!
 * Emergency `emergency/`: Emergency phone numbers should only contain numbers, and it should be at least 3 digits long.
 * Event Start Time `from/`: Event start time must be in the format 'yyyy-MM-dd HH:mm' and must be a valid datetime. It should also come before the Event End Time.
 * Event End Time `to/`: Event end time must be in the format 'yyyy-MM-dd HH:mm' and must be a valid datetime. It should also come after the Event Start Time.
-* Event Name `name/`: Event names should only contain alphanumeric characters and spaces, and it should not be blank.
+* Event Name `name/`: Event names should only contain alphanumeric characters and spaces, and it should not be blank. Do note if you input more than 1 whitespace in the middle of the name, it will be shortened down to just 1 whitespace.
 * Level `level/`: Levels should only be positive integers, and it should not be blank.
 * Matric `matric/`: Matric numbers should start with 'A', followed by 7 numeric digits, and end with a letter.
 * Name `name/`: Names should only contain alphanumeric characters and spaces, and it should not be blank. Do note if you input more than 1 whitespace in the middle of the name, it will be shortened down to just 1 whitespace.
