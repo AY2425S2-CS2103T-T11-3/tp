@@ -10,13 +10,25 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Name {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Names should only contain alphanumeric characters and spaces, and it should not be blank";
+            "Names should only contain alphanumeric characters, spaces, and some exceptions, and must not be blank.\n"
+                    + "Allowed exceptions: names may include multiple '-' characters, and exactly one of "
+                    + "'s/o', 'd/o', or '@'.\n"
+                    + "These exceptions must not appear at the start or end of the name.";
 
     /*
-     * The first character of the address must not be a whitespace,
-     * otherwise " " (a blank string) becomes a valid input.
+     * Validates names with the following rules:
+     * - Must start and end with an alphanumeric character.
+     * - Can contain alphanumerics, spaces, and hyphens.
+     * - May include exactly one of the following: 's/o', 'd/o', or '@<alphanumeric>'.
+     * - These special tokens must not appear at the start or end of the name.
+     * - Multiple hyphens are allowed.
+     * - 's/o' and 'd/o' must appear with spaces before and after.
+     * - The name must not be blank.
      */
-    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
+    public static final String VALIDATION_REGEX =
+            "^(?!.*\\b(s/o|d/o)\\b.*\\b(s/o|d/o)\\b)(?!.*@.*@)[\\p{Alnum}](?:[\\p{Alnum} \\-]*?"
+                    + "(?: s/o | d/o |@[\\p{Alnum}]+)?[\\p{Alnum} \\-]*)[\\p{Alnum}]$";
+
 
     public final String fullName;
 

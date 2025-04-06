@@ -39,6 +39,36 @@ public class NameTest {
     }
 
     @Test
+    public void isValidName_withExceptions() {
+
+        assertTrue(Name.isValidName("John s/o Mark")); // valid use of 's/o' in the middle
+        assertTrue(Name.isValidName("Mary d/o Jane")); // valid use of 'd/o' in the middle
+        assertTrue(Name.isValidName("alex-james")); // multiple hyphens
+        assertTrue(Name.isValidName("peter@home")); // one @, not at start or end
+        assertTrue(Name.isValidName("Jean-Luc s/o Kevin")); // alphanumerics, hyphen, and s/o
+        assertTrue(Name.isValidName("Anna-Marie d/o Tan")); // hyphen + d/o
+        assertTrue(Name.isValidName("A--B--C")); // multiple hyphens between alphanumerics
+
+
+        assertFalse(Name.isValidName("@peter")); // starts with '@'
+        assertFalse(Name.isValidName("john@")); // ends with '@'
+        assertFalse(Name.isValidName("s/o Mark")); // starts with 's/o'
+        assertFalse(Name.isValidName("John s/o")); // ends with 's/o'
+        assertFalse(Name.isValidName("John s/o Mark d/o Jane")); // two special phrases
+        assertFalse(Name.isValidName("amy@@home")); // multiple '@'
+        assertFalse(Name.isValidName("peter*")); // contains non-alphanumeric symbol '*'
+        assertFalse(Name.isValidName("-peter")); // starts with '-'
+        assertFalse(Name.isValidName("peter-")); // ends with '-'
+        assertFalse(Name.isValidName("@")); // only special char
+        assertFalse(Name.isValidName("s/o")); // only special phrase
+        assertFalse(Name.isValidName("-")); // only hyphen
+        assertFalse(Name.isValidName("--")); // only hyphens
+        assertFalse(Name.isValidName(" - ")); // only space and hyphen
+    }
+
+
+
+    @Test
     public void equals() {
         Name name = new Name("Valid Name");
 
