@@ -283,7 +283,7 @@ public class ParserUtil {
      */
     public static Matric parseMatric(String matric) throws ParseException {
         requireNonNull(matric);
-        String trimmedMatric = matric.trim();
+        String trimmedMatric = matric.trim().toUpperCase();
         if (!Matric.isValidMatric(trimmedMatric)) {
             throw new ParseException(Matric.MESSAGE_CONSTRAINTS);
         }
