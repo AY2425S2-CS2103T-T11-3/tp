@@ -18,8 +18,8 @@ public class Name {
     /*
      * Validates names with the following rules:
      * - Must start and end with an alphanumeric character.
-     * - Can contain alphanumerics, spaces, and hyphens.
-     * - May include exactly one of the following: 's/o', 'd/o', or '@<alphanumeric>'.
+     * - Can contain alphanumerics, spaces, and hyphens '-'.
+     * - May include exactly one of the following: 's/o', 'd/o', or '@'.
      * - These special tokens must not appear at the start or end of the name.
      * - Multiple hyphens are allowed.
      * - 's/o' and 'd/o' must appear with spaces before and after.
