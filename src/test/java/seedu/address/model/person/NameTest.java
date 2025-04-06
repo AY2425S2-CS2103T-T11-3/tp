@@ -36,6 +36,7 @@ public class NameTest {
         assertTrue(Name.isValidName("peter the 2nd")); // alphanumeric characters
         assertTrue(Name.isValidName("Capital Tan")); // with capital letters
         assertTrue(Name.isValidName("David Roger Jackson Ray Jr 2nd")); // long names
+        assertTrue(Name.isValidName("john       doe")); // many whitespaces
     }
 
     @Test
@@ -56,5 +57,8 @@ public class NameTest {
 
         // different values -> returns false
         assertFalse(name.equals(new Name("Other Valid Name")));
+
+        //many whitespaces -> equal to same words but only 1 whitespace
+        assertTrue(name.equals(new Name("Valid     Name")));
     }
 }
