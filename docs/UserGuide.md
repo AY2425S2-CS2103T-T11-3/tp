@@ -432,7 +432,7 @@ Here is a comprehensive list for any constraints that we have specified above!
 * Event Start Time `from/`: Event start time must be in the format 'yyyy-MM-dd HH:mm' and must be a valid datetime. It should also come before the Event End Time.
 * Event End Time `to/`: Event end time must be in the format 'yyyy-MM-dd HH:mm' and must be a valid datetime. It should also come after the Event Start Time.
 * Event Name `name/`: Event names should only contain alphanumeric characters and spaces, and it should not be blank.
-* Level `level/`: Levels should only be positive integers, and it should not be blank.
+* Level `level/`: Levels should only be positive integers up to 99, and it should not be blank. Note that any input with leading "0"s will be trimmed and treated as if there were no leading "0"s.
 * Matric `matric/`: Matric numbers should start with 'A', followed by 7 numeric digits, and end with a letter.
 * Name `name/`: Names should only contain alphanumeric characters and spaces, and it should not be blank.
 * Phone `phone/`: Phone numbers should only contain numbers, and it should be at least 3 digits long.
