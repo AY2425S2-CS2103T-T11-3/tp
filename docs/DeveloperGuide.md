@@ -393,7 +393,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a2. User enters updated details.
       Step 1a1-1a2 is repeated until the data entered is valid. Use case resumes from Step 2.
 
-* 3a. The data format (student index/staff index/external party index) is incorrent.
+* 3a. The data format (student index/staff index/external party index) is incorrect.
 
     * 3a1. ResiConnect shows an error message.
     * 3a2. User enters updated details.
