@@ -515,6 +515,13 @@ testers are expected to do more *exploratory* testing.
 
 ## **Appendix: Planned Enhancements**
 
+### Edit Functionality
+
+1. Add support for editing existing entries (students, staff, external parties or events). e.g. `edit_stu name/Alice email/Alice@example.com`.
+2. Users will be able to update one or more fields of an existing person based on their index in their respective lists.
+3. Only the specified fields will be updated, fields not included will remain unchanged.
+4. Validation rules will still apply during editing. (e.g. for phone, email, matric)
+
 ### Partial Searching
 
-1. Add support for partial and fuzzy searching. e.g. `John` will match `John Doe`, and `ball` will match `Basketball Training`
+1. Add support for partial and fuzzy searching. e.g. `John` will match `John Doe`, and `ball` will match `Basketball Training`.
