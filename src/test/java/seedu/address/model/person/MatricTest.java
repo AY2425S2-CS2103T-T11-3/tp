@@ -14,25 +14,33 @@ public class MatricTest {
     @Test
     public void constructor_invalidMatric_throwsIllegalArgumentException() {
         String invalidMatric = "";
-        assertThrows(IllegalArgumentException.class, () -> new Phone(invalidMatric));
+        assertThrows(IllegalArgumentException.class, () -> new Matric(invalidMatric));
     }
 
     @Test
     public void isValidMatric() {
-        // null phone number
+        // null matric number
         assertThrows(NullPointerException.class, () -> Matric.isValidMatric(null));
 
-        // invalid phone numbers
+        // invalid matric numbers
         assertFalse(Matric.isValidMatric("")); // empty string
         assertFalse(Matric.isValidMatric(" ")); // spaces only
-        assertFalse(Matric.isValidMatric("A0")); // less than 3 numbers
+        assertFalse(Matric.isValidMatric("A0")); // less than 7 numbers and no ending letter
         assertFalse(Matric.isValidMatric("matric")); // non-numeric
         assertFalse(Matric.isValidMatric("A8sdf28")); // alphabets within digits
         assertFalse(Matric.isValidMatric("A0234 567")); // spaces within digits
 
-        // valid phone numbers
-        assertTrue(Matric.isValidMatric("A0345678B")); // exactly 3 numbers
+        // valid matric numbers
+        assertTrue(Matric.isValidMatric("A0345678B"));
         assertTrue(Matric.isValidMatric("A0234567C"));
+
+        // input lowercase matrics
+        Matric matric = new Matric("a0123456g");
+        assertTrue(Matric.isValidMatric(matric.toString()));
+        Matric matric2 = new Matric("a0123456C");
+        assertTrue(Matric.isValidMatric(matric2.toString()));
+        Matric matric3 = new Matric("A0123456p");
+        assertTrue(Matric.isValidMatric(matric3.toString()));
     }
 
     @Test
@@ -41,6 +49,9 @@ public class MatricTest {
 
         // same values -> returns true
         assertTrue(matric.equals(new Matric("A0345678B")));
+
+        // same values but lowercase -> returns true
+        assertTrue(matric.equals(new Matric("a0345678b")));
 
         // same object -> returns true
         assertTrue(matric.equals(matric));
