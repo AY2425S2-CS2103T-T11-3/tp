@@ -509,3 +509,12 @@ testers are expected to do more *exploratory* testing.
 
     1. Other incorrect delete commands to try: `delete_stu`, `delete_stu x`, `...` (where x is larger than the list size)<br>
        Expected: Similar to previous.
+
+
+--------------------------------------------------------------------------------------------------------------------
+
+## **Appendix: Planned Enhancements**
+
+### Partial Searching
+
+1. Add support for partial and fuzzy searching. e.g. `John` will match `John Doe`, and `ball` will match `Basketball Training`

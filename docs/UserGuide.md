@@ -162,7 +162,7 @@ Adds an external party to the address book.
 Format: `add_ext name/NAME phone/PHONE email/EMAIL desc/DESCRIPTION`
 
 Examples:
-* `add_ext name/John Doe phone/98765432 email/johnd@example.com desc/External party for food.`
+* `add_ext name/John Doe phone/98765432 email/johnd@example.com desc/Food Vendor`
 
 ### Listing all students : `list_stu`
 
@@ -236,7 +236,13 @@ Format: `search_stu [name/NAME] [matric/MATRIC] [phone/PHONE] [email/EMAIL] [a/A
 
 * At least one of the parameters must be provided in the search.
 * The search is case-insensitive. e.g `alice` will match `Alice`.
-* Only full words will be matched e.g. `Alic` will not match `Alice`.
+* Only full words will be matched. e.g. `Alic` will not match `Alice`.
+* Only exact word matches are allowed; partial matches within longer phrases are not supported. e.g. `John` will not match `John Doe`.
+
+<box type="tip" seamless>
+
+**Tip:** Support for partial matches is a planned enhancement for future versions of ResiConnect.
+</box>
 
 Examples:
 * `search_stu name/Alice` returns a list of students that are named `Alice`.
@@ -256,6 +262,12 @@ Format: `search_staff [name/NAME] [phone/PHONE] [email/EMAIL] [a/ADDRESS] [t/TAG
 * At least one of the parameters must be provided in the search.
 * The search is case-insensitive. e.g `alice` will match `Alice`.
 * Only full words will be matched e.g. `Alic` will not match `Alice`.
+* Only exact word matches are allowed; partial matches within longer phrases are not supported. e.g. `John` will not match `John Doe`.
+
+<box type="tip" seamless>
+
+**Tip:** Support for partial matches is a planned enhancement for future versions of ResiConnect.
+</box>
 
 Examples:
 * `search_staff name/Alice` returns a list of staff that are named `Alice`.
@@ -271,6 +283,12 @@ Format: `search_ext [name/NAME] [phone/PHONE] [email/EMAIL] [desc/DESCRIPTION]`
 * At least one of the parameters must be provided in the search.
 * The search is case-insensitive. e.g `alice` will match `Alice`.
 * Only full words will be matched e.g. `Alic` will not match `Alice`.
+* Only exact word matches are allowed; partial matches within longer phrases are not supported. e.g. `John` will not match `John Doe`.
+
+<box type="tip" seamless>
+
+**Tip:** Support for partial matches is a planned enhancement for future versions of ResiConnect.
+</box>
 
 Examples:
 * `search_ext name/Alice` returns a list of staff that are named `Alice`.
@@ -332,9 +350,16 @@ Searches for all events which match the specified keywords from ResiConnect.
 
 Format: `search_event [name/EVENT_NAME] [from/START_TIME] [to/END_TIME]`
 
-* At least one of the optional fields must be provided.
-* The EVENT_NAME is case-insensitive, and only full words will be matched.
+* At least one of the parameters must be provided in the search.
+* The search for EVENT_NAME is case-insensitive. e.g `dance club rehearsal` will match `Dance Club Rehearsal`.
+* For EVENT_NAME, only full words will be matched e.g. `Danc` will not match `Dance`.
+* For EVENT_NAME, only exact word matches are allowed; partial matches within longer phrases are not supported. e.g. `Dance` will not match `Dance Club Rehearsal`.
 * The START_TIME and END_TIME must be in the format `yyyy-MM-dd HH:mm`.
+
+<box type="tip" seamless>
+
+**Tip:** Support for partial matches is a planned enhancement for future versions of ResiConnect.
+</box>
 
 Examples:
 * `search_event name/Dance from/2025-06-15 18:00` searches for all events with the name `Dance` starting from `2025-06-15 18:00`.
@@ -382,9 +407,16 @@ Case 2 - Searches for staff: `search_event_member EVENT_INDEX memtype/staff [nam
 
 Case 3 - Searches for external parties: `search_event_member EVENT_INDEX memtype/ext [name/NAME] [phone/PHONE] [email/EMAIL] [desc/DESCRIPTION]`
 
-* At least one of the optional fields must be provided.
+* At least one of the parameters must be provided in the search.
+* The search is case-insensitive. e.g `alice` will match `Alice`.
+* Only full words will be matched e.g. `Alic` will not match `Alice`.
+* Only exact word matches are allowed; partial matches within longer phrases are not supported. e.g. `John` will not match `John Doe`.
 * The EVENT_INDEX refers to the index number shown in the unfiltered event list, given by the `list_event` command.
-* The parameters used for searching is case-insensitive, and only full words will be matched.
+
+<box type="tip" seamless>
+
+**Tip:** Support for partial matches is a planned enhancement for future versions of ResiConnect.
+</box>
 
 Examples:
 * `search_event_member 1 memtype/stu name/John Doe` searches for all students named John Doe in the first event.
