@@ -54,7 +54,7 @@ public class EventName {
         }
 
         EventName otherName = (EventName) other;
-        return fullEventName.equals(otherName.fullEventName);
+        return fullEventName.equalsIgnoreCase(otherName.fullEventName);
     }
 
     @Override
