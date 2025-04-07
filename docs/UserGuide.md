@@ -511,7 +511,8 @@ Here is a comprehensive list for any constraints that we have specified above!
 * Event Name `name/`: Event names should only contain alphanumeric characters and spaces, and it should not be blank. Do note if you input more than 1 whitespace in the middle of the name, it will be shortened down to just 1 whitespace.
 * Level `level/`: Levels should only be positive integers up to 99, and it should not be blank. Note that any input with leading "0"s will be trimmed and treated as if there were no leading "0"s.
 * Matric `matric/`: Matric numbers should start with 'A', followed by 7 numeric digits, and end with a letter.
-* Name `name/`: Names should only contain alphanumeric characters and spaces, and it should not be blank. Do note if you input more than 1 whitespace in the middle of the name, it will be shortened down to just 1 whitespace.
+* Name `name/`: Names should only contain alphanumeric characters, spaces, and some exceptions, and should not be blank. Allowed exceptions: names may include multiple '-' characters, and exactly one of 's/o', 'd/o', or '@'.
+  These exceptions must not appear at the start or end of the name. Do note if you input more than 1 whitespace in the middle of the name, it will be shortened down to just 1 whitespace.
 * Phone `phone/`: Phone numbers should only contain numbers, and it should be at least 3 digits long.
 * Room `room/`: Rooms should only be positive integers up to 99, and it should not be blank. Note that any input with leading "0"s will be trimmed and treated as if there were no leading "0"s.
 * StaffDesignation `designation/`: Designation should only be an integer from 0 to 2, and it should not be blank. 0 to 2 represent Support Staff, Block IC and Residence Master respectively.
