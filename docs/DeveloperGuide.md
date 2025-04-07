@@ -305,9 +305,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 
 
-
-*{More to be added}*
-
 ### Use cases
 
 (For all use cases below, the **System** is the `ResiConnect` and the **Actor** is the `user`, unless specified otherwise)
@@ -530,3 +527,6 @@ testers are expected to do more *exploratory* testing.
 ### Partial Searching
 
 1. Add support for partial and fuzzy searching. e.g. `John` will match `John Doe`, and `ball` will match `Basketball Training`.
+
+### Maximum Number of residents in a room
+1. Add support for setting a maximum number of residents in a room.
