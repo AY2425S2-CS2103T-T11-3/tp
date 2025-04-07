@@ -16,7 +16,11 @@ If you can type fast, ResiConnect can get your contact management tasks done fas
 ## Table of Contents
 1. [Quick Start](#quick-start)
 
-1. [Defining how we identify a unique student, staff, external party and event](#defining-how-we-identify-a-unique-student-staff-external-party-and-event)
+1. [Definitions](#definitions)
+   1. [Students](#students)
+   2. [Staff](#staff)
+   3. [External Parties](#external-parties)
+   4. [Events](#events)
 
 1. [Features](#features)
    1. [Viewing Help](#viewing-help--help)
@@ -85,31 +89,31 @@ If you can type fast, ResiConnect can get your contact management tasks done fas
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Defining how we identify a unique student, staff, external party and event
+## Definitions
 
 Before we introduce the features of ResiConnect, it is important that we define how a student, staff, external party, and events are differentiated. This will allow you to better understand when ResiConnect allows you to add a student, staff, external party or event.
 
-* Students
+### Students
 
-No two students can have the same matriculation number, phone number or email address. Their names can be the same. <br>
-When you are adding a student, if any of the matriculation number, phone number or email address matches any other student, ResiConnect will prevent you from adding the student.
+* No two students can have the same matriculation number, phone number or email address. Their names can be the same. <br>
+* When you are adding a student, if any of the matriculation number, phone number or email address matches any other student, ResiConnect will prevent you from adding the student.
 
-* Staff
+### Staff
 
-No two staff members can have the same phone number or email address. Their names can be the same. <br>
-When you are adding a staff, if any of the phone number or email address matches any other staff, ResiConnect will prevent you from adding the staff.
+* No two staff members can have the same phone number or email address. Their names can be the same. <br>
+* When you are adding a staff, if any of the phone number or email address matches any other staff, ResiConnect will prevent you from adding the staff.
 
-* External Parties
+### External Parties
 
-No two external parties can have the same phone number or email address. Their names can be the same. <br>
-When you are adding an external party, if any of the phone number or email address matches any other external party, ResiConnect will prevent you from adding the external party.
+* No two external parties can have the same phone number or email address. Their names can be the same. <br>
+* When you are adding an external party, if any of the phone number or email address matches any other external party, ResiConnect will prevent you from adding the external party.
 
-<box type="info" seamless>
-Note that when you add any of the 3 person types above, ResiConnect will also check phone numbers and email addresses against the other remaining two person types. <br>
-For example, if you add a student, ResiConnect ensures that there is no staff or external party that has these phone number or email address.
-</box>
+> [!IMPORTANT]
+> Note that when you add any of the 3 person types above, ResiConnect will also check phone numbers and email addresses against the other remaining two person types.
+> 
+> For example, if you are attempting to add a student, ResiConnect ensures that there is no staff or external party that already has this student's phone number or email address.
 
-* Events
+### Events
 
 No two events can have the same event name, start time and end time. <br>
 As long as the combination of event name, start time and end time together do not match, ResiConnect will allow you to add a new event.
