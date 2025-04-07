@@ -32,6 +32,7 @@ public class EventNameTest {
         assertTrue(EventName.isValidEventName("Concert"));
         assertTrue(EventName.isValidEventName("Company Meeting"));
         assertTrue(EventName.isValidEventName("Hackathon 2025"));
+        assertTrue(EventName.isValidEventName("Hackathon                  2025"));
     }
 
     @Test
@@ -42,6 +43,7 @@ public class EventNameTest {
 
         assertEquals(eventName1, eventName2); // same values
         assertNotEquals(eventName1, eventName3); // different values
+        assertEquals(new EventName("Concert Dog"), new EventName("Concert              Dog"));
     }
 
     @Test

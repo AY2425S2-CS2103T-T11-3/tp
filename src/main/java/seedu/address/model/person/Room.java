@@ -30,6 +30,7 @@ public class Room {
      * Returns true if a given String is a valid level.
      */
     public static boolean isValidRoom(String test) {
+        test = test.replaceAll("^0+", "");
         return test.matches(VALIDATION_REGEX);
     }
 

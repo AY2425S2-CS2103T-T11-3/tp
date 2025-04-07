@@ -47,6 +47,16 @@ public class AddEventCommandTest {
     }
 
     @Test
+    public void execute_duplicateEventNameWithDifferentCase_throwsCommandException() throws Exception {
+        Event event1 = new EventBuilder().withEventName("Dance Event").build();
+        Event event2 = new EventBuilder().withEventName("dance event").build();
+        model.addEvent(event1);
+        AddEventCommand command = new AddEventCommand(event2);
+
+        assertThrows(CommandException.class, () -> command.execute(model), AddEventCommand.MESSAGE_DUPLICATE_EVENT);
+    }
+
+    @Test
     public void equals_sameObject_returnsTrue() {
         AddEventCommand command1 = new AddEventCommand(DANCE_EVENT);
         AddEventCommand command2 = new AddEventCommand(DANCE_EVENT);
