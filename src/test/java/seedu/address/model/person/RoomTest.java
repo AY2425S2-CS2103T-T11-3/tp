@@ -41,6 +41,8 @@ public class RoomTest {
         assertFalse(Room.isValidRoom("H4"));
         assertFalse(Room.isValidRoom("Z8"));
         assertFalse(Room.isValidRoom("100"));
+        assertFalse(Room.isValidRoom("000000100"));
+        assertFalse(Room.isValidRoom("00000000"));
 
         // valid blocks
         assertTrue(Room.isValidRoom("1"));
@@ -50,6 +52,8 @@ public class RoomTest {
         assertTrue(Room.isValidRoom("23"));
         assertTrue(Room.isValidRoom("44"));
         assertTrue(Room.isValidRoom("98"));
+        assertTrue(Room.isValidRoom("00000098"));
+        assertTrue(Room.isValidRoom("0000008"));
 
     }
 
@@ -71,5 +75,7 @@ public class RoomTest {
 
         // different values -> returns false
         assertFalse(room.equals(new Room("9")));
+
+        assertTrue(room.equals(new Room("00008")));
     }
 }

@@ -16,39 +16,48 @@ If you can type fast, ResiConnect can get your contact management tasks done fas
 ## Table of Contents
 1. [Quick Start](#quick-start)
 
-1. [Features](#features)
+
+2. [Definitions](#definitions)
+   1. [Students](#students)
+   2. [Staff](#staff)
+   3. [External Parties](#external-parties)
+   4. [Events](#events)
+
+
+3. [Features](#features)
    1. [Viewing Help](#viewing-help--help)
-   1. [Adding a Student](#adding-a-student-add_stu)
-   1. [Adding a Staff](#adding-a-staff-add_staff)
-   1. [Adding an External Party](#adding-an-external-party-add_ext)
-   1. [Listing all Students](#listing-all-students--list_stu)
-   1. [Listing all Staff](#listing-all-staff--list_staff)
-   1. [Listing all External Parties](#listing-all-external-parties--list_ext)
-   1. [Deleting a Student](#deleting-a-student--delete_stu)
-   1. [Deleting a Staff](#deleting-a-staff--delete_staff)
-   1. [Deleting an External Party](#deleting-an-external-party--delete_ext)
-   1. [Searching for Students](#searching-for-students-search_stu)
-   1. [Searching for Staff](#searching-for-staff-search_staff)
-   1. [Searching for External Parties](#searching-for-external-parties-search_ext)
-   1. [Adding an Event](#adding-an-event--add_event)
-   1. [Listing an Event](#listing-all-events--list_event)
-   1. [Deleting an Event](#deleting-an-event--delete_event)
-   1. [Viewing an Event](#viewing-an-event--view_event)
-   1. [Searching an Event](#searching-an-event--search_event)
-   1. [Adding a Member into an Event](#adding-a-member-into-an-event-add_event_member)
-   1. [Deleting a Member from an Event](#deleting-a-member-from-an-event-delete_event_member)
-   1. [Clearing all Entries](#clearing-all-entries--clear)
-   1. [Exiting the Program](#exiting-the-program--exit)
-   1. [Saving the Data](#saving-the-data)
-   1. [Editing the Data File](#editing-the-data-file)
+   2. [Adding a Student](#adding-a-student-add_stu)
+   3. [Adding a Staff](#adding-a-staff-add_staff)
+   4. [Adding an External Party](#adding-an-external-party-add_ext)
+   5. [Listing all Students](#listing-all-students--list_stu)
+   6. [Listing all Staff](#listing-all-staff--list_staff)
+   7. [Listing all External Parties](#listing-all-external-parties--list_ext)
+   8. [Deleting a Student](#deleting-a-student--delete_stu)
+   9. [Deleting a Staff](#deleting-a-staff--delete_staff)
+   10. [Deleting an External Party](#deleting-an-external-party--delete_ext)
+   11. [Searching for Students](#searching-for-students-search_stu)
+   12. [Searching for Staff](#searching-for-staff-search_staff)
+   13. [Searching for External Parties](#searching-for-external-parties-search_ext)
+   14. [Adding an Event](#adding-an-event--add_event)
+   15. [Listing an Event](#listing-all-events--list_event)
+   16. [Deleting an Event](#deleting-an-event--delete_event)
+   17. [Viewing an Event](#viewing-an-event--view_event)
+   18. [Searching an Event](#searching-an-event--search_event)
+   19. [Adding a Member into an Event](#adding-a-member-into-an-event-add_event_member)
+   20. [Deleting a Member from an Event](#deleting-a-member-from-an-event-delete_event_member)
+   21. [Clearing all Entries](#clearing-all-entries--clear)
+   22. [Exiting the Program](#exiting-the-program--exit)
+   23. [Saving the Data](#saving-the-data)
+   24. [Editing the Data File](#editing-the-data-file)
 
-1. [Constraints for the Features](#constraints-for-the-features)
 
-1. [FAQ](#faq)
+4. [Constraints for the Features](#constraints-for-the-features)
 
-1. [Known Issues](#known-issues)
+5. [FAQ](#faq)
 
-1. [Command Summary](#command-summary)
+6. [Known Issues](#known-issues)
+
+7. [Command Summary](#command-summary)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -80,6 +89,42 @@ If you can type fast, ResiConnect can get your contact management tasks done fas
    * `exit` : Exits the app.
 
 1. Refer to the [Features](#features) below for details of each command.
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Definitions
+
+Before we introduce the features of ResiConnect, it is important that we define how a student, staff, external party, and events are differentiated. This will allow you to better understand when ResiConnect allows you to add a student, staff, external party or event.
+
+### Students
+
+* No two students can have the same matriculation number, phone number or email address. Their names can be the same. <br>
+* When you are adding a student, if any of the matriculation number, phone number or email address matches any other student, ResiConnect will prevent you from adding the student.
+
+### Staff
+
+* No two staff members can have the same phone number or email address. Their names can be the same. <br>
+* When you are adding a staff, if any of the phone number or email address matches any other staff, ResiConnect will prevent you from adding the staff.
+
+### External Parties
+
+* No two external parties can have the same phone number or email address. Their names can be the same. <br>
+* When you are adding an external party, if any of the phone number or email address matches any other external party, ResiConnect will prevent you from adding the external party.
+
+<box type="important" seamless>
+
+**IMPORTANT:**
+Note that when you add any of the 3 person types above, ResiConnect will also check phone numbers and email addresses against the other remaining two person types.
+
+For example, if you are attempting to add a student, ResiConnect ensures that there is no staff or external party that already has this student's phone number or email address.
+
+</box>
+
+### Events
+
+No two events can have the same event name, start time and end time. <br>
+As long as the combination of event name, start time and end time together do not match, ResiConnect will allow you to add a new event.
+For example, if there already exists an event called "Feast", from 2025-01-01 18:00 to 2025-01-01 20:00, you can add another event that is also called "Feast", but happens from 2025-01-01 18:00 to 2025-01-01 21:00.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -162,7 +207,7 @@ Adds an external party to the address book.
 Format: `add_ext name/NAME phone/PHONE email/EMAIL desc/DESCRIPTION`
 
 Examples:
-* `add_ext name/John Doe phone/98765432 email/johnd@example.com desc/External party for food.`
+* `add_ext name/John Doe phone/98765432 email/johnd@example.com desc/Food Vendor`
 
 ### Listing all students : `list_stu`
 
@@ -236,7 +281,13 @@ Format: `search_stu [name/NAME] [matric/MATRIC] [phone/PHONE] [email/EMAIL] [a/A
 
 * At least one of the parameters must be provided in the search.
 * The search is case-insensitive. e.g `alice` will match `Alice`.
-* Only full words will be matched e.g. `Alic` will not match `Alice`.
+* Only full words will be matched. e.g. `Alic` will not match `Alice`.
+* Only exact word matches are allowed; partial matches within longer phrases are not supported. e.g. `John` will not match `John Doe`.
+
+<box type="tip" seamless>
+
+**Tip:** Support for partial matches is a planned enhancement for future versions of ResiConnect.
+</box>
 
 Examples:
 * `search_stu name/Alice` returns a list of students that are named `Alice`.
@@ -256,6 +307,12 @@ Format: `search_staff [name/NAME] [phone/PHONE] [email/EMAIL] [a/ADDRESS] [t/TAG
 * At least one of the parameters must be provided in the search.
 * The search is case-insensitive. e.g `alice` will match `Alice`.
 * Only full words will be matched e.g. `Alic` will not match `Alice`.
+* Only exact word matches are allowed; partial matches within longer phrases are not supported. e.g. `John` will not match `John Doe`.
+
+<box type="tip" seamless>
+
+**Tip:** Support for partial matches is a planned enhancement for future versions of ResiConnect.
+</box>
 
 Examples:
 * `search_staff name/Alice` returns a list of staff that are named `Alice`.
@@ -271,6 +328,12 @@ Format: `search_ext [name/NAME] [phone/PHONE] [email/EMAIL] [desc/DESCRIPTION]`
 * At least one of the parameters must be provided in the search.
 * The search is case-insensitive. e.g `alice` will match `Alice`.
 * Only full words will be matched e.g. `Alic` will not match `Alice`.
+* Only exact word matches are allowed; partial matches within longer phrases are not supported. e.g. `John` will not match `John Doe`.
+
+<box type="tip" seamless>
+
+**Tip:** Support for partial matches is a planned enhancement for future versions of ResiConnect.
+</box>
 
 Examples:
 * `search_ext name/Alice` returns a list of staff that are named `Alice`.
@@ -332,9 +395,16 @@ Searches for all events which match the specified keywords from ResiConnect.
 
 Format: `search_event [name/EVENT_NAME] [from/START_TIME] [to/END_TIME]`
 
-* At least one of the optional fields must be provided.
-* The EVENT_NAME is case-insensitive, and only full words will be matched.
+* At least one of the parameters must be provided in the search.
+* The search for EVENT_NAME is case-insensitive. e.g `dance club rehearsal` will match `Dance Club Rehearsal`.
+* For EVENT_NAME, only full words will be matched e.g. `Danc` will not match `Dance`.
+* For EVENT_NAME, only exact word matches are allowed; partial matches within longer phrases are not supported. e.g. `Dance` will not match `Dance Club Rehearsal`.
 * The START_TIME and END_TIME must be in the format `yyyy-MM-dd HH:mm`.
+
+<box type="tip" seamless>
+
+**Tip:** Support for partial matches is a planned enhancement for future versions of ResiConnect.
+</box>
 
 Examples:
 * `search_event name/Dance from/2025-06-15 18:00` searches for all events with the name `Dance` starting from `2025-06-15 18:00`.
@@ -382,9 +452,16 @@ Case 2 - Searches for staff: `search_event_member EVENT_INDEX memtype/staff [nam
 
 Case 3 - Searches for external parties: `search_event_member EVENT_INDEX memtype/ext [name/NAME] [phone/PHONE] [email/EMAIL] [desc/DESCRIPTION]`
 
-* At least one of the optional fields must be provided.
+* At least one of the parameters must be provided in the search.
+* The search is case-insensitive. e.g `alice` will match `Alice`.
+* Only full words will be matched e.g. `Alic` will not match `Alice`.
+* Only exact word matches are allowed; partial matches within longer phrases are not supported. e.g. `John` will not match `John Doe`.
 * The EVENT_INDEX refers to the index number shown in the unfiltered event list, given by the `list_event` command.
-* The parameters used for searching is case-insensitive, and only full words will be matched.
+
+<box type="tip" seamless>
+
+**Tip:** Support for partial matches is a planned enhancement for future versions of ResiConnect.
+</box>
 
 Examples:
 * `search_event_member 1 memtype/stu name/John Doe` searches for all students named John Doe in the first event.
@@ -419,7 +496,7 @@ Furthermore, certain edits can cause the AddressBook to behave in unexpected way
 ## Constraints for the Features
 
 Here is a comprehensive list for any constraints that we have specified above!
-* Address `a/`: Addresses can take any values, and it should not be blank.
+* Address `a/`: Addresses can take any values, and it should not be blank. If your address contains "/", do note that if it matches any of the other parameters e.g. `t/`, ResiConnect will not accept your input and an error will be displayed.
 * Block `block/`: Block should only be 1 alphabet or 1 number from 1 to 9, and it should not be blank.
 * Description `desc/`: Description can take any values, and it should not be blank.
 * Email `email/`: Emails should be of the format local-part@domain and adhere to the following constraints:
@@ -431,12 +508,12 @@ Here is a comprehensive list for any constraints that we have specified above!
 * Emergency `emergency/`: Emergency phone numbers should only contain numbers, and it should be at least 3 digits long.
 * Event Start Time `from/`: Event start time must be in the format 'yyyy-MM-dd HH:mm' and must be a valid datetime. It should also come before the Event End Time.
 * Event End Time `to/`: Event end time must be in the format 'yyyy-MM-dd HH:mm' and must be a valid datetime. It should also come after the Event Start Time.
-* Event Name `name/`: Event names should only contain alphanumeric characters and spaces, and it should not be blank.
-* Level `level/`: Levels should only be positive integers, and it should not be blank.
+* Event Name `name/`: Event names should only contain alphanumeric characters and spaces, and it should not be blank. Do note if you input more than 1 whitespace in the middle of the name, it will be shortened down to just 1 whitespace.
+* Level `level/`: Levels should only be positive integers up to 99, and it should not be blank. Note that any input with leading "0"s will be trimmed and treated as if there were no leading "0"s.
 * Matric `matric/`: Matric numbers should start with 'A', followed by 7 numeric digits, and end with a letter.
-* Name `name/`: Names should only contain alphanumeric characters and spaces, and it should not be blank.
+* Name `name/`: Names should only contain alphanumeric characters and spaces, and it should not be blank. Do note if you input more than 1 whitespace in the middle of the name, it will be shortened down to just 1 whitespace.
 * Phone `phone/`: Phone numbers should only contain numbers, and it should be at least 3 digits long.
-* Room `room/`: Rooms should only be positive integers, and it should not be blank.
+* Room `room/`: Rooms should only be positive integers up to 99, and it should not be blank. Note that any input with leading "0"s will be trimmed and treated as if there were no leading "0"s.
 * StaffDesignation `designation/`: Designation should only be an integer from 0 to 2, and it should not be blank. 0 to 2 represent Support Staff, Block IC and Residence Master respectively.
 * StudentDesignation `designation/`: Designation should only be an integer from 0 to 2, and it should not be blank. 0 to 2 represent Resident, Block Head and JCRC Member respectively.
 * Tag `t/`: Tags should be alphanumeric.

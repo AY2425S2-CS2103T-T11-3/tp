@@ -30,6 +30,7 @@ public class Level {
      * Returns true if a given String is a valid level.
      */
     public static boolean isValidLevel(String test) {
+        test = test.replaceAll("^0+", "");
         return test.matches(VALIDATION_REGEX);
     }
 

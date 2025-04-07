@@ -32,6 +32,7 @@ public class AddressTest {
         assertTrue(Address.isValidAddress("Blk 456, Den Road, #01-355"));
         assertTrue(Address.isValidAddress("-")); // one character
         assertTrue(Address.isValidAddress("Leng Inc; 1234 Market St; San Francisco CA 2349879; USA")); // long address
+        assertTrue(Address.isValidAddress("Leng Inc; 1234 Market St;            San Francisco CA 2349879; USA"));
     }
 
     @Test
@@ -52,5 +53,8 @@ public class AddressTest {
 
         // different values -> returns false
         assertFalse(address.equals(new Address("Other Valid Address")));
+
+        // same words, but multiple whitespaces -> returns true
+        assertTrue(address.equals(new Address("Valid            Address")));
     }
 }

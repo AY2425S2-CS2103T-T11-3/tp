@@ -31,7 +31,7 @@ public class AddExternalPartyCommand extends Command {
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "johnd@example.com "
-            + PREFIX_DESCRIPTION + "External party for food. ";
+            + PREFIX_DESCRIPTION + "Food Vendor ";
 
     public static final String MESSAGE_SUCCESS = "New external party added: %1$s";
     public static final String MESSAGE_DUPLICATE_PARTY = "This external party already exists in ResiConnect. "

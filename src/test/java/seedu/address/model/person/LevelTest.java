@@ -41,6 +41,8 @@ public class LevelTest {
         assertFalse(Level.isValidLevel("H4"));
         assertFalse(Level.isValidLevel("Z8"));
         assertFalse(Level.isValidLevel("100"));
+        assertFalse(Level.isValidLevel("0000999"));
+        assertFalse(Level.isValidLevel("0000000"));
 
         // valid blocks
         assertTrue(Level.isValidLevel("1"));
@@ -50,6 +52,8 @@ public class LevelTest {
         assertTrue(Level.isValidLevel("23"));
         assertTrue(Level.isValidLevel("44"));
         assertTrue(Level.isValidLevel("98"));
+        assertTrue(Level.isValidLevel("000099"));
+        assertTrue(Level.isValidLevel("09"));
 
     }
 
@@ -71,6 +75,9 @@ public class LevelTest {
 
         // different values -> returns false
         assertFalse(level.equals(new Level("9")));
+
+        // leading 0s, same number -> returns true
+        assertTrue(level.equals(new Level("0000000008")));
     }
 
 }

@@ -19,6 +19,7 @@ public class Matric {
      */
     public Matric(String matric) {
         requireNonNull(matric);
+        matric = matric.toUpperCase();
         checkArgument(isValidMatric(matric), MESSAGE_CONSTRAINTS);
         value = matric;
     }
