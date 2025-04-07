@@ -28,7 +28,7 @@ public class EventName {
     public EventName(String name) {
         requireNonNull(name);
         checkArgument(isValidEventName(name), MESSAGE_CONSTRAINTS);
-        fullEventName = name;
+        fullEventName = name.replaceAll("\\s+", " ").trim();
     }
 
     /**
