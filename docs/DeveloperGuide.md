@@ -6,8 +6,50 @@
 
 # ResiConnect Developer Guide
 
-<!-- * Table of Contents -->
-<page-nav-print />
+--------------------------------------------------------------------------------------------------------------------
+
+## Table of Contents
+1. [Acknowledgements](#acknowledgements)
+
+
+2. [Setting up, getting started](#setting-up-getting-started)
+
+
+3. [Design](#design)
+   1. [Architecture](#architecture)
+   2. [UI component](#ui-component)
+   3. [Logic component](#ui-component)
+   4. [Model component](#model-component)
+   5. [Storage component](#storage-component)
+   6. [Common classes](#common-classes)
+
+
+4. [Implementation](#implementation)
+    1. [[Proposed] Undo/redo feature](#proposed-undoredo-feature)
+
+
+5. [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
+
+
+6. [Appendix: Requirements](#appendix-requirements)
+   1. [Product scope](#product-scope)
+   2. [User stories](#user-stories)
+   3. [Use cases](#use-cases)
+   4. [Non-Functional Requirements](#non-functional-requirements)
+   5. [Glossary](#glossary)
+
+
+7. [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
+   1. [Launch and shutdown](#launch-and-shutdown)
+   2. [Deleting a student](#deleting-a-student)
+
+
+8. [Appendix: Planned Enhancements](#appendix-planned-enhancements)
+   1. [Edit Functionality](#edit-functionality)
+   2. [Partial Searching](#partial-searching)
+   3. [Maximum Number of residents in a room](#maximum-number-of-residents-in-a-room)
+
+
 
 --------------------------------------------------------------------------------------------------------------------
 
