@@ -529,4 +529,5 @@ testers are expected to do more *exploratory* testing.
 1. Add support for partial and fuzzy searching. e.g. `John` will match `John Doe`, and `ball` will match `Basketball Training`.
 
 ### Maximum Number of residents in a room
+
 1. Add support for setting a maximum number of residents in a room.
