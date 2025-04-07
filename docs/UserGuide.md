@@ -16,45 +16,48 @@ If you can type fast, ResiConnect can get your contact management tasks done fas
 ## Table of Contents
 1. [Quick Start](#quick-start)
 
-1. [Definitions](#definitions)
+
+2. [Definitions](#definitions)
    1. [Students](#students)
    2. [Staff](#staff)
    3. [External Parties](#external-parties)
    4. [Events](#events)
 
-1. [Features](#features)
+
+3. [Features](#features)
    1. [Viewing Help](#viewing-help--help)
-   1. [Adding a Student](#adding-a-student-add_stu)
-   1. [Adding a Staff](#adding-a-staff-add_staff)
-   1. [Adding an External Party](#adding-an-external-party-add_ext)
-   1. [Listing all Students](#listing-all-students--list_stu)
-   1. [Listing all Staff](#listing-all-staff--list_staff)
-   1. [Listing all External Parties](#listing-all-external-parties--list_ext)
-   1. [Deleting a Student](#deleting-a-student--delete_stu)
-   1. [Deleting a Staff](#deleting-a-staff--delete_staff)
-   1. [Deleting an External Party](#deleting-an-external-party--delete_ext)
-   1. [Searching for Students](#searching-for-students-search_stu)
-   1. [Searching for Staff](#searching-for-staff-search_staff)
-   1. [Searching for External Parties](#searching-for-external-parties-search_ext)
-   1. [Adding an Event](#adding-an-event--add_event)
-   1. [Listing an Event](#listing-all-events--list_event)
-   1. [Deleting an Event](#deleting-an-event--delete_event)
-   1. [Viewing an Event](#viewing-an-event--view_event)
-   1. [Searching an Event](#searching-an-event--search_event)
-   1. [Adding a Member into an Event](#adding-a-member-into-an-event-add_event_member)
-   1. [Deleting a Member from an Event](#deleting-a-member-from-an-event-delete_event_member)
-   1. [Clearing all Entries](#clearing-all-entries--clear)
-   1. [Exiting the Program](#exiting-the-program--exit)
-   1. [Saving the Data](#saving-the-data)
-   1. [Editing the Data File](#editing-the-data-file)
+   2. [Adding a Student](#adding-a-student-add_stu)
+   3. [Adding a Staff](#adding-a-staff-add_staff)
+   4. [Adding an External Party](#adding-an-external-party-add_ext)
+   5. [Listing all Students](#listing-all-students--list_stu)
+   6. [Listing all Staff](#listing-all-staff--list_staff)
+   7. [Listing all External Parties](#listing-all-external-parties--list_ext)
+   8. [Deleting a Student](#deleting-a-student--delete_stu)
+   9. [Deleting a Staff](#deleting-a-staff--delete_staff)
+   10. [Deleting an External Party](#deleting-an-external-party--delete_ext)
+   11. [Searching for Students](#searching-for-students-search_stu)
+   12. [Searching for Staff](#searching-for-staff-search_staff)
+   13. [Searching for External Parties](#searching-for-external-parties-search_ext)
+   14. [Adding an Event](#adding-an-event--add_event)
+   15. [Listing an Event](#listing-all-events--list_event)
+   16. [Deleting an Event](#deleting-an-event--delete_event)
+   17. [Viewing an Event](#viewing-an-event--view_event)
+   18. [Searching an Event](#searching-an-event--search_event)
+   19. [Adding a Member into an Event](#adding-a-member-into-an-event-add_event_member)
+   20. [Deleting a Member from an Event](#deleting-a-member-from-an-event-delete_event_member)
+   21. [Clearing all Entries](#clearing-all-entries--clear)
+   22. [Exiting the Program](#exiting-the-program--exit)
+   23. [Saving the Data](#saving-the-data)
+   24. [Editing the Data File](#editing-the-data-file)
 
-1. [Constraints for the Features](#constraints-for-the-features)
 
-1. [FAQ](#faq)
+4. [Constraints for the Features](#constraints-for-the-features)
 
-1. [Known Issues](#known-issues)
+5. [FAQ](#faq)
 
-1. [Command Summary](#command-summary)
+6. [Known Issues](#known-issues)
+
+7. [Command Summary](#command-summary)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -108,10 +111,14 @@ Before we introduce the features of ResiConnect, it is important that we define 
 * No two external parties can have the same phone number or email address. Their names can be the same. <br>
 * When you are adding an external party, if any of the phone number or email address matches any other external party, ResiConnect will prevent you from adding the external party.
 
-> [!IMPORTANT]
-> Note that when you add any of the 3 person types above, ResiConnect will also check phone numbers and email addresses against the other remaining two person types.
-> 
-> For example, if you are attempting to add a student, ResiConnect ensures that there is no staff or external party that already has this student's phone number or email address.
+<box type="important" seamless>
+
+**IMPORTANT:**
+Note that when you add any of the 3 person types above, ResiConnect will also check phone numbers and email addresses against the other remaining two person types.
+
+For example, if you are attempting to add a student, ResiConnect ensures that there is no staff or external party that already has this student's phone number or email address.
+
+</box>
 
 ### Events
 
