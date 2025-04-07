@@ -61,7 +61,10 @@
         "glossary": "Glossary",
         "appendix-instructions-for-manual-testing": "Appendix: Instructions for manual testing",
         "launch-and-shutdown": "Launch and shutdown",
-        "deleting-a-student": "Deleting a student"
+        "deleting-a-student": "Deleting a student",
+        "appendix-planned-enhancements": "Appendix: Planned Enhancements",
+        "edit-functionality": "Edit Functionality",
+        "partial-searching": "Partial Searching"
       },
       "headingKeywords": {}
     },
