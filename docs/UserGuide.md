@@ -524,10 +524,10 @@ Here is a comprehensive list for any constraints that we have specified above!
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in your other computer. Next, on this computer, navigate to ResiConnect's home folder, and from there, navigate to the data folder. Copy over the addressbook.json file from this folder, to the same folder on your other computer. If you do not know how to transfer the file, you start writing an email addressed to yourself, and attach the addressbook.json file on this computer. Send the email, then go to your other computer and download it from there.
+**A**: Install the app in your other computer. Next, on this computer, navigate to ResiConnect's home folder, and from there, navigate to the data folder. Copy over the resiconnect.json file from this folder, to the same folder on your other computer. If you do not know how to transfer the file, you start writing an email addressed to yourself, and attach the resiconnect.json file on this computer. Send the email, then go to your other computer and download it from there.
 
-**Q**: Why there is no constraint for total number of students with the same combination of Block, Level and Room?<br>
-**A**: ResiConnect aims to be flexible and allow users to add students to different types of blocks. For example, there are at most 4 residences in a room at utown residence, while only 2 in a room in most other residences. Further confirmation is needed to determine the maximum number of students in a room. We will implement this in future versions of ResiConnect.
+**Q**: Why is there no limit on the total number of staff or students that can have the same combination of Block, Level and Room?<br>
+**A**: ResiConnect aims to be flexible and accommodate all the different residences in NUS. These residences have different limits on the number of people in a room. For now, we have decided not to set a limit and leave it to the user's discretion to manage this. We plan to address this in a future iteration of ResiConnect.
 
 --------------------------------------------------------------------------------------------------------------------
 
