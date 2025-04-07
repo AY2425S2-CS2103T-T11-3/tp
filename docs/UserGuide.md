@@ -6,9 +6,9 @@
 
 # ResiConnect User Guide
 
-ResiConnect is a **desktop contact management app for Resident Fellows and students in the various halls and residential 
-colleges in NUS to track students, staff, external parties and events.** 
-It is optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). 
+ResiConnect is a **desktop contact management app for Resident Fellows and students in the various halls and residential
+colleges in NUS to track students, staff, external parties and events.**
+It is optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI).
 If you can type fast, ResiConnect can get your contact management tasks done faster than traditional GUI apps.
 
 --------------------------------------------------------------------------------------------------------------------
@@ -45,6 +45,7 @@ If you can type fast, ResiConnect can get your contact management tasks done fas
    18. [Searching an Event](#searching-an-event--search_event)
    19. [Adding a Member into an Event](#adding-a-member-into-an-event-add_event_member)
    20. [Deleting a Member from an Event](#deleting-a-member-from-an-event-delete_event_member)
+   21. [Searching for Event members](#searching-for-event-members-search_event_member)
    21. [Clearing all Entries](#clearing-all-entries--clear)
    22. [Exiting the Program](#exiting-the-program--exit)
    23. [Saving the Data](#saving-the-data)
@@ -79,7 +80,7 @@ If you can type fast, ResiConnect can get your contact management tasks done fas
 
    * `list_staff` : Lists all staff in the address book.
 
-   * `add_stu name/John Doe matric/A0234567B phone/98765432 email/johnd@example.com a/311, Clementi Ave 2, #02-25 
+   * `add_stu name/John Doe matric/A0234567B phone/98765432 email/johnd@example.com a/311, Clementi Ave 2, #02-25
    emergency/91234567 block/A level/5 room/3 designation/1` : Adds a student named `John Doe` to the address book.
 
    * `delete_ext 3` : Deletes the 3rd external party shown in the current external party list.
@@ -145,7 +146,7 @@ For example, if there already exists an event called "Feast", from 2025-01-01 18
 * Parameters can be in any order.<br>
   e.g. if the command specifies `name/NAME phone/PHONE_NUMBER`, `phone/PHONE_NUMBER name/NAME` is also acceptable.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list_stu` and `exit`) will be 
+* Extraneous parameters for commands that do not take in parameters (such as `help`, `list_stu` and `exit`) will be
 ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
@@ -276,7 +277,7 @@ Examples:
 Searches for all students whose attributes match the specified keywords (case-insensitive) and displays them as a list
 with index numbers.
 
-Format: `search_stu [name/NAME] [matric/MATRIC] [phone/PHONE] [email/EMAIL] [a/ADDRESS] [t/TAG] [emergency/EMERGENCY] 
+Format: `search_stu [name/NAME] [matric/MATRIC] [phone/PHONE] [email/EMAIL] [a/ADDRESS] [t/TAG] [emergency/EMERGENCY]
 [block/BLOCK] [level/LEVEL] [room/ROOM] [designation/DESIGNATION]`
 
 * At least one of the parameters must be provided in the search.
@@ -320,7 +321,7 @@ Examples:
 
 ### Searching for external parties: `search_ext`
 
-Searches for all external parties whose attributes match the specified keywords (case-insensitive) and displays them 
+Searches for all external parties whose attributes match the specified keywords (case-insensitive) and displays them
 as a list with index numbers.
 
 Format: `search_ext [name/NAME] [phone/PHONE] [email/EMAIL] [desc/DESCRIPTION]`
@@ -337,7 +338,7 @@ Format: `search_ext [name/NAME] [phone/PHONE] [email/EMAIL] [desc/DESCRIPTION]`
 
 Examples:
 * `search_ext name/Alice` returns a list of staff that are named `Alice`.
-* `search_ext name/Bob description/Food Vendor` returns a list of external parties that are both named `Bob` and 
+* `search_ext name/Bob description/Food Vendor` returns a list of external parties that are both named `Bob` and
 work as `Food Vendor`.
 
 ### Adding an event : `add_event`
@@ -361,7 +362,7 @@ Format: `list_event`
 ### Deleting an event : `delete_event`
 
 * Deletes the specified event from the address book.
-* The index refers to the index number shown in the unfiltered event list, given by the `list_event` command. 
+* The index refers to the index number shown in the unfiltered event list, given by the `list_event` command.
 
 Format: `delete_event INDEX`
 
@@ -374,7 +375,7 @@ Examples:
 
 ### Viewing an event : `view_event`
 
-Views the details of the specified event from the address book, including the associated student list, 
+Views the details of the specified event from the address book, including the associated student list,
 staff list, and external party list.
 
 Format: `view_event INDEX`
@@ -384,7 +385,7 @@ Format: `view_event INDEX`
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list_event` followed by `view_event 2` views the details of the 2nd event (including its associated students, 
+* `list_event` followed by `view_event 2` views the details of the 2nd event (including its associated students,
 staff, and external parties) in the address book.
 
 ![viewing event success message](images/view_eventSuccess.png)
@@ -524,7 +525,10 @@ Here is a comprehensive list for any constraints that we have specified above!
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in your other computer. Next, on this computer, navigate to ResiConnect's home folder, and from there, navigate to the data folder. Copy over the addressbook.json file from this folder, to the same folder on your other computer. If you do not know how to transfer the file, you start writing an email addressed to yourself, and attach the addressbook.json file on this computer. Send the email, then go to your other computer and download it from there. 
+**A**: Install the app in your other computer. Next, on this computer, navigate to ResiConnect's home folder, and from there, navigate to the data folder. Copy over the resiconnect.json file from this folder, to the same folder on your other computer. If you do not know how to transfer the file, you start writing an email addressed to yourself, and attach the resiconnect.json file on this computer. Send the email, then go to your other computer and download it from there.
+
+**Q**: Why is there no limit on the total number of staff or students that can have the same combination of Block, Level and Room?<br>
+**A**: ResiConnect aims to be flexible and accommodate all the different residences in NUS. These residences have different limits on the number of people in a room. For now, we have decided not to set a limit and leave it to the user's discretion to manage this. We plan to address this in a future iteration of ResiConnect.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -545,10 +549,10 @@ Action     | Format, Examples
 **List Students**  | `list_stu`
 **List Staff**   | `list_staff`
 **List External Parties**   | `list_ext`
-**Delete Student** | `delete_stu INDEX`<br> e.g., `delete_stu 3` 
+**Delete Student** | `delete_stu INDEX`<br> e.g., `delete_stu 3`
 **Delete Staff** | `delete_staff INDEX` <br> e.g., `delete_staff 3`
 **Delete External Party** | `delete_ext INDEX` <br> e.g., `delete_ext 3`
-**Search Student** | `search_stu [name/NAME] [matric/MATRIC] [phone/PHONE] [email/EMAIL] [a/ADDRESS] [t/TAG] [emergency/EMERGENCY][block/BLOCK] [level/LEVEL] [room/ROOM] [designation/DESIGNATION]`<br> e.g., `search_stu name/Alice matric/A0234567B` 
+**Search Student** | `search_stu [name/NAME] [matric/MATRIC] [phone/PHONE] [email/EMAIL] [a/ADDRESS] [t/TAG] [emergency/EMERGENCY][block/BLOCK] [level/LEVEL] [room/ROOM] [designation/DESIGNATION]`<br> e.g., `search_stu name/Alice matric/A0234567B`
 **Search Staff** | `search_staff [name/NAME] [phone/PHONE] [email/EMAIL] [a/ADDRESS] [t/TAG] [emergency/EMERGENCY][block/BLOCK] [level/LEVEL] [room/ROOM] [designation/DESIGNATION]` <br> e.g., `search_staff name/Alice phone/98765432`
 **Search External Party** | `search_ext [name/NAME] [phone/PHONE] [email/EMAIL] [desc/DESCRIPTION]` <br> e.g., `search_ext name/Alice desc/Food Vendor`
 **Add Event**    | `add_event name/EVENT_NAME from/START_TIME to/END_TIME` <br> e.g., `add_event name/ Dance Club Rehearsal from/ 2025-06-15 18:00 to/ 2025-06-15 21:00`
