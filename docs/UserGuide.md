@@ -489,7 +489,7 @@ Furthermore, certain edits can cause the AddressBook to behave in unexpected way
 ## Constraints for the Features
 
 Here is a comprehensive list for any constraints that we have specified above!
-* Address `a/`: Addresses can take any values, and it should not be blank.
+* Address `a/`: Addresses can take any values, and it should not be blank. If your address contains "/", do note that if it matches any of the other parameters e.g. `t/`, ResiConnect will not accept your input and an error will be displayed.
 * Block `block/`: Block should only be 1 alphabet or 1 number from 1 to 9, and it should not be blank.
 * Description `desc/`: Description can take any values, and it should not be blank.
 * Email `email/`: Emails should be of the format local-part@domain and adhere to the following constraints:
