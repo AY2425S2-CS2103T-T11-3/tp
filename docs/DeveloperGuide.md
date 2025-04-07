@@ -530,4 +530,4 @@ testers are expected to do more *exploratory* testing.
 
 ### Maximum Number of residents in a room
 
-1. Add support for setting a maximum number of residents in a room.
+1. Add support for enforcing a limit on the number of different staff and students that can belong to the same combination of block, level and room.
