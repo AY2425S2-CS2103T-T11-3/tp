@@ -34,7 +34,7 @@ If you can type fast, ResiConnect can get your contact management tasks done fas
    1. [Listing an Event](#listing-all-events-list-event)
    1. [Deleting an Event](#deleting-an-event-delete-event)
    1. [Viewing an Event](#viewing-an-event-view-event)
-   1. [Searching an Event](#searching-an-event--search-event)
+   1. [Searching an Event](#searching-an-event-search-event)
    1. [Adding a Member into an Event](#adding-a-member-into-an-event-add-event-member)
    1. [Deleting a Member from an Event](#deleting-a-member-from-an-event-delete-event-member)
    1. [Clearing all Entries](#clearing-all-entries-clear)
