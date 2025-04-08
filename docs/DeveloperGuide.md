@@ -25,7 +25,7 @@
 
 
 4. [Implementation](#implementation)
-    1. [[Proposed] Undo/redo feature](#proposed-undoredo-feature)
+    1. [[Proposed] Undo/redo feature](#proposed-undo-redo-feature)
 
 
 5. [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
