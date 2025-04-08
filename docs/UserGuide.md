@@ -25,31 +25,36 @@ If you can type fast, ResiConnect can get your contact management tasks done fas
 
 
 3. [Features](#features)
-   1. [Viewing Help](#viewing-help--help)
-   2. [Adding a Student](#adding-a-student-add_stu)
-   3. [Adding a Staff](#adding-a-staff-add_staff)
-   4. [Adding an External Party](#adding-an-external-party-add_ext)
-   5. [Listing all Students](#listing-all-students--list_stu)
-   6. [Listing all Staff](#listing-all-staff--list_staff)
-   7. [Listing all External Parties](#listing-all-external-parties--list_ext)
-   8. [Deleting a Student](#deleting-a-student--delete_stu)
-   9. [Deleting a Staff](#deleting-a-staff--delete_staff)
-   10. [Deleting an External Party](#deleting-an-external-party--delete_ext)
-   11. [Searching for Students](#searching-for-students-search_stu)
-   12. [Searching for Staff](#searching-for-staff-search_staff)
-   13. [Searching for External Parties](#searching-for-external-parties-search_ext)
-   14. [Adding an Event](#adding-an-event--add_event)
-   15. [Listing an Event](#listing-all-events--list_event)
-   16. [Deleting an Event](#deleting-an-event--delete_event)
-   17. [Viewing an Event](#viewing-an-event--view_event)
-   18. [Searching an Event](#searching-an-event--search_event)
-   19. [Adding a Member into an Event](#adding-a-member-into-an-event-add_event_member)
-   20. [Deleting a Member from an Event](#deleting-a-member-from-an-event-delete_event_member)
-   21. [Searching for Event members](#searching-for-event-members-search_event_member)
-   21. [Clearing all Entries](#clearing-all-entries--clear)
-   22. [Exiting the Program](#exiting-the-program--exit)
-   23. [Saving the Data](#saving-the-data)
-   24. [Editing the Data File](#editing-the-data-file)
+   1. [Viewing Help](#viewing-help-help)
+   2. [Student Features:](#student-features)
+      1. [Adding a Student](#adding-a-student-add-stu)
+      2. [Listing all Students](#listing-all-students-list-stu)
+      3. [Deleting a Student](#deleting-a-student-delete-stu)
+      4. [Searching for Students](#searching-for-students-search-stu)
+   3. [Staff Features:](#staff-features)
+      1. [Adding a Staff](#adding-a-staff-add-staff)
+      2. [Listing all Staff](#listing-all-staff-list-staff)
+      3. [Deleting a Staff](#deleting-a-staff-delete-staff)
+      4. [Searching for Staff](#searching-for-staff-search-staff)
+   4. [External Parties Features:](#external-parties-features)
+      1. [Adding an External Party](#adding-an-external-party-add-ext)
+      2. [Listing all External Parties](#listing-all-external-parties-list-ext)
+      3. [Deleting an External Party](#deleting-an-external-party-delete-ext)
+      4. [Searching for External Parties](#searching-for-external-parties-search-ext)
+   5. [Event Features:](#event-features)
+      1. [Adding an Event](#adding-an-event-add-event)
+      2. [Listing an Event](#listing-all-events-list-event)
+      3. [Deleting an Event](#deleting-an-event-delete-event)
+      4. [Viewing an Event](#viewing-an-event-view-event)
+      5. [Searching an Event](#searching-an-event-search-event)
+   6. [Members in Event Features:](#members-in-event-features)
+      1. [Adding a Member into an Event](#adding-a-member-into-an-event-add-event-member)
+      2. [Deleting a Member from an Event](#deleting-a-member-from-an-event-delete-event-member)
+      3. [Searching for Event members](#searching-for-event-members-search-event-member)
+   7. [Clearing all Entries](#clearing-all-entries-clear)
+   8. [Exiting the Program](#exiting-the-program-exit)
+   9. [Saving the Data](#saving-the-data)
+   10. [Editing the Data File](#editing-the-data-file)
 
 
 4. [Constraints for the Features](#constraints-for-the-features)
@@ -171,6 +176,8 @@ Shows a message explaining how to access the help page.
 
 Format: `help`
 
+### Student Features:
+
 ### Adding a student: `add_stu`
 
 Adds a student to the address book.
@@ -187,29 +194,6 @@ Examples:
 
 ![Adding student success message](images/add_stuSuccess.png)
 
-### Adding a staff: `add_staff`
-
-Adds a staff to the address book.
-
-Format: `add_staff name/NAME phone/PHONE email/EMAIL a/ADDRESS [t/TAG] emergency/EMERGENCY CONTACT block/BLOCK level/LEVEL room/ROOM [designation/DESIGNATION]`
-
-<box type="tip" seamless>
-
-**Tip:** You can omit the designation field, and ResiConnect will put the lowest position available as the default. To specify it, place an integer from 0 to 2, representing {“Support Staff”, “Block IC”, “Residence Master”} respectively.
-</box>
-
-Examples:
-* `add_staff name/John Doe phone/98765432 email/johnd@example.com a/311, Clementi Ave 2, #02-25 t/neighbour emergency/91234567 block/A level/5 room/3 designation/1`
-
-### Adding an external party: `add_ext`
-
-Adds an external party to the address book.
-
-Format: `add_ext name/NAME phone/PHONE email/EMAIL desc/DESCRIPTION`
-
-Examples:
-* `add_ext name/John Doe phone/98765432 email/johnd@example.com desc/Food Vendor`
-
 ### Listing all students : `list_stu`
 
 Shows a list of all students in the address book.
@@ -217,19 +201,6 @@ Shows a list of all students in the address book.
 Format: `list_stu`
 
 ![listing student success message](images/list_stuSuccess.png)
-
-### Listing all staff : `list_staff`
-
-Shows a list of all staffs in the address book.
-
-
-Format: `list_staff`
-
-### Listing all external parties : `list_ext`
-
-Shows a list of all external parties in the address book.
-
-Format: `list_ext`
 
 ### Deleting a student : `delete_stu`
 
@@ -245,32 +216,6 @@ Examples:
 * `list_stu` followed by `delete_stu 2` deletes the 2nd student in the student list.
 
 ![delete student success message](images/delete_stuSuccess.png)
-
-### Deleting a staff : `delete_staff`
-
-Deletes the specified staff from the address book.
-
-Format: `delete_staff INDEX`
-
-* Deletes the staff at the specified `INDEX`.
-* The index refers to the index number shown in the unfiltered staff list, given by the `list_staff` command.
-* The index **must be a positive integer** 1, 2, 3, …​
-
-Examples:
-* `list_staff` followed by `delete_staff 2` deletes the 2nd staff in the staff list.
-
-### Deleting an external party : `delete_ext`
-
-Deletes the specified external party from the address book.
-
-Format: `delete_ext INDEX`
-
-* Deletes the external party at the specified `INDEX`.
-* The index refers to the index number shown in the unfiltered external party list, given by the `list_ext` command.
-* The index **must be a positive integer** 1, 2, 3, …​
-
-Examples:
-* `list_ext` followed by `delete_ext 2` deletes the 2nd external party in the external party list.
 
 ### Searching for students: `search_stu`
 
@@ -296,6 +241,40 @@ Examples:
 
 ![searching student success message](images/search_stuSuccess.png)
 
+### Staff Features:
+
+### Adding a staff: `add_staff`
+
+Adds a staff to the address book.
+
+Format: `add_staff name/NAME phone/PHONE email/EMAIL a/ADDRESS [t/TAG] emergency/EMERGENCY CONTACT block/BLOCK level/LEVEL room/ROOM [designation/DESIGNATION]`
+
+<box type="tip" seamless>
+
+**Tip:** You can omit the designation field, and ResiConnect will put the lowest position available as the default. To specify it, place an integer from 0 to 2, representing {“Support Staff”, “Block IC”, “Residence Master”} respectively.
+</box>
+
+Examples:
+* `add_staff name/John Doe phone/98765432 email/johnd@example.com a/311, Clementi Ave 2, #02-25 t/neighbour emergency/91234567 block/A level/5 room/3 designation/1`
+
+### Listing all staff : `list_staff`
+
+Shows a list of all staffs in the address book.
+
+Format: `list_staff`
+
+### Deleting a staff : `delete_staff`
+
+Deletes the specified staff from the address book.
+
+Format: `delete_staff INDEX`
+
+* Deletes the staff at the specified `INDEX`.
+* The index refers to the index number shown in the unfiltered staff list, given by the `list_staff` command.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `list_staff` followed by `delete_staff 2` deletes the 2nd staff in the staff list.
 
 ### Searching for staff: `search_staff`
 
@@ -319,6 +298,36 @@ Examples:
 * `search_staff name/Alice` returns a list of staff that are named `Alice`.
 * `search_staff name/Bob block/A` returns a list of staff that are both named `Bob` and reside in block `A`.
 
+### External Parties Features:
+
+### Adding an external party: `add_ext`
+
+Adds an external party to the address book.
+
+Format: `add_ext name/NAME phone/PHONE email/EMAIL desc/DESCRIPTION`
+
+Examples:
+* `add_ext name/John Doe phone/98765432 email/johnd@example.com desc/Food Vendor`
+
+### Listing all external parties : `list_ext`
+
+Shows a list of all external parties in the address book.
+
+Format: `list_ext`
+
+### Deleting an external party : `delete_ext`
+
+Deletes the specified external party from the address book.
+
+Format: `delete_ext INDEX`
+
+* Deletes the external party at the specified `INDEX`.
+* The index refers to the index number shown in the unfiltered external party list, given by the `list_ext` command.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `list_ext` followed by `delete_ext 2` deletes the 2nd external party in the external party list.
+
 ### Searching for external parties: `search_ext`
 
 Searches for all external parties whose attributes match the specified keywords (case-insensitive) and displays them
@@ -340,6 +349,8 @@ Examples:
 * `search_ext name/Alice` returns a list of staff that are named `Alice`.
 * `search_ext name/Bob description/Food Vendor` returns a list of external parties that are both named `Bob` and
 work as `Food Vendor`.
+
+### Event Features:
 
 ### Adding an event : `add_event`
 
@@ -409,6 +420,8 @@ Format: `search_event [name/EVENT_NAME] [from/START_TIME] [to/END_TIME]`
 
 Examples:
 * `search_event name/Dance from/2025-06-15 18:00` searches for all events with the name `Dance` starting from `2025-06-15 18:00`.
+
+### Members in Event Features:
 
 ### Adding a member into an event: `add_event_member`
 
@@ -481,17 +494,17 @@ Format: `exit`
 
 ### Saving the data
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+ResiConnect data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
-AddressBook data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+ResiConnect data are saved automatically as a JSON file `[JAR file location]/data/resiconnect.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <box type="warning" seamless>
 
 **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.  Hence, it is recommended to take a backup of the file before editing it.<br>
-Furthermore, certain edits can cause the AddressBook to behave in unexpected ways (e.g., if a value entered is outside the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
+If your changes to the data file makes its format invalid, ResiConnect will discard all data and start with an empty data file at the next run.  Hence, it is recommended to take a backup of the file before editing it.<br>
+Furthermore, certain edits can cause the ResiConnect to behave in unexpected ways (e.g., if a value entered is outside the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </box>
 
 ## Constraints for the Features

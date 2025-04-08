@@ -539,6 +539,39 @@ testers are expected to do more *exploratory* testing.
     1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
+### Adding a student
+
+1. Adding a student
+
+    1. Prerequisites: None
+
+    2. Test case: `add_stu name/John Doe matric/A0234567B phone/98765432 email/johnd@example.com a/311, Clementi Ave 2, #02-25 t/friend emergency/91234567 block/A level/5 room/3 designation/1`<br>
+       Expected: Student will be added to the student list. Name, phone and email of the student will be shown in the status message. Timestamp in the status bar is updated.
+
+    3. Test case: `add_stu name/Mary Jane matric/A0234568B phone/98765431 email/mary@example.com a/312, Clementi Ave 2, #02-25 t/friend emergency/91234567 block/A level/5 room/3 designation/1`<br>
+       Expected: Student will be added to the student list. Name, phone and email of the student will be shown in the status message. Timestamp in the status bar is updated.
+
+    4. Test case: `add_stu name/Harry Potter matric/A0234561B phone/98765412 email/harry@example.com a/313, Clementi Ave 2, #02-25 t/friend emergency/91234567 block/A level/5 room/3 designation/1`<br>
+       Expected: Student will be added to the student list. Name, phone and email of the student will be shown in the status message. Timestamp in the status bar is updated.
+
+    5. Test case: `add_stu name/John matric/A0234567B phone/99999999 email/john@example.com a/312, Clementi Ave 2, #02-25 t/friends emergency/91234568 block/B level/6 room/4 designation/2`
+       Expected: No student is added. Error details shown in the status message. Status bar remains the same.
+
+    6. Other incorrect add student commands to try: `add_stu`, `add_stu name/John Doe matric/A0234567B phone/98765432 email/johnd@example.com`<br>
+       Expected: Similar to previous.
+
+### Listing all students
+
+1. Listing all students
+
+    1. Prerequisites: None
+
+    2. Test case: `list_stu`
+       Expected: Student list will be shown. Message to inform user that students has been listed will be shown in the status message. Timestamp in the status bar is updated.
+
+    3. Test case: `list_student`
+       Expected: Student list will not be shown. Message to inform user that input is an unknown command will be shown in the status message. Timestamp in the status bar is updated.
+
 ### Deleting a student
 
 1. Deleting a student while all students are being shown
@@ -552,6 +585,23 @@ testers are expected to do more *exploratory* testing.
        Expected: No student is deleted. Error details shown in the status message. Status bar remains the same.
 
     1. Other incorrect delete commands to try: `delete_stu`, `delete_stu x`, `...` (where x is larger than the list size)<br>
+       Expected: Similar to previous.
+
+### Searching a student
+1. Adding a student
+
+    1. Prerequisites: There must be students in the list
+
+    2. Test case: `search_stu name/harry potter`<br>
+       Expected: Students with names that match the search will show up in the list. Number of students that matched the search attributes and the search attributes will be shown in the status message. Timestamp in the status bar is updated.
+
+    3. Test case: `search_stu name/harry`<br>
+       Expected: No students will show up in the list. Message to inform user that no matching students with the search attributes shown in the status message. Timestamp in the status bar is updated.
+
+    4. Test case: `search name/harry potter`<br>
+       Expected: No students will show up in the list. Message to inform user that input is an unknown command will be shown in the status message. Timestamp in the status bar is updated.
+
+    5. Other incorrect search student commands to try: `search_stu name/har`, `search_stu matric/A0`<br>
        Expected: Similar to previous.
 
 
