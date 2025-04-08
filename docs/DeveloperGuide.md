@@ -41,7 +41,10 @@
 
 7. [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
    1. [Launch and shutdown](#launch-and-shutdown)
-   2. [Deleting a student](#deleting-a-student)
+   2. [Adding a student](#adding-a-student)
+   3. [Listing all students](#listing-all-students)
+   4. [Deleting a student](#deleting-a-student)
+   5. [Searching for students](#searching-for-students)
 
 
 8. [Appendix: Planned Enhancements](#appendix-planned-enhancements)
@@ -587,8 +590,9 @@ testers are expected to do more *exploratory* testing.
     1. Other incorrect delete commands to try: `delete_stu`, `delete_stu x`, `...` (where x is larger than the list size)<br>
        Expected: Similar to previous.
 
-### Searching a student
-1. Adding a student
+### Searching for students
+
+1. Searching for students
 
     1. Prerequisites: There must be students in the list
 
